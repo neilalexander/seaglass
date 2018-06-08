@@ -1,4 +1,4 @@
-target 'Matrix' do
+target 'Seaglass' do
   use_frameworks!
 
   pod 'Realm', :git => 'https://github.com/realm/realm-cocoa', :branch => 'tg/xcode-10', submodules: true

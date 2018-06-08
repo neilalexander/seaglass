@@ -10,7 +10,7 @@
 		390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FE41020C7026A004A4B74 /* MatrixServices.swift */; };
 		391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */; };
 		391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2020C68AD100B4EFEC /* LoginViewController.swift */; };
-		391BFE2420C68AD100B4EFEC /* Matrix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2220C68AD100B4EFEC /* Matrix.xcdatamodeld */; };
+		391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */; };
 		391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2520C68AD200B4EFEC /* Assets.xcassets */; };
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
 		391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* MatrixTests.swift */; };
@@ -18,7 +18,7 @@
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewChannelController.swift */; };
-		44DF37BA54C194FD9CFBD0C5 /* Pods_Matrix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC19C9F30633881FEA1098D /* Pods_Matrix.framework */; };
+		5ADA5A567D309FE7E346FF13 /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2E7E1F5B8D3A06F0CBD891 /* Pods_Seaglass.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,27 +39,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1BC19C9F30633881FEA1098D /* Pods_Matrix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Matrix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixServices.swift; sourceTree = "<group>"; };
-		391BFE1B20C68AD100B4EFEC /* Matrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		391BFE2020C68AD100B4EFEC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		391BFE2320C68AD100B4EFEC /* Matrix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Matrix.xcdatamodel; sourceTree = "<group>"; };
 		391BFE2520C68AD200B4EFEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		391BFE2820C68AD200B4EFEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		391BFE2A20C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		391BFE2B20C68AD200B4EFEC /* Matrix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Matrix.entitlements; sourceTree = "<group>"; };
-		391BFE3020C68AD200B4EFEC /* MatrixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatrixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Seaglass.entitlements; sourceTree = "<group>"; };
+		391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3420C68AD200B4EFEC /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		391BFE3620C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		391BFE3B20C68AD200B4EFEC /* MatrixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatrixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewChannelController.swift; sourceTree = "<group>"; };
-		47AE6D4389F3097A56B85340 /* Pods-Matrix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matrix.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Matrix/Pods-Matrix.debug.xcconfig"; sourceTree = "<group>"; };
-		4AA3E8DB38E5BB5B8D682683 /* Pods-Matrix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Matrix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Matrix/Pods-Matrix.release.xcconfig"; sourceTree = "<group>"; };
+		836C1826E7CA2BBC5A0317BD /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
+		8BB6A122419E2B49A30D7487 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
+		8F2E7E1F5B8D3A06F0CBD891 /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44DF37BA54C194FD9CFBD0C5 /* Pods_Matrix.framework in Frameworks */,
+				5ADA5A567D309FE7E346FF13 /* Pods_Seaglass.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,45 +88,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32B6DDC0D53F0B2055E749BF /* Pods */ = {
+		37BBB83C0BD0CE010D66B438 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47AE6D4389F3097A56B85340 /* Pods-Matrix.debug.xcconfig */,
-				4AA3E8DB38E5BB5B8D682683 /* Pods-Matrix.release.xcconfig */,
+				8F2E7E1F5B8D3A06F0CBD891 /* Pods_Seaglass.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		391BFE1220C68AD100B4EFEC = {
 			isa = PBXGroup;
 			children = (
-				391BFE1D20C68AD100B4EFEC /* Matrix */,
-				391BFE3320C68AD200B4EFEC /* MatrixTests */,
-				391BFE3E20C68AD200B4EFEC /* MatrixUITests */,
+				391BFE1D20C68AD100B4EFEC /* Seaglass */,
+				391BFE3320C68AD200B4EFEC /* SeaglassTests */,
+				391BFE3E20C68AD200B4EFEC /* SeaglassUITests */,
 				391BFE1C20C68AD100B4EFEC /* Products */,
-				32B6DDC0D53F0B2055E749BF /* Pods */,
-				8FF1959DC01135C61CBA2F4F /* Frameworks */,
+				89EAFACBB0C8CF13BE1201B8 /* Pods */,
+				37BBB83C0BD0CE010D66B438 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		391BFE1C20C68AD100B4EFEC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				391BFE1B20C68AD100B4EFEC /* Matrix.app */,
-				391BFE3020C68AD200B4EFEC /* MatrixTests.xctest */,
-				391BFE3B20C68AD200B4EFEC /* MatrixUITests.xctest */,
+				391BFE1B20C68AD100B4EFEC /* Seaglass.app */,
+				391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */,
+				391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		391BFE1D20C68AD100B4EFEC /* Matrix */ = {
+		391BFE1D20C68AD100B4EFEC /* Seaglass */ = {
 			isa = PBXGroup;
 			children = (
 				391BFE2520C68AD200B4EFEC /* Assets.xcassets */,
 				391BFE2720C68AD200B4EFEC /* Main.storyboard */,
 				391BFE2A20C68AD200B4EFEC /* Info.plist */,
-				391BFE2B20C68AD200B4EFEC /* Matrix.entitlements */,
-				391BFE2220C68AD100B4EFEC /* Matrix.xcdatamodeld */,
+				391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */,
+				391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */,
 				391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */,
 				391BFE2020C68AD100B4EFEC /* LoginViewController.swift */,
 				390FE41020C7026A004A4B74 /* MatrixServices.swift */,
@@ -134,60 +133,61 @@
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
 				399E6FC520C806E700A2644A /* MainViewChannelController.swift */,
 			);
-			path = Matrix;
+			path = Seaglass;
 			sourceTree = "<group>";
 		};
-		391BFE3320C68AD200B4EFEC /* MatrixTests */ = {
+		391BFE3320C68AD200B4EFEC /* SeaglassTests */ = {
 			isa = PBXGroup;
 			children = (
 				391BFE3420C68AD200B4EFEC /* MatrixTests.swift */,
 				391BFE3620C68AD200B4EFEC /* Info.plist */,
 			);
-			path = MatrixTests;
+			path = SeaglassTests;
 			sourceTree = "<group>";
 		};
-		391BFE3E20C68AD200B4EFEC /* MatrixUITests */ = {
+		391BFE3E20C68AD200B4EFEC /* SeaglassUITests */ = {
 			isa = PBXGroup;
 			children = (
 				391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */,
 				391BFE4120C68AD200B4EFEC /* Info.plist */,
 			);
-			path = MatrixUITests;
+			path = SeaglassUITests;
 			sourceTree = "<group>";
 		};
-		8FF1959DC01135C61CBA2F4F /* Frameworks */ = {
+		89EAFACBB0C8CF13BE1201B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BC19C9F30633881FEA1098D /* Pods_Matrix.framework */,
+				836C1826E7CA2BBC5A0317BD /* Pods-Seaglass.debug.xcconfig */,
+				8BB6A122419E2B49A30D7487 /* Pods-Seaglass.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		391BFE1A20C68AD100B4EFEC /* Matrix */ = {
+		391BFE1A20C68AD100B4EFEC /* Seaglass */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Matrix" */;
+			buildConfigurationList = 391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Seaglass" */;
 			buildPhases = (
-				625D231774CAB11F51243BB8 /* [CP] Check Pods Manifest.lock */,
+				86B2A907933C944A88DDDE96 /* [CP] Check Pods Manifest.lock */,
 				391BFE1720C68AD100B4EFEC /* Sources */,
 				391BFE1820C68AD100B4EFEC /* Frameworks */,
 				391BFE1920C68AD100B4EFEC /* Resources */,
-				F7BBEA5004F5EC142B05A1ED /* [CP] Embed Pods Frameworks */,
+				6787EBEBFD062AFD90E5A18C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Matrix;
+			name = Seaglass;
 			productName = Matrix;
-			productReference = 391BFE1B20C68AD100B4EFEC /* Matrix.app */;
+			productReference = 391BFE1B20C68AD100B4EFEC /* Seaglass.app */;
 			productType = "com.apple.product-type.application";
 		};
-		391BFE2F20C68AD200B4EFEC /* MatrixTests */ = {
+		391BFE2F20C68AD200B4EFEC /* SeaglassTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 391BFE4720C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "MatrixTests" */;
+			buildConfigurationList = 391BFE4720C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassTests" */;
 			buildPhases = (
 				391BFE2C20C68AD200B4EFEC /* Sources */,
 				391BFE2D20C68AD200B4EFEC /* Frameworks */,
@@ -198,14 +198,14 @@
 			dependencies = (
 				391BFE3220C68AD200B4EFEC /* PBXTargetDependency */,
 			);
-			name = MatrixTests;
+			name = SeaglassTests;
 			productName = MatrixTests;
-			productReference = 391BFE3020C68AD200B4EFEC /* MatrixTests.xctest */;
+			productReference = 391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		391BFE3A20C68AD200B4EFEC /* MatrixUITests */ = {
+		391BFE3A20C68AD200B4EFEC /* SeaglassUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "MatrixUITests" */;
+			buildConfigurationList = 391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassUITests" */;
 			buildPhases = (
 				391BFE3720C68AD200B4EFEC /* Sources */,
 				391BFE3820C68AD200B4EFEC /* Frameworks */,
@@ -216,9 +216,9 @@
 			dependencies = (
 				391BFE3D20C68AD200B4EFEC /* PBXTargetDependency */,
 			);
-			name = MatrixUITests;
+			name = SeaglassUITests;
 			productName = MatrixUITests;
-			productReference = 391BFE3B20C68AD200B4EFEC /* MatrixUITests.xctest */;
+			productReference = 391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -249,7 +249,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 391BFE1620C68AD100B4EFEC /* Build configuration list for PBXProject "Matrix" */;
+			buildConfigurationList = 391BFE1620C68AD100B4EFEC /* Build configuration list for PBXProject "Seaglass" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -262,9 +262,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				391BFE1A20C68AD100B4EFEC /* Matrix */,
-				391BFE2F20C68AD200B4EFEC /* MatrixTests */,
-				391BFE3A20C68AD200B4EFEC /* MatrixUITests */,
+				391BFE1A20C68AD100B4EFEC /* Seaglass */,
+				391BFE2F20C68AD200B4EFEC /* SeaglassTests */,
+				391BFE3A20C68AD200B4EFEC /* SeaglassUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -296,31 +296,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		625D231774CAB11F51243BB8 /* [CP] Check Pods Manifest.lock */ = {
+		6787EBEBFD062AFD90E5A18C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Matrix-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7BBEA5004F5EC142B05A1ED /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Matrix/Pods-Matrix-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
 				"${BUILT_PRODUCTS_DIR}/OLMKit/OLMKit.framework",
@@ -337,7 +319,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Matrix/Pods-Matrix-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86B2A907933C944A88DDDE96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Seaglass-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -352,7 +352,7 @@
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,
-				391BFE2420C68AD100B4EFEC /* Matrix.xcdatamodeld in Sources */,
+				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,12 +378,12 @@
 /* Begin PBXTargetDependency section */
 		391BFE3220C68AD200B4EFEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 391BFE1A20C68AD100B4EFEC /* Matrix */;
+			target = 391BFE1A20C68AD100B4EFEC /* Seaglass */;
 			targetProxy = 391BFE3120C68AD200B4EFEC /* PBXContainerItemProxy */;
 		};
 		391BFE3D20C68AD200B4EFEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 391BFE1A20C68AD100B4EFEC /* Matrix */;
+			target = 391BFE1A20C68AD100B4EFEC /* Seaglass */;
 			targetProxy = 391BFE3C20C68AD200B4EFEC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -515,18 +515,18 @@
 		};
 		391BFE4520C68AD200B4EFEC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47AE6D4389F3097A56B85340 /* Pods-Matrix.debug.xcconfig */;
+			baseConfigurationReference = 836C1826E7CA2BBC5A0317BD /* Pods-Seaglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Matrix/Matrix.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Seaglass/Seaglass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Matrix/Info.plist;
+				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.Matrix;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.seaglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -534,18 +534,18 @@
 		};
 		391BFE4620C68AD200B4EFEC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AA3E8DB38E5BB5B8D682683 /* Pods-Matrix.release.xcconfig */;
+			baseConfigurationReference = 8BB6A122419E2B49A30D7487 /* Pods-Seaglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Matrix/Matrix.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Seaglass/Seaglass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Matrix/Info.plist;
+				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.Matrix;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.seaglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -567,7 +567,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Matrix.app/Contents/MacOS/Matrix";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seaglass.app/Contents/MacOS/Seaglass";
 			};
 			name = Debug;
 		};
@@ -587,7 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Matrix.app/Contents/MacOS/Matrix";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seaglass.app/Contents/MacOS/Seaglass";
 			};
 			name = Release;
 		};
@@ -632,7 +632,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		391BFE1620C68AD100B4EFEC /* Build configuration list for PBXProject "Matrix" */ = {
+		391BFE1620C68AD100B4EFEC /* Build configuration list for PBXProject "Seaglass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				391BFE4220C68AD200B4EFEC /* Debug */,
@@ -641,7 +641,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Matrix" */ = {
+		391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Seaglass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				391BFE4520C68AD200B4EFEC /* Debug */,
@@ -650,7 +650,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		391BFE4720C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "MatrixTests" */ = {
+		391BFE4720C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				391BFE4820C68AD200B4EFEC /* Debug */,
@@ -659,7 +659,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "MatrixUITests" */ = {
+		391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				391BFE4B20C68AD200B4EFEC /* Debug */,
@@ -671,13 +671,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		391BFE2220C68AD100B4EFEC /* Matrix.xcdatamodeld */ = {
+		391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				391BFE2320C68AD100B4EFEC /* Matrix.xcdatamodel */,
 			);
 			currentVersion = 391BFE2320C68AD100B4EFEC /* Matrix.xcdatamodel */;
-			path = Matrix.xcdatamodeld;
+			path = Seaglass.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
