@@ -28,7 +28,7 @@ git checkout develop
 sed -i '' "s/'Realm', '~> 3.3.2'/'Realm', '>= 3.6.0'/g" SwiftMatrixSDK.podspec
 cd ..
 ```
-Open up `MatrixSDK.xcworkplace` in Xcode.
+Open up `MatrixSDK.xcworkspace` in Xcode.
 
 Open the `File` menu, select `New` and then `Target`. Select `macOS` and then
 choose `Cocoa Framework`. When prompted for a name, enter `MatrixSDKMac` and
@@ -43,7 +43,7 @@ git clone https://github.com/neilalexander/seaglass
 cd seaglass
 pod install
 ```
-Open up `Seaglass.xcworkplace` in Xcode and build!
+Open up `Seaglass.xcworkspace` in Xcode and build!
 
 ## Things that work
 
