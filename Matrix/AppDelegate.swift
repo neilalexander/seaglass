@@ -11,14 +11,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+
+    @IBAction func logoutMenuItemSelected(_ sender: Any) {
+        print("Requesting log out of Matrix")
+        MatrixServices.inst.logout()
     }
 
     // MARK: - Core Data stack
