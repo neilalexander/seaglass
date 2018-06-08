@@ -9,6 +9,20 @@
 import Cocoa
 import SwiftMatrixSDK
 
+class ReplaceWindowSegue: NSStoryboardSegue {
+    override func perform() {
+        if let src = self.sourceController as? NSViewController,
+            let dest = self.destinationController as? NSViewController {
+            
+            NSAnimationContext.runAnimationGroup({ (context) in
+                context.duration = 0.5
+                src.view.window?.animator().alphaValue = 0
+                dest.view.window?.animator().alphaValue = 1
+            })
+        }
+    }
+}
+
 class ReplaceSheetSegue: NSStoryboardSegue {
     override func perform() {
         if let src = self.sourceController as? NSViewController,
@@ -40,11 +54,14 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
 
     let defaults = UserDefaults.standard
     
+    @IBOutlet weak var InfoLabel: NSTextField!
     @IBOutlet weak var LoginButton: NSButton!
     @IBOutlet weak var CancelButton: NSButton!
     @IBOutlet weak var AdvancedSettingsButton: NSButton!
     @IBOutlet weak var UsernameField: NSTextField!
+    @IBOutlet weak var UsernameLabel: NSTextField!
     @IBOutlet weak var PasswordField: NSSecureTextField!
+    @IBOutlet weak var PasswordLabel: NSTextField!
     @IBOutlet weak var ProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var AdvancedSettingsLabel: NSTextField!
     @IBOutlet weak var RememberCheckbox: NSButton!
@@ -63,7 +80,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         }
         
-        if defaults.bool(forKey: "LoginAutomatically") {
+        if defaults.bool(forKey: "LoginAutomatically") && false {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
@@ -74,6 +91,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             UsernameField.isEnabled = false
             PasswordField.isEnabled = false
             RememberCheckbox.isEnabled = false
+            AdvancedSettingsButton.isEnabled = false
             
             ProgressIndicator.isIndeterminate = true
             ProgressIndicator.startAnimation(self)
@@ -83,8 +101,12 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     }
     
     @IBAction func LoginButtonClicked(_ sender: NSButton) {
-        let hideObjects : [NSView] = [ LoginButton, AdvancedSettingsButton ]
-        let showObjects : [NSView] = [ ProgressIndicator ]
+        var hideObjects : [NSView] = [ LoginButton, AdvancedSettingsButton ]
+        var showObjects : [NSView] = [ ProgressIndicator ]
+        
+        let username = UsernameField.stringValue
+        let password = PasswordField.stringValue
+        let homeserver = defaults.string(forKey: "Homeserver")!
         
         LoginButton.isEnabled = false
         CancelButton.title = "Cancel"
@@ -92,6 +114,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         UsernameField.isEnabled = false
         PasswordField.isEnabled = false
         RememberCheckbox.isEnabled = false
+        AdvancedSettingsButton.isEnabled = false
         
         ProgressIndicator.isIndeterminate = true
         ProgressIndicator.startAnimation(self)
@@ -103,12 +126,19 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             self.defaults.removeObject(forKey: "UserID")
         }
 
-        let client = MXRestClient(homeServer: URL(string: defaults.string(forKey: "Homeserver")!)!, unrecognizedCertificateHandler: nil)
-        client.login(username: UsernameField.stringValue, password: PasswordField.stringValue) { response in
-            self.ProgressIndicator.stopAnimation(self)
-            
+        let client = MXRestClient(homeServer: URL(string: homeserver)!, unrecognizedCertificateHandler: nil)
+        client.login(username: username, password: password) { response in
             switch response {
             case .success(let credentials):
+                showObjects.append(self.ProgressIndicator)
+                hideObjects.append(self.InfoLabel)
+                hideObjects.append(self.UsernameField)
+                hideObjects.append(self.UsernameLabel)
+                hideObjects.append(self.PasswordField)
+                hideObjects.append(self.PasswordLabel)
+                hideObjects.append(self.CancelButton)
+                hideObjects.append(self.RememberCheckbox)
+                
                 for hide in hideObjects {
                     NSAnimationContext.runAnimationGroup({ (context) in
                         context.duration = 0.25
@@ -133,7 +163,6 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                 }
                 
                 MatrixServices.inst.start(credentials)
-                self.ProgressIndicator.stopAnimation(self)
                 self.CancelButton.isEnabled = false
                 
             case .failure:
@@ -148,6 +177,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.UsernameField.isEnabled = true
                     self.PasswordField.isEnabled = true
                     self.RememberCheckbox.isEnabled = true
+                    self.AdvancedSettingsButton.isEnabled = true
                     
                     self.LoginButton.isEnabled = true
                     self.CancelButton.title = "Quit"
@@ -160,7 +190,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         if sender.title == "Cancel" {
             MatrixServices.inst.client?.close()
             
-            let showObjects : [NSView] = [ LoginButton, AdvancedSettingsButton ]
+            let showObjects : [NSView] = [ LoginButton, AdvancedSettingsButton, UsernameField, UsernameLabel, PasswordField, PasswordLabel, CancelButton, RememberCheckbox, InfoLabel ]
             let hideObjects : [NSView] = [ ProgressIndicator ]
             
             for hide in hideObjects {
@@ -206,15 +236,15 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     }
     
     func matrixDidLogin(_ session: MXSession) {
-        print("LoginViewController matrixDidLogin")
-        
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
     }
     
-    func matrixDidLogout() {
-        print("LoginViewController matrixDidLogout")
+    func matrixWillLogout() {
         
-        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenLoginView"), sender: nil)
+    }
+    
+    func matrixDidLogout() {
+        
     }
 }
 

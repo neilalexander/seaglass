@@ -11,6 +11,7 @@ import SwiftMatrixSDK
 
 protocol MatrixServicesDelegate: AnyObject {
     func matrixDidLogin(_ session: MXSession)
+    func matrixWillLogout()
     func matrixDidLogout()
 }
 
@@ -82,22 +83,22 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     }
 
     func matrixDidLogin(_ session: MXSession) {
-        print("MainViewController matrixDidLogin")
     }
     
-    func matrixDidLogout() {
-        print("MainViewController matrixDidLogout")
-        
+    func matrixWillLogout() {
         defaults.set(false, forKey: "LoginAutomatically")
         defaults.removeObject(forKey: "AccessToken")
         defaults.removeObject(forKey: "HomeServer")
         defaults.removeObject(forKey: "UserID")
-        
+    }
+    
+    func matrixDidLogout() {
+        self.view.window?.endSheet(self.view.window!.attachedSheet!)
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
             self.view.window?.animator().alphaValue = 0
         }, completionHandler: {
-            NSApplication.shared.terminate(self)
+            exit(0)
         })
     }
 

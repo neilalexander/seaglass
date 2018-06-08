@@ -96,6 +96,8 @@ class MatrixServices: NSObject {
     }
     
     func logout() {
+        self.mainController?.servicesDelegate?.matrixWillLogout()
+        
         UserDefaults.standard.removeObject(forKey: MatrixServices.credKey)
         UserDefaults.standard.synchronize()
         self.credentials = nil

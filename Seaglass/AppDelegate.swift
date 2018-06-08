@@ -20,10 +20,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func logoutMenuItemSelected(_ sender: Any) {
-        print("Requesting log out of Matrix")
         MatrixServices.inst.logout()
     }
-
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
