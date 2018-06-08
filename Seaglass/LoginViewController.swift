@@ -59,8 +59,12 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             PasswordField.becomeFirstResponder()
         }
         
+        if defaults.string(forKey: "Homeserver") == nil {
+            defaults.setValue("https://matrix.org", forKey: "Homeserver")
+        }
+        
         if defaults.bool(forKey: "LoginAutomatically") {
-            let credentials = MXCredentials(homeServer: defaults.string(forKey: "HomeServer"),
+            let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
 
@@ -92,17 +96,14 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         ProgressIndicator.isIndeterminate = true
         ProgressIndicator.startAnimation(self)
         
-        let address = "https://matrix.org"
-        
         self.defaults.set(self.RememberCheckbox.state == .on, forKey: "LoginAutomatically")
         
         if self.RememberCheckbox.state != .on {
             self.defaults.removeObject(forKey: "AccessToken")
-            self.defaults.removeObject(forKey: "HomeServer")
             self.defaults.removeObject(forKey: "UserID")
         }
 
-        let client = MXRestClient(homeServer: URL(string: address)!, unrecognizedCertificateHandler: nil)
+        let client = MXRestClient(homeServer: URL(string: defaults.string(forKey: "Homeserver")!)!, unrecognizedCertificateHandler: nil)
         client.login(username: UsernameField.stringValue, password: PasswordField.stringValue) { response in
             self.ProgressIndicator.stopAnimation(self)
             
@@ -127,7 +128,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                 
                 if self.RememberCheckbox.state == .on {
                     self.defaults.set(credentials.accessToken, forKey: "AccessToken")
-                    self.defaults.set(credentials.homeServer, forKey: "HomeServer")
+                    self.defaults.set(credentials.homeServer, forKey: "Homeserver")
                     self.defaults.set(credentials.userId, forKey: "UserID")
                 }
                 

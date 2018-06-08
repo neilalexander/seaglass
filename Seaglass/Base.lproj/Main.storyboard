@@ -1200,7 +1200,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gt1-1l-l4H">
-                                <rect key="frame" x="20" y="218" width="410" height="5"/>
+                                <rect key="frame" x="20" y="218" width="410" height="179"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                         </subviews>
@@ -1346,10 +1346,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="74" y="635"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Settings Controller-->
         <scene sceneID="IF4-CQ-Fou">
             <objects>
-                <viewController id="OJS-MA-od8" sceneMemberID="viewController">
+                <viewController id="OJS-MA-od8" customClass="LoginViewSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cbF-TO-Htg">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1382,6 +1382,9 @@ DQ
                             </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="HomeserverURLField" destination="sBW-yz-0c9" id="WFT-Zn-9xw"/>
+                    </connections>
                 </viewController>
                 <customObject id="hRX-im-vpc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

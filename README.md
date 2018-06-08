@@ -47,14 +47,12 @@ Open up `Seaglass.xcworkplace` in Xcode and build!
 
 ## Things that work
 
-- Logging in, as long as you are logging into `matrix.org`
+- Logging in to a homeserver you are already registered with
 - Seeing channels that you have already joined, completely without formatting
 - Posting text to channels that you have already joined
 
 ## Things that don't work
 
-- Logging into a server that isn't `matrix.org` - the UI pane at login doesn't
-  do anything yet and there's no DNS SRV discovery based on the Matrix ID either
 - Anything else that isn't listed above!
 
 ## Goals

@@ -15,9 +15,11 @@
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
 		391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* MatrixTests.swift */; };
 		391BFE4020C68AD200B4EFEC /* MatrixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */; };
+		3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewChannelController.swift */; };
+		BFE2CDE4BF2804188ABE8881 /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299683AF86E39E7AD61BC3B4 /* Pods_Seaglass.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		299683AF86E39E7AD61BC3B4 /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixServices.swift; sourceTree = "<group>"; };
 		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,9 +56,12 @@
 		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSettingsController.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewChannelController.swift; sourceTree = "<group>"; };
+		4FCA0CA8A0649C0C842786C7 /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
+		829EE2A1194544FD1F8C1870 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE2CDE4BF2804188ABE8881 /* Pods_Seaglass.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +97,8 @@
 				391BFE3320C68AD200B4EFEC /* SeaglassTests */,
 				391BFE3E20C68AD200B4EFEC /* SeaglassUITests */,
 				391BFE1C20C68AD100B4EFEC /* Products */,
+				FDC30D44FDD00ADA7886C8A7 /* Pods */,
+				4B0376101F07C1F46B20C37A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,6 +126,7 @@
 				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
 				399E6FC520C806E700A2644A /* MainViewChannelController.swift */,
+				3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */,
 			);
 			path = Seaglass;
 			sourceTree = "<group>";
@@ -139,16 +149,46 @@
 			path = SeaglassUITests;
 			sourceTree = "<group>";
 		};
+		4B0376101F07C1F46B20C37A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				299683AF86E39E7AD61BC3B4 /* Pods_Seaglass.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDC30D44FDD00ADA7886C8A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA0CA8A0649C0C842786C7 /* Pods-Seaglass.debug.xcconfig */,
+				829EE2A1194544FD1F8C1870 /* Pods-Seaglass.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		396F71E520CAB8C500F4F5E0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		391BFE1A20C68AD100B4EFEC /* Seaglass */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Seaglass" */;
 			buildPhases = (
+				06DFE818B1B6EB56165FAEFC /* [CP] Check Pods Manifest.lock */,
 				391BFE1720C68AD100B4EFEC /* Sources */,
 				391BFE1820C68AD100B4EFEC /* Frameworks */,
 				391BFE1920C68AD100B4EFEC /* Resources */,
+				396F71E520CAB8C500F4F5E0 /* Headers */,
+				4F570CD459267BF101360C66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,6 +309,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06DFE818B1B6EB56165FAEFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Seaglass-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F570CD459267BF101360C66 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+				"${BUILT_PRODUCTS_DIR}/OLMKit/OLMKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMatrixSDK/SwiftMatrixSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OLMKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMatrixSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		391BFE1720C68AD100B4EFEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -281,6 +368,7 @@
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
+				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +530,7 @@
 		};
 		391BFE4520C68AD200B4EFEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FCA0CA8A0649C0C842786C7 /* Pods-Seaglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +548,7 @@
 		};
 		391BFE4620C68AD200B4EFEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 829EE2A1194544FD1F8C1870 /* Pods-Seaglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
