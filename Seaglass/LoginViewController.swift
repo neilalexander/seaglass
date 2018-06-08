@@ -80,7 +80,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         }
         
-        if defaults.bool(forKey: "LoginAutomatically") && false {
+        if defaults.bool(forKey: "LoginAutomatically") {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))

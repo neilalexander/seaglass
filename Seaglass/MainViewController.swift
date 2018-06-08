@@ -98,7 +98,7 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
             context.duration = 0.5
             self.view.window?.animator().alphaValue = 0
         }, completionHandler: {
-            exit(0)
+            NSApplication.shared.terminate(self)
         })
     }
 

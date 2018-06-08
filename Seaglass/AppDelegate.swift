@@ -78,6 +78,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        return .terminateNow
+        /*
         // Save changes in the application's managed object context before the application terminates.
         let context = persistentContainer.viewContext
         
@@ -118,6 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         // If we got here, it is time to quit.
         return .terminateNow
+        */
     }
 
 }
