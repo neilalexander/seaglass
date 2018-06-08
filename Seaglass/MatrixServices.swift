@@ -95,6 +95,10 @@ class MatrixServices: NSObject {
         }
     }
     
+    func close() {
+        client?.close()
+    }
+    
     func logout() {
         self.mainController?.servicesDelegate?.matrixWillLogout()
         
