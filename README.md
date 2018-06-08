@@ -25,7 +25,7 @@ Repair the `Podfile`:
 ```
 cd matrix-ios-sdk
 git checkout develop
-sed -i '' "s/'Realm', '~> 3.3.2'/'Realm', '~> 3.6.0'/g" Podfile
+sed -i '' "s/'Realm', '~> 3.3.2'/'Realm', '~> 3.6.0'/g" SwiftMatrixSDK.podspec
 cd ..
 ```
 Also within your working directory, clone the Seaglass repository and install
