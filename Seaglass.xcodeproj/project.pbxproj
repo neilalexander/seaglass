@@ -235,7 +235,7 @@
 						CreatedOnToolsVersion = 9.4;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -518,7 +518,6 @@
 			baseConfigurationReference = 836C1826E7CA2BBC5A0317BD /* Pods-Seaglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Seaglass/Seaglass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Seaglass/Info.plist;
@@ -537,7 +536,6 @@
 			baseConfigurationReference = 8BB6A122419E2B49A30D7487 /* Pods-Seaglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Seaglass/Seaglass.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Seaglass/Info.plist;

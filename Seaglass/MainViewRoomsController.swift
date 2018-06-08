@@ -72,7 +72,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         
         cell?.roomId = state?.roomId
         cell?.ChannelListEntryName.stringValue = state?.name ?? state?.canonicalAlias ?? "Unnamed room"
-        cell?.ChannelListEntryTopic.stringValue = "\(state?.members.count ?? 0) members\n" + (state?.topic ?? "(\(state?.roomId))")
+        cell?.ChannelListEntryTopic.stringValue = "\(state?.members.count ?? 0) members\n" + (state?.topic ?? "(\(state?.roomId.utf8))")
         
         MatrixServices.inst.subscribeToRoom(roomId: (state?.roomId)!)
 

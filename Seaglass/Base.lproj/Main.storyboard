@@ -595,7 +595,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Matrix" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Seaglass" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -625,7 +625,7 @@
         <!--Main View Controller-->
         <scene sceneID="pYk-Hi-Wui">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="TwD-Wi-H8c" customClass="MainViewController" customModule="Matrix" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="TwD-Wi-H8c" customClass="MainViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="m85-ez-ukM"/>
                         <splitViewItem id="m1l-Z1-58v"/>
@@ -649,7 +649,7 @@
         <!--Main View Rooms Controller-->
         <scene sceneID="Gq1-CI-Ahz">
             <objects>
-                <viewController id="KsD-aF-a0Q" customClass="MainViewRoomsController" customModule="Matrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KsD-aF-a0Q" customClass="MainViewRoomsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IwP-4A-58S">
                         <rect key="frame" x="0.0" y="0.0" width="257" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -700,7 +700,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="hWk-kP-dDo">
                                     <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="ChannelList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM">
                                             <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
@@ -723,7 +723,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ChannelListEntry" wantsLayer="YES" id="ENW-4u-PND" customClass="ChannelListEntry" customModule="Matrix" customModuleProvider="target">
+                                                        <tableCellView identifier="ChannelListEntry" wantsLayer="YES" id="ENW-4u-PND" customClass="ChannelListEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="256" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -799,8 +799,8 @@
         <!--Main View Channel Controller-->
         <scene sceneID="scY-wB-0g8">
             <objects>
-                <viewController id="WXz-Io-9JK" customClass="MainViewChannelController" customModule="Matrix" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="ChannelView" id="chW-xk-j9x" customClass="ChannelView" customModule="Matrix" customModuleProvider="target">
+                <viewController id="WXz-Io-9JK" customClass="MainViewChannelController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="ChannelView" id="chW-xk-j9x" customClass="ChannelView" customModule="Seaglass" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="580" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -881,7 +881,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" wantsLayer="YES" ambiguous="YES" id="yGf-GP-99e">
                                     <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht">
                                             <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
@@ -903,7 +903,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ChannelMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" customClass="ChannelMessageEntry" customModule="Matrix" customModuleProvider="target">
+                                                        <tableCellView identifier="ChannelMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -978,7 +978,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="ChannelMessageEntryInboundText" destination="ucJ-c5-qi7" id="1hv-BW-jQN"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="ChannelMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" customClass="ChannelMessageEntry" customModule="Matrix" customModuleProvider="target">
+                                                        <tableCellView identifier="ChannelMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="47" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1052,7 +1052,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="ChannelMessageEntryOutboundText" destination="eNx-7M-A4V" id="3rF-8j-weD"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="ChannelMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" customClass="ChannelMessageEntry" customModule="Matrix" customModuleProvider="target">
+                                                        <tableCellView identifier="ChannelMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="93" width="577" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1213,7 +1213,7 @@ DQ
         <!--Login View Controller-->
         <scene sceneID="e7s-8z-WY8">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="c2d-7t-jsh" customClass="LoginViewController" customModule="Matrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="c2d-7t-jsh" customClass="LoginViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="BBu-tV-gvF">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="264"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1253,7 +1253,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klQ-fK-nwj">
                                 <rect key="frame" x="18" y="171" width="414" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Enter your Seaglass ID and password below to log in. " id="71a-le-l1v">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Enter your Matrix ID and password below to log in. " id="71a-le-l1v">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1274,7 +1274,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WBf-re-He3">
                                 <rect key="frame" x="12" y="127" width="73" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Seaglass ID:" id="TPL-eF-hqL">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Matrix ID:" id="TPL-eF-hqL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1339,7 +1339,7 @@ DQ
                         <outlet property="ProgressIndicator" destination="PwI-PP-bxR" id="aZC-fI-LHV"/>
                         <outlet property="RememberCheckbox" destination="p2r-aG-1rM" id="QVs-5n-b9E"/>
                         <outlet property="UsernameField" destination="kb5-hl-hdI" id="cqq-Xl-sq1"/>
-                        <segue destination="TwD-Wi-H8c" kind="custom" identifier="OpenMainView" customClass="ReplaceSheetSegue" customModule="Matrix" customModuleProvider="target" id="uS7-4t-Ilw"/>
+                        <segue destination="TwD-Wi-H8c" kind="custom" identifier="OpenMainView" customClass="ReplaceSheetSegue" customModule="Seaglass" customModuleProvider="target" id="uS7-4t-Ilw"/>
                     </connections>
                 </viewController>
                 <customObject id="Yc3-Ct-VMt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
