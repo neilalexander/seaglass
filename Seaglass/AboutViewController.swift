@@ -18,12 +18,16 @@
 
 import Cocoa
 
-class LogoutViewController: NSViewController {
+class AboutViewController: NSViewController {
 
+    @IBAction func viewSourceCodeButtonPressed(_: NSButton) {
+        let sourceURL = NSURL(string: "https://github.com/neilalexander/seaglass")! as URL
+        NSWorkspace.shared.open(sourceURL)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        MatrixServices.inst.logout()
+        // Do view setup here.
     }
     
 }

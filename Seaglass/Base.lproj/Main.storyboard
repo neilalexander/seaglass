@@ -6,6 +6,95 @@
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
+        <!--Window Controller-->
+        <scene sceneID="MTs-cc-1GA">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="aqV-Si-XFo" sceneMemberID="viewController">
+                    <window key="window" title="About Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="8Rg-uj-Dgd">
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="320" y="352" width="212" height="97"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
+                        <connections>
+                            <outlet property="delegate" destination="aqV-Si-XFo" id="sua-es-Ecg"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="mAy-xi-EWG" kind="relationship" relationship="window.shadowedContentViewController" id="T86-gO-RHW"/>
+                    </connections>
+                </windowController>
+                <customObject id="4Ze-Od-dUm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288" y="-179"/>
+        </scene>
+        <!--About Seaglass-->
+        <scene sceneID="YdZ-bc-Rgq">
+            <objects>
+                <viewController title="About Seaglass" showSeguePresentationStyle="single" id="mAy-xi-EWG" customClass="AboutViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="10O-uP-oCs">
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="323"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s2r-iU-gFW">
+                                <rect key="frame" x="18" y="270" width="190" height="33"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Seaglass" id="4XV-6I-EQn">
+                                    <font key="font" metaFont="systemLight" size="27"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RjU-Hz-XAe">
+                                <rect key="frame" x="18" y="49" width="462" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Yrv-9b-dCc">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Copyright 2018 © Neil Alexander.
+
+This software is licenced under the Affero General Public Licence version 3 (otherwise known as the AGPLv3).
+
+This software also makes use of the following libraries:
+
+matrix-ios-sdk (Apache Licence 2.0)
+Copyright 2014 © OpenMarket Ltd
+
+matrix-ios-sdk Swift bindings (Apache Licence 2.0)
+Copyright 2018 © Avery Pierce</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
+                                <rect key="frame" x="357" y="277" width="121" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="recessed" title="View source code" bezelStyle="recessed" alignment="right" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MgY-YZ-hPJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="systemBold" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-cb-2hd">
+                                <rect key="frame" x="403" y="13" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VtQ-bj-ZjV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="mAy-xi-EWG" id="8dl-el-hsj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="1ac-0U-iUk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="-186.5"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -20,6 +109,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="aqV-Si-XFo" kind="modal" id="IGX-BI-8df"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -688,7 +778,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-6g-QmI">
-                                <rect key="frame" x="0.0" y="411" width="257" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="257" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl">
@@ -1667,7 +1757,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Invite" bezelStyle="shadowlessSquare" image="NSTouchBarUserAddTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="WBt-Oz-7mS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QzN-Wx-HL1">
@@ -1687,7 +1777,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Attach" bezelStyle="shadowlessSquare" image="NSTouchBarShareTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="iay-B0-h8t">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WrX-X2-X7x">
@@ -1695,7 +1785,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Call" bezelStyle="shadowlessSquare" image="NSTouchBarCommunicationAudioTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="kdf-FW-zQg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgy-aa-dFi">
@@ -1703,7 +1793,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Video" bezelStyle="shadowlessSquare" image="NSTouchBarCommunicationVideoTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="F4S-Sp-wUj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
                         </subviews>
