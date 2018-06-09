@@ -18,6 +18,7 @@
 
 import Cocoa
 import SwiftMatrixSDK
+import Down
 
 class ChannelMessageEntry: NSTableCellView {
     @IBOutlet var ChannelMessageEntryInboundFrom: NSTextField!
@@ -29,6 +30,17 @@ class ChannelMessageEntry: NSTableCellView {
     @IBOutlet var ChannelMessageEntryOutboundIcon: NSImageView!
     
     @IBOutlet var ChannelMessageEntryInlineText: NSTextField!
+}
+
+extension String {
+    func toAttributedStringFromHTML() -> NSAttributedString{
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
 }
 
 class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTableViewDelegate, NSTableViewDataSource {
@@ -55,7 +67,17 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         
         sender.isEnabled = false
         
-        MatrixServices.inst.client?.sendTextMessage(toRoom: roomId, text: sender.stringValue) { (response) in
+        var formattedText: String
+        let options = DownOptions(rawValue: 1 << 3 & 1 << 2)
+        do {
+            // TODO: Make sure this is suitably sanitised
+            formattedText = try Down(markdownString: sender.stringValue).toHTML(options)
+        } catch {
+            formattedText = sender.stringValue
+        }
+    
+        var returnedEvent: MXEvent?
+        MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
             if case .success( _) = response {
                 sender.stringValue = ""
             }
@@ -84,39 +106,35 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         
         switch event.type {
         case "m.room.message":
-            if event.sender == MatrixServices.inst.client?.credentials.userId {
-                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryOutbound"), owner: self) as? ChannelMessageEntry
-                if event.content["body"] != nil {
-                    cell?.ChannelMessageEntryOutboundText.stringValue = event.content["body"] as! String
-                    cell?.ChannelMessageEntryOutboundFrom.stringValue = event.sender as String
-                }
-                return cell
-            } else {
+           // if event.sender == MatrixServices.inst.client?.credentials.userId {
+           //     let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryOutbound"), owner: self) as? ChannelMessageEntry
+           //     cell?.ChannelMessageEntryOutboundFrom.stringValue = event.sender as String
+           //     if event.content["formatted_body"] != nil {
+           //         // TODO: Make sure this is suitably sanitised
+           //         cell?.ChannelMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML()
+           //     } else if event.content["body"] != nil {
+           //         cell?.ChannelMessageEntryOutboundText.stringValue = event.content["body"] as! String
+           //     }
+           //     return cell
+           // } else {
                 let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInbound"), owner: self) as? ChannelMessageEntry
-                if event.content["body"] != nil {
+                cell?.ChannelMessageEntryInboundFrom.stringValue = event.sender as String
+                if event.content["formatted_body"] != nil {
+                    // TODO: Make sure this is suitably sanitised
+                    cell?.ChannelMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML()
+                } else if event.content["body"] != nil {
                     cell?.ChannelMessageEntryInboundText.stringValue = event.content["body"] as! String
-                    cell?.ChannelMessageEntryInboundFrom.stringValue = event.sender as String
                 }
                 return cell
-            }
+           // }
         case "m.room.member":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInline"), owner: self) as? ChannelMessageEntry
             switch event.content["membership"] as! String {
-            case "join":
-                cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) joined the room"
-                break
-            case "leave":
-                cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) left the room"
-                break
-            case "invite":
-                cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was invited to the room"
-                break
-            case "ban":
-                cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was banned from the room"
-                break
-            default:
-                cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"
-                break
+            case "join":    cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) joined the room"; break
+            case "leave":   cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) left the room"; break
+            case "invite":  cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was invited to the room"; break
+            case "ban":     cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was banned from the room"; break
+            default:        cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"; break
             }
             return cell
         default:

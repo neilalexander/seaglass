@@ -124,11 +124,6 @@ class MatrixServices: NSObject {
     }
     
     func selectRoom(roomId: String) {
-     /*   let room = self.session.room(withRoomId: roomId)
-        room?.liveTimeline.resetPagination()
-        room?.liveTimeline.paginate(30, direction: .backwards, onlyFromStore: true) { _ in
-            // complete?
-        }  */
     }
     
     func subscribeToRoom(roomId: String) {
