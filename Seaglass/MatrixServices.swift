@@ -128,12 +128,19 @@ class MatrixServices: NSObject {
     
     func subscribeToRoom(roomId: String) {
         let room = self.session.room(withRoomId: roomId)
-        _ = room?.liveTimeline.listenToEvents { (event, direction, roomState) in
+        
+        _ = room?.liveTimeline.listenToEvents([MXEventType.roomMessage]) { (event, direction, roomState) in
             self.mainController?.channelDelegate?.matrixDidChannelMessage(event: event, direction: direction, roomState: roomState)
         }
+        
+        _ = room?.liveTimeline.listenToEvents([MXEventType.roomTopic]) { (event, direction, roomState) in
+            self.mainController?.channelDelegate?.matrixDidChannelMessage(event: event, direction: direction, roomState: roomState)
+        }
+        
         room?.liveTimeline.resetPagination()
         room?.liveTimeline.paginate(30, direction: .backwards, onlyFromStore: false) { _ in
             // complete?
         }
     }
+    
 }

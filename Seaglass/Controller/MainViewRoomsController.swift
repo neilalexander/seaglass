@@ -37,6 +37,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     weak var mainController: MainViewController?
     
+    var roomCache = [MXRoom]()
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -59,12 +61,20 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
-        
+      //  NSAnimationContext.runAnimationGroup({ context in
+      //      ChannelList.insertRows(at: 0, withAnimation: .EffectFade | .SlideUp)
+      //  }, completionHandler: {
+      //      roomCache.append(room)
+      //      ChannelList.reloadData()
+      //  })
+        roomCache.insert(room, at: 0)
         ChannelList.reloadData()
     }
     
     func matrixDidPartRoom() {
         print("MainViewRoomsController matrixDidPartRoom")
+        
+        
     }
     
     func matrixDidUpdateRoom() {
@@ -72,13 +82,13 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return MatrixServices.inst.session.rooms.count
+        return roomCache.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelListEntry"), owner: self) as? ChannelListEntry
 
-        let state = MatrixServices.inst.session.rooms[row].state
+        let state = roomCache[row].state
         
         cell?.roomId = state?.roomId
         cell?.ChannelListEntryName.stringValue = state?.name ?? state?.canonicalAlias ?? "Unnamed room"

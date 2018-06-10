@@ -33,10 +33,21 @@ class ChannelMessageEntry: NSTableCellView {
 }
 
 extension String {
-    func toAttributedStringFromHTML() -> NSAttributedString{
+    func toAttributedStringFromHTML(justify: NSTextAlignment) -> NSAttributedString{
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         do {
-            return try NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            let range = NSRange(location: 0, length: str.length)
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = justify
+            
+           // str.removeAttribute(.font, range: range)
+            str.removeAttribute(.paragraphStyle, range: range)
+            
+           // str.addAttribute(.font, value: NSFont.systemFont(ofSize: 12, weight: .regular), range: range)
+            str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+            
+            return str
         } catch {
             return NSAttributedString()
         }
@@ -48,7 +59,7 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
     @IBOutlet var ChannelName: NSTokenField!
     @IBOutlet var ChannelMessageInput: NSTextField!
     @IBOutlet var ChannelMessageScrollView: NSScrollView!
-    @IBOutlet var ChannelMessageTableView: NSTableView!
+    @IBOutlet var ChannelMessageTableView: MainViewTableView!
     @IBOutlet var ChannelInfoButton: NSButton!
     @IBOutlet var ChannelPartButton: NSButton!
     @IBOutlet var ChannelInsertButton: NSButton!
@@ -68,14 +79,15 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         sender.isEnabled = false
         
         var formattedText: String
-        let options = DownOptions(rawValue: 1 << 3 & 1 << 2)
+        let options = DownOptions(rawValue: 1 << 3)
         do {
             // TODO: Make sure this is suitably sanitised
             formattedText = try Down(markdownString: sender.stringValue).toHTML(options)
+           // print(formattedText)
         } catch {
             formattedText = sender.stringValue
         }
-    
+
         var returnedEvent: MXEvent?
         MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
             if case .success( _) = response {
@@ -98,6 +110,9 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         if roomId == "" || eventCache[roomId] == nil {
             return 0
         }
+        
+       // print(MatrixServices.inst.session.room(withRoomId: roomId).enumeratorForStoredMessagesWithType(in: ["m.room.message"]))
+        
         return (eventCache[roomId]?.count)!
     }
     
@@ -106,27 +121,27 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         
         switch event.type {
         case "m.room.message":
-           // if event.sender == MatrixServices.inst.client?.credentials.userId {
-           //     let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryOutbound"), owner: self) as? ChannelMessageEntry
-           //     cell?.ChannelMessageEntryOutboundFrom.stringValue = event.sender as String
-           //     if event.content["formatted_body"] != nil {
-           //         // TODO: Make sure this is suitably sanitised
-           //         cell?.ChannelMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML()
-           //     } else if event.content["body"] != nil {
-           //         cell?.ChannelMessageEntryOutboundText.stringValue = event.content["body"] as! String
-           //     }
-           //     return cell
-           // } else {
+            if event.sender == MatrixServices.inst.client?.credentials.userId {
+                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryOutbound"), owner: self) as? ChannelMessageEntry
+                cell?.ChannelMessageEntryOutboundFrom.stringValue = event.sender as String
+                if event.content["formatted_body"] != nil {
+                    // TODO: Make sure this is suitably sanitised
+                    cell?.ChannelMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .right)
+                } else if event.content["body"] != nil {
+                    cell?.ChannelMessageEntryOutboundText.stringValue = event.content["body"] as! String
+                }
+                return cell
+            } else {
                 let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInbound"), owner: self) as? ChannelMessageEntry
                 cell?.ChannelMessageEntryInboundFrom.stringValue = event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
-                    cell?.ChannelMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML()
+                    cell?.ChannelMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
                 } else if event.content["body"] != nil {
                     cell?.ChannelMessageEntryInboundText.stringValue = event.content["body"] as! String
                 }
                 return cell
-           // }
+            }
         case "m.room.member":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInline"), owner: self) as? ChannelMessageEntry
             switch event.content["membership"] as! String {
@@ -154,9 +169,13 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         ChannelName.stringValue = entry.ChannelListEntryName.stringValue
         
         roomId = entry.roomId!
-        MatrixServices.inst.selectRoom(roomId: entry.roomId!)
 
+        // ChannelMessageTableView.beginUpdates()
         ChannelMessageTableView.reloadData()
+        // ChannelMessageTableView.endUpdates()
+    
+        // TODO: scroll to the bottom, this crashes sometimes
+        // ChannelMessageTableView.scrollRowToVisible(row: (eventCache[roomId]?.count)! - 1, animated: true)
     }
     
     func matrixDidChannelMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
@@ -167,7 +186,11 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
             eventCache[event.roomId] = []
         }
         if eventCache[event.roomId]?.last == event || eventCache[event.roomId]?.first == event {
-            // duplicate event?
+          //  print("Duplicate event found at head/tail - shouldn't happen")
+            return
+        }
+        if (eventCache[event.roomId]?.contains(event))! {
+          //  print("Duplicate event found in event cache - shouldn't happen")
             return
         }
         switch event.type {
@@ -180,15 +203,17 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
             switch direction {
             case .forwards:
                 eventCache[event.roomId]?.append(event)
+                if event.roomId == roomId {
+                    ChannelMessageTableView.insertRows(at: IndexSet.init(integer: (eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
+                    ChannelMessageTableView.scrollToEndOfDocument(self)
+                }
                 break
             default:
                 eventCache[event.roomId]?.insert(event, at: 0)
+                if event.roomId == roomId {
+                    ChannelMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
+                }
                 break
-            }
-            if event.roomId == roomId {
-                ChannelMessageTableView.reloadData()
-                let height = ChannelMessageScrollView.documentView!.frame.size.height
-                ChannelMessageScrollView.contentView.scroll(NSPoint(x: 0, y: height))
             }
             return
         default:

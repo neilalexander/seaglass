@@ -831,7 +831,7 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="ChannelList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM">
+                                        <tableView identifier="ChannelList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1015,14 +1015,14 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" editable="NO" width="577" minWidth="48" maxWidth="1000" id="HHh-xz-b6k">
+                                                <tableColumn identifier="" editable="NO" width="577" minWidth="48" maxWidth="30000" id="HHh-xz-b6k">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Messages">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1062,7 +1062,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
 </mutableData>
                                                                         </caTransition>
                                                                     </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="piy-Lm-IbK">
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="piy-Lm-IbK">
                                                                         <font key="font" metaFont="system" size="10"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1083,11 +1083,14 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
 </mutableData>
                                                                         </caTransition>
                                                                     </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" placeholderString="No event body" allowsEditingTextAttributes="YES" id="8D5-dO-cdd">
+                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="left" placeholderString="No event body" allowsEditingTextAttributes="YES" id="8D5-dO-cdd">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
@@ -1129,11 +1132,14 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
 </mutableData>
                                                                         </caTransition>
                                                                     </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="right" placeholderString="No event body" allowsEditingTextAttributes="YES" id="XId-xL-Q9U">
+                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="right" placeholderString="No event body" allowsEditingTextAttributes="YES" id="XId-xL-Q9U">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
                                                                     </textFieldCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </textField>
                                                                 <textField identifier="ChannelMessageEntryOutboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIe-8Q-fxc">
                                                                     <rect key="frame" x="4" y="25" width="535" height="13"/>
@@ -1150,7 +1156,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
 </mutableData>
                                                                         </caTransition>
                                                                     </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="right" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="u2S-04-hyo">
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="right" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="u2S-04-hyo">
                                                                         <font key="font" metaFont="system" size="10"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
