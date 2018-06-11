@@ -106,7 +106,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             ProgressIndicator.isIndeterminate = true
             ProgressIndicator.startAnimation(self)
             
-            MatrixServices.inst.start(credentials!)
+            MatrixServices.inst.start(credentials!, disableCache: defaults.bool(forKey: "DisableCache"))
         }
     }
     
@@ -172,7 +172,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.defaults.set(credentials.userId, forKey: "UserID")
                 }
                 
-                MatrixServices.inst.start(credentials)
+                MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"))
                 self.CancelButton.isEnabled = false
                 
             case .failure:

@@ -79,14 +79,19 @@ class MatrixServices: NSObject {
         }
     }
     
-    func start(_ credentials: MXCredentials) {
+    func start(_ credentials: MXCredentials, disableCache: Bool) {
         client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
         session = MXSession(matrixRestClient: client)
         
         state = .starting
         
-        let fileStore = MXFileStore()
-        // let fileStore = MXNoStore()
+        var fileStore: MXStore
+        if disableCache {
+            fileStore = MXNoStore()
+        } else {
+            fileStore = MXFileStore()
+        }
+        
         session.setStore(fileStore) { response in
             if case .failure(let error) = response {
                 print("An error occurred setting the store: \(error)")

@@ -21,6 +21,7 @@ import Cocoa
 class LoginViewSettingsController: NSViewController {
 
     @IBOutlet var HomeserverURLField: NSTextField!
+    @IBOutlet var DisableCacheCheckbox: NSButton!
     
     let defaults = UserDefaults.standard
     
@@ -29,6 +30,10 @@ class LoginViewSettingsController: NSViewController {
         
         if defaults.string(forKey: "Homeserver") != nil {
             HomeserverURLField.stringValue = defaults.string(forKey: "Homeserver")!
+        }
+        
+        if defaults.bool(forKey: "DisableCache") {
+            DisableCacheCheckbox.state = .on
         }
     }
     
@@ -40,4 +45,7 @@ class LoginViewSettingsController: NSViewController {
         defaults.setValue(HomeserverURLField.stringValue, forKey: "Homeserver")
     }
     
+    @IBAction func disableCacheCheckboxEdited(sender: NSButton) {
+        defaults.setValue(DisableCacheCheckbox.state == .on, forKey: "DisableCache")
+    }
 }
