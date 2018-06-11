@@ -28,7 +28,7 @@ git checkout develop
 sed -i '' "s/'Realm', '~> 3.3.2'/'Realm', '>= 3.6.0'/g" SwiftMatrixSDK.podspec
 cd ..
 ```
-Open up `MatrixSDK.xcworkspace` in Xcode.
+Open up `MatrixSDK.xcodeproj` in Xcode.
 
 Open the `File` menu, select `New` and then `Target`. Select `macOS` and then
 choose `Cocoa Framework`. When prompted for a name, enter `MatrixSDKMac` and
