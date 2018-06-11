@@ -21,7 +21,7 @@
 		3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0EA20CD57B30061D51D /* MainViewTableView.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
-		399E6FC620C806E700A2644A /* MainViewChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewChannelController.swift */; };
+		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
 		BFE2CDE4BF2804188ABE8881 /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299683AF86E39E7AD61BC3B4 /* Pods_Seaglass.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
-		399E6FC520C806E700A2644A /* MainViewChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewChannelController.swift; sourceTree = "<group>"; };
+		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
 		4FCA0CA8A0649C0C842786C7 /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 		829EE2A1194544FD1F8C1870 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +157,7 @@
 			children = (
 				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
-				399E6FC520C806E700A2644A /* MainViewChannelController.swift */,
+				399E6FC520C806E700A2644A /* MainViewRoomController.swift */,
 				391BFE2020C68AD100B4EFEC /* LoginViewController.swift */,
 				3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */,
 				3943E0E620CB43A60061D51D /* LogoutViewController.swift */,
@@ -391,7 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */,
-				399E6FC620C806E700A2644A /* MainViewChannelController.swift in Sources */,
+				399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */,
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,

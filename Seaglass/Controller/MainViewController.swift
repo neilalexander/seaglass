@@ -31,11 +31,11 @@ protocol MatrixRoomsDelegate: AnyObject {
     func matrixDidUpdateRoom()
 }
 
-protocol MatrixChannelDelegate: AnyObject {
-    func uiDidSelectChannel(entry: ChannelListEntry)
-    func matrixDidChannelMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
-    func matrixDidChannelUserJoin()
-    func martixDidChannelUserPart()
+protocol MatrixRoomDelegate: AnyObject {
+    func uiDidSelectRoom(entry: RoomListEntry)
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
+    func matrixDidRoomUserJoin()
+    func martixDidRoomUserPart()
 }
 
 class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
@@ -43,11 +43,11 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     let defaults = UserDefaults.standard
     
     weak var roomsController: MainViewRoomsController?
-    weak var channelController: MainViewChannelController?
+    weak var channelController: MainViewRoomController?
     
     weak var servicesDelegate: MatrixServicesDelegate?
     weak var roomsDelegate: MatrixRoomsDelegate?
-    weak var channelDelegate: MatrixChannelDelegate?
+    weak var channelDelegate: MatrixRoomDelegate?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -61,7 +61,7 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     
     override func viewWillAppear() {
         roomsController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first!
-        channelController = self.childViewControllers.compactMap({ return $0 as? MainViewChannelController }).first!
+        channelController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first!
         
         roomsController?.mainController = self
         channelController?.mainController = self

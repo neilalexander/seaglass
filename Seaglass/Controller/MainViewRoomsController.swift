@@ -19,10 +19,10 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class ChannelListEntry: NSTableCellView {
-    @IBOutlet var ChannelListEntryName: NSTextField!
-    @IBOutlet var ChannelListEntryTopic: NSTextField!
-    @IBOutlet var ChannelListEntryIcon: NSImageView!
+class RoomListEntry: NSTableCellView {
+    @IBOutlet var RoomListEntryName: NSTextField!
+    @IBOutlet var RoomListEntryTopic: NSTextField!
+    @IBOutlet var RoomListEntryIcon: NSImageView!
     
     var roomId: String?
     
@@ -32,7 +32,7 @@ class ChannelListEntry: NSTableCellView {
 }
 
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
-    @IBOutlet weak var ChannelList: NSTableView!
+    @IBOutlet weak var RoomList: NSTableView!
     @IBOutlet weak var ConnectionStatus: NSButton!
     
     weak var mainController: MainViewController?
@@ -62,13 +62,13 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
       //  NSAnimationContext.runAnimationGroup({ context in
-      //      ChannelList.insertRows(at: 0, withAnimation: .EffectFade | .SlideUp)
+      //      RoomList.insertRows(at: 0, withAnimation: .EffectFade | .SlideUp)
       //  }, completionHandler: {
       //      roomCache.append(room)
-      //      ChannelList.reloadData()
+      //      RoomList.reloadData()
       //  })
         roomCache.insert(room, at: 0)
-        ChannelList.reloadData()
+        RoomList.reloadData()
     }
     
     func matrixDidPartRoom() {
@@ -86,13 +86,13 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelListEntry"), owner: self) as? ChannelListEntry
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
 
         let state = roomCache[row].state
         
         cell?.roomId = state?.roomId
-        cell?.ChannelListEntryName.stringValue = state?.name ?? state?.canonicalAlias ?? "Unnamed room"
-        cell?.ChannelListEntryTopic.stringValue = "\(state?.members.count ?? 0) members\n" + (state?.topic ?? "No topic set")
+        cell?.RoomListEntryName.stringValue = state?.name ?? state?.canonicalAlias ?? "Unnamed room"
+        cell?.RoomListEntryTopic.stringValue = "\(state?.members.count ?? 0) members\n" + (state?.topic ?? "No topic set")
         
         MatrixServices.inst.subscribeToRoom(roomId: (state?.roomId)!)
 
@@ -102,10 +102,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = notification.object as! NSTableView
         
-        let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! ChannelListEntry
+        let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! RoomListEntry
         
         DispatchQueue.main.async {
-            self.mainController?.channelDelegate?.uiDidSelectChannel(entry: entry)
+            self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
         }
     }
 }

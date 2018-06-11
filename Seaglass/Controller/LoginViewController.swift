@@ -56,11 +56,11 @@ class ReplaceSheetSegue: NSStoryboardSegue {
 class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
     
     weak var roomsController: MainViewRoomsController?
-    weak var channelController: MainViewChannelController?
+    weak var channelController: MainViewRoomController?
     
     weak var servicesDelegate: MatrixServicesDelegate?
     weak var roomsDelegate: MatrixRoomsDelegate?
-    weak var channelDelegate: MatrixChannelDelegate?
+    weak var channelDelegate: MatrixRoomDelegate?
 
     let defaults = UserDefaults.standard
     

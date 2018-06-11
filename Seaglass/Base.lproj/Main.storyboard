@@ -831,7 +831,7 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="ChannelList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
+                                        <tableView identifier="RoomList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -840,7 +840,7 @@ DQ
                                             <color key="gridColor" red="0.80428560321763198" green="0.82851515847909463" blue="0.87240932642487046" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                             <tableColumns>
                                                 <tableColumn identifier="" editable="NO" width="256" minWidth="10" maxWidth="3.4028234663852886e+38" id="1zt-uK-uZk">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Channels">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Rooms">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -852,16 +852,16 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ChannelListEntry" wantsLayer="YES" id="ENW-4u-PND" customClass="ChannelListEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomListEntry" wantsLayer="YES" id="ENW-4u-PND" customClass="RoomListEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="256" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView identifier="ChannelListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
+                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
                                                                     <rect key="frame" x="3" y="3" width="60" height="58"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
                                                                 </imageView>
-                                                                <textField identifier="ChannelListEntryTopic" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="730-xt-gyf">
+                                                                <textField identifier="RoomListEntryTopic" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="730-xt-gyf">
                                                                     <rect key="frame" x="65" y="6" width="186" height="34"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" placeholderString="No preview text" id="OdP-8T-cbu">
@@ -870,10 +870,10 @@ DQ
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField identifier="ChannelListEntryName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uoj-MY-a1T">
+                                                                <textField identifier="RoomListEntryName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uoj-MY-a1T">
                                                                     <rect key="frame" x="65" y="39" width="186" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" placeholderString="Channel name" id="XWQ-Mb-CHx">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" placeholderString="Room name" id="XWQ-Mb-CHx">
                                                                         <font key="font" metaFont="systemSemibold" size="12"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -881,9 +881,9 @@ DQ
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="ChannelListEntryIcon" destination="iRa-19-xHX" id="ATX-cU-1sT"/>
-                                                                <outlet property="ChannelListEntryName" destination="Uoj-MY-a1T" id="vPH-Ky-W2h"/>
-                                                                <outlet property="ChannelListEntryTopic" destination="730-xt-gyf" id="3Eh-Ib-0E0"/>
+                                                                <outlet property="RoomListEntryIcon" destination="iRa-19-xHX" id="ATX-cU-1sT"/>
+                                                                <outlet property="RoomListEntryName" destination="Uoj-MY-a1T" id="vPH-Ky-W2h"/>
+                                                                <outlet property="RoomListEntryTopic" destination="730-xt-gyf" id="3Eh-Ib-0E0"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -917,7 +917,7 @@ DQ
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="ChannelList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
+                        <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
                         <outlet property="ConnectionStatus" destination="Ewz-Fy-OEj" id="Nc7-zi-sFR"/>
                     </connections>
                 </viewController>
@@ -925,11 +925,11 @@ DQ
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
-        <!--Main View Channel Controller-->
+        <!--Main View Room Controller-->
         <scene sceneID="scY-wB-0g8">
             <objects>
-                <viewController id="WXz-Io-9JK" customClass="MainViewChannelController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="ChannelView" id="chW-xk-j9x" customClass="ChannelView" customModule="Seaglass" customModuleProvider="target">
+                <viewController id="WXz-Io-9JK" customClass="MainViewRoomController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="RoomView" id="chW-xk-j9x" customClass="RoomView" customModule="Seaglass" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="580" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -937,10 +937,10 @@ DQ
                                 <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
-                            <tokenField identifier="ChannelName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
+                            <tokenField identifier="RoomName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
                                 <rect key="frame" x="74" y="420" width="414" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <tokenFieldCell key="cell" selectable="YES" enabled="NO" alignment="left" title="Channel Name" placeholderString="Channel Name" allowsEditingTextAttributes="YES" id="Amu-kz-V1t">
+                                <tokenFieldCell key="cell" selectable="YES" enabled="NO" alignment="left" title="Room Name" placeholderString="Room Name" allowsEditingTextAttributes="YES" id="Amu-kz-V1t">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
@@ -949,7 +949,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhJ-eL-Se2">
                                 <rect key="frame" x="12" y="425" width="58" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Channel:" id="vI8-wb-qTX">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Room:" id="vI8-wb-qTX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -959,7 +959,7 @@ DQ
                                 <rect key="frame" x="0.0" y="39" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
-                            <textField identifier="ChannelInput" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-A5-RaT">
+                            <textField identifier="RoomInput" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-A5-RaT">
                                 <rect key="frame" x="12" y="10" width="532" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" state="on" borderStyle="bezel" placeholderString="Message" bezelStyle="round" id="BsF-y6-YGe">
@@ -1035,11 +1035,11 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ChannelMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView identifier="ChannelMessageEntryInboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY">
+                                                                <imageView identifier="RoomMessageEntryInboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY">
                                                                     <rect key="frame" x="3" y="6" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="CLm-sj-s8q"/>
@@ -1047,7 +1047,7 @@ DQ
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUser" id="dFF-P4-bpm"/>
                                                                 </imageView>
-                                                                <textField identifier="ChannelMessageEntryInboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-k5-z63">
+                                                                <textField identifier="RoomMessageEntryInboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-k5-z63">
                                                                     <rect key="frame" x="41" y="24" width="535" height="13"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1068,7 +1068,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField identifier="ChannelMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
+                                                                <textField identifier="RoomMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
                                                                     <rect key="frame" x="41" y="7" width="535" height="17"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1107,17 +1107,17 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="43" id="wgQ-1E-BxK"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="ChannelMessageEntryFrom" destination="C9D-k5-z63" id="ACJ-vB-m2s"/>
-                                                                <outlet property="ChannelMessageEntryInboundFrom" destination="C9D-k5-z63" id="qTw-rh-abm"/>
-                                                                <outlet property="ChannelMessageEntryInboundIcon" destination="ru8-q8-hdY" id="erc-Cq-6uC"/>
-                                                                <outlet property="ChannelMessageEntryInboundText" destination="ucJ-c5-qi7" id="1hv-BW-jQN"/>
+                                                                <outlet property="RoomMessageEntryFrom" destination="C9D-k5-z63" id="ACJ-vB-m2s"/>
+                                                                <outlet property="RoomMessageEntryInboundFrom" destination="C9D-k5-z63" id="qTw-rh-abm"/>
+                                                                <outlet property="RoomMessageEntryInboundIcon" destination="ru8-q8-hdY" id="erc-Cq-6uC"/>
+                                                                <outlet property="RoomMessageEntryInboundText" destination="ucJ-c5-qi7" id="1hv-BW-jQN"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="ChannelMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="47" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="ChannelMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
+                                                                <textField identifier="RoomMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
                                                                     <rect key="frame" x="2" y="6" width="537" height="17"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1141,7 +1141,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
-                                                                <textField identifier="ChannelMessageEntryOutboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIe-8Q-fxc">
+                                                                <textField identifier="RoomMessageEntryOutboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIe-8Q-fxc">
                                                                     <rect key="frame" x="4" y="25" width="535" height="13"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1162,7 +1162,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <imageView identifier="ChannelMessageEntryOutboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-pa-dQN">
+                                                                <imageView identifier="RoomMessageEntryOutboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" alphaValue="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-pa-dQN">
                                                                     <rect key="frame" x="542" y="6" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="vOo-nb-W9j"/>
@@ -1185,16 +1185,16 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="eNx-7M-A4V" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="60" id="uMs-Ol-lEU"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="ChannelMessageEntryOutboundFrom" destination="uIe-8Q-fxc" id="ul3-Pg-oNf"/>
-                                                                <outlet property="ChannelMessageEntryOutboundIcon" destination="Cp3-pa-dQN" id="tIh-fa-Wqi"/>
-                                                                <outlet property="ChannelMessageEntryOutboundText" destination="eNx-7M-A4V" id="3rF-8j-weD"/>
+                                                                <outlet property="RoomMessageEntryOutboundFrom" destination="uIe-8Q-fxc" id="ul3-Pg-oNf"/>
+                                                                <outlet property="RoomMessageEntryOutboundIcon" destination="Cp3-pa-dQN" id="tIh-fa-Wqi"/>
+                                                                <outlet property="RoomMessageEntryOutboundText" destination="eNx-7M-A4V" id="3rF-8j-weD"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="ChannelMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" customClass="ChannelMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="93" width="577" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="ChannelMessageEntryInlineText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-2v-jWb">
+                                                                <textField identifier="RoomMessageEntryInlineText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-2v-jWb">
                                                                     <rect key="frame" x="1" y="3" width="575" height="14"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1223,8 +1223,8 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="Usl-2v-jWb" firstAttribute="leading" secondItem="juW-Tf-Uai" secondAttribute="leading" constant="3" id="fwx-jZ-q0a"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="ChannelMessageEntryInlineText" destination="Usl-2v-jWb" id="2XO-2N-Sdw"/>
-                                                                <outlet property="ChannelMessageEntryText" destination="Usl-2v-jWb" id="ejX-D0-tlK"/>
+                                                                <outlet property="RoomMessageEntryInlineText" destination="Usl-2v-jWb" id="2XO-2N-Sdw"/>
+                                                                <outlet property="RoomMessageEntryText" destination="Usl-2v-jWb" id="ejX-D0-tlK"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -1260,13 +1260,13 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="ChannelInfoButton" destination="gmZ-EC-5H5" id="ENX-DV-Ilq"/>
-                        <outlet property="ChannelInsertButton" destination="Pix-y5-gjY" id="D9T-Bc-1nk"/>
-                        <outlet property="ChannelMessageInput" destination="8dF-A5-RaT" id="hSd-0U-VxJ"/>
-                        <outlet property="ChannelMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
-                        <outlet property="ChannelMessageTableView" destination="qXT-6y-pht" id="3MU-Zz-XWf"/>
-                        <outlet property="ChannelName" destination="GO9-mJ-qzs" id="AJv-5P-bcy"/>
-                        <outlet property="ChannelPartButton" destination="nBR-QP-fLS" id="glA-c2-BR4"/>
+                        <outlet property="RoomInfoButton" destination="gmZ-EC-5H5" id="ENX-DV-Ilq"/>
+                        <outlet property="RoomInsertButton" destination="Pix-y5-gjY" id="D9T-Bc-1nk"/>
+                        <outlet property="RoomMessageInput" destination="8dF-A5-RaT" id="hSd-0U-VxJ"/>
+                        <outlet property="RoomMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
+                        <outlet property="RoomMessageTableView" destination="qXT-6y-pht" id="3MU-Zz-XWf"/>
+                        <outlet property="RoomName" destination="GO9-mJ-qzs" id="AJv-5P-bcy"/>
+                        <outlet property="RoomPartButton" destination="nBR-QP-fLS" id="glA-c2-BR4"/>
                     </connections>
                 </viewController>
                 <customObject id="O2i-hq-qI7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

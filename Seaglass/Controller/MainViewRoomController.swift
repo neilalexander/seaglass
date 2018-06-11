@@ -20,16 +20,16 @@ import Cocoa
 import SwiftMatrixSDK
 import Down
 
-class ChannelMessageEntry: NSTableCellView {
-    @IBOutlet var ChannelMessageEntryInboundFrom: NSTextField!
-    @IBOutlet var ChannelMessageEntryInboundText: NSTextField!
-    @IBOutlet var ChannelMessageEntryInboundIcon: NSImageView!
+class RoomMessageEntry: NSTableCellView {
+    @IBOutlet var RoomMessageEntryInboundFrom: NSTextField!
+    @IBOutlet var RoomMessageEntryInboundText: NSTextField!
+    @IBOutlet var RoomMessageEntryInboundIcon: NSImageView!
     
-    @IBOutlet var ChannelMessageEntryOutboundFrom: NSTextField!
-    @IBOutlet var ChannelMessageEntryOutboundText: NSTextField!
-    @IBOutlet var ChannelMessageEntryOutboundIcon: NSImageView!
+    @IBOutlet var RoomMessageEntryOutboundFrom: NSTextField!
+    @IBOutlet var RoomMessageEntryOutboundText: NSTextField!
+    @IBOutlet var RoomMessageEntryOutboundIcon: NSImageView!
     
-    @IBOutlet var ChannelMessageEntryInlineText: NSTextField!
+    @IBOutlet var RoomMessageEntryInlineText: NSTextField!
 }
 
 extension String {
@@ -54,15 +54,15 @@ extension String {
     }
 }
 
-class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTableViewDelegate, NSTableViewDataSource {
+class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource {
     
-    @IBOutlet var ChannelName: NSTokenField!
-    @IBOutlet var ChannelMessageInput: NSTextField!
-    @IBOutlet var ChannelMessageScrollView: NSScrollView!
-    @IBOutlet var ChannelMessageTableView: MainViewTableView!
-    @IBOutlet var ChannelInfoButton: NSButton!
-    @IBOutlet var ChannelPartButton: NSButton!
-    @IBOutlet var ChannelInsertButton: NSButton!
+    @IBOutlet var RoomName: NSTokenField!
+    @IBOutlet var RoomMessageInput: NSTextField!
+    @IBOutlet var RoomMessageScrollView: NSScrollView!
+    @IBOutlet var RoomMessageTableView: MainViewTableView!
+    @IBOutlet var RoomInfoButton: NSButton!
+    @IBOutlet var RoomPartButton: NSButton!
+    @IBOutlet var RoomInsertButton: NSButton!
     
     weak public var mainController: MainViewController?
     
@@ -122,63 +122,63 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
         switch event.type {
         case "m.room.message":
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryOutbound"), owner: self) as? ChannelMessageEntry
-                cell?.ChannelMessageEntryOutboundFrom.stringValue = event.sender as String
+                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as? RoomMessageEntry
+                cell?.RoomMessageEntryOutboundFrom.stringValue = event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
-                    cell?.ChannelMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .right)
+                    cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .right)
                 } else if event.content["body"] != nil {
-                    cell?.ChannelMessageEntryOutboundText.stringValue = event.content["body"] as! String
+                    cell?.RoomMessageEntryOutboundText.stringValue = event.content["body"] as! String
                 }
                 return cell
             } else {
-                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInbound"), owner: self) as? ChannelMessageEntry
-                cell?.ChannelMessageEntryInboundFrom.stringValue = event.sender as String
+                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as? RoomMessageEntry
+                cell?.RoomMessageEntryInboundFrom.stringValue = event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
-                    cell?.ChannelMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
+                    cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
                 } else if event.content["body"] != nil {
-                    cell?.ChannelMessageEntryInboundText.stringValue = event.content["body"] as! String
+                    cell?.RoomMessageEntryInboundText.stringValue = event.content["body"] as! String
                 }
                 return cell
             }
         case "m.room.member":
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInline"), owner: self) as? ChannelMessageEntry
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
             switch event.content["membership"] as! String {
-            case "join":    cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) joined the room"; break
-            case "leave":   cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) left the room"; break
-            case "invite":  cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was invited to the room"; break
-            case "ban":     cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was banned from the room"; break
-            default:        cell?.ChannelMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"; break
+            case "join":    cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) joined the room"; break
+            case "leave":   cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) left the room"; break
+            case "invite":  cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was invited to the room"; break
+            case "ban":     cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was banned from the room"; break
+            default:        cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"; break
             }
             return cell
         default:
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChannelMessageEntryInline"), owner: self) as? ChannelMessageEntry
-            cell?.ChannelMessageEntryInlineText.stringValue = "Unknown event \(event.type)"
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
+            cell?.RoomMessageEntryInlineText.stringValue = "Unknown event \(event.type)"
             return cell
         }
     }
     
-    func uiDidSelectChannel(entry: ChannelListEntry) {
-        ChannelName.isEnabled = true
-        ChannelInfoButton.isEnabled = true
-        ChannelPartButton.isEnabled = true
-        ChannelInsertButton.isEnabled = true
-        ChannelMessageInput.isEnabled = true
+    func uiDidSelectRoom(entry: RoomListEntry) {
+        RoomName.isEnabled = true
+        RoomInfoButton.isEnabled = true
+        RoomPartButton.isEnabled = true
+        RoomInsertButton.isEnabled = true
+        RoomMessageInput.isEnabled = true
 
-        ChannelName.stringValue = entry.ChannelListEntryName.stringValue
+        RoomName.stringValue = entry.RoomListEntryName.stringValue
         
         roomId = entry.roomId!
 
-        // ChannelMessageTableView.beginUpdates()
-        ChannelMessageTableView.reloadData()
-        // ChannelMessageTableView.endUpdates()
+        // RoomMessageTableView.beginUpdates()
+        RoomMessageTableView.reloadData()
+        // RoomMessageTableView.endUpdates()
     
         // TODO: scroll to the bottom, this crashes sometimes
-        // ChannelMessageTableView.scrollRowToVisible(row: (eventCache[roomId]?.count)! - 1, animated: true)
+        // RoomMessageTableView.scrollRowToVisible(row: (eventCache[roomId]?.count)! - 1, animated: true)
     }
     
-    func matrixDidChannelMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
         if event.roomId == nil {
             return
         }
@@ -204,14 +204,14 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
             case .forwards:
                 eventCache[event.roomId]?.append(event)
                 if event.roomId == roomId {
-                    ChannelMessageTableView.insertRows(at: IndexSet.init(integer: (eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
-                    ChannelMessageTableView.scrollToEndOfDocument(self)
+                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: (eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
+                    RoomMessageTableView.scrollToEndOfDocument(self)
                 }
                 break
             default:
                 eventCache[event.roomId]?.insert(event, at: 0)
                 if event.roomId == roomId {
-                    ChannelMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
+                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
                 }
                 break
             }
@@ -220,7 +220,7 @@ class MainViewChannelController: NSViewController, MatrixChannelDelegate, NSTabl
             break
         }
     }
-    func matrixDidChannelUserJoin() {}
-    func martixDidChannelUserPart() {}
+    func matrixDidRoomUserJoin() {}
+    func martixDidRoomUserPart() {}
     
 }

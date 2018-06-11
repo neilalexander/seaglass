@@ -21,11 +21,11 @@ import SwiftMatrixSDK
 
 protocol ViewControllerWithDelegates {
     var roomsController: MainViewRoomsController? { get }
-    var channelController: MainViewChannelController? { get }
+    var channelController: MainViewRoomController? { get }
     
     var servicesDelegate: MatrixServicesDelegate? { get }
     var roomsDelegate: MatrixRoomsDelegate? { get }
-    var channelDelegate: MatrixChannelDelegate? { get }
+    var channelDelegate: MatrixRoomDelegate? { get }
 }
 
 class MatrixServices: NSObject {
@@ -130,11 +130,11 @@ class MatrixServices: NSObject {
         let room = self.session.room(withRoomId: roomId)
         
         _ = room?.liveTimeline.listenToEvents([MXEventType.roomMessage]) { (event, direction, roomState) in
-            self.mainController?.channelDelegate?.matrixDidChannelMessage(event: event, direction: direction, roomState: roomState)
+            self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState)
         }
         
         _ = room?.liveTimeline.listenToEvents([MXEventType.roomTopic]) { (event, direction, roomState) in
-            self.mainController?.channelDelegate?.matrixDidChannelMessage(event: event, direction: direction, roomState: roomState)
+            self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState)
         }
         
         room?.liveTimeline.resetPagination()
