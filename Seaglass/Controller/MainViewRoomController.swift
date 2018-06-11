@@ -185,14 +185,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if eventCache[event.roomId] == nil {
             eventCache[event.roomId] = []
         }
-        if eventCache[event.roomId]?.last == event || eventCache[event.roomId]?.first == event {
-          //  print("Duplicate event found at head/tail - shouldn't happen")
-            return
-        }
-        if (eventCache[event.roomId]?.contains(event))! {
-          //  print("Duplicate event found in event cache - shouldn't happen")
-            return
-        }
         switch event.type {
         case "m.room.message":
             if event.content["body"] == nil {

@@ -61,14 +61,12 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
-      //  NSAnimationContext.runAnimationGroup({ context in
-      //      RoomList.insertRows(at: 0, withAnimation: .EffectFade | .SlideUp)
-      //  }, completionHandler: {
-      //      roomCache.append(room)
-      //      RoomList.reloadData()
-      //  })
         roomCache.insert(room, at: 0)
-        RoomList.reloadData()
+        NSAnimationContext.runAnimationGroup({ context in
+            RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
+        }, completionHandler: {
+            // room joined
+        })
     }
     
     func matrixDidPartRoom() {
@@ -89,6 +87,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
         let state = roomCache[row].state
         let count = state?.members.count ?? 0
+        
         cell?.roomId = state?.roomId
 
         if state?.name != nil {
@@ -125,6 +124,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         
         cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
         
+        // TODO: make sure this never gets called more than once per channel
         MatrixServices.inst.subscribeToRoom(roomId: (state?.roomId)!)
 
         return cell
