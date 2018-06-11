@@ -59,13 +59,19 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
     }
     
+    override func viewDidAppear() {
+        for room in MatrixServices.inst.session.rooms {
+            self.matrixDidJoinRoom(room)
+        }
+    }
+    
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
         roomCache.insert(room, at: 0)
         NSAnimationContext.runAnimationGroup({ context in
             RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
         }, completionHandler: {
-            // room joined
+            MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
         })
     }
     
@@ -124,9 +130,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         
         cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
         
-        // TODO: make sure this never gets called more than once per channel
-        MatrixServices.inst.subscribeToRoom(roomId: (state?.roomId)!)
-
         return cell
     }
     

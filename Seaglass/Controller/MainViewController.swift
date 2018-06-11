@@ -80,10 +80,6 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
         self.view.window?.styleMask.update(with: .closable)
         self.view.window?.styleMask.update(with: .miniaturizable)
         self.view.window?.styleMask.update(with: .resizable)
-
-        for room in MatrixServices.inst.session.rooms {
-            roomsDelegate?.matrixDidJoinRoom(room)
-        }
     }
     
     override var representedObject: Any? {
