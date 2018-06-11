@@ -87,12 +87,43 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
-
         let state = roomCache[row].state
-        
+        let count = state?.members.count ?? 0
         cell?.roomId = state?.roomId
-        cell?.RoomListEntryName.stringValue = state?.name ?? state?.canonicalAlias ?? "Unnamed room"
-        cell?.RoomListEntryTopic.stringValue = "\(state?.members.count ?? 0) members\n" + (state?.topic ?? "No topic set")
+
+        if state?.name != nil {
+            cell?.RoomListEntryName.stringValue = (state?.name)!
+        } else if state?.canonicalAlias != nil {
+            cell?.RoomListEntryName.stringValue = (state?.canonicalAlias)!
+        } else {
+            var memberNames: String = ""
+            for m in 0..<count {
+                if state?.members[m].userId == MatrixServices.inst.client?.credentials.userId {
+                    continue
+                }
+                memberNames.append(state?.members[m].displayname ?? (state?.members[m].userId)!)
+                if m < count-2 {
+                    memberNames.append(", ")
+                }
+            }
+            cell?.RoomListEntryName.stringValue = memberNames
+        }
+        
+        var memberString: String = ""
+        var topicString: String = "No topic set"
+        
+        if state?.topic != nil {
+            topicString = (state?.topic)!
+        }
+        
+        switch count {
+        case 0: fallthrough
+        case 1: memberString = "Empty room"; break
+        case 2: memberString = "Direct chat"; break
+        default: memberString = "\(count) members"
+        }
+        
+        cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
         
         MatrixServices.inst.subscribeToRoom(roomId: (state?.roomId)!)
 
