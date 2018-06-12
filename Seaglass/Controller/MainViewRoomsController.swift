@@ -37,7 +37,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     weak var mainController: MainViewController?
     
-    var roomCache = [MXRoom]()
+    @IBOutlet weak var RoomCacheController: NSArrayController!
+    @objc dynamic var roomCache = [MXRoom]()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -67,7 +68,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
-        roomCache.insert(room, at: 0)
+        RoomCacheController.insert(room, atArrangedObjectIndex: 0)
         NSAnimationContext.runAnimationGroup({ context in
             RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
         }, completionHandler: {

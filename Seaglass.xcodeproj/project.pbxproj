@@ -22,7 +22,7 @@
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
-		F871D00D81C0D8090D1AE8F8 /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBA55FA4C53E908DE2A4DA2 /* Pods_Seaglass.framework */; };
+		E4C92B67BBDA120B3874BA1E /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE943171CA9BB890FAA7A7 /* Pods_Seaglass.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +65,9 @@
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
-		8A01C4780F6B593E4F1BB400 /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
-		DFBD1E450BBD991AE631F62C /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
-		FDBA55FA4C53E908DE2A4DA2 /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96FE943171CA9BB890FAA7A7 /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A434812A048537B19090D0BF /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
+		E815DBAF74ED10A83086CF6E /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F871D00D81C0D8090D1AE8F8 /* Pods_Seaglass.framework in Frameworks */,
+				E4C92B67BBDA120B3874BA1E /* Pods_Seaglass.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 				391BFE3320C68AD200B4EFEC /* SeaglassTests */,
 				391BFE3E20C68AD200B4EFEC /* SeaglassUITests */,
 				391BFE1C20C68AD100B4EFEC /* Products */,
-				C4EB9E2FD9161F33377ED376 /* Pods */,
-				B1D179DBD4DEF4673B154D80 /* Frameworks */,
+				EAD7BA7CEBBCCBC5788398D6 /* Pods */,
+				F4B5910B05791D7ABE2F5C33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,21 +174,21 @@
 			path = Subclass;
 			sourceTree = "<group>";
 		};
-		B1D179DBD4DEF4673B154D80 /* Frameworks */ = {
+		EAD7BA7CEBBCCBC5788398D6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FDBA55FA4C53E908DE2A4DA2 /* Pods_Seaglass.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C4EB9E2FD9161F33377ED376 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8A01C4780F6B593E4F1BB400 /* Pods-Seaglass.debug.xcconfig */,
-				DFBD1E450BBD991AE631F62C /* Pods-Seaglass.release.xcconfig */,
+				A434812A048537B19090D0BF /* Pods-Seaglass.debug.xcconfig */,
+				E815DBAF74ED10A83086CF6E /* Pods-Seaglass.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F4B5910B05791D7ABE2F5C33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96FE943171CA9BB890FAA7A7 /* Pods_Seaglass.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,12 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 391BFE4420C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "Seaglass" */;
 			buildPhases = (
-				191FEF4FED35FE91AC5F0E6A /* [CP] Check Pods Manifest.lock */,
+				E01DD8AF150FF481FA24F0C9 /* [CP] Check Pods Manifest.lock */,
 				391BFE1720C68AD100B4EFEC /* Sources */,
 				391BFE1820C68AD100B4EFEC /* Frameworks */,
 				391BFE1920C68AD100B4EFEC /* Resources */,
 				396F71E520CAB8C500F4F5E0 /* Headers */,
-				8B8ED06B75387CB5CA0F7362 /* [CP] Embed Pods Frameworks */,
+				2B341461F29BE23B1D4C608B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,25 +335,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		191FEF4FED35FE91AC5F0E6A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Seaglass-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B8ED06B75387CB5CA0F7362 /* [CP] Embed Pods Frameworks */ = {
+		2B341461F29BE23B1D4C608B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -379,6 +361,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E01DD8AF150FF481FA24F0C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Seaglass-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -560,7 +560,7 @@
 		};
 		391BFE4520C68AD200B4EFEC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A01C4780F6B593E4F1BB400 /* Pods-Seaglass.debug.xcconfig */;
+			baseConfigurationReference = A434812A048537B19090D0BF /* Pods-Seaglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -578,7 +578,7 @@
 		};
 		391BFE4620C68AD200B4EFEC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFBD1E450BBD991AE631F62C /* Pods-Seaglass.release.xcconfig */;
+			baseConfigurationReference = E815DBAF74ED10A83086CF6E /* Pods-Seaglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -789,6 +789,14 @@ DQ
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <binding destination="El7-IA-8gq" name="predicate" keyPath="filterPredicate" id="2iq-Ns-fe6">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">keyPath contains $value</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-Sa-Oxk">
                                 <rect key="frame" x="207" y="415" width="47" height="32"/>
@@ -890,7 +898,7 @@ DQ
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <outlet property="dataSource" destination="KsD-aF-a0Q" id="Bf7-Jw-jy3"/>
+                                                <outlet property="dataSource" destination="El7-IA-8gq" id="QJu-ON-5J7"/>
                                                 <outlet property="delegate" destination="KsD-aF-a0Q" id="Wvm-zI-tBh"/>
                                             </connections>
                                         </tableView>
@@ -918,10 +926,16 @@ DQ
                     </view>
                     <connections>
                         <outlet property="ConnectionStatus" destination="Ewz-Fy-OEj" id="Nc7-zi-sFR"/>
+                        <outlet property="RoomCacheController" destination="El7-IA-8gq" id="X3u-DV-dAE"/>
                         <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController objectClassName="SwiftMatrixSDK.MXRoom" id="El7-IA-8gq">
+                    <connections>
+                        <binding destination="KsD-aF-a0Q" name="contentArray" keyPath="self.roomCache" id="bGQ-5T-Hp5"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -2045,6 +2059,65 @@ DQ
             </objects>
             <point key="canvasLocation" x="75" y="994.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Xp7-LZ-gMb">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="XnJ-du-pMW" sceneMemberID="viewController">
+                    <view key="view" id="B6p-xd-Mnm">
+                        <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvj-87-hZh">
+                                <rect key="frame" x="13" y="12" width="56" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="mIU-aN-xs1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
+                                <rect key="frame" x="75" y="12" width="5" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-cU-i45">
+                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-RN-HCy">
+                                <rect key="frame" x="235" y="12" width="5" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98V-GH-dyr">
+                                <rect key="frame" x="166" y="12" width="63" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="Ignore" bezelStyle="shadowlessSquare" image="NSTouchBarAudioOutputMuteTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="u0F-IG-ECr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NT-ul-tOw">
+                                <rect key="frame" x="86" y="12" width="63" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="Mention" bezelStyle="shadowlessSquare" image="NSTouchBarTagIconTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="ON5-c1-xwK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NL2-e6-jwQ">
+                                <rect key="frame" x="246" y="12" width="63" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" title="Chat" bezelStyle="shadowlessSquare" image="NSTouchBarNewMessageTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="NNd-lJ-HiW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="UZH-uK-MGd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1303" y="567"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
@@ -2054,6 +2127,7 @@ DQ
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="NSStatusNone" width="16" height="16"/>
         <image name="NSTouchBarAddTemplate" width="14" height="30"/>
+        <image name="NSTouchBarAudioOutputMuteTemplate" width="26" height="30"/>
         <image name="NSTouchBarCommunicationAudioTemplate" width="18" height="30"/>
         <image name="NSTouchBarCommunicationVideoTemplate" width="22" height="30"/>
         <image name="NSTouchBarComposeTemplate" width="21" height="30"/>
@@ -2061,6 +2135,7 @@ DQ
         <image name="NSTouchBarGetInfoTemplate" width="18" height="30"/>
         <image name="NSTouchBarNewMessageTemplate" width="18" height="30"/>
         <image name="NSTouchBarShareTemplate" width="15" height="30"/>
+        <image name="NSTouchBarTagIconTemplate" width="23" height="30"/>
         <image name="NSTouchBarUserAddTemplate" width="21" height="30"/>
         <image name="NSUser" width="32" height="32"/>
     </resources>

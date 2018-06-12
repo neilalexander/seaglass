@@ -90,7 +90,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         }
         
-        if defaults.bool(forKey: "LoginAutomatically") {
+        if defaults.bool(forKey: "LoginAutomatically") && false {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
@@ -136,10 +136,15 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             self.defaults.removeObject(forKey: "UserID")
         }
 
+        print("Username: \(username)")
+        print("Homeserver: \(homeserver)")
+        
         let client = MXRestClient(homeServer: URL(string: homeserver)!, unrecognizedCertificateHandler: nil)
+        print("Logging in")
         client.login(username: username, password: password) { response in
             switch response {
             case .success(let credentials):
+                print("Login success")
                 showObjects.append(self.ProgressIndicator)
                 hideObjects.append(self.InfoLabel)
                 hideObjects.append(self.UsernameField)
@@ -172,17 +177,19 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.defaults.set(credentials.userId, forKey: "UserID")
                 }
                 
+                print("Starting Matrix!")
                 MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"))
                 self.CancelButton.isEnabled = false
+                break
                 
             case .failure:
+                print("Login failed")
                 self.ProgressIndicator.stopAnimation(self)
                 let a = NSAlert()
                 a.messageText = "Login failed"
                 a.informativeText = response.error!.localizedDescription
                 a.addButton(withTitle: "OK")
                 a.alertStyle = NSAlert.Style.warning
-                
                 a.beginSheetModal(for: self.view.window!, completionHandler: { (modalResponse) -> Void in
                     self.UsernameField.isEnabled = true
                     self.PasswordField.isEnabled = true
@@ -192,6 +199,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.LoginButton.isEnabled = true
                     self.CancelButton.title = "Quit"
                 })
+                break
             }
         }
     }

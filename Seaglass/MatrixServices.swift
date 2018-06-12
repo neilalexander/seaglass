@@ -80,15 +80,20 @@ class MatrixServices: NSObject {
     }
     
     func start(_ credentials: MXCredentials, disableCache: Bool) {
+        print("Creating REST client")
         client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
+        
+        print("Creating session")
         session = MXSession(matrixRestClient: client)
         
         state = .starting
         
         var fileStore: MXStore
         if disableCache {
+            print("Disabling cache")
             fileStore = MXNoStore()
         } else {
+            print("Enabling cache")
             fileStore = MXFileStore()
         }
         
@@ -100,9 +105,13 @@ class MatrixServices: NSObject {
             
             self.state = .starting
             self.session.start { response in
-                guard response.isSuccess else { return }
+                guard response.isSuccess else {
+                    print("Assertion failed: setStore response was not true")
+                    return
+                }
                 
                 DispatchQueue.main.async {
+                    print("Handing off to services delegate")
                     self.state = .started
                     self.mainController?.servicesDelegate?.matrixDidLogin(self.session);
                 }

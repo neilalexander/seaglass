@@ -36,7 +36,8 @@ extension String {
     func toAttributedStringFromHTML(justify: NSTextAlignment) -> NSAttributedString{
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         do {
-            let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
+                 .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
             let range = NSRange(location: 0, length: str.length)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = justify
