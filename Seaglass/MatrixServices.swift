@@ -37,8 +37,9 @@ class MatrixServices: NSObject {
     }
     private(set) var state: State
     
-    var client: MXRestClient?
+    var client: MXRestClient!
     var session: MXSession!
+    var fileStore: MXStore!
     
     var mainController: ViewControllerWithDelegates?
     
@@ -88,7 +89,6 @@ class MatrixServices: NSObject {
         
         state = .starting
         
-        var fileStore: MXStore
         if disableCache {
             print("Disabling cache")
             fileStore = MXNoStore()

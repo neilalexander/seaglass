@@ -24,6 +24,8 @@ class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryTopic: NSTextField!
     @IBOutlet var RoomListEntryIcon: NSImageView!
     
+    var roomName: String?
+    var roomTopic: String?
     var roomId: String?
     
     required init?(coder: NSCoder) {
@@ -98,9 +100,11 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.roomId = state?.roomId
 
         if state?.name != nil {
-            cell?.RoomListEntryName.stringValue = (state?.name)!
+            cell?.roomName = state?.name
+            cell?.RoomListEntryName.stringValue = (cell?.roomName)!
         } else if state?.canonicalAlias != nil {
-            cell?.RoomListEntryName.stringValue = (state?.canonicalAlias)!
+            cell?.roomName = state?.canonicalAlias
+            cell?.RoomListEntryName.stringValue = (cell?.roomName)!
         } else {
             var memberNames: String = ""
             for m in 0..<count {
@@ -112,6 +116,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                     memberNames.append(", ")
                 }
             }
+            cell?.roomName = memberNames
             cell?.RoomListEntryName.stringValue = memberNames
         }
         
@@ -119,7 +124,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         var topicString: String = "No topic set"
         
         if state?.topic != nil {
-            topicString = (state?.topic)!
+            cell?.roomTopic = (state?.topic)!
+            topicString = cell?.roomTopic ?? ""
         }
         
         switch count {

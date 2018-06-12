@@ -58,6 +58,7 @@ extension String {
 class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource {
     
     @IBOutlet var RoomName: NSTokenField!
+    @IBOutlet var RoomTopic: NSTextField!
     @IBOutlet var RoomMessageInput: NSTextField!
     @IBOutlet var RoomMessageScrollView: NSScrollView!
     @IBOutlet var RoomMessageTableView: MainViewTableView!
@@ -168,6 +169,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageInput.isEnabled = true
 
         RoomName.stringValue = entry.RoomListEntryName.stringValue
+        RoomTopic.stringValue = entry.roomTopic ?? ""
         
         roomId = entry.roomId!
 
