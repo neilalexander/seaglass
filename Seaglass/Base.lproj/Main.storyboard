@@ -954,9 +954,9 @@ DQ
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
                                 <rect key="frame" x="18" y="425" width="116" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="rm2-dd-1VU"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="rm2-dd-1VU"/>
                                 </constraints>
-                                <tokenFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" enabled="NO" alignment="left" title="Room Name" placeholderString="Room Name" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
+                                <tokenFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" enabled="NO" alignment="left" title="Room Name" placeholderString="Room Name" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
