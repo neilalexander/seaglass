@@ -90,7 +90,11 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         }
         
-        if defaults.bool(forKey: "LoginAutomatically") && false {
+        if defaults.bool(forKey: "LoginAutomatically") &&
+            defaults.string(forKey: "Homeserver") != nil &&
+            defaults.string(forKey: "UserID") != nil &&
+            defaults.string(forKey: "AccessToken") != nil &&
+            true {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
@@ -130,11 +134,8 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         ProgressIndicator.startAnimation(self)
         
         self.defaults.set(self.RememberCheckbox.state == .on, forKey: "LoginAutomatically")
-        
-        if self.RememberCheckbox.state != .on {
-            self.defaults.removeObject(forKey: "AccessToken")
-            self.defaults.removeObject(forKey: "UserID")
-        }
+        self.defaults.removeObject(forKey: "AccessToken")
+        self.defaults.removeObject(forKey: "UserID")
 
         print("Username: \(username)")
         print("Homeserver: \(homeserver)")
@@ -177,7 +178,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.defaults.set(credentials.userId, forKey: "UserID")
                 }
                 
-                print("Starting Matrix!")
+                print("Starting Matrix")
                 MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"))
                 self.CancelButton.isEnabled = false
                 break
