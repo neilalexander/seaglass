@@ -778,7 +778,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-6g-QmI">
-                                <rect key="frame" x="0.0" y="411" width="257" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="257" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl">
@@ -789,14 +789,6 @@ DQ
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
-                                <connections>
-                                    <binding destination="El7-IA-8gq" name="predicate" keyPath="filterPredicate" id="2iq-Ns-fe6">
-                                        <dictionary key="options">
-                                            <string key="NSDisplayName">predicate</string>
-                                            <string key="NSPredicateFormat">keyPath contains $value</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-Sa-Oxk">
                                 <rect key="frame" x="207" y="415" width="47" height="32"/>
@@ -898,7 +890,7 @@ DQ
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <outlet property="dataSource" destination="El7-IA-8gq" id="QJu-ON-5J7"/>
+                                                <outlet property="dataSource" destination="KsD-aF-a0Q" id="EwF-wG-ubq"/>
                                                 <outlet property="delegate" destination="KsD-aF-a0Q" id="Wvm-zI-tBh"/>
                                             </connections>
                                         </tableView>
@@ -926,16 +918,12 @@ DQ
                     </view>
                     <connections>
                         <outlet property="ConnectionStatus" destination="Ewz-Fy-OEj" id="Nc7-zi-sFR"/>
-                        <outlet property="RoomCacheController" destination="El7-IA-8gq" id="X3u-DV-dAE"/>
                         <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
+                        <outlet property="roomCacheController" destination="El7-IA-8gq" id="enl-tI-EnW"/>
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="SwiftMatrixSDK.MXRoom" id="El7-IA-8gq">
-                    <connections>
-                        <binding destination="KsD-aF-a0Q" name="contentArray" keyPath="self.roomCache" id="bGQ-5T-Hp5"/>
-                    </connections>
-                </arrayController>
+                <arrayController objectClassName="RoomCacheEntry" id="El7-IA-8gq"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -948,7 +936,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -2096,7 +2084,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-RN-HCy">
-                                <rect key="frame" x="235" y="12" width="5" height="58"/>
+                                <rect key="frame" x="235" y="12" width="195" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98V-GH-dyr">

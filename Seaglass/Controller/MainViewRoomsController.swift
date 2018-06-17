@@ -34,13 +34,12 @@ class RoomListEntry: NSTableCellView {
 }
 
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
-    @IBOutlet weak var RoomList: NSTableView!
-    @IBOutlet weak var ConnectionStatus: NSButton!
+    @IBOutlet var RoomList: NSTableView!
+    @IBOutlet var ConnectionStatus: NSButton!
     
-    weak var mainController: MainViewController?
+    var mainController: MainViewController?
     
-    @IBOutlet weak var RoomCacheController: NSArrayController!
-    @objc dynamic var roomCache = [MXRoom]()
+    @IBOutlet var roomCacheController: NSArrayController!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -70,7 +69,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
-        RoomCacheController.insert(room, atArrangedObjectIndex: 0)
+        roomCacheController.insert(RoomCacheEntry(room), atArrangedObjectIndex: 0)
+        
         NSAnimationContext.runAnimationGroup({ context in
             RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
         }, completionHandler: {
@@ -89,29 +89,29 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return roomCache.count
+        return roomCacheController.selectedObjects.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
-        let state = roomCache[row].state
-        let count = state?.members.count ?? 0
+        let state: RoomCacheEntry = (roomCacheController.arrangedObjects as! [RoomCacheEntry])[row]
+        let count = state.members().count
         
-        cell?.roomId = state?.roomId
+        cell?.roomId = state.roomId
 
-        if state?.name != nil {
-            cell?.roomName = state?.name
+        if state.roomName != "" {
+            cell?.roomName = state.roomName
             cell?.RoomListEntryName.stringValue = (cell?.roomName)!
-        } else if state?.canonicalAlias != nil {
-            cell?.roomName = state?.canonicalAlias
+        } else if state.roomAlias != "" {
+            cell?.roomName = state.roomAlias
             cell?.RoomListEntryName.stringValue = (cell?.roomName)!
         } else {
             var memberNames: String = ""
             for m in 0..<count {
-                if state?.members[m].userId == MatrixServices.inst.client?.credentials.userId {
+                if state.members()[m].userId == MatrixServices.inst.client?.credentials.userId {
                     continue
                 }
-                memberNames.append(state?.members[m].displayname ?? (state?.members[m].userId)!)
+                memberNames.append(state.members()[m].displayname ?? (state.members()[m].userId)!)
                 if m < count-2 {
                     memberNames.append(", ")
                 }
@@ -123,8 +123,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         var memberString: String = ""
         var topicString: String = "No topic set"
         
-        if state?.topic != nil {
-            cell?.roomTopic = (state?.topic)!
+        if state.roomTopic != "" {
+            cell?.roomTopic = state.roomTopic
             topicString = cell?.roomTopic ?? ""
         }
         

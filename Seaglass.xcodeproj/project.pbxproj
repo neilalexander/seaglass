@@ -20,6 +20,7 @@
 		3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E620CB43A60061D51D /* LogoutViewController.swift */; };
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
 		3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0EA20CD57B30061D51D /* MainViewTableView.swift */; };
+		395C008D20D6AAC200C67609 /* RoomCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C008C20D6AAC200C67609 /* RoomCacheEntry.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
@@ -63,6 +64,7 @@
 		3943E0E620CB43A60061D51D /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
+		395C008C20D6AAC200C67609 /* RoomCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomCacheEntry.swift; path = Seaglass/Model/RoomCacheEntry.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		391BFE1D20C68AD100B4EFEC /* Seaglass */ = {
 			isa = PBXGroup;
 			children = (
+				395C008920D6AA7400C67609 /* Model */,
 				3943E0EE20CD9EF70061D51D /* Subclass */,
 				3943E0EC20CD9E4E0061D51D /* Controller */,
 				391BFE2520C68AD200B4EFEC /* Assets.xcassets */,
@@ -181,6 +184,15 @@
 				3943E0EA20CD57B30061D51D /* MainViewTableView.swift */,
 			);
 			path = Subclass;
+			sourceTree = "<group>";
+		};
+		395C008920D6AA7400C67609 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				395C008C20D6AAC200C67609 /* RoomCacheEntry.swift */,
+			);
+			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		600042570E1B4E8E38C9BC0D /* Frameworks */ = {
@@ -389,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */,
+				395C008D20D6AAC200C67609 /* RoomCacheEntry.swift in Sources */,
 				399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */,
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
