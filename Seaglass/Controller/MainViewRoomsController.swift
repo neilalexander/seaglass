@@ -89,7 +89,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        print((roomCacheController.arrangedObjects as! [RoomCacheEntry]).count)
         return (roomCacheController.arrangedObjects as! [RoomCacheEntry]).count
     }
     
@@ -143,6 +142,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = notification.object as! NSTableView
+        
+        if row.selectedRow < 0 {
+            return
+        }
         
         let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! RoomListEntry
         
