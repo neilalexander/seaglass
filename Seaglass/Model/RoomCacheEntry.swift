@@ -37,4 +37,8 @@ class RoomCacheEntry: NSObject {
     func members() -> [MXRoomMember] {
         return self.room.state.members
     }
+    
+    func topic() -> String {
+        return self.room.state.topic
+    }
 }

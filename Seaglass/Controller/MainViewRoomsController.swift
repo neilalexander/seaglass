@@ -24,9 +24,7 @@ class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryTopic: NSTextField!
     @IBOutlet var RoomListEntryIcon: NSImageView!
     
-    var roomName: String?
-    var roomTopic: String?
-    var roomId: String?
+    var roomCacheEntry: RoomCacheEntry?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -70,18 +68,12 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
         roomCacheController.insert(RoomCacheEntry(room), atArrangedObjectIndex: 0)
-        
-        NSAnimationContext.runAnimationGroup({ context in
-        //    RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
-        }, completionHandler: {
-            MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
-        })
+        MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
     }
     
     func matrixDidPartRoom() {
         print("MainViewRoomsController matrixDidPartRoom")
-        
-        
+        // TODO: unsubscribe from room
     }
     
     func matrixDidUpdateRoom() {
@@ -95,16 +87,14 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
         let state: RoomCacheEntry = (roomCacheController.arrangedObjects as! [RoomCacheEntry])[row]
+        cell?.roomCacheEntry = state
+    
         let count = state.members().count
-        
-        cell?.roomId = state.roomId
 
         if state.roomName != "" {
-            cell?.roomName = state.roomName
-            cell?.RoomListEntryName.stringValue = (cell?.roomName)!
+            cell?.RoomListEntryName.stringValue = state.roomName
         } else if state.roomAlias != "" {
-            cell?.roomName = state.roomAlias
-            cell?.RoomListEntryName.stringValue = (cell?.roomName)!
+            cell?.RoomListEntryName.stringValue = state.roomAlias
         } else {
             var memberNames: String = ""
             for m in 0..<count {
@@ -116,7 +106,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                     memberNames.append(", ")
                 }
             }
-            cell?.roomName = memberNames
             cell?.RoomListEntryName.stringValue = memberNames
         }
         
@@ -124,8 +113,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         var topicString: String = "No topic set"
         
         if state.roomTopic != "" {
-            cell?.roomTopic = state.roomTopic
-            topicString = cell?.roomTopic ?? ""
+            topicString = state.roomTopic
         }
         
         switch count {

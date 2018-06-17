@@ -162,6 +162,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func uiDidSelectRoom(entry: RoomListEntry) {
+        if entry.roomCacheEntry?.roomId == nil {
+            return
+        }
+        
         RoomName.isEnabled = true
         RoomInfoButton.isEnabled = true
         RoomPartButton.isEnabled = true
@@ -169,14 +173,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageInput.isEnabled = true
 
         RoomName.stringValue = entry.RoomListEntryName.stringValue
-        RoomTopic.stringValue = entry.roomTopic ?? ""
+        RoomTopic.stringValue = entry.RoomListEntryTopic.stringValue.components(separatedBy: "\n")[1]
         
-        roomId = entry.roomId!
-
-        // RoomMessageTableView.beginUpdates()
+        roomId = (entry.roomCacheEntry?.roomId)!
         RoomMessageTableView.reloadData()
-        // RoomMessageTableView.endUpdates()
-    
+
         // TODO: scroll to the bottom, this crashes sometimes
         // RoomMessageTableView.scrollRowToVisible(row: (eventCache[roomId]?.count)! - 1, animated: true)
     }
