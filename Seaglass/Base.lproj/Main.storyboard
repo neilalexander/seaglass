@@ -789,6 +789,15 @@ DQ
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <binding destination="El7-IA-8gq" name="predicate" keyPath="filterPredicate" id="6cb-qa-cFs">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">self.roomName contains[cd] $value or self.roomTopic contains[cd] $value</string>
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-Sa-Oxk">
                                 <rect key="frame" x="207" y="415" width="47" height="32"/>
@@ -887,6 +896,15 @@ DQ
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
+                                                    <connections>
+                                                        <binding destination="El7-IA-8gq" name="value" keyPath="arrangedObjects.roomName" id="c5U-0d-2cL">
+                                                            <dictionary key="options">
+                                                                <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>

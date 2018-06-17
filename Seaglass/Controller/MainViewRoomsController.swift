@@ -72,7 +72,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         roomCacheController.insert(RoomCacheEntry(room), atArrangedObjectIndex: 0)
         
         NSAnimationContext.runAnimationGroup({ context in
-            RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
+        //    RoomList.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideUp, .effectFade ])
         }, completionHandler: {
             MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
         })
@@ -89,7 +89,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return roomCacheController.selectedObjects.count
+        print((roomCacheController.arrangedObjects as! [RoomCacheEntry]).count)
+        return (roomCacheController.arrangedObjects as! [RoomCacheEntry]).count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
