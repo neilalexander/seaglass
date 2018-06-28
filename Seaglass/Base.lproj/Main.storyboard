@@ -722,6 +722,7 @@ DQ
                     </connections>
                 </splitViewController>
                 <customObject id="q1c-Q9-vWE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <dictionaryController objectClassName="_NSDictionaryControllerKeyValuePair" id="Wn8-5a-elx"/>
             </objects>
             <point key="canvasLocation" x="780" y="452"/>
         </scene>
@@ -778,7 +779,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-6g-QmI">
-                                <rect key="frame" x="0.0" y="411" width="257" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="257" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl">
@@ -937,11 +938,11 @@ DQ
                     <connections>
                         <outlet property="ConnectionStatus" destination="Ewz-Fy-OEj" id="Nc7-zi-sFR"/>
                         <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
-                        <outlet property="roomCacheController" destination="El7-IA-8gq" id="enl-tI-EnW"/>
+                        <outlet property="roomsCacheController" destination="El7-IA-8gq" id="enl-tI-EnW"/>
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="RoomCacheEntry" id="El7-IA-8gq"/>
+                <arrayController objectClassName="RoomsCacheEntry" id="El7-IA-8gq"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -954,7 +955,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -2102,7 +2103,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-RN-HCy">
-                                <rect key="frame" x="235" y="12" width="195" height="58"/>
+                                <rect key="frame" x="235" y="12" width="195" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98V-GH-dyr">

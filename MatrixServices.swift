@@ -37,9 +37,13 @@ class MatrixServices: NSObject {
     }
     private(set) var state: State
     
+    // From the Matrix SDK
     var client: MXRestClient!
     var session: MXSession!
     var fileStore: MXStore!
+    
+    // Own structures
+    var eventCache: Dictionary<String, [MXEvent]> = [:]
     
     var mainController: ViewControllerWithDelegates?
     
@@ -143,12 +147,23 @@ class MatrixServices: NSObject {
     func subscribeToRoom(roomId: String) {
         let room = self.session.room(withRoomId: roomId)
         
-        _ = room?.liveTimeline.listenToEvents([MXEventType.roomMessage]) { (event, direction, roomState) in
-            self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState)
-        }
-        
-        _ = room?.liveTimeline.listenToEvents([MXEventType.roomTopic]) { (event, direction, roomState) in
-            self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState)
+        _ = room?.liveTimeline.listenToEvents() { (event, direction, roomState) in
+            if event.roomId == "" {
+                return
+            }
+            if self.eventCache[event.roomId] == nil {
+                self.eventCache[event.roomId] = []
+            }
+            if direction == .forwards {
+                self.eventCache[event.roomId]?.append(event)
+            } else {
+                self.eventCache[event.roomId]?.insert(event, at: 0)
+            }
+            switch event.type {
+            case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+            case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+            default: self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+            }
         }
         
         room?.liveTimeline.resetPagination()

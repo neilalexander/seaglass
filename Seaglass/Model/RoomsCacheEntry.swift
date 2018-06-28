@@ -9,7 +9,7 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class RoomCacheEntry: NSObject {
+class RoomsCacheEntry: NSObject {
     var room: MXRoom
     
     @objc dynamic var roomId: String = ""

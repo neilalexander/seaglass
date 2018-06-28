@@ -69,10 +69,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
-    
-    // <roomID, [MXEvent]>
-    var eventCache: Dictionary<String, [MXEvent]> = [:]
-    
+
     @IBAction func messageEntryFieldSubmit(_ sender: NSTextField) {
         if roomId == "" {
             return
@@ -109,17 +106,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if roomId == "" || eventCache[roomId] == nil {
+        if roomId == "" || MatrixServices.inst.eventCache[roomId] == nil {
             return 0
         }
         
-       // print(MatrixServices.inst.session.room(withRoomId: roomId).enumeratorForStoredMessagesWithType(in: ["m.room.message"]))
-        
-        return (eventCache[roomId]?.count)!
+        return (MatrixServices.inst.eventCache[roomId]?.count)!
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let event = eventCache[roomId]![row]
+        let event = MatrixServices.inst.eventCache[roomId]![row]
         
         switch event.type {
         case "m.room.message":
@@ -154,6 +149,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             default:        cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"; break
             }
             return cell
+        case "m.room.name":
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
+            cell?.RoomMessageEntryInlineText.stringValue = "Room renamed to \(event.content["name"] as! String)"
+            return cell
+        case "m.room.topic":
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
+            cell?.RoomMessageEntryInlineText.stringValue = "Topic changed to \(event.content["topic"] as! String)"
+            return cell
         default:
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
             cell?.RoomMessageEntryInlineText.stringValue = "Unknown event \(event.type)"
@@ -162,10 +165,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func uiDidSelectRoom(entry: RoomListEntry) {
-        if entry.roomCacheEntry?.roomId == nil {
+        if entry.roomsCacheEntry?.roomId == nil {
             return
         }
-        
+
         RoomName.isEnabled = true
         RoomInfoButton.isEnabled = true
         RoomPartButton.isEnabled = true
@@ -175,7 +178,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomName.stringValue = entry.RoomListEntryName.stringValue
         RoomTopic.stringValue = entry.RoomListEntryTopic.stringValue.components(separatedBy: "\n")[1]
         
-        roomId = (entry.roomCacheEntry?.roomId)!
+        roomId = (entry.roomsCacheEntry?.roomId)!
+
         RoomMessageTableView.reloadData()
 
         // TODO: scroll to the bottom, this crashes sometimes
@@ -186,9 +190,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if event.roomId == nil {
             return
         }
-        if eventCache[event.roomId] == nil {
-            eventCache[event.roomId] = []
-        }
+        RoomMessageTableView.noteNumberOfRowsChanged()
         switch event.type {
         case "m.room.message":
             if event.content["body"] == nil {
@@ -198,16 +200,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         case "m.room.member":
             switch direction {
             case .forwards:
-                eventCache[event.roomId]?.append(event)
                 if event.roomId == roomId {
-                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: (eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
-                    RoomMessageTableView.scrollToEndOfDocument(self)
+                   // RoomMessageTableView.insertRows(at: IndexSet.init(integer: (MatrixServices.inst.eventCache[event.roomId]?.count)! - 1)) // , withAnimation: [ .slideUp, .effectFade ])
+                  //  RoomMessageTableView.scrollToEndOfDocument(self)
                 }
                 break
             default:
-                eventCache[event.roomId]?.insert(event, at: 0)
                 if event.roomId == roomId {
-                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
+                  //  RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
                 }
                 break
             }

@@ -24,7 +24,7 @@ class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryTopic: NSTextField!
     @IBOutlet var RoomListEntryIcon: NSImageView!
     
-    var roomCacheEntry: RoomCacheEntry?
+    var roomsCacheEntry: RoomsCacheEntry?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -37,7 +37,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     var mainController: MainViewController?
     
-    @IBOutlet var roomCacheController: NSArrayController!
+    @IBOutlet var roomsCacheController: NSArrayController!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -67,7 +67,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         print("MainViewRoomsController matrixDidJoinRoom \(room)")
-        roomCacheController.insert(RoomCacheEntry(room), atArrangedObjectIndex: 0)
+        roomsCacheController.insert(RoomsCacheEntry(room), atArrangedObjectIndex: 0)
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
     }
     
@@ -81,13 +81,13 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return (roomCacheController.arrangedObjects as! [RoomCacheEntry]).count
+        return (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomListEntry"), owner: self) as? RoomListEntry
-        let state: RoomCacheEntry = (roomCacheController.arrangedObjects as! [RoomCacheEntry])[row]
-        cell?.roomCacheEntry = state
+        let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
+        cell?.roomsCacheEntry = state
     
         let count = state.members().count
 
