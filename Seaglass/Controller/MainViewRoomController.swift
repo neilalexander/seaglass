@@ -42,11 +42,20 @@ extension String {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = justify
             
-           // str.removeAttribute(.font, range: range)
+            str.beginEditing()
             str.removeAttribute(.paragraphStyle, range: range)
             
-           // str.addAttribute(.font, value: NSFont.systemFont(ofSize: 12, weight: .regular), range: range)
+            str.enumerateAttributes(in: range, options: [], using: { attr, attrRange, _ in
+                if let font = attr[.font] as? NSFont {
+                    if font.familyName == "Times" {
+                        let newFont = NSFontManager.shared.convert(font, toFamily: NSFont.systemFont(ofSize: NSFont.systemFontSize).familyName!)
+                        str.addAttribute(.font, value: newFont, range: attrRange)
+                    }
+                }
+            })
+            
             str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+            str.endEditing()
             
             return str
         } catch {
