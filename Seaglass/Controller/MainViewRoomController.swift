@@ -212,6 +212,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if event.roomId == nil {
             return
         }
+        if !MatrixServices.inst.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
+            return
+        }
         switch event.type {
         case "m.typing":
             return
@@ -240,7 +243,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         default:
             break
         }
-        RoomMessageTableView.noteNumberOfRowsChanged()
     }
     func matrixDidRoomUserJoin() {}
     func martixDidRoomUserPart() {}
