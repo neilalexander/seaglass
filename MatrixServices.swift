@@ -151,7 +151,7 @@ class MatrixServices: NSObject {
             if event.roomId == "" {
                 return
             }
-            if self.eventCache[event.roomId] == nil {
+            if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
             if direction == .forwards {
@@ -160,8 +160,8 @@ class MatrixServices: NSObject {
                 self.eventCache[event.roomId]?.insert(event, at: 0)
             }
             switch event.type {
-            case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-            case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+           // case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+           // case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
             default: self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
             }
         }

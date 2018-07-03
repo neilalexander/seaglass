@@ -106,10 +106,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
+        if !MatrixServices.inst.eventCache.keys.contains(roomId) {
+            return 0
+        }
         if roomId == "" || MatrixServices.inst.eventCache[roomId] == nil {
             return 0
         }
-        
         return (MatrixServices.inst.eventCache[roomId]?.count)!
     }
     
