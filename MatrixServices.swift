@@ -151,18 +151,23 @@ class MatrixServices: NSObject {
             if event.roomId == "" {
                 return
             }
+            if event.roomId == nil {
+                return
+            }
             if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
-            if direction == .forwards {
-                self.eventCache[event.roomId]?.append(event)
-            } else {
-                self.eventCache[event.roomId]?.insert(event, at: 0)
-            }
-            switch event.type {
-           // case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-           // case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-            default: self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+            if !self.eventCache[event.roomId]!.contains(event) {
+                if direction == .forwards {
+                    self.eventCache[event.roomId]!.append(event)
+                } else {
+                    self.eventCache[event.roomId]!.insert(event, at: 0)
+                }
+                switch event.type {
+               // case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+               // case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+                default: self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
+                }
             }
         }
         

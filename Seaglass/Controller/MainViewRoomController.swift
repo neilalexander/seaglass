@@ -166,6 +166,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
     }
     
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        if row == MatrixServices.inst.eventCache[roomId]!.count-1 {
+            RoomMessageTableView.scrollRowToVisible(row: row, animated: true)
+        }
+    }
+    
     func uiDidSelectRoom(entry: RoomListEntry) {
         if entry.roomsCacheEntry?.roomId == nil {
             return
@@ -183,16 +189,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomId = (entry.roomsCacheEntry?.roomId)!
 
         RoomMessageTableView.reloadData()
-
-        // TODO: scroll to the bottom, this crashes sometimes
-        // RoomMessageTableView.scrollRowToVisible(row: (eventCache[roomId]?.count)! - 1, animated: true)
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
         if event.roomId == nil {
             return
         }
-        RoomMessageTableView.noteNumberOfRowsChanged()
         switch event.type {
         case "m.room.message":
             if event.content["body"] == nil {
@@ -203,13 +205,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             switch direction {
             case .forwards:
                 if event.roomId == roomId {
-                   // RoomMessageTableView.insertRows(at: IndexSet.init(integer: (MatrixServices.inst.eventCache[event.roomId]?.count)! - 1)) // , withAnimation: [ .slideUp, .effectFade ])
-                  //  RoomMessageTableView.scrollToEndOfDocument(self)
+                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: (MatrixServices.inst.eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
+                    RoomMessageTableView.scrollToEndOfDocument(self)
                 }
                 break
             default:
                 if event.roomId == roomId {
-                  //  RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
+                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
                 }
                 break
             }
@@ -217,6 +219,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         default:
             break
         }
+        RoomMessageTableView.noteNumberOfRowsChanged()
     }
     func matrixDidRoomUserJoin() {}
     func martixDidRoomUserPart() {}
