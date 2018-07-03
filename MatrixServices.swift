@@ -148,26 +148,22 @@ class MatrixServices: NSObject {
         let room = self.session.room(withRoomId: roomId)
         
         _ = room?.liveTimeline.listenToEvents() { (event, direction, roomState) in
-            if event.roomId == "" {
+            if event.roomId == nil {
                 return
             }
-            if event.roomId == nil {
+            if event.roomId == "" {
                 return
             }
             if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
-            if !self.eventCache[event.roomId]!.contains(event) {
+            if !self.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
                 if direction == .forwards {
                     self.eventCache[event.roomId]!.append(event)
                 } else {
                     self.eventCache[event.roomId]!.insert(event, at: 0)
                 }
-                switch event.type {
-               // case "m.room.message": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-               // case "m.room.topic": self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-                default: self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState); break
-                }
+                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
             }
         }
         

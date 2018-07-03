@@ -100,6 +100,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
             if case .success( _) = response {
                 sender.stringValue = ""
+                MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
+                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
             }
             sender.isEnabled = true
             sender.becomeFirstResponder()
@@ -126,7 +128,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let event = MatrixServices.inst.eventCache[roomId]![row]
-        
+
         switch event.type {
         case "m.room.message":
             if event.sender == MatrixServices.inst.client?.credentials.userId {
