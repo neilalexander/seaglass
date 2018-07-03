@@ -140,6 +140,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 } else if event.content["body"] != nil {
                     cell?.RoomMessageEntryOutboundText.stringValue = event.content["body"] as! String
                 }
+                if event.sentState == MXEventSentStateSending {
+                    cell?.alphaValue = 0.4
+                }
                 return cell
             } else {
                 let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as? RoomMessageEntry
@@ -149,6 +152,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
                 } else if event.content["body"] != nil {
                     cell?.RoomMessageEntryInboundText.stringValue = event.content["body"] as! String
+                }
+                if event.sentState == MXEventSentStateSending {
+                    cell?.alphaValue = 0.4
                 }
                 return cell
             }
@@ -207,6 +213,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         switch event.type {
+        case "m.typing":
+            return
+        case "m.receipt":
+            return
         case "m.room.message":
             if event.content["body"] == nil {
                 return
