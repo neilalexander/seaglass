@@ -41,4 +41,8 @@ class RoomsCacheEntry: NSObject {
     func topic() -> String {
         return self.room.state.topic
     }
+    
+    func unread() -> Bool {
+        return self.room.summary.localUnreadEventCount > 0
+    }
 }

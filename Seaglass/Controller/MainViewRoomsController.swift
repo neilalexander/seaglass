@@ -24,9 +24,7 @@ class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryTopic: NSTextField!
     @IBOutlet var RoomListEntryIcon: NSImageView!
     @IBOutlet var RoomListEntryUnread: NSImageView!
-    
-    
-    
+
     var roomsCacheEntry: RoomsCacheEntry?
     
     required init?(coder: NSCoder) {
@@ -48,11 +46,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-    //    roomsCacheController.sortDescriptors.append(NSSortDescriptor(key: "self.RoomListEntryUnread.isHidden", ascending: true))
-    //    roomsCacheController.sortDescriptors.append(NSSortDescriptor(key: "self.RoomListEntryName.stringValue", ascending: true))
-    //    roomsCacheController.didChangeArrangementCriteria()
-        
+
         switch MatrixServices.inst.state {
         case .started:
             ConnectionStatus.image? = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))!
@@ -82,7 +76,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func matrixDidUpdateRoom(_ room: MXRoom) {
-
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         for i in 0..<rooms.count {
             if rooms[i].roomId == room.roomId {
@@ -120,8 +113,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryName.stringValue = memberNames
         }
         
-        cell?.RoomListEntryUnread.isHidden = MatrixServices.inst.session.room(withRoomId: state.roomId).summary.localUnreadEventCount == 0
-        
         var memberString: String = ""
         var topicString: String = "No topic set"
         
@@ -137,6 +128,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         
         cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
+        cell?.RoomListEntryUnread.isHidden = !state.unread()
         
         return cell
     }
@@ -149,9 +141,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         
         let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! RoomListEntry
-        // let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row.selectedRow]
-        
-        // MatrixServices.inst.session.room(withRoomId: state.roomId).markAllAsRead()
         entry.RoomListEntryUnread.isHidden = true
         
         DispatchQueue.main.async {
