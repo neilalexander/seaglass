@@ -101,6 +101,18 @@ class MatrixServices: NSObject {
             fileStore = MXFileStore()
         }
         
+        /*
+        session.enableCrypto(true) { _ in
+            print("Encryption enabled")
+            
+            self.session.crypto.start({
+                print("Encryption started")
+            }, failure: { (error) in
+                print("Failed to start encryption: \(error)")
+            })
+        }
+        */
+        
         session.setStore(fileStore) { response in
             if case .failure(let error) = response {
                 print("An error occurred setting the store: \(error)")

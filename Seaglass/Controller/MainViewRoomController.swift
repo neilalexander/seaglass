@@ -75,6 +75,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var RoomInfoButton: NSButton!
     @IBOutlet var RoomPartButton: NSButton!
     @IBOutlet var RoomInsertButton: NSButton!
+    @IBOutlet var RoomEncryptionButton: NSButton!
     
     weak public var mainController: MainViewController?
     
@@ -230,6 +231,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomName.isEnabled = true
         RoomInfoButton.isEnabled = true
         RoomPartButton.isEnabled = true
+        RoomEncryptionButton.isEnabled = true
         RoomInsertButton.isEnabled = true
         RoomMessageInput.isEnabled = true
 
@@ -237,6 +239,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomTopic.stringValue = entry.RoomListEntryTopic.stringValue.components(separatedBy: "\n")[1]
         
         roomId = (entry.roomsCacheEntry?.roomId)!
+        
+        if entry.roomsCacheEntry!.encrypted() {
+            RoomEncryptionButton.image?.setName(NSImage.Name.lockLockedTemplate)
+        } else {
+            RoomEncryptionButton.image?.setName(NSImage.Name.lockUnlockedTemplate)
+        }
 
         RoomMessageTableView.reloadData()
     }

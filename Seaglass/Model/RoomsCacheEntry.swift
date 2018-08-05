@@ -45,4 +45,8 @@ class RoomsCacheEntry: NSObject {
     func unread() -> Bool {
         return self.room.summary.localUnreadEventCount > 0
     }
+    
+    func encrypted() -> Bool {
+        return self.room.summary.isEncrypted
+    }
 }
