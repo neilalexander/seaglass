@@ -98,14 +98,27 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
 
         var returnedEvent: MXEvent?
-        MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
-            if case .success( _) = response {
-                sender.stringValue = ""
-                MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
-                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+        if sender.stringValue.starts(with: "/me ") {
+            let startIndex = sender.stringValue.index(sender.stringValue.startIndex, offsetBy: 4)
+            MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(sender.stringValue[startIndex...]), localEcho: &returnedEvent) { (response) in
+                if case .success( _) = response {
+                    sender.stringValue = ""
+                    MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                }
+                sender.isEnabled = true
+                sender.becomeFirstResponder()
             }
-            sender.isEnabled = true
-            sender.becomeFirstResponder()
+        } else {
+            MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
+                if case .success( _) = response {
+                    sender.stringValue = ""
+                    MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                }
+                sender.isEnabled = true
+                sender.becomeFirstResponder()
+            }
         }
     }
     
@@ -142,9 +155,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 cell?.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
-                    cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .right)
+                    cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .right)
                 } else if event.content["body"] != nil {
-                    cell?.RoomMessageEntryOutboundText.stringValue = event.content["body"] as! String
+                    cell?.RoomMessageEntryOutboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
                 }
                 if event.sentState == MXEventSentStateSending {
                     cell?.alphaValue = 0.4
@@ -155,9 +168,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 cell?.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
-                    cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
+                    cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .left)
                 } else if event.content["body"] != nil {
-                    cell?.RoomMessageEntryInboundText.stringValue = event.content["body"] as! String
+                    cell?.RoomMessageEntryInboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
                 }
                 if event.sentState == MXEventSentStateSending {
                     cell?.alphaValue = 0.4
