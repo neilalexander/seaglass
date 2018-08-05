@@ -27,8 +27,8 @@ protocol MatrixServicesDelegate: AnyObject {
 
 protocol MatrixRoomsDelegate: AnyObject {
     func matrixDidJoinRoom(_ room: MXRoom)
-    func matrixDidPartRoom()
-    func matrixDidUpdateRoom()
+    func matrixDidPartRoom(_ room: MXRoom)
+    func matrixDidUpdateRoom(_ room: MXRoom)
 }
 
 protocol MatrixRoomDelegate: AnyObject {

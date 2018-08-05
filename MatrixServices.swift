@@ -164,6 +164,7 @@ class MatrixServices: NSObject {
                     self.eventCache[event.roomId]!.insert(event, at: 0)
                 }
                 self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
+                self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
             }
         }
         

@@ -23,6 +23,9 @@ class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryName: NSTextField!
     @IBOutlet var RoomListEntryTopic: NSTextField!
     @IBOutlet var RoomListEntryIcon: NSImageView!
+    @IBOutlet var RoomListEntryUnread: NSImageView!
+    
+    
     
     var roomsCacheEntry: RoomsCacheEntry?
     
@@ -45,7 +48,11 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewWillAppear() {
         super.viewWillAppear()
-
+        
+    //    roomsCacheController.sortDescriptors.append(NSSortDescriptor(key: "self.RoomListEntryUnread.isHidden", ascending: true))
+    //    roomsCacheController.sortDescriptors.append(NSSortDescriptor(key: "self.RoomListEntryName.stringValue", ascending: true))
+    //    roomsCacheController.didChangeArrangementCriteria()
+        
         switch MatrixServices.inst.state {
         case .started:
             ConnectionStatus.image? = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))!
@@ -66,18 +73,22 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func matrixDidJoinRoom(_ room: MXRoom) {
-        print("MainViewRoomsController matrixDidJoinRoom \(room)")
         roomsCacheController.insert(RoomsCacheEntry(room), atArrangedObjectIndex: 0)
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
     }
     
-    func matrixDidPartRoom() {
-        print("MainViewRoomsController matrixDidPartRoom")
+    func matrixDidPartRoom(_ room: MXRoom) {
         // TODO: unsubscribe from room
     }
     
-    func matrixDidUpdateRoom() {
-        print("MainViewRoomsController matrixDidUpdateRoom")
+    func matrixDidUpdateRoom(_ room: MXRoom) {
+
+        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        for i in 0..<rooms.count {
+            if rooms[i].roomId == room.roomId {
+                RoomList.reloadData(forRowIndexes: IndexSet([i]), columnIndexes: IndexSet([0]))
+            }
+        }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -109,6 +120,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryName.stringValue = memberNames
         }
         
+        cell?.RoomListEntryUnread.isHidden = MatrixServices.inst.session.room(withRoomId: state.roomId).summary.localUnreadEventCount == 0
+        
         var memberString: String = ""
         var topicString: String = "No topic set"
         
@@ -136,6 +149,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         
         let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! RoomListEntry
+        // let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row.selectedRow]
+        
+        // MatrixServices.inst.session.room(withRoomId: state.roomId).markAllAsRead()
+        entry.RoomListEntryUnread.isHidden = true
         
         DispatchQueue.main.async {
             self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)

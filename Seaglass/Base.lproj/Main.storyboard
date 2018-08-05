@@ -866,13 +866,8 @@ DQ
                                                             <rect key="frame" x="1" y="1" width="256" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
-                                                                    <rect key="frame" x="3" y="3" width="60" height="58"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
-                                                                </imageView>
                                                                 <textField identifier="RoomListEntryTopic" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="730-xt-gyf">
-                                                                    <rect key="frame" x="65" y="7" width="186" height="34"/>
+                                                                    <rect key="frame" x="71" y="7" width="180" height="34"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" placeholderString="No preview text" id="OdP-8T-cbu">
                                                                         <font key="font" metaFont="cellTitle"/>
@@ -881,19 +876,39 @@ DQ
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField identifier="RoomListEntryName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uoj-MY-a1T">
-                                                                    <rect key="frame" x="65" y="40" width="186" height="17"/>
+                                                                    <rect key="frame" x="71" y="40" width="169" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" placeholderString="Room name" id="XWQ-Mb-CHx">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" placeholderString="Unnamed room" id="XWQ-Mb-CHx">
                                                                         <font key="font" metaFont="systemSemibold" size="12"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <imageView identifier="RoomListEntryUnread" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVp-eF-82p">
+                                                                    <rect key="frame" x="3" y="24" width="16" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <contentFilters>
+                                                                        <ciFilter name="CIFalseColor">
+                                                                            <configuration>
+                                                                                <ciColor key="inputColor0" red="0.0" green="0.27448001190643012" blue="1" alpha="1"/>
+                                                                                <ciColor key="inputColor1" red="0.0" green="0.84684324907031849" blue="0.98328465223312378" alpha="1"/>
+                                                                                <null key="inputImage"/>
+                                                                            </configuration>
+                                                                        </ciFilter>
+                                                                    </contentFilters>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSTouchBarRecordStartTemplate" id="Gl4-oB-Rwg"/>
+                                                                </imageView>
+                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
+                                                                    <rect key="frame" x="18" y="3" width="47" height="58"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <connections>
                                                                 <outlet property="RoomListEntryIcon" destination="iRa-19-xHX" id="ATX-cU-1sT"/>
                                                                 <outlet property="RoomListEntryName" destination="Uoj-MY-a1T" id="vPH-Ky-W2h"/>
                                                                 <outlet property="RoomListEntryTopic" destination="730-xt-gyf" id="3Eh-Ib-0E0"/>
+                                                                <outlet property="RoomListEntryUnread" destination="IVp-eF-82p" id="Abs-d7-zWg"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -942,7 +957,7 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="RoomsCacheEntry" id="El7-IA-8gq"/>
+                <arrayController objectClassName="RoomsCacheEntry" automaticallyRearrangesObjects="YES" id="El7-IA-8gq"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -1294,6 +1309,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                     <connections>
                         <outlet property="RoomInfoButton" destination="gmZ-EC-5H5" id="ENX-DV-Ilq"/>
                         <outlet property="RoomInsertButton" destination="Pix-y5-gjY" id="D9T-Bc-1nk"/>
+                        <outlet property="RoomMessageClipView" destination="yGf-GP-99e" id="ikp-6Q-WdD"/>
                         <outlet property="RoomMessageInput" destination="8dF-A5-RaT" id="hSd-0U-VxJ"/>
                         <outlet property="RoomMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
                         <outlet property="RoomMessageTableView" destination="qXT-6y-pht" id="3MU-Zz-XWf"/>
@@ -2215,6 +2231,7 @@ DQ
         <image name="NSTouchBarDeleteTemplate" width="15" height="30"/>
         <image name="NSTouchBarGetInfoTemplate" width="18" height="30"/>
         <image name="NSTouchBarNewMessageTemplate" width="18" height="30"/>
+        <image name="NSTouchBarRecordStartTemplate" width="14" height="30"/>
         <image name="NSTouchBarShareTemplate" width="15" height="30"/>
         <image name="NSTouchBarTagIconTemplate" width="23" height="30"/>
         <image name="NSTouchBarUserAddTemplate" width="21" height="30"/>
