@@ -184,9 +184,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
-        if row == MatrixServices.inst.eventCache[roomId]!.count-1 {
-            RoomMessageTableView.scrollRowToVisible(row: row, animated: true)
-        }
+
     }
     
     func uiDidSelectRoom(entry: RoomListEntry) {
@@ -221,24 +219,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         case "m.receipt":
             return
         case "m.room.message":
-            if event.content["body"] == nil {
-                return
-            }
             fallthrough
         case "m.room.member":
-            switch direction {
-            case .forwards:
-                if event.roomId == roomId {
-                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: (MatrixServices.inst.eventCache[event.roomId]?.count)! - 1), withAnimation: [ .slideUp, .effectFade ])
-                    RoomMessageTableView.scrollToEndOfDocument(self)
-                }
-                break
-            default:
-                if event.roomId == roomId {
-                    RoomMessageTableView.insertRows(at: IndexSet.init(integer: 0), withAnimation: [ .slideDown, .effectFade ])
-                }
-                break
-            }
+            RoomMessageTableView.noteNumberOfRowsChanged()
             return
         default:
             break
