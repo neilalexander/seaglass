@@ -128,12 +128,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let event = MatrixServices.inst.eventCache[roomId]![row]
-
+        
         switch event.type {
         case "m.room.message":
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                 let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as? RoomMessageEntry
-                cell?.RoomMessageEntryOutboundFrom.stringValue = event.sender as String
+                cell?.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
                     cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .right)
@@ -146,7 +146,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 return cell
             } else {
                 let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as? RoomMessageEntry
-                cell?.RoomMessageEntryInboundFrom.stringValue = event.sender as String
+                cell?.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                 if event.content["formatted_body"] != nil {
                     // TODO: Make sure this is suitably sanitised
                     cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).toAttributedStringFromHTML(justify: .left)
@@ -160,12 +160,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         case "m.room.member":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
+            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.stateKey) ?? event.stateKey as String
             switch event.content["membership"] as! String {
-            case "join":    cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) joined the room"; break
-            case "leave":   cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) left the room"; break
-            case "invite":  cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was invited to the room"; break
-            case "ban":     cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) was banned from the room"; break
-            default:        cell?.RoomMessageEntryInlineText.stringValue = "\(event.stateKey.utf8) unknown event: \(event.stateKey)"; break
+            case "join":    cell?.RoomMessageEntryInlineText.stringValue = "\(displayName) joined the room"; break
+            case "leave":   cell?.RoomMessageEntryInlineText.stringValue = "\(displayName) left the room"; break
+            case "invite":  cell?.RoomMessageEntryInlineText.stringValue = "\(displayName) was invited to the room"; break
+            case "ban":     cell?.RoomMessageEntryInlineText.stringValue = "\(displayName) was banned from the room"; break
+            default:        cell?.RoomMessageEntryInlineText.stringValue = "\(displayName) unknown event: \(event.stateKey)"; break
             }
             return cell
         case "m.room.name":
