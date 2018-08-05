@@ -128,7 +128,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         
         cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
-        cell?.RoomListEntryUnread.isHidden = !state.unread()
+        
+        if tableView.selectedRow != row {
+            cell?.RoomListEntryUnread.isHidden = !state.unread()
+        }
         
         return cell
     }

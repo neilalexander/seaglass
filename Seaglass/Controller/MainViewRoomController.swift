@@ -183,6 +183,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
             cell?.RoomMessageEntryInlineText.stringValue = "Topic changed to \(event.content["topic"] as! String)"
             return cell
+        case "m.room.canonical_alias":
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
+            cell?.RoomMessageEntryInlineText.stringValue = "Primary room alias set to \(event.content["alias"] as! String)"
+            return cell
         case "m.room.create":
             let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.content["creator"] as! String) ?? event.content["creator"] as! String
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry
