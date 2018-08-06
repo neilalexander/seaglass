@@ -24,6 +24,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         
         if roomId != "" {
             let room = MatrixServices.inst.session.room(withRoomId: roomId)
+            let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
             let aliases = room!.state.aliases
             if aliases == nil {
                 return
@@ -35,8 +36,9 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
                 cell?.parent = self
                 cell?.RoomAliasName.stringValue = alias
+                cell?.RoomAliasName.placeholderString = "#youralias\(suffix)"
                 cell?.RoomAliasPrimary.state = room!.state.canonicalAlias == alias ? .on : .off
-                if !alias.hasSuffix(MatrixServices.inst.client.homeserverSuffix) {
+                if !alias.hasSuffix(suffix) {
                     cell?.RoomAliasName.isEnabled = false
                     cell?.RoomAliasDelete.isEnabled = false
                     cell?.RoomAliasPrimary.isEnabled = false
