@@ -19,7 +19,7 @@ class MainViewTableView: NSTableView {
     func scrollRowToVisible(row: Int, animated: Bool) {
         if animated {
             guard let clipView = superview as? NSClipView,
-                let scrollView = clipView.superview as? NSScrollView else {
+                let _ = clipView.superview as? NSScrollView else {
                     return
             }
             

@@ -137,6 +137,20 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     override func viewWillAppear() {
         super.viewWillAppear()
     }
+
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil {
+            switch segue.identifier!.rawValue {
+            case "SegueToRoomSettings":
+                if let dest = segue.destinationController as? MainViewRoomSettingsController {
+                    dest.roomId = roomId
+                }
+                break
+            default:
+                return
+            }
+        }
+    }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         if !MatrixServices.inst.eventCache.keys.contains(roomId) {

@@ -16,6 +16,7 @@
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
 		391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* MatrixTests.swift */; };
 		391BFE4020C68AD200B4EFEC /* MatrixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */; };
+		3924444621184ED2001BAEE5 /* MainViewRoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* MainViewRoomSettingsController.swift */; };
 		3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */; };
 		3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E620CB43A60061D51D /* LogoutViewController.swift */; };
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
@@ -60,6 +61,7 @@
 		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3924444521184ED2001BAEE5 /* MainViewRoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomSettingsController.swift; sourceTree = "<group>"; };
 		3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSettingsController.swift; sourceTree = "<group>"; };
 		3943E0E620CB43A60061D51D /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
 				399E6FC520C806E700A2644A /* MainViewRoomController.swift */,
+				3924444521184ED2001BAEE5 /* MainViewRoomSettingsController.swift */,
 				391BFE2020C68AD100B4EFEC /* LoginViewController.swift */,
 				3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */,
 				3943E0E620CB43A60061D51D /* LogoutViewController.swift */,
@@ -407,6 +410,7 @@
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,
 				3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */,
+				3924444621184ED2001BAEE5 /* MainViewRoomSettingsController.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,

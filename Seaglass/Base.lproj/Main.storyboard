@@ -1021,7 +1021,7 @@ DQ
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="vrm-yE-FSO" kind="sheet" id="Tfp-e2-cpe"/>
+                                    <segue destination="vrm-yE-FSO" kind="sheet" identifier="SegueToRoomSettings" id="Tfp-e2-cpe"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
@@ -1370,10 +1370,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="1639" y="908"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Room Settings Controller-->
         <scene sceneID="C8s-yD-xBh">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="vrm-yE-FSO" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="vrm-yE-FSO" customClass="MainViewRoomSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Qly-RI-67g">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="510"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1459,7 +1459,7 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="194" height="440"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="qoy-FZ-shJ">
+                                        <tableView identifier="RoomSettingsMemberlist" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="qoy-FZ-shJ">
                                             <rect key="frame" x="0.0" y="0.0" width="194" height="440"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1529,19 +1529,26 @@ DQ
                                 <rect key="frame" x="384" y="20" width="5" height="478"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWS-OG-RG6">
+                            <textField identifier="RoomSettingsName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWS-OG-RG6">
                                 <rect key="frame" x="20" y="443" width="343" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="A short friendly name for your room" drawsBackground="YES" id="sdA-FW-okQ">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="A short friendly name for your room" drawsBackground="YES" id="sdA-FW-okQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="vrm-yE-FSO" name="displayPatternValue1" keyPath="self.RoomName" id="nOh-hS-saX">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayPattern">%{value1}@</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vmy-IP-Rou">
+                            <textField identifier="RoomSettingsTopic" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vmy-IP-Rou">
                                 <rect key="frame" x="20" y="324" width="343" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="A short description describing the topic of your room" drawsBackground="YES" id="ufB-C6-9lH">
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="A short description describing the topic of your room" drawsBackground="YES" id="ufB-C6-9lH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1599,7 +1606,7 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yF1-Xd-Tbh">
+                            <button identifier="RoomSettingsPublishCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yF1-Xd-Tbh">
                                 <rect key="frame" x="18" y="292" width="298" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title="Publish this room in the homeserver directory" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="EoM-UB-ppW">
@@ -1609,6 +1616,11 @@ DQ
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="RoomName" destination="fWS-OG-RG6" id="0um-Ax-Jma"/>
+                        <outlet property="RoomPublishInDirectory" destination="yF1-Xd-Tbh" id="X5H-H3-g5S"/>
+                        <outlet property="RoomTopic" destination="vmy-IP-Rou" id="ayU-7D-PBr"/>
+                    </connections>
                 </viewController>
                 <customObject id="QYz-ci-Q2H" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1851,11 +1863,11 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
-                                <rect key="frame" x="155" y="12" width="4" height="58"/>
+                                <rect key="frame" x="155" y="12" width="5" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="J7T-tx-zjn">
-                                <rect key="frame" x="235" y="12" width="105" height="5"/>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-M9-wpJ">
+                                <rect key="frame" x="236" y="12" width="5" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-jV-joH">
@@ -2146,11 +2158,11 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-cU-i45">
-                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <rect key="frame" x="155" y="12" width="66" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-RN-HCy">
-                                <rect key="frame" x="235" y="12" width="195" height="5"/>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
+                                <rect key="frame" x="235" y="12" width="5" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98V-GH-dyr">
