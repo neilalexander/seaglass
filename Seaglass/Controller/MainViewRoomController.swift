@@ -89,19 +89,26 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         sender.isEnabled = false
         
         var formattedText: String
+        let unformattedText = sender.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         let options = DownOptions(rawValue: 1 << 3)
         do {
             // TODO: Make sure this is suitably sanitised
-            formattedText = try Down(markdownString: sender.stringValue).toHTML(options)
-           // print(formattedText)
+            formattedText = try Down(markdownString: unformattedText).toHTML(options)
+            formattedText = formattedText.trimmingCharacters(in: .whitespacesAndNewlines)
+            if formattedText.hasPrefix("<p>") {
+                formattedText = String(formattedText.dropFirst(3))
+            }
+            if formattedText.hasSuffix("</p>") {
+                formattedText = String(formattedText.dropLast(4))
+            }
         } catch {
-            formattedText = sender.stringValue
+            formattedText = unformattedText
         }
-
+        
         var returnedEvent: MXEvent?
         if sender.stringValue.starts(with: "/me ") {
-            let startIndex = sender.stringValue.index(sender.stringValue.startIndex, offsetBy: 4)
-            MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(sender.stringValue[startIndex...]), localEcho: &returnedEvent) { (response) in
+            let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 4)
+            MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     sender.stringValue = ""
                     MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
@@ -111,7 +118,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 sender.becomeFirstResponder()
             }
         } else {
-            MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(sender.stringValue, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
+            MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     sender.stringValue = ""
                     MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
