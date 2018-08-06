@@ -93,6 +93,7 @@ class MatrixServices: NSObject {
         
         print("Creating session")
         session = MXSession(matrixRestClient: client)
+        session.crypto.warnOnUnknowDevices = false
         
         state = .starting
         

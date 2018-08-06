@@ -47,6 +47,6 @@ class RoomsCacheEntry: NSObject {
     }
     
     func encrypted() -> Bool {
-        return self.room.summary.isEncrypted
+        return self.room.summary.isEncrypted || self.room.state.isEncrypted
     }
 }
