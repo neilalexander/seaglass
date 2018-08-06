@@ -32,7 +32,7 @@ class UserAvatar: NSImageView {
     }
     
     func setAvatar(forUserId userId: String) {
-        self.image?.setName(NSImage.Name.userGuest)
+        self.image = NSImage(named: NSImage.Name.userGuest)
         if MatrixServices.inst.session.user(withUserId: userId) == nil {
             return
         }
@@ -44,13 +44,9 @@ class UserAvatar: NSImageView {
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 }) { (error) in
-                    self.image?.setName(NSImage.Name.userGuest)
+                    self.image = NSImage(named: NSImage.Name.userGuest)
                 }
-            } else {
-                self.image?.setName(NSImage.Name.userGuest)
             }
-        } else {
-            self.image?.setName(NSImage.Name.userGuest)
         }
     }
 }
