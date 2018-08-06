@@ -1381,26 +1381,35 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LeR-Pc-hgf">
                                 <rect key="frame" x="19" y="237" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Only people who have been invited" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="Xv5-Nc-x8F">
+                                <buttonCell key="cell" type="radio" title="Only people who have been invited" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Xv5-Nc-x8F">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="accessRadioClicked:" target="vrm-yE-FSO" id="sfk-Rm-FET"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JXg-rb-Tf9">
                                 <rect key="frame" x="19" y="215" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Anyone except for guests" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="iTT-Fy-m3p">
+                                <buttonCell key="cell" type="radio" title="Anyone except for guests" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="iTT-Fy-m3p">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="accessRadioClicked:" target="vrm-yE-FSO" id="O6z-6O-icH"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cY8-Ji-QeO">
                                 <rect key="frame" x="19" y="193" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Anyone including guests" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="oYZ-LI-oY4">
+                                <buttonCell key="cell" type="radio" title="Anyone including guests" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="oYZ-LI-oY4">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="accessRadioClicked:" target="vrm-yE-FSO" id="duR-Q2-w3O"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwV-Y8-H10">
                                 <rect key="frame" x="18" y="262" width="170" height="17"/>
@@ -1414,34 +1423,46 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-8V-4zq">
                                 <rect key="frame" x="19" y="135" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Members only since they joined the room" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="eHy-tz-hsS">
+                                <buttonCell key="cell" type="radio" title="Members only since they joined the room" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="eHy-tz-hsS">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="historyRadioClicked:" target="vrm-yE-FSO" id="bWv-cc-jV5"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ia-nc-3AT">
                                 <rect key="frame" x="19" y="113" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Members only since they were invited to the room" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="SgN-rb-uAr">
+                                <buttonCell key="cell" type="radio" title="Members only since they were invited to the room" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SgN-rb-uAr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="historyRadioClicked:" target="vrm-yE-FSO" id="GeW-1n-l9W"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaO-cA-m6u">
                                 <rect key="frame" x="19" y="69" width="346" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Anyone including non-members" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="1Uk-kK-E8v">
+                                <buttonCell key="cell" type="radio" title="Anyone including non-members" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1Uk-kK-E8v">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="historyRadioClicked:" target="vrm-yE-FSO" id="5cP-Ut-1Qb"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wDw-Jm-uDt">
                                 <rect key="frame" x="19" y="85" width="346" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="radio" title="Members only since this option was selected" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="kg4-3Q-L9e">
+                                <buttonCell key="cell" type="radio" title="Members only since this option was selected" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kg4-3Q-L9e">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="historyRadioClicked:" target="vrm-yE-FSO" id="fmY-jN-G0V"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b3m-pX-WDa">
                                 <rect key="frame" x="18" y="160" width="210" height="17"/>
@@ -1617,6 +1638,13 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="RoomAccessExceptGuests" destination="JXg-rb-Tf9" id="e7j-gr-KEv"/>
+                        <outlet property="RoomAccessIncludingGuests" destination="cY8-Ji-QeO" id="dqU-Ur-DGe"/>
+                        <outlet property="RoomAccessOnlyInvited" destination="LeR-Pc-hgf" id="QUG-Qb-r2b"/>
+                        <outlet property="RoomHistoryAnyone" destination="TaO-cA-m6u" id="3Q6-53-YQf"/>
+                        <outlet property="RoomHistorySinceInvited" destination="9ia-nc-3AT" id="wZF-Vu-NKS"/>
+                        <outlet property="RoomHistorySinceJoined" destination="nuD-8V-4zq" id="acx-mY-4Mm"/>
+                        <outlet property="RoomHistorySinceSelected" destination="wDw-Jm-uDt" id="kif-Ew-zTe"/>
                         <outlet property="RoomName" destination="fWS-OG-RG6" id="0um-Ax-Jma"/>
                         <outlet property="RoomPublishInDirectory" destination="yF1-Xd-Tbh" id="X5H-H3-g5S"/>
                         <outlet property="RoomTopic" destination="vmy-IP-Rou" id="ayU-7D-PBr"/>
@@ -2022,7 +2050,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
-                                <rect key="frame" x="89" y="65" width="256" height="18"/>
+                                <rect key="frame" x="88" y="65" width="256" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
