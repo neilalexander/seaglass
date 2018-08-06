@@ -129,31 +129,51 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         switch event.type {
         case "m.room.message":
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as? RoomMessageEntry
-                cell?.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
-                if event.content["formatted_body"] != nil {
-                    // TODO: Make sure this is suitably sanitised
-                    cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .right)
-                } else if event.content["body"] != nil {
-                    cell?.RoomMessageEntryOutboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
+                    let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as? RoomMessageEntry
+                    if event.content["formatted_body"] != nil {
+                        cell?.RoomMessageEntryOutboundCoalescedText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .right)
+                    } else if event.content["body"] != nil {
+                        cell?.RoomMessageEntryOutboundCoalescedText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    return cell
+                } else {
+                    let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as? RoomMessageEntry
+                    cell?.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
+                    cell?.RoomMessageEntryOutboundIcon.setAvatar(forUserId: event.sender)
+                    if event.content["formatted_body"] != nil {
+                        cell?.RoomMessageEntryOutboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .right)
+                    } else if event.content["body"] != nil {
+                        cell?.RoomMessageEntryOutboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    if event.sentState == MXEventSentStateSending {
+                        cell?.alphaValue = 0.4
+                    }
+                    return cell
                 }
-                if event.sentState == MXEventSentStateSending {
-                    cell?.alphaValue = 0.4
-                }
-                return cell
             } else {
-                let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as? RoomMessageEntry
-                cell?.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
-                if event.content["formatted_body"] != nil {
-                    // TODO: Make sure this is suitably sanitised
-                    cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .left)
-                } else if event.content["body"] != nil {
-                    cell?.RoomMessageEntryInboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
+                    let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as? RoomMessageEntry
+                    if event.content["formatted_body"] != nil {
+                        cell?.RoomMessageEntryInboundCoalescedText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .left)
+                    } else if event.content["body"] != nil {
+                        cell?.RoomMessageEntryInboundCoalescedText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    return cell
+                } else {
+                    let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as? RoomMessageEntry
+                    cell?.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
+                    cell?.RoomMessageEntryInboundIcon.setAvatar(forUserId: event.sender)
+                    if event.content["formatted_body"] != nil {
+                        cell?.RoomMessageEntryInboundText.attributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .left)
+                    } else if event.content["body"] != nil {
+                        cell?.RoomMessageEntryInboundText.stringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                    if event.sentState == MXEventSentStateSending {
+                        cell?.alphaValue = 0.4
+                    }
+                    return cell
                 }
-                if event.sentState == MXEventSentStateSending {
-                    cell?.alphaValue = 0.4
-                }
-                return cell
             }
         case "m.room.member":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as? RoomMessageEntry

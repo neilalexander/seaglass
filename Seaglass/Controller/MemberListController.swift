@@ -48,10 +48,10 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
         let powerlevel = room!.state.powerLevels.powerLevelOfUser(withUserID: member.userId)
         
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MemberListEntry"), owner: self) as? MemberListEntry
-        
+ 
         cell?.MemberName.stringValue = member.name()
         cell?.MemberDescription.stringValue = "Power level \(powerlevel)"
-        cell?.MemberIcon.image?.setName(NSImage.Name.userGuest)
+        cell?.MemberIcon.setAvatar(forUserId: member.userId)
         
         return cell
     }

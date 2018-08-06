@@ -31,6 +31,7 @@
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
+		39F3126121189F9200A75E16 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3126021189F9200A75E16 /* UserAvatar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
+		39F3126021189F9200A75E16 /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +211,7 @@
 				39432C912118716700FF3E5A /* MemberListTableView.swift */,
 				39432C96211872F600FF3E5A /* RoomMessageEntry.swift */,
 				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
+				39F3126021189F9200A75E16 /* UserAvatar.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
 				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,
+				39F3126121189F9200A75E16 /* UserAvatar.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,
