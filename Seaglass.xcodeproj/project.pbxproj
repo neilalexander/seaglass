@@ -25,6 +25,8 @@
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
 		3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0EA20CD57B30061D51D /* MainViewTableView.swift */; };
 		395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */; };
+		39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C502118F51D00D20974 /* RoomListEntry.swift */; };
+		39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C522118F55200D20974 /* RoomAliasEntry.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
@@ -32,6 +34,7 @@
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
 		39F3126121189F9200A75E16 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3126021189F9200A75E16 /* UserAvatar.swift */; };
+		39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F312622118F21C00A75E16 /* RoomAliasesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,8 @@
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
 		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomsCacheEntry.swift; path = Seaglass/Model/RoomsCacheEntry.swift; sourceTree = "<group>"; };
+		39850C502118F51D00D20974 /* RoomListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListEntry.swift; sourceTree = "<group>"; };
+		39850C522118F55200D20974 /* RoomAliasEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasEntry.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
 		39F3126021189F9200A75E16 /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
+		39F312622118F21C00A75E16 /* RoomAliasesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasesController.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +206,7 @@
 				3943E0E620CB43A60061D51D /* LogoutViewController.swift */,
 				3943E0E820CC21590061D51D /* AboutViewController.swift */,
 				39F3125C2118764100A75E16 /* MemberListController.swift */,
+				39F312622118F21C00A75E16 /* RoomAliasesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,6 +219,8 @@
 				39432C96211872F600FF3E5A /* RoomMessageEntry.swift */,
 				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
 				39F3126021189F9200A75E16 /* UserAvatar.swift */,
+				39850C502118F51D00D20974 /* RoomListEntry.swift */,
+				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -440,6 +449,7 @@
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,
+				39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */,
 				3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */,
 				3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
@@ -447,7 +457,9 @@
 				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,
 				39F3126121189F9200A75E16 /* UserAvatar.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
+				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
+				39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,
 				39432C952118727800FF3E5A /* String.swift in Sources */,
 				3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */,

@@ -58,6 +58,11 @@ class RoomSettingsController: NSViewController {
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToAliasList":
+                if let dest = segue.destinationController as? RoomAliasesController {
+                    dest.roomId = roomId
+                }
+                break
             default:
                 return
             }

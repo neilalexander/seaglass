@@ -19,19 +19,6 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class RoomListEntry: NSTableCellView {
-    @IBOutlet var RoomListEntryName: NSTextField!
-    @IBOutlet var RoomListEntryTopic: NSTextField!
-    @IBOutlet var RoomListEntryIcon: NSImageView!
-    @IBOutlet var RoomListEntryUnread: NSImageView!
-
-    var roomsCacheEntry: RoomsCacheEntry?
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-}
-
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var RoomList: NSTableView!
     @IBOutlet var ConnectionStatus: NSButton!
