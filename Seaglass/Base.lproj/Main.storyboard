@@ -1370,10 +1370,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="1639" y="908"/>
         </scene>
-        <!--Main View Room Settings Controller-->
+        <!--Room Settings Controller-->
         <scene sceneID="C8s-yD-xBh">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="vrm-yE-FSO" customClass="MainViewRoomSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="vrm-yE-FSO" customClass="RoomSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Qly-RI-67g">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="510"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1480,7 +1480,7 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="194" height="440"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="RoomSettingsMemberlist" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="qoy-FZ-shJ">
+                                        <tableView identifier="RoomSettingsMemberTable" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="qoy-FZ-shJ" customClass="MemberListTableView" customModule="Seaglass" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="194" height="440"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1645,6 +1645,7 @@ DQ
                         <outlet property="RoomHistorySinceInvited" destination="9ia-nc-3AT" id="wZF-Vu-NKS"/>
                         <outlet property="RoomHistorySinceJoined" destination="nuD-8V-4zq" id="acx-mY-4Mm"/>
                         <outlet property="RoomHistorySinceSelected" destination="wDw-Jm-uDt" id="kif-Ew-zTe"/>
+                        <outlet property="RoomMemberList" destination="qoy-FZ-shJ" id="l3n-Ps-KIZ"/>
                         <outlet property="RoomName" destination="fWS-OG-RG6" id="0um-Ax-Jma"/>
                         <outlet property="RoomPublishInDirectory" destination="yF1-Xd-Tbh" id="X5H-H3-g5S"/>
                         <outlet property="RoomTopic" destination="vmy-IP-Rou" id="ayU-7D-PBr"/>
@@ -2186,7 +2187,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-cU-i45">
-                                <rect key="frame" x="155" y="12" width="66" height="58"/>
+                                <rect key="frame" x="155" y="12" width="66" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">

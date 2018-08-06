@@ -1,5 +1,5 @@
 //
-//  MainViewRoomSettingsController.swift
+//  RoomSettingsController.swift
 //  Seaglass
 //
 //  Created by Neil Alexander on 06/08/2018.
@@ -9,7 +9,7 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class MainViewRoomSettingsController: NSViewController {
+class RoomSettingsController: NSViewController {
     @IBOutlet var RoomName: NSTextField!
     @IBOutlet var RoomTopic: NSTextField!
     @IBOutlet var RoomPublishInDirectory: NSButton!
@@ -22,6 +22,8 @@ class MainViewRoomSettingsController: NSViewController {
     @IBOutlet var RoomHistorySinceInvited: NSButton!
     @IBOutlet var RoomHistorySinceSelected: NSButton!
     @IBOutlet var RoomHistoryAnyone: NSButton!
+    
+    @IBOutlet var RoomMemberList: NSTableView!
     
     public var roomId: String = ""
     
@@ -69,6 +71,8 @@ class MainViewRoomSettingsController: NSViewController {
         RoomHistorySinceInvited.state = room.state.historyVisibility == .joined ? .on : .off
         RoomHistorySinceSelected.state = room.state.historyVisibility == .shared ? .on : .off
         RoomHistoryAnyone.state = room.state.historyVisibility == .worldReadable ? .on : .off
+        
+        // RoomMemberList.insertRows(at: <#T##IndexSet#>, withAnimation: <#T##NSTableView.AnimationOptions#>)
     }
     
 }
