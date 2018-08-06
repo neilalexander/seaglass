@@ -1,4 +1,5 @@
 platform :osx, '10.13'
+inhibit_all_warnings!
 
 target 'Seaglass' do
   use_frameworks!
