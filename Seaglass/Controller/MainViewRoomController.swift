@@ -236,14 +236,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomTopic.stringValue = entry.RoomListEntryTopic.stringValue.components(separatedBy: "\n")[1]
         
         roomId = (entry.roomsCacheEntry?.roomId)!
-        
-        if entry.roomsCacheEntry!.encrypted() {
-            RoomEncryptionButton.image?.setName(NSImage.Name.lockLockedTemplate)
-        } else {
-            RoomEncryptionButton.image?.setName(NSImage.Name.lockUnlockedTemplate)
-        }
 
         RoomMessageTableView.reloadData()
+        
+        if entry.roomsCacheEntry!.encrypted() {
+            RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+        } else {
+            RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+        }
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {

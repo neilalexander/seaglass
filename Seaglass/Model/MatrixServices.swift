@@ -93,7 +93,6 @@ class MatrixServices: NSObject {
         
         print("Creating session")
         session = MXSession(matrixRestClient: client)
-        session.crypto.warnOnUnknowDevices = false
         
         state = .starting
         
@@ -112,6 +111,7 @@ class MatrixServices: NSObject {
             }
             
             self.state = .starting
+            //self.session.crypto.warnOnUnknowDevices = false
             self.session.start { response in
                 guard response.isSuccess else {
                     print("Assertion failed: setStore response was not true")
