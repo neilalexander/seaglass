@@ -23,7 +23,8 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         super.viewDidLoad()
         
         if roomId != "" {
-            let aliases = MatrixServices.inst.session.room(withRoomId: roomId).state.aliases
+            let room = MatrixServices.inst.session.room(withRoomId: roomId)
+            let aliases = room!.state.aliases
             if aliases == nil {
                 return
             }
@@ -34,10 +35,12 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
                 cell?.parent = self
                 cell?.RoomAliasName.stringValue = alias
-                cell?.RoomAliasName.isEnabled = false
-                cell?.RoomAliasDelete.isEnabled = false
-                cell?.RoomAliasPrimary.state = MatrixServices.inst.session.room(withRoomId: roomId).state.canonicalAlias == alias ? .on : .off
-                cell?.RoomAliasPrimary.isEnabled = false
+                cell?.RoomAliasPrimary.state = room!.state.canonicalAlias == alias ? .on : .off
+                if !alias.hasSuffix(MatrixServices.inst.client.homeserverSuffix) {
+                    cell?.RoomAliasName.isEnabled = false
+                    cell?.RoomAliasDelete.isEnabled = false
+                    cell?.RoomAliasPrimary.isEnabled = false
+                }
                 roomAliases.append(cell!)
             }
         }
@@ -73,8 +76,10 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     @IBAction func addButtonClicked(_ sender: NSButton) {
+        let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
         cell?.parent = self
+        cell?.RoomAliasName.placeholderString = "#youralias\(suffix)"
         roomAliases.append(cell!)
         AliasTable.noteNumberOfRowsChanged()
     }
