@@ -27,6 +27,20 @@ class RoomSettingsController: NSViewController {
     
     public var roomId: String = ""
     
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier != nil {
+            switch segue.identifier!.rawValue {
+            case "SegueToMemberList":
+                if let dest = segue.destinationController as? MemberListController {
+                    dest.roomId = roomId
+                }
+                break
+            default:
+                return
+            }
+        }
+    }
+    
     @IBAction func accessRadioClicked(_ sender: NSButton) {
         for radio in [ RoomAccessOnlyInvited, RoomAccessExceptGuests, RoomAccessIncludingGuests ] {
             radio?.state = .off
