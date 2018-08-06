@@ -216,7 +216,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
         let y2 = scrollview.documentVisibleRect.origin.y
         if abs(y1 - y2) < 32 {
-            RoomMessageTableView.scroll(NSPoint(x: 0, y: y1 + rowView.intrinsicContentSize.height))
+            RoomMessageTableView.scroll(NSPoint(x: 0, y: y1 + rowView.intrinsicContentSize.height + (RoomMessageTableView.enclosingScrollView?.contentInsets.bottom)!))
         }
     }
     
