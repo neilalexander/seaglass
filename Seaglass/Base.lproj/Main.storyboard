@@ -737,11 +737,20 @@ DQ
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65b-VA-CFo">
                                 <rect key="frame" x="10" y="479" width="205" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" borderStyle="bezel" placeholderString="Search members" usesSingleLineMode="YES" bezelStyle="round" id="a9L-sz-7Gp">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search members" usesSingleLineMode="YES" bezelStyle="round" id="a9L-sz-7Gp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <binding destination="9o6-6B-oui" name="predicate" keyPath="filterPredicate" id="uTu-Rf-PnS">
+                                        <dictionary key="options">
+                                            <string key="NSDisplayName">predicate</string>
+                                            <string key="NSPredicateFormat">self.displayName contains[cd] $value or self.userId contains[cd] $value</string>
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </searchField>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdV-bl-TGz">
                                 <rect key="frame" x="10" y="10" width="205" height="461"/>
@@ -750,14 +759,14 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="205" height="461"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView identifier="RoomSettingsMemberTable" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="42" viewBased="YES" id="aKC-MO-LTY" customClass="MemberListTableView" customModule="Seaglass" customModuleProvider="target">
+                                        <tableView identifier="RoomSettingsMemberTable" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="42" viewBased="YES" id="aKC-MO-LTY" customClass="MemberListTableView" customModule="Seaglass" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="205" height="461"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" red="0.92191311909999996" green="0.9496862693" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="202" minWidth="40" maxWidth="1000" id="QXH-pv-JwN">
+                                                <tableColumn identifier="Members" width="202" minWidth="40" maxWidth="1000" id="QXH-pv-JwN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -793,15 +802,15 @@ DQ
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sn4-eI-ht1">
-                                                                    <rect key="frame" x="184" y="5" width="17" height="36"/>
+                                                                    <rect key="frame" x="186" y="5" width="17" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoForwardTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xQj-u0-NEh">
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoForwardTemplate" imagePosition="only" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="xQj-u0-NEh">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                 </button>
                                                                 <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-b4-s9H">
-                                                                    <rect key="frame" x="3" y="3" width="39" height="36"/>
+                                                                    <rect key="frame" x="3" y="4" width="39" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="9wR-wt-Hh7"/>
                                                                 </imageView>
@@ -814,6 +823,14 @@ DQ
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
+                                                    <connections>
+                                                        <binding destination="9o6-6B-oui" name="value" keyPath="arrangedObjects.displayName" id="Cg1-UL-z23">
+                                                            <dictionary key="options">
+                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
@@ -836,10 +853,12 @@ DQ
                     </view>
                     <connections>
                         <outlet property="MemberSearch" destination="65b-VA-CFo" id="Q2m-3q-78V"/>
+                        <outlet property="membersCacheController" destination="9o6-6B-oui" id="4rF-2k-j0e"/>
                     </connections>
                 </viewController>
                 <customObject id="1zF-Mq-Dpi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="ugY-Mz-t9S"/>
+                <arrayController objectClassName="MembersCacheEntry" automaticallyRearrangesObjects="YES" id="9o6-6B-oui" userLabel="Members Cache Controller"/>
             </objects>
             <point key="canvasLocation" x="2291" y="1333"/>
         </scene>
@@ -899,7 +918,7 @@ DQ
                                 <rect key="frame" x="0.0" y="411" width="257" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl">
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl" userLabel="Room Search">
                                 <rect key="frame" x="20" y="421" width="185" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
@@ -2216,7 +2235,7 @@ DQ
                 </viewController>
                 <customObject id="hRX-im-vpc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="994.5"/>
+            <point key="canvasLocation" x="75" y="1020"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Xp7-LZ-gMb">
@@ -2236,10 +2255,6 @@ DQ
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
                                 <rect key="frame" x="75" y="12" width="5" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-cU-i45">
-                                <rect key="frame" x="155" y="12" width="66" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
@@ -2270,12 +2285,16 @@ DQ
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Qur-rS-aSh">
+                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="UZH-uK-MGd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2246" y="902"/>
+            <point key="canvasLocation" x="2245.5" y="902"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mWB-CY-Ycs">
@@ -2310,7 +2329,7 @@ DQ
                     </view>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="255" y="1195"/>
+            <point key="canvasLocation" x="289" y="1222"/>
         </scene>
     </scenes>
     <resources>

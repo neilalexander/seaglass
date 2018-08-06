@@ -30,6 +30,7 @@
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
+		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0A1F3485F5B9E56D87DEC192 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
-		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixServices.swift; sourceTree = "<group>"; };
+		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatrixServices.swift; path = Seaglass/Model/MatrixServices.swift; sourceTree = "<group>"; };
 		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		391BFE2020C68AD100B4EFEC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
+		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 		395C008920D6AA7400C67609 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */,
 				390FE41020C7026A004A4B74 /* MatrixServices.swift */,
 				395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */,
 			);
@@ -438,6 +441,7 @@
 				3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
+				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,

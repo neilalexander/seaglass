@@ -7,8 +7,11 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+    @IBOutlet var membersCacheController: NSArrayController!
+    
     @IBOutlet var MemberSearch: NSSearchField!
     
     public var roomId: String = ""
@@ -20,7 +23,12 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
             return
         }
         
-        let membercount = MatrixServices.inst.session.room(withRoomId: roomId).state.members.count
+        for member in MatrixServices.inst.session.room(withRoomId: roomId).state.members {
+            membersCacheController.insert(MembersCacheEntry(member), atArrangedObjectIndex: 0)
+        }
+        
+        let membercount = (membersCacheController.arrangedObjects as! [MXRoomMember]).count
+        
         MemberSearch.placeholderString = "Search \(membercount) member"
         if membercount != 1 {
             MemberSearch.placeholderString?.append(contentsOf: "s")
@@ -31,20 +39,19 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
         if roomId == "" {
             return 0
         }
-        return MatrixServices.inst.session.room(withRoomId: roomId).state.members.count
+        return (membersCacheController.arrangedObjects as! [MXRoomMember]).count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
-        let member = room!.state.members[row]
+        let member: MembersCacheEntry = (membersCacheController.arrangedObjects as! [MembersCacheEntry])[row]
         let powerlevel = room!.state.powerLevels.powerLevelOfUser(withUserID: member.userId)
         
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MemberListEntry"), owner: self) as? MemberListEntry
         
-        cell?.MemberName.stringValue = member.displayname ?? member.userId
+        cell?.MemberName.stringValue = member.name()
         cell?.MemberDescription.stringValue = "Power level \(powerlevel)"
         cell?.MemberIcon.image?.setName(NSImage.Name.userGuest)
-        cell?.MemberIcon.isHidden = false
         
         return cell
     }
