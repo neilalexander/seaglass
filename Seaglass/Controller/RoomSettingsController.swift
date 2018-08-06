@@ -10,6 +10,19 @@ import Cocoa
 import SwiftMatrixSDK
 
 class RoomSettingsController: NSViewController {
+    var initialRoomName: String! = ""
+    var initialRoomTopic: String! = ""
+    var initialRoomPublishInDirectory: NSControl.StateValue! = .off
+    
+    var initialRoomAccessOnlyInvited: NSControl.StateValue! = .on
+    var initialRoomAccessExceptGuests: NSControl.StateValue! = .off
+    var initialRoomAccessIncludingGuests: NSControl.StateValue! = .off
+    
+    var initialRoomHistorySinceJoined: NSControl.StateValue! = .on
+    var initialRoomHistorySinceInvited: NSControl.StateValue! = .off
+    var initialRoomHistorySinceSelected: NSControl.StateValue! = .off
+    var initialRoomHistoryAnyone: NSControl.StateValue! = .off
+    
     @IBOutlet var RoomName: NSTextField!
     @IBOutlet var RoomTopic: NSTextField!
     @IBOutlet var RoomPublishInDirectory: NSButton!
@@ -55,6 +68,94 @@ class RoomSettingsController: NSViewController {
         sender.state = .on
     }
     
+    @IBAction func saveButtonClicked(_ sender: NSButton) {
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)!
+        
+        if RoomName.stringValue != initialRoomName {
+            room.setName(RoomName.stringValue) { (response) in
+                print(response)
+            }
+        }
+        
+        if RoomTopic.stringValue != initialRoomTopic {
+            room.setTopic(RoomTopic.stringValue) { (response) in
+                print(response)
+            }
+        }
+        
+        if initialRoomPublishInDirectory != RoomPublishInDirectory.state {
+            room.setDirectoryVisibility(RoomPublishInDirectory.state == .on ? .public : .private) { (response) in
+                if response.isFailure {
+                    print("Failed to set directory visibility: \(response.error!.localizedDescription)")
+                }
+            }
+        }
+        
+        if initialRoomAccessOnlyInvited != RoomAccessOnlyInvited.state ||
+           initialRoomAccessExceptGuests != RoomAccessExceptGuests.state ||
+           initialRoomAccessIncludingGuests != RoomAccessIncludingGuests.state {
+            var joinrule: MXRoomJoinRule
+            var guestrule: MXRoomGuestAccess
+            switch NSControl.StateValue.on {
+            case RoomAccessOnlyInvited.state:
+                joinrule = .invite
+                guestrule = .forbidden
+                break
+            case RoomAccessExceptGuests.state:
+                joinrule = .public
+                guestrule = .forbidden
+                break
+            case RoomAccessIncludingGuests.state:
+                joinrule = .public
+                guestrule = .canJoin
+                break
+            default:
+                joinrule = .invite
+                guestrule = .forbidden
+            }
+            room.setJoinRule(joinrule) { (response) in
+                if response.isFailure {
+                    print("Failed to set join rule: \(response.error!.localizedDescription)")
+                }
+            }
+            room.setGuestAccess(guestrule) { (response) in
+                if response.isFailure {
+                    print("Failed to set guest access: \(response.error!.localizedDescription)")
+                }
+            }
+        }
+        
+        if initialRoomHistorySinceJoined != RoomHistorySinceJoined.state ||
+            initialRoomHistorySinceInvited != RoomHistorySinceInvited.state ||
+            initialRoomHistorySinceSelected != RoomHistorySinceSelected.state ||
+            initialRoomHistoryAnyone != RoomHistoryAnyone.state {
+            var historyvisibility: MXRoomHistoryVisibility
+            switch NSControl.StateValue.on {
+            case RoomHistorySinceJoined.state:
+                historyvisibility = .joined
+                break
+            case RoomHistorySinceInvited.state:
+                historyvisibility = .invited
+                break
+            case RoomHistorySinceSelected.state:
+                historyvisibility = .shared
+                break
+            case RoomHistoryAnyone.state:
+                historyvisibility = .worldReadable
+                break
+            default:
+                historyvisibility = .shared
+            }
+            room.setHistoryVisibility(historyvisibility) { (response) in
+                if response.isFailure {
+                    print("Failed to set history visibility: \(response.error!.localizedDescription)")
+                }
+            }
+        }
+        
+        sender.window?.close()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,11 +167,19 @@ class RoomSettingsController: NSViewController {
         let room = MatrixServices.inst.session.room(withRoomId: roomId) as MXRoom
         
         RoomName.stringValue = room.state.name ?? ""
+        RoomName.isEnabled = true
+        RoomName.isEditable = true
+        
         RoomTopic.stringValue = room.state.topic ?? ""
+        RoomTopic.isEnabled = true
+        RoomTopic.isEditable = true
+        
+        initialRoomName = RoomName.stringValue
+        initialRoomTopic = RoomTopic.stringValue
         
         room.getDirectoryVisibility(completion: { (visibility) in
             if visibility.isSuccess {
-                self.RoomPublishInDirectory.isEnabled = true
+              //  self.RoomPublishInDirectory.isEnabled = true
                 self.RoomPublishInDirectory.state = visibility.value == .public ? .on : .off
             } else {
                 self.RoomPublishInDirectory.state = .off
@@ -81,12 +190,19 @@ class RoomSettingsController: NSViewController {
         RoomAccessExceptGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .forbidden ? .on : .off
         RoomAccessIncludingGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .canJoin ? .on : .off
         
-        RoomHistorySinceJoined.state = room.state.historyVisibility == .invited ? .on : .off
-        RoomHistorySinceInvited.state = room.state.historyVisibility == .joined ? .on : .off
+        initialRoomAccessOnlyInvited = RoomAccessOnlyInvited.state
+        initialRoomAccessExceptGuests = RoomAccessExceptGuests.state
+        initialRoomAccessIncludingGuests = RoomAccessIncludingGuests.state
+        
+        RoomHistorySinceJoined.state = room.state.historyVisibility == .joined ? .on : .off
+        RoomHistorySinceInvited.state = room.state.historyVisibility == .invited ? .on : .off
         RoomHistorySinceSelected.state = room.state.historyVisibility == .shared ? .on : .off
         RoomHistoryAnyone.state = room.state.historyVisibility == .worldReadable ? .on : .off
         
-        // RoomMemberList.insertRows(at: <#T##IndexSet#>, withAnimation: <#T##NSTableView.AnimationOptions#>)
+        initialRoomHistorySinceJoined = RoomHistorySinceJoined.state
+        initialRoomHistorySinceInvited = RoomHistorySinceInvited.state
+        initialRoomHistorySinceSelected = RoomHistorySinceSelected.state
+        initialRoomHistoryAnyone = RoomHistoryAnyone.state
     }
     
 }
