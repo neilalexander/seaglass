@@ -24,17 +24,16 @@ class UserAvatar: NSImageView {
     override var image: NSImage? {
         set {
             self.wantsLayer = true
-            if newValue!.isTemplate == false {
+            self.layer?.contents = newValue
+        //    if newValue!.isTemplate {
+        //        self.alphaValue = 0.5
+        //    } else {
                 self.canDrawSubviewsIntoLayer = true
-              //  self.layer = CALayer()
                 self.layer?.contentsGravity = kCAGravityResizeAspectFill
                 self.layer?.cornerRadius = (self.frame.height)/2
                 self.layer?.masksToBounds = true
                 self.alphaValue = 1
-            } else {
-                self.alphaValue = 0.5
-            }
-            self.layer?.contents = newValue
+        //    }
             super.image = newValue
         }
         
@@ -44,8 +43,8 @@ class UserAvatar: NSImageView {
     }
     
     func setAvatar(forUserId userId: String) {
-        self.image = NSImage(named: NSImage.Name.userGuest)
         if MatrixServices.inst.session.user(withUserId: userId) == nil {
+            self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
             return
         }
         let user = MatrixServices.inst.session.user(withUserId: userId)!
@@ -56,22 +55,29 @@ class UserAvatar: NSImageView {
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 }) { (error) in
-                    self.image = NSImage(named: NSImage.Name.userGuest)
+                    self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
                 }
+            } else {
+                self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
             }
+        } else {
+            self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
         }
     }
     
     func setAvatar(forRoomId roomId: String) {
-        self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
+        
         if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
+            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             return
         }
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         if room.summary.avatar == nil {
+            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             return
         }
         if room.summary.avatar.hasPrefix("mxc://") {
+            print("\(roomId): \(room.summary.avatar)")
             let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
@@ -80,7 +86,11 @@ class UserAvatar: NSImageView {
                 }) { (error) in
                     self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
                 }
+            } else {
+                self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             }
+        } else {
+            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
         }
     }
 }

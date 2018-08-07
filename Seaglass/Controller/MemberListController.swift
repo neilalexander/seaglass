@@ -55,7 +55,10 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let member: MembersCacheEntry = (membersCacheController.arrangedObjects as! [MembersCacheEntry])[row]
-        let powerlevel = room!.state.powerLevels.powerLevelOfUser(withUserID: member.userId)
+        var powerlevel = 0
+        if room?.state.powerLevels != nil {
+            powerlevel = room?.state.powerLevels.powerLevelOfUser(withUserID: member.userId) ?? 0
+        }
         
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MemberListEntry"), owner: self) as? MemberListEntry
  

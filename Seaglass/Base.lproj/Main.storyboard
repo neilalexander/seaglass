@@ -1034,7 +1034,7 @@ DQ
                                                                     </contentFilters>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSTouchBarRecordStartTemplate" id="Gl4-oB-Rwg"/>
                                                                 </imageView>
-                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView identifier="RoomListEntryIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="17" y="8" width="48" height="48"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
@@ -1204,13 +1204,13 @@ DQ
                                                             <rect key="frame" x="1" y="1" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView identifier="RoomMessageEntryInboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView identifier="RoomMessageEntryInboundIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="1" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="CLm-sj-s8q"/>
                                                                         <constraint firstAttribute="height" constant="30" id="xDE-mL-W4d"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="dFF-P4-bpm"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="dFF-P4-bpm"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryInboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-k5-z63">
                                                                     <rect key="frame" x="46" y="18" width="530" height="13"/>
@@ -2636,6 +2636,7 @@ DQ
         <image name="NSTouchBarShareTemplate" width="15" height="30"/>
         <image name="NSTouchBarTagIconTemplate" width="23" height="30"/>
         <image name="NSTouchBarUserAddTemplate" width="21" height="30"/>
+        <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
 </document>

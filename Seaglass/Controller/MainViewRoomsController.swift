@@ -99,7 +99,16 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             }
             cell?.RoomListEntryName.stringValue = memberNames
         }
-        cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
+        
+        if state.members().count == 2 {
+            if state.members()[0].userId == MatrixServices.inst.session.myUser.userId {
+                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[1].userId)
+            } else {
+                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+            }
+        } else {
+            cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
+        }
         
         var memberString: String = ""
         var topicString: String = "No topic set"
