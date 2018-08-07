@@ -809,7 +809,7 @@ DQ
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                 </button>
-                                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-b4-s9H" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-b4-s9H">
                                                                     <rect key="frame" x="3" y="4" width="36" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="9wR-wt-Hh7"/>
@@ -1034,14 +1034,14 @@ DQ
                                                                     </contentFilters>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSTouchBarRecordStartTemplate" id="Gl4-oB-Rwg"/>
                                                                 </imageView>
-                                                                <imageView identifier="RoomListEntryIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView identifier="RoomListEntryIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
                                                                     <rect key="frame" x="17" y="8" width="48" height="48"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="RoomListEntryIcon" destination="iRa-19-xHX" id="ATX-cU-1sT"/>
+                                                                <outlet property="RoomListEntryIcon" destination="iRa-19-xHX" id="UmV-vq-IBS"/>
                                                                 <outlet property="RoomListEntryName" destination="Uoj-MY-a1T" id="vPH-Ky-W2h"/>
                                                                 <outlet property="RoomListEntryTopic" destination="730-xt-gyf" id="3Eh-Ib-0E0"/>
                                                                 <outlet property="RoomListEntryUnread" destination="IVp-eF-82p" id="Abs-d7-zWg"/>
@@ -1106,7 +1106,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -1204,7 +1204,7 @@ DQ
                                                             <rect key="frame" x="1" y="1" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView identifier="RoomMessageEntryInboundIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView identifier="RoomMessageEntryInboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY">
                                                                     <rect key="frame" x="10" y="1" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="CLm-sj-s8q"/>
@@ -1367,13 +1367,13 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <imageView identifier="RoomMessageEntryOutboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-pa-dQN" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView identifier="RoomMessageEntryOutboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-pa-dQN">
                                                                     <rect key="frame" x="537" y="1" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="vOo-nb-W9j"/>
                                                                         <constraint firstAttribute="height" constant="30" id="vqH-BF-cSh"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="ZGo-C5-v2I"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1691,7 +1691,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-Kd-f9g">
-                                <rect key="frame" x="384" y="61" width="5" height="451"/>
+                                <rect key="frame" x="384" y="61" width="4" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                             <textField identifier="RoomSettingsName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWS-OG-RG6">

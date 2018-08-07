@@ -19,32 +19,9 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class UserAvatar: NSImageView {
-    
-    override var image: NSImage? {
-        set {
-            self.wantsLayer = true
-            self.layer?.contents = newValue
-        //    if newValue!.isTemplate {
-        //        self.alphaValue = 0.5
-        //    } else {
-                self.canDrawSubviewsIntoLayer = true
-                self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                self.layer?.cornerRadius = (self.frame.height)/2
-                self.layer?.masksToBounds = true
-                self.alphaValue = 1
-        //    }
-            super.image = newValue
-        }
-        
-        get {
-            return super.image
-        }
-    }
-    
+extension NSImageView {
     func setAvatar(forUserId userId: String) {
         if MatrixServices.inst.session.user(withUserId: userId) == nil {
-            self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
             return
         }
         let user = MatrixServices.inst.session.user(withUserId: userId)!
@@ -53,44 +30,41 @@ class UserAvatar: NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
+                    self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                    self.layer?.cornerRadius = (self.frame.width)/2
+                    self.layer?.masksToBounds = true
+                    self.canDrawSubviewsIntoLayer = true
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 }) { (error) in
-                    self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
+                    print("Error setting user avatar for \(userId)")
                 }
-            } else {
-                self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
             }
-        } else {
-            self.image = NSImage(named: NSImage.Name.touchBarUserTemplate)
         }
     }
     
     func setAvatar(forRoomId roomId: String) {
-        
         if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
-            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             return
         }
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         if room.summary.avatar == nil {
-            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             return
         }
         if room.summary.avatar.hasPrefix("mxc://") {
-            print("\(roomId): \(room.summary.avatar)")
+            print("\(room.summary.displayname): \(room.summary.avatar)")
             let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
+                    self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                    self.layer?.cornerRadius = (self.frame.width)/2
+                    self.layer?.masksToBounds = true
+                    self.canDrawSubviewsIntoLayer = true
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 }) { (error) in
-                    self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
+                    print("Error setting room avatar for \(roomId)")
                 }
-            } else {
-                self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
             }
-        } else {
-            self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
         }
     }
 }

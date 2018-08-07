@@ -21,11 +21,11 @@ import Cocoa
 class RoomMessageEntry: NSTableCellView {
     @IBOutlet var RoomMessageEntryInboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryInboundText: NSTextField!
-    @IBOutlet var RoomMessageEntryInboundIcon: UserAvatar!
+    @IBOutlet var RoomMessageEntryInboundIcon: NSImageView!
     
     @IBOutlet var RoomMessageEntryOutboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundText: NSTextField!
-    @IBOutlet var RoomMessageEntryOutboundIcon: UserAvatar!
+    @IBOutlet var RoomMessageEntryOutboundIcon: NSImageView!
     
     @IBOutlet var RoomMessageEntryInboundCoalescedText: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundCoalescedText: NSTextField!
