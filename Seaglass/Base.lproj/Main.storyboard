@@ -1021,7 +1021,7 @@ DQ
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <imageView identifier="RoomListEntryUnread" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVp-eF-82p">
-                                                                    <rect key="frame" x="3" y="24" width="16" height="16"/>
+                                                                    <rect key="frame" x="2" y="24" width="16" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <contentFilters>
                                                                         <ciFilter name="CIFalseColor">
@@ -1034,8 +1034,8 @@ DQ
                                                                     </contentFilters>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSTouchBarRecordStartTemplate" id="Gl4-oB-Rwg"/>
                                                                 </imageView>
-                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX">
-                                                                    <rect key="frame" x="18" y="3" width="47" height="58"/>
+                                                                <imageView identifier="RoomListEntryIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
+                                                                    <rect key="frame" x="17" y="8" width="48" height="48"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="Z6Q-2J-Cpe"/>
                                                                 </imageView>

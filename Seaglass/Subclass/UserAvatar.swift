@@ -24,15 +24,17 @@ class UserAvatar: NSImageView {
     override var image: NSImage? {
         set {
             self.wantsLayer = true
-            self.canDrawSubviewsIntoLayer = true
-            
-          //  self.layer = CALayer()
-            self.layer?.contentsGravity = kCAGravityResizeAspectFill
+            if newValue!.isTemplate == false {
+                self.canDrawSubviewsIntoLayer = true
+              //  self.layer = CALayer()
+                self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                self.layer?.cornerRadius = (self.frame.height)/2
+                self.layer?.masksToBounds = true
+                self.alphaValue = 1
+            } else {
+                self.alphaValue = 0.5
+            }
             self.layer?.contents = newValue
-            self.layer?.cornerRadius = (self.frame.height)/2
-            self.layer?.contentsGravity = kCAGravityResizeAspectFill
-            self.layer?.masksToBounds = true
-            
             super.image = newValue
         }
         
@@ -55,6 +57,28 @@ class UserAvatar: NSImageView {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 }) { (error) in
                     self.image = NSImage(named: NSImage.Name.userGuest)
+                }
+            }
+        }
+    }
+    
+    func setAvatar(forRoomId roomId: String) {
+        self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
+        if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
+            return
+        }
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)!
+        if room.summary.avatar == nil {
+            return
+        }
+        if room.summary.avatar.hasPrefix("mxc://") {
+            let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
+            if url.hasPrefix("http://") || url.hasPrefix("https://") {
+                let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
+                MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
+                    self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                }) { (error) in
+                    self.image = NSImage(named: NSImage.Name.touchBarNewMessageTemplate)
                 }
             }
         }

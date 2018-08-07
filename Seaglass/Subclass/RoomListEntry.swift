@@ -21,7 +21,7 @@ import Cocoa
 class RoomListEntry: NSTableCellView {
     @IBOutlet var RoomListEntryName: NSTextField!
     @IBOutlet var RoomListEntryTopic: NSTextField!
-    @IBOutlet var RoomListEntryIcon: NSImageView!
+    @IBOutlet var RoomListEntryIcon: UserAvatar!
     @IBOutlet var RoomListEntryUnread: NSImageView!
     
     var roomsCacheEntry: RoomsCacheEntry?

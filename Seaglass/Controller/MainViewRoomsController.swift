@@ -99,6 +99,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             }
             cell?.RoomListEntryName.stringValue = memberNames
         }
+        cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
         
         var memberString: String = ""
         var topicString: String = "No topic set"
