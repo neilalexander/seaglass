@@ -1,0 +1,54 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - Down (0.5.2)
+  - GZIP (1.2.1)
+  - OLMKit (2.2.2):
+    - OLMKit/olmc (= 2.2.2)
+    - OLMKit/olmcpp (= 2.2.2)
+  - OLMKit/olmc (2.2.2)
+  - OLMKit/olmcpp (2.2.2)
+  - Realm (3.3.2):
+    - Realm/Headers (= 3.3.2)
+  - Realm/Headers (3.3.2)
+  - SwiftMatrixSDK (0.10.11):
+    - AFNetworking (~> 3.2.0)
+    - GZIP (~> 1.2.1)
+    - OLMKit (~> 2.2.2)
+    - Realm (~> 3.3.2)
+
+DEPENDENCIES:
+  - Down
+  - SwiftMatrixSDK (= 0.10.11)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Down
+    - GZIP
+    - OLMKit
+    - Realm
+    - SwiftMatrixSDK
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Down: 587371ad58002b06023d9c602519216862c3acbc
+  GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
+  OLMKit: b9d8c0ffee9ea8c45bc0aaa9afb47f93fba7efbd
+  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
+  SwiftMatrixSDK: 30c9120a0312e2d9f4781ee3fb85052fdc9a26d2
+
+PODFILE CHECKSUM: feeac68d4ab6ab672f7224292ef26f30b9646ec8
+
+COCOAPODS: 1.5.3
