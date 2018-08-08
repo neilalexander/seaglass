@@ -66,6 +66,7 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
         cell?.MemberDescription.stringValue = "Power level \(powerlevel)"
         cell?.MemberIcon.setAvatar(forUserId: member.userId)
         
+        cell?.identifier = nil
         return cell
     }
 }
