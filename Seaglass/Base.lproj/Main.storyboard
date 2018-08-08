@@ -1106,7 +1106,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -1200,7 +1200,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="RoomMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" misplaced="YES" id="nAg-O9-2gK" userLabel="Incoming Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" userLabel="Incoming Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1261,14 +1261,14 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="C9D-k5-z63" secondAttribute="trailing" constant="3" id="2E1-5X-4yL"/>
                                                                 <constraint firstAttribute="bottom" secondItem="ucJ-c5-qi7" secondAttribute="bottom" id="5S1-vr-0Fe"/>
-                                                                <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="11" id="6m0-ef-Shk"/>
+                                                                <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="6m0-ef-Shk"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="E7U-E2-p9G"/>
-                                                                <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="11" id="WZ2-ZC-KYv"/>
+                                                                <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="WZ2-ZC-KYv"/>
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="ZcO-dR-pWR"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ru8-q8-hdY" secondAttribute="bottom" constant="1" id="gDZ-RZ-bo0"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="8" id="k7E-X9-o80"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="26" id="tW9-ec-nbp"/>
+                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="tW9-ec-nbp"/>
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="wgQ-1E-BxK"/>
                                                             </constraints>
                                                             <connections>
@@ -1318,7 +1318,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryInboundText" destination="cZX-Kd-FHZ" id="nl7-iq-CvI"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" misplaced="YES" id="Jn7-pz-WXp" userLabel="Outgoing Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" userLabel="Outgoing Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="65" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1377,16 +1377,16 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="8" id="1iV-BG-2ev"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="18" id="1iV-BG-2ev"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="3" id="EFm-Cq-H9m"/>
-                                                                <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="6" id="Y9w-qz-369"/>
+                                                                <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cp3-pa-dQN" secondAttribute="bottom" constant="1" id="bhq-HZ-qmp"/>
                                                                 <constraint firstAttribute="bottom" secondItem="eNx-7M-A4V" secondAttribute="bottom" id="ifF-fm-P7k"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eNx-7M-A4V" secondAttribute="trailing" constant="48" id="qnY-qm-hHt"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Cp3-pa-dQN" secondAttribute="trailing" constant="10" id="sNH-yL-ftf"/>
-                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="21" id="tfq-DR-zhk"/>
-                                                                <constraint firstItem="Cp3-pa-dQN" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="6" id="u4T-8g-nOu"/>
+                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="28" id="tfq-DR-zhk"/>
+                                                                <constraint firstItem="Cp3-pa-dQN" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="u4T-8g-nOu"/>
                                                                 <constraint firstItem="eNx-7M-A4V" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="48" id="uMs-Ol-lEU"/>
                                                             </constraints>
                                                             <connections>
@@ -2081,7 +2081,7 @@ Gw
                                 </tokenFieldCell>
                             </tokenField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="1qe-2v-KA6">
-                                <rect key="frame" x="20" y="297" width="499" height="5"/>
+                                <rect key="frame" x="20" y="297" width="499" height="53"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-W2-uQr">

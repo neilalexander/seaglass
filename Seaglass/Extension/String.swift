@@ -20,10 +20,16 @@ import AppKit
 
 extension String {
     func toAttributedStringFromHTML(justify: NSTextAlignment) -> NSAttributedString{
-        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        if self.count == 0 {
+            return NSAttributedString(string: "<unconverted empty>")
+        }
+        guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString(string: "<utf-16 lossy conversion failed>") }
+        if data.isEmpty {
+            return NSAttributedString(string: "<converted empty>")
+        }
         do {
             let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
-                                                                                                     .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+                                                                                                     .characterEncoding: String.Encoding.utf16.rawValue], documentAttributes: nil)
             let range = NSRange(location: 0, length: str.length)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = justify
@@ -45,7 +51,7 @@ extension String {
             
             return str
         } catch {
-            return NSAttributedString()
+            return NSAttributedString(string: "<other exception>")
         }
     }
 }

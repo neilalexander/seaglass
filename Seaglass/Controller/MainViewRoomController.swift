@@ -237,7 +237,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         roomId = (entry.roomsCacheEntry?.roomId)!
 
+        RoomMessageTableView.beginUpdates()
         RoomMessageTableView.reloadData()
+        RoomMessageTableView.endUpdates()
         
         if entry.roomsCacheEntry!.encrypted() {
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
@@ -261,7 +263,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         case "m.room.message":
             fallthrough
         case "m.room.member":
+            RoomMessageTableView.beginUpdates()
             RoomMessageTableView.noteNumberOfRowsChanged()
+            RoomMessageTableView.endUpdates()
             return
         default:
             break
