@@ -133,7 +133,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             var cellStringValue: String = ""
             
             if event.content["formatted_body"] != nil {
-                cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: .right)
+                let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+                cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
             } else if event.content["body"] != nil {
                 cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             }
