@@ -21,15 +21,14 @@ import AppKit
 extension String {
     func toAttributedStringFromHTML(justify: NSTextAlignment) -> NSAttributedString{
         if self.count == 0 {
-            return NSAttributedString(string: "<unconverted empty>")
+            return NSAttributedString()
         }
-        guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString(string: "<utf-16 lossy conversion failed>") }
+        guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString() }
         if data.isEmpty {
-            return NSAttributedString(string: "<converted empty>")
+            return NSAttributedString()
         }
         do {
-            let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
-                                                                                                     .characterEncoding: String.Encoding.utf16.rawValue], documentAttributes: nil)
+            let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
             let range = NSRange(location: 0, length: str.length)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = justify
@@ -51,7 +50,7 @@ extension String {
             
             return str
         } catch {
-            return NSAttributedString(string: "<other exception>")
+            return NSAttributedString()
         }
     }
 }

@@ -30,11 +30,11 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                    self.wantsLayer = true
-                    self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                    self.layer?.cornerRadius = (self.frame.width)/2
-                    self.layer?.masksToBounds = true
-                    self.canDrawSubviewsIntoLayer = true
+                   // self.wantsLayer = true
+                   // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                   // self.layer?.cornerRadius = (self.frame.width)/2
+                   // self.layer?.masksToBounds = true
+                   // self.canDrawSubviewsIntoLayer = true
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                    // self.wantsLayer = true
                 }) { (error) in
@@ -58,13 +58,13 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                    self.wantsLayer = true
-                    self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                    self.layer?.cornerRadius = (self.frame.width)/2
-                    self.layer?.masksToBounds = true
-                    self.canDrawSubviewsIntoLayer = true
+                   // self.wantsLayer = true
+                   // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                   // self.layer?.cornerRadius = (self.frame.width)/2
+                   // self.layer?.masksToBounds = true
+                   // self.canDrawSubviewsIntoLayer = true
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                    
+                   // self.wantsLayer = true
                 }) { (error) in
                     print("Error setting room avatar for \(roomId)")
                 }
