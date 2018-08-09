@@ -23,6 +23,7 @@ extension String {
         if self.count == 0 {
             return NSAttributedString()
         }
+        print("ATTRIBUTED STRING: \(self)")
         guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString() }
         if data.isEmpty {
             return NSAttributedString()

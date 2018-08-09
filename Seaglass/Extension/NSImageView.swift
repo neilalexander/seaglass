@@ -29,16 +29,22 @@ extension NSImageView {
             let url = MatrixServices.inst.client.url(ofContent: user.avatarUrl)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
-                MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                   // self.wantsLayer = true
-                   // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                   // self.layer?.cornerRadius = (self.frame.width)/2
-                   // self.layer?.masksToBounds = true
-                   // self.canDrawSubviewsIntoLayer = true
+                if FileManager.default.fileExists(atPath: path!) {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                   // self.wantsLayer = true
-                }) { (error) in
-                    print("Error setting user avatar for \(userId)")
+                } else {
+                    DispatchQueue.main.async {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
+                            // self.wantsLayer = true
+                            // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                            // self.layer?.cornerRadius = (self.frame.width)/2
+                            // self.layer?.masksToBounds = true
+                            // self.canDrawSubviewsIntoLayer = true
+                            self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                            // self.wantsLayer = true
+                        }) { (error) in
+                            print("Error setting user avatar for \(userId)")
+                        }
+                    }
                 }
             }
         }
@@ -53,20 +59,25 @@ extension NSImageView {
             return
         }
         if room.summary.avatar.hasPrefix("mxc://") {
-            print("\(room.summary.displayname): \(room.summary.avatar)")
             let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
-                MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                   // self.wantsLayer = true
-                   // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                   // self.layer?.cornerRadius = (self.frame.width)/2
-                   // self.layer?.masksToBounds = true
-                   // self.canDrawSubviewsIntoLayer = true
+                if FileManager.default.fileExists(atPath: path!) {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                   // self.wantsLayer = true
-                }) { (error) in
-                    print("Error setting room avatar for \(roomId)")
+                } else {
+                    DispatchQueue.main.async {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
+                           // self.wantsLayer = true
+                           // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                           // self.layer?.cornerRadius = (self.frame.width)/2
+                           // self.layer?.masksToBounds = true
+                           // self.canDrawSubviewsIntoLayer = true
+                            self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                           // self.wantsLayer = true
+                        }) { (error) in
+                            print("Error setting room avatar for \(roomId)")
+                        }
+                    }
                 }
             }
         }

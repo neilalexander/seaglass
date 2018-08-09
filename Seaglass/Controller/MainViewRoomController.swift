@@ -36,6 +36,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
+    
+    var roomMessagesMutex: pthread_mutex_t = pthread_mutex_t()
 
     @IBAction func messageEntryFieldSubmit(_ sender: NSTextField) {
         if roomId == "" {
@@ -124,6 +126,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+       // pthread_mutex_lock(&roomMessagesMutex);
+        
         let event = MatrixServices.inst.eventCache[roomId]![row]
         var cell: RoomMessageEntry
         
@@ -134,7 +138,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             
             if event.content["formatted_body"] != nil {
                 let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-                cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
+               // cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
+                cellStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             } else if event.content["body"] != nil {
                 cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             }
@@ -142,9 +147,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                 if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageEntry
-                    if event.content["formatted_body"] != nil {
+                    if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryOutboundCoalescedText.attributedStringValue = cellAttributedStringValue
-                    } else if event.content["body"] != nil {
+                    } else if cellStringValue != "" {
                         cell.RoomMessageEntryOutboundCoalescedText.stringValue = cellStringValue
                     }
                     break
@@ -152,9 +157,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageEntry
                     cell.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                     cell.RoomMessageEntryOutboundIcon.setAvatar(forUserId: event.sender)
-                    if event.content["formatted_body"] != nil {
+                    if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryOutboundText.attributedStringValue = cellAttributedStringValue
-                    } else if event.content["body"] != nil {
+                    } else if cellStringValue != "" {
                         cell.RoomMessageEntryOutboundText.stringValue = cellStringValue
                     }
                     if event.sentState == MXEventSentStateSending {
@@ -165,9 +170,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageEntry
-                    if event.content["formatted_body"] != nil {
+                    if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryInboundCoalescedText.attributedStringValue = cellAttributedStringValue
-                    } else if event.content["body"] != nil {
+                    } else if cellStringValue != "" {
                         cell.RoomMessageEntryInboundCoalescedText.stringValue = cellStringValue
                     }
                     break
@@ -175,9 +180,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageEntry
                     cell.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
                     cell.RoomMessageEntryInboundIcon.setAvatar(forUserId: event.sender)
-                    if event.content["formatted_body"] != nil {
+                    if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryInboundText.attributedStringValue = cellAttributedStringValue
-                    } else if event.content["body"] != nil {
+                    } else if cellStringValue != "" {
                         cell.RoomMessageEntryInboundText.stringValue = cellStringValue
                     }
                     if event.sentState == MXEventSentStateSending {
@@ -220,6 +225,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             print(event)
             break
         }
+        
+       // pthread_mutex_unlock(&roomMessagesMutex);
         
         cell.identifier = nil
         return cell
