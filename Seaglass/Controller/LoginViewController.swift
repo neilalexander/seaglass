@@ -19,26 +19,11 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class ReplaceWindowSegue: NSStoryboardSegue {
-    override func perform() {
-        if let src = self.sourceController as? NSViewController,
-            let dest = self.destinationController as? NSViewController {
-            
-            NSAnimationContext.runAnimationGroup({ (context) in
-                context.duration = 0.5
-                src.view.window?.animator().alphaValue = 0
-                dest.view.window?.animator().alphaValue = 1
-            })
-        }
-    }
-}
-
 class ReplaceSheetSegue: NSStoryboardSegue {
     override func perform() {
         if let src = self.sourceController as? NSViewController,
             let dest = self.destinationController as? NSViewController,
             let window = src.view.window {
-
             NSAnimationContext.runAnimationGroup({ (context) in
                 context.duration = 0.5
                 window.animator().alphaValue = 0

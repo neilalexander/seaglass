@@ -52,13 +52,13 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override func viewDidLoad() {
         MatrixServices.inst.mainController = self
         
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear() {
         roomsController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first!
         channelController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first!
@@ -76,7 +76,7 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
         roomsDelegate = roomsController
         channelDelegate = channelController
         
-        self.view.window?.title = "Matrix Client"
+        self.view.window?.title = "Seaglass"
         self.view.window?.styleMask.update(with: .closable)
         self.view.window?.styleMask.update(with: .miniaturizable)
         self.view.window?.styleMask.update(with: .resizable)

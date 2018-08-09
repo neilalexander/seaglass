@@ -683,14 +683,14 @@ DQ
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="450" height="200"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
                         <value key="minSize" type="size" width="450" height="200"/>
                         <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="3ly-y1-65v"/>
                         </connections>
                     </window>
                     <connections>
@@ -712,9 +712,6 @@ DQ
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="1yi-u1-mEz">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="TwD-Wi-H8c" id="UrP-X8-kbR"/>
-                        </connections>
                     </splitView>
                     <connections>
                         <segue destination="KsD-aF-a0Q" kind="relationship" relationship="splitItems" id="qwi-as-nzC"/>
