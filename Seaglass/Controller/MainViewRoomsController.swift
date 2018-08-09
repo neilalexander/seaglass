@@ -21,6 +21,7 @@ import SwiftMatrixSDK
 
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var RoomList: NSTableView!
+    @IBOutlet var RoomSearch: NSSearchField!
     @IBOutlet var ConnectionStatus: NSButton!
     
     var mainController: MainViewController?
@@ -33,17 +34,17 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewWillAppear() {
         super.viewWillAppear()
-
+        
         switch MatrixServices.inst.state {
         case .started:
-            ConnectionStatus.image? = NSImage(named: NSImage.Name(rawValue: "NSStatusAvailable"))!
-            ConnectionStatus.title = "Connected"
+            ConnectionStatus.title = MatrixServices.inst.session.myUser.userId
+            ConnectionStatus.alphaValue = 0.2
         case .starting:
-            ConnectionStatus.image? = NSImage(named: NSImage.Name(rawValue: "NSStatusPartiallyAvailable"))!
-            ConnectionStatus.title = "Connecting..."
+            ConnectionStatus.title = "Authenticating..."
+            ConnectionStatus.alphaValue = 1
         default:
-            ConnectionStatus.image? = NSImage(named: NSImage.Name(rawValue: "NSStatusUnavailable"))!
-            ConnectionStatus.title = "Not connected"
+            ConnectionStatus.title = "Not authenticated"
+            ConnectionStatus.alphaValue = 1
         }
     }
     
@@ -56,10 +57,22 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func matrixDidJoinRoom(_ room: MXRoom) {
         roomsCacheController.insert(RoomsCacheEntry(room), atArrangedObjectIndex: 0)
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
+        
+        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        RoomSearch.placeholderString = "Search \(rooms.count) room"
+        if rooms.count != 1 {
+            RoomSearch.placeholderString?.append(contentsOf: "s")
+        }
     }
     
     func matrixDidPartRoom(_ room: MXRoom) {
         // TODO: unsubscribe from room
+        
+        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        RoomSearch.placeholderString = "Search \(rooms.count) room"
+        if rooms.count != 1 {
+            RoomSearch.placeholderString?.append(contentsOf: "s")
+        }
     }
     
     func matrixDidUpdateRoom(_ room: MXRoom) {
