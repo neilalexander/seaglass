@@ -17,18 +17,47 @@
 //
 
 import AppKit
+import TSMarkdownParser
 
 extension String {
+    func toAttributedStringFromMarkdown(justify: NSTextAlignment) -> NSAttributedString{
+        if self.count == 0 {
+            return NSAttributedString()
+        }
+        guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString() }
+        if data.isEmpty {
+            return NSAttributedString()
+        }
+        
+        let parser = TSMarkdownParser.standard()
+        parser.monospaceAttributes["NSColor"] = NSColor.black
+        parser.monospaceAttributes["NSFont"] = NSFont.monospacedDigitSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+        parser.quoteAttributes[0]["NSColor"] = NSColor.gray
+        parser.quoteAttributes[0]["NSFont"] = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
+        
+        let str: NSMutableAttributedString = parser.attributedString(fromMarkdown: self) as! NSMutableAttributedString
+        let range = NSRange(location: 0, length: str.length)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = justify
+        
+        str.beginEditing()
+        str.removeAttribute(.paragraphStyle, range: range)
+        str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
+        str.endEditing()
+        
+        return str
+    }
+    
     func toAttributedStringFromHTML(justify: NSTextAlignment) -> NSAttributedString{
         if self.count == 0 {
             return NSAttributedString()
         }
-        print("ATTRIBUTED STRING: \(self)")
         guard let data = data(using: .utf16, allowLossyConversion: true) else { return NSAttributedString() }
         if data.isEmpty {
             return NSAttributedString()
         }
         do {
+            
             let str: NSMutableAttributedString = try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
             let range = NSRange(location: 0, length: str.length)
             let paragraphStyle = NSMutableParagraphStyle()

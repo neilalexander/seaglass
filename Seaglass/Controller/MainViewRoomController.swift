@@ -158,12 +158,17 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             var cellAttributedStringValue: NSAttributedString = NSAttributedString()
             var cellStringValue: String = ""
             
-            if event.content["formatted_body"] != nil {
-               // let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-               // cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
-                cellStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
-            } else if event.content["body"] != nil {
-                cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+           // if event.content["formatted_body"] != nil {
+           //     let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+           //     cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
+           //     cellStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+           // } else if event.content["body"] != nil {
+           //     cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+           // }
+            
+            if event.content["body"] != nil {
+                let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+                cellAttributedStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
             }
             
             var isCoalesced = false
