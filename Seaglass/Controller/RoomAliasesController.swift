@@ -41,7 +41,6 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 if !alias.hasSuffix(suffix) {
                     cell?.RoomAliasName.isEnabled = false
                     cell?.RoomAliasDelete.isEnabled = false
-                    cell?.RoomAliasPrimary.isEnabled = false
                 }
                 roomAliases.append(cell!)
             }
@@ -91,9 +90,14 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let aliases = room!.state.aliases
         
+        var uiCanonicalAlias: String = ""
         var uiAliases: [String] = []
+        
         for uiAlias in roomAliases {
             uiAliases.append(uiAlias.RoomAliasName.stringValue)
+            if uiAlias.RoomAliasPrimary.state == .on {
+                uiCanonicalAlias = uiAlias.RoomAliasName.stringValue
+            }
         }
         
         for uiAlias in uiAliases {
@@ -120,6 +124,14 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                     }
                 })
             }
+        }
+        
+        if uiCanonicalAlias != room?.state.canonicalAlias {
+            room?.setCanonicalAlias(uiCanonicalAlias, completion: { (response) in
+                if response.isFailure {
+                    print("Failed to set canonical alias \(uiCanonicalAlias)")
+                }
+            })
         }
         
         sender.window?.close()

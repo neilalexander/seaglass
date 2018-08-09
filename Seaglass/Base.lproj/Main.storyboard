@@ -1822,7 +1822,7 @@ DQ
         <!--Room Aliases Controller-->
         <scene sceneID="nZk-Qb-vB9">
             <objects>
-                <viewController id="jxX-9w-UBJ" customClass="RoomAliasesController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="jxX-9w-UBJ" customClass="RoomAliasesController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vFT-Ni-bN8">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1877,7 +1877,7 @@ DQ
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KC2-0I-hf6">
                                                                     <rect key="frame" x="296" y="0.0" width="69" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <buttonCell key="cell" type="smallSquare" title="Primary" bezelStyle="smallSquare" imagePosition="left" alignment="center" enabled="NO" borderStyle="border" inset="2" id="mHD-IM-y1C">
+                                                                    <buttonCell key="cell" type="smallSquare" title="Primary" bezelStyle="smallSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="mHD-IM-y1C">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                     </buttonCell>
@@ -1986,7 +1986,7 @@ DQ
         <!--View Controller-->
         <scene sceneID="7EC-R9-KTe">
             <objects>
-                <viewController id="y0A-pr-MKw" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="y0A-pr-MKw" sceneMemberID="viewController">
                     <view key="view" id="Nj6-Um-sPZ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
