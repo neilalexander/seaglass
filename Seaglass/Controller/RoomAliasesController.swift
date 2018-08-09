@@ -87,6 +87,41 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)
+        let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
+        let aliases = room!.state.aliases
         
+        var uiAliases: [String] = []
+        for uiAlias in roomAliases {
+            uiAliases.append(uiAlias.RoomAliasName.stringValue)
+        }
+        
+        for uiAlias in uiAliases {
+            if !uiAlias.hasSuffix(suffix) {
+                continue
+            }
+            if !aliases!.contains(uiAlias) {
+                room?.addAlias(uiAlias, completion: { (response) in
+                    if response.isFailure {
+                        print("Failed to add new alias \(uiAlias)")
+                    }
+                })
+            }
+        }
+        
+        for alias in aliases! {
+            if !alias.hasSuffix(suffix) {
+                continue
+            }
+            if !uiAliases.contains(alias) {
+                room?.removeAlias(alias, completion: { (response) in
+                    if response.isFailure {
+                        print("Failed to remove alias \(alias)")
+                    }
+                })
+            }
+        }
+        
+        sender.window?.close()
     }
 }
