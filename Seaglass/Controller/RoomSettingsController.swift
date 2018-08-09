@@ -63,6 +63,11 @@ class RoomSettingsController: NSViewController {
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToPowerLevels":
+                if let dest = segue.destinationController as? RoomPowerLevelsController {
+                    dest.roomId = roomId
+                }
+                break
             default:
                 return
             }

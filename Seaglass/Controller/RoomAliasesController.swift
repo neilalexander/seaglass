@@ -19,6 +19,13 @@
 import Cocoa
 
 class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+    
+    @IBOutlet var AliasTable: NSTableView!
+    
+    var canonicalRoomAlias: String = ""
+    var roomAliases: [RoomAliasEntry] = []
+    var roomId: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +53,6 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
             }
         }
     }
-    
-    @IBOutlet var AliasTable: NSTableView!
-    
-    var canonicalRoomAlias: String = ""
-    var roomAliases: [RoomAliasEntry] = []
-    var roomId: String = ""
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         return roomAliases.count
@@ -136,4 +137,5 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         
         sender.window?.close()
     }
+    
 }

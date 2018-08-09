@@ -36,8 +36,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
-    
-    var roomMessagesMutex: pthread_mutex_t = pthread_mutex_t()
 
     @IBAction func messageEntryFieldSubmit(_ sender: NSTextField) {
         if roomId == "" {
@@ -126,8 +124,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-       // pthread_mutex_lock(&roomMessagesMutex);
-        
         let event = MatrixServices.inst.eventCache[roomId]![row]
         var cell: RoomMessageEntry
         
@@ -214,15 +210,28 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return cell
         case "m.room.name":
             cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Room renamed to \(event.content["name"] as! String)"
+            if event.content["name"] as! String != "" {
+                cell.RoomMessageEntryInlineText.stringValue = "Room renamed: \(event.content["name"] as! String)"
+            } else {
+                cell.RoomMessageEntryInlineText.stringValue = "Room name removed"
+            }
+            
             return cell
         case "m.room.topic":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Topic changed to \(event.content["topic"] as! String)"
+            if event.content["topic"] as! String != "" {
+                cell.RoomMessageEntryInlineText.stringValue = "Room topic changed: \(event.content["topic"] as! String)"
+            } else {
+                cell.RoomMessageEntryInlineText.stringValue = "Room topic removed"
+            }
             return cell
         case "m.room.canonical_alias":
             cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Primary room alias set to \(event.content["alias"] as! String)"
+            if event.content["alias"] as! String != "" {
+                cell.RoomMessageEntryInlineText.stringValue = "Primary room alias set to \(event.content["alias"] as! String)"
+            } else {
+                cell.RoomMessageEntryInlineText.stringValue = "Primary room alias removed"
+            }
             break
         case "m.room.create":
             let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.content["creator"] as! String) ?? event.content["creator"] as! String
@@ -235,9 +244,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             print(event)
             break
         }
-        
-       // pthread_mutex_unlock(&roomMessagesMutex);
-        
+
         cell.identifier = nil
         return cell
     }

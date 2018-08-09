@@ -17,6 +17,7 @@
 		391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* MatrixTests.swift */; };
 		391BFE4020C68AD200B4EFEC /* MatrixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */; };
 		3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* RoomSettingsController.swift */; };
+		39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */; };
 		39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C912118716700FF3E5A /* MemberListTableView.swift */; };
 		39432C952118727800FF3E5A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C942118727800FF3E5A /* String.swift */; };
 		39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C96211872F600FF3E5A /* RoomMessageEntry.swift */; };
@@ -72,6 +73,7 @@
 		391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3924444521184ED2001BAEE5 /* RoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsController.swift; sourceTree = "<group>"; };
+		39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPowerLevelsController.swift; sourceTree = "<group>"; };
 		39432C912118716700FF3E5A /* MemberListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListTableView.swift; sourceTree = "<group>"; };
 		39432C942118727800FF3E5A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		39432C96211872F600FF3E5A /* RoomMessageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageEntry.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				3943E0E820CC21590061D51D /* AboutViewController.swift */,
 				39F3125C2118764100A75E16 /* MemberListController.swift */,
 				39F312622118F21C00A75E16 /* RoomAliasesController.swift */,
+				39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
 				39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */,
+				39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,
 				39432C952118727800FF3E5A /* String.swift in Sources */,
 				3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */,
