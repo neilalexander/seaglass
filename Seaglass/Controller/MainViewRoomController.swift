@@ -144,8 +144,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             }
             
+            var isCoalesced = false
+            if row >= 1 {
+                let previousEvent = MatrixServices.inst.eventCache[roomId]![row-1]
+                isCoalesced = (
+                    event.sender == previousEvent.sender &&
+                    event.type == previousEvent.type &&
+                    previousEvent.ageLocalTs.distance(to: event.ageLocalTs) <= 600
+                )
+            }
+            
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-                if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
+                if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageEntry
                     if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryOutboundCoalescedText.attributedStringValue = cellAttributedStringValue
@@ -168,7 +178,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     break
                 }
             } else {
-                if row >= 1 && event.sender == MatrixServices.inst.eventCache[roomId]![row-1].sender && event.type == MatrixServices.inst.eventCache[roomId]![row-1].type {
+                if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageEntry
                     if cellAttributedStringValue.length > 0 {
                         cell.RoomMessageEntryInboundCoalescedText.attributedStringValue = cellAttributedStringValue
