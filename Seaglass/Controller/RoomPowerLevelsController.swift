@@ -63,6 +63,11 @@ class RoomPowerLevelsController: NSViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)
+        
+        if PowerLevelDefault.integerValue != room!.state.powerLevels.usersDefault {
+           // room!.
+        }
     }
     
 }

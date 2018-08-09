@@ -20,7 +20,7 @@ import Cocoa
 import SwiftMatrixSDK
 import Down
 
-class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource {
+class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     @IBOutlet var RoomName: NSTokenField!
     @IBOutlet var RoomTopic: NSTextField!
@@ -36,6 +36,24 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
+    var roomIsTyping: Bool = false
+    var roomTyping: Bool {
+        set {
+            if (newValue && !roomIsTyping) || (!newValue && roomIsTyping) {
+                roomIsTyping = newValue
+                if roomId != "" {
+                    MatrixServices.inst.session.room(withRoomId: roomId).sendTypingNotification(typing: roomIsTyping, timeout: 30) { (response) in
+                        if response.isFailure {
+                            print("Failed to send typing notification for room \(self.roomId)")
+                        }
+                    }
+                }
+            }
+        }
+        get {
+            return roomIsTyping
+        }
+    }
 
     @IBAction func messageEntryFieldSubmit(_ sender: NSTextField) {
         if roomId == "" {
@@ -61,6 +79,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             formattedText = unformattedText
         }
         
+        self.roomTyping = false
+        
         var returnedEvent: MXEvent?
         if sender.stringValue.starts(with: "/me ") {
             let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 4)
@@ -83,6 +103,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 sender.isEnabled = true
                 sender.becomeFirstResponder()
             }
+        }
+    }
+    
+    public override func controlTextDidChange(_ obj: Notification) {
+        if obj.object as? NSTextField == RoomMessageInput {
+            roomTyping = !RoomMessageInput.stringValue.isEmpty
         }
     }
     
@@ -262,6 +288,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if entry.roomsCacheEntry?.roomId == nil {
             return
         }
+        
+        roomTyping = false
 
         RoomName.isEnabled = true
         RoomInfoButton.isEnabled = true

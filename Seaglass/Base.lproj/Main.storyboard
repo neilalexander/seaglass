@@ -1134,6 +1134,7 @@ DQ
                                 </textFieldCell>
                                 <connections>
                                     <action selector="messageEntryFieldSubmit:" target="WXz-Io-9JK" id="Puq-g5-zAQ"/>
+                                    <outlet property="delegate" destination="WXz-Io-9JK" id="smA-K7-KmE"/>
                                 </connections>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-y5-gjY">
