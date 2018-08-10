@@ -1103,7 +1103,7 @@ DQ
                             <button identifier="ConnectionStatus" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewz-Fy-OEj">
                                 <rect key="frame" x="15" y="12" width="170" height="19"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="roundRect" title="Offline" bezelStyle="roundedRect" imagePosition="left" enabled="NO" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="o7F-Ih-BP0">
+                                <buttonCell key="cell" type="roundRect" title="Seaglass" bezelStyle="roundedRect" imagePosition="left" enabled="NO" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="o7F-Ih-BP0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
@@ -1305,6 +1305,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ru8-q8-hdY" secondAttribute="bottom" constant="1" id="gDZ-RZ-bo0"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ucJ-c5-qi7" secondAttribute="bottom" id="wxy-lK-cVa"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="RoomMessageEntryInboundFrom" destination="C9D-k5-z63" id="qTw-rh-abm"/>
@@ -1872,9 +1873,17 @@ DQ
                                     <segue destination="jxX-9w-UBJ" kind="sheet" identifier="SegueToAliasList" id="get-d7-kGa"/>
                                 </connections>
                             </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qDO-rb-AIM">
+                                <rect key="frame" x="302" y="23" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="ButtonAliases" destination="sDh-gT-Usu" id="GjY-eb-9Vp"/>
+                        <outlet property="ButtonCancel" destination="myq-x2-Gyz" id="V4A-fE-4Ca"/>
+                        <outlet property="ButtonPermissions" destination="CSH-f0-O0Q" id="eMB-Zl-pmf"/>
+                        <outlet property="ButtonSave" destination="0QZ-QV-Bzn" id="gMK-Qo-mQX"/>
                         <outlet property="RoomAccessExceptGuests" destination="JXg-rb-Tf9" id="e7j-gr-KEv"/>
                         <outlet property="RoomAccessIncludingGuests" destination="cY8-Ji-QeO" id="dqU-Ur-DGe"/>
                         <outlet property="RoomAccessOnlyInvited" destination="LeR-Pc-hgf" id="QUG-Qb-r2b"/>
@@ -1885,6 +1894,7 @@ DQ
                         <outlet property="RoomName" destination="fWS-OG-RG6" id="0um-Ax-Jma"/>
                         <outlet property="RoomPublishInDirectory" destination="yF1-Xd-Tbh" id="X5H-H3-g5S"/>
                         <outlet property="RoomTopic" destination="vmy-IP-Rou" id="ayU-7D-PBr"/>
+                        <outlet property="StatusSpinner" destination="qDO-rb-AIM" id="k8s-2J-emd"/>
                     </connections>
                 </viewController>
                 <customObject id="QYz-ci-Q2H" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -2045,6 +2055,10 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="0ia-dA-nhc">
+                                <rect key="frame" x="217" y="23" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
@@ -2052,6 +2066,7 @@ DQ
                         <outlet property="AliasCancel" destination="IeB-Dg-mOB" id="bsH-E5-GPI"/>
                         <outlet property="AliasSave" destination="HFU-c1-c3z" id="UWq-ee-ebd"/>
                         <outlet property="AliasTable" destination="iCJ-gw-tvG" id="ANC-QH-pWj"/>
+                        <outlet property="StatusSpinner" destination="0ia-dA-nhc" id="A9f-Ru-I1v"/>
                     </connections>
                 </viewController>
                 <customObject id="HM6-5k-WPX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -3042,6 +3057,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U6j-Ng-hGh"/>
+        <segue reference="Clh-ah-Yzy"/>
     </inferredMetricsTieBreakers>
 </document>

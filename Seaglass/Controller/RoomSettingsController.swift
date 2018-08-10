@@ -20,6 +20,12 @@ import Cocoa
 import SwiftMatrixSDK
 
 class RoomSettingsController: NSViewController {
+    @IBOutlet var ButtonSave: NSButton!
+    @IBOutlet var ButtonCancel: NSButton!
+    @IBOutlet var ButtonPermissions: NSButton!
+    @IBOutlet var ButtonAliases: NSButton!
+    @IBOutlet var StatusSpinner: NSProgressIndicator!
+    
     var initialRoomName: String! = ""
     var initialRoomTopic: String! = ""
     var initialRoomPublishInDirectory: NSControl.StateValue! = .off
@@ -89,25 +95,57 @@ class RoomSettingsController: NSViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
+        StatusSpinner.isHidden = false
+        StatusSpinner.startAnimation(self)
+        for button in [ ButtonSave, ButtonCancel, ButtonPermissions, ButtonAliases ] {
+            button!.isEnabled = false
+        }
+        
+        let group = DispatchGroup()
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         
         if RoomName.stringValue != initialRoomName {
+            group.enter()
             room.setName(RoomName.stringValue) { (response) in
-                print(response)
+                if response.isFailure {
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set room name"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
+                }
+                group.leave()
             }
         }
         
         if RoomTopic.stringValue != initialRoomTopic {
+            group.enter()
             room.setTopic(RoomTopic.stringValue) { (response) in
-                print(response)
+                if response.isFailure {
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set room topic"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
+                }
+                group.leave()
             }
         }
         
         if initialRoomPublishInDirectory != RoomPublishInDirectory.state {
+            group.enter()
             room.setDirectoryVisibility(RoomPublishInDirectory.state == .on ? .public : .private) { (response) in
                 if response.isFailure {
-                    print("Failed to set directory visibility: \(response.error!.localizedDescription)")
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set directory visibility"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
+                group.leave()
             }
         }
         
@@ -133,15 +171,29 @@ class RoomSettingsController: NSViewController {
                 joinrule = .invite
                 guestrule = .forbidden
             }
+            group.enter()
             room.setJoinRule(joinrule) { (response) in
                 if response.isFailure {
-                    print("Failed to set join rule: \(response.error!.localizedDescription)")
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set join rule"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
+                group.leave()
             }
+            group.enter()
             room.setGuestAccess(guestrule) { (response) in
                 if response.isFailure {
-                    print("Failed to set guest access: \(response.error!.localizedDescription)")
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set guest access"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
+                group.leave()
             }
         }
         
@@ -166,14 +218,28 @@ class RoomSettingsController: NSViewController {
             default:
                 historyvisibility = .shared
             }
+            group.enter()
             room.setHistoryVisibility(historyvisibility) { (response) in
                 if response.isFailure {
-                    print("Failed to set history visibility: \(response.error!.localizedDescription)")
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set history visibility"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
+                group.leave()
             }
         }
         
-        sender.window?.close()
+        group.notify(queue: .main, execute: {
+            self.StatusSpinner.isHidden = true
+            self.StatusSpinner.stopAnimation(self)
+            for button in [ self.ButtonSave, self.ButtonCancel, self.ButtonPermissions, self.ButtonAliases ] {
+                button!.isEnabled = true
+            }
+            sender.window?.close()
+        })
     }
     
     override func viewDidLoad() {
@@ -204,6 +270,7 @@ class RoomSettingsController: NSViewController {
             } else {
                 self.RoomPublishInDirectory.state = .off
             }
+            self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
         RoomAccessOnlyInvited.state = !room.state.isJoinRulePublic ? .on : .off

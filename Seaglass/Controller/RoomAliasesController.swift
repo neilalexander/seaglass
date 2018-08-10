@@ -19,11 +19,12 @@
 import Cocoa
 
 class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
-    
+
     @IBOutlet var AliasTable: NSTableView!
     @IBOutlet var AliasSave: NSButton!
     @IBOutlet var AliasCancel: NSButton!
     @IBOutlet var AliasAdd: NSButton!
+    @IBOutlet var StatusSpinner: NSProgressIndicator!
     
     var canonicalRoomAlias: String = ""
     var roomAliases: [RoomAliasEntry] = []
@@ -74,8 +75,6 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     func deleteButtonClicked(sender: RoomAliasEntry) {
-        print("Delete button clicked")
-        
         let index = roomAliases.index(of: sender)
         roomAliases.remove(at: index!)
         AliasTable.removeRows(at: IndexSet.init(integer: index!), withAnimation: [ .slideUp, .effectFade ])
@@ -86,7 +85,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         if sender != AliasAdd {
             return
         }
-        print("Add button clicked")
+    
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
         cell?.parent = self
@@ -99,7 +98,14 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         if sender != AliasSave {
             return
         }
-        print("Save button clicked")
+        
+        StatusSpinner.isHidden = false
+        StatusSpinner.startAnimation(self)
+        for button in [ AliasSave, AliasCancel, AliasAdd ] {
+            button!.isEnabled = false
+        }
+        
+        let group = DispatchGroup()
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let aliases = room!.state.aliases != nil ? room!.state.aliases : []
@@ -119,10 +125,17 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 continue
             }
             if !aliases!.contains(uiAlias) {
+                group.enter()
                 room?.addAlias(uiAlias, completion: { (response) in
                     if response.isFailure {
-                        print("Failed to add new alias \(uiAlias)")
+                        let alert = NSAlert()
+                        alert.messageText = "Failed to add alias \(uiAlias)"
+                        alert.informativeText = response.error!.localizedDescription
+                        alert.alertStyle = .warning
+                        alert.addButton(withTitle: "OK")
+                        alert.runModal()
                     }
+                    group.leave()
                 })
             }
         }
@@ -132,23 +145,44 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 continue
             }
             if !uiAliases.contains(alias) {
+                group.enter()
                 room?.removeAlias(alias, completion: { (response) in
                     if response.isFailure {
-                        print("Failed to remove alias \(alias)")
+                        let alert = NSAlert()
+                        alert.messageText = "Failed to remove alias \(alias)"
+                        alert.informativeText = response.error!.localizedDescription
+                        alert.alertStyle = .warning
+                        alert.addButton(withTitle: "OK")
+                        alert.runModal()
                     }
+                    group.leave()
                 })
             }
         }
         
         if uiCanonicalAlias != room?.state.canonicalAlias {
+            group.enter()
             room?.setCanonicalAlias(uiCanonicalAlias, completion: { (response) in
                 if response.isFailure {
-                    print("Failed to set canonical alias \(uiCanonicalAlias)")
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to set primary alias to \(uiCanonicalAlias)"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
+                group.leave()
             })
         }
         
-        sender.window?.close()
+        group.notify(queue: .main, execute: {
+            self.StatusSpinner.isHidden = true
+            self.StatusSpinner.stopAnimation(self)
+            for button in [ self.AliasSave, self.AliasCancel, self.AliasAdd ] {
+                button!.isEnabled = false
+            }
+            sender.window?.close()
+        })
     }
     
 }
