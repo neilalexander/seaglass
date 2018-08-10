@@ -93,7 +93,7 @@ DQ
                 </viewController>
                 <customObject id="1ac-0U-iUk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="-186.5"/>
+            <point key="canvasLocation" x="747" y="-180"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
@@ -113,7 +113,11 @@ DQ
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="bia-fQ-Qtp" kind="show" id="U6j-Ng-hGh"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -678,13 +682,13 @@ DQ
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="42"/>
+            <point key="canvasLocation" x="190" y="36"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="450" height="200"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
@@ -945,7 +949,7 @@ DQ
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
-                                <rect key="frame" x="0.0" y="39" width="257" height="5"/>
+                                <rect key="frame" x="0.0" y="39" width="257" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-h1-DV9">
@@ -964,7 +968,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="xjQ-w5-K3A" kind="sheet" id="ph7-ht-XEP"/>
+                                    <segue destination="bia-fQ-Qtp" kind="show" id="Clh-ah-Yzy"/>
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="66" horizontalPageScroll="10" verticalLineScroll="66" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-K1-Lqo">
@@ -2402,10 +2406,6 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </tokenFieldCell>
                             </tokenField>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="1qe-2v-KA6">
-                                <rect key="frame" x="20" y="297" width="499" height="168"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-W2-uQr">
                                 <rect key="frame" x="14" y="13" width="92" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2419,17 +2419,6 @@ Gw
                                     <action selector="dismissController:" target="xjQ-w5-K3A" id="lyJ-27-fYM"/>
                                     <segue destination="Nr1-lW-dRd" kind="sheet" id="fdm-FT-4zf"/>
                                 </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nt-iK-p1g">
-                                <rect key="frame" x="433" y="13" width="92" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Fu-p4-xRe">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kue-mD-bWd">
                                 <rect key="frame" x="18" y="266" width="173" height="18"/>
@@ -2466,31 +2455,32 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBC-7a-v1e">
-                                <rect key="frame" x="341" y="13" width="92" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oFv-xc-d7G">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="xjQ-w5-K3A" id="bC2-u1-aZt"/>
-                                </connections>
-                            </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-fZ-Hs9" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
                                 <rect key="frame" x="20" y="319" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserAddTemplate" id="HLa-dP-CMY"/>
                             </imageView>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="1qe-2v-KA6">
+                                <rect key="frame" x="20" y="308" width="499" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </box>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="qZt-zx-FlX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <toolbar implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="0ys-f4-XSn">
+                    <allowedToolbarItems>
+                        <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="IfS-Pz-YCy"/>
+                        <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Jmd-9c-iX0"/>
+                        <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="CbK-O5-j4i"/>
+                    </allowedToolbarItems>
+                    <defaultToolbarItems>
+                        <toolbarItem reference="CbK-O5-j4i"/>
+                        <toolbarItem reference="IfS-Pz-YCy"/>
+                    </defaultToolbarItems>
+                </toolbar>
             </objects>
-            <point key="canvasLocation" x="268.5" y="1904.5"/>
+            <point key="canvasLocation" x="402" y="2005"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wgK-pz-Eof">
@@ -2635,7 +2625,7 @@ DQ
                 </viewController>
                 <customObject id="ZjY-4u-aBz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="2368"/>
+            <point key="canvasLocation" x="401" y="2413"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="e7s-8z-WY8">
@@ -2791,7 +2781,7 @@ DQ
                 </viewController>
                 <customObject id="Yc3-Ct-VMt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="671"/>
+            <point key="canvasLocation" x="2" y="654"/>
         </scene>
         <!--Login View Settings Controller-->
         <scene sceneID="IF4-CQ-Fou">
@@ -2938,6 +2928,27 @@ DQ
             </objects>
             <point key="canvasLocation" x="289" y="1222"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="rhq-PB-W3q">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="bia-fQ-Qtp" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="T1J-mp-AQt">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="320" y="352" width="212" height="97"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
+                        <connections>
+                            <outlet property="delegate" destination="bia-fQ-Qtp" id="yyj-Hs-IHB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="xjQ-w5-K3A" kind="relationship" relationship="window.shadowedContentViewController" id="d4I-fh-O9u"/>
+                    </connections>
+                </windowController>
+                <customObject id="CCg-xY-kAg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="464" y="1579"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
@@ -2960,4 +2971,7 @@ DQ
         <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="U6j-Ng-hGh"/>
+    </inferredMetricsTieBreakers>
 </document>
