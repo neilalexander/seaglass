@@ -21,6 +21,9 @@ import Cocoa
 class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     
     @IBOutlet var AliasTable: NSTableView!
+    @IBOutlet var AliasSave: NSButton!
+    @IBOutlet var AliasCancel: NSButton!
+    @IBOutlet var AliasAdd: NSButton!
     
     var canonicalRoomAlias: String = ""
     var roomAliases: [RoomAliasEntry] = []
@@ -71,6 +74,8 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     func deleteButtonClicked(sender: RoomAliasEntry) {
+        print("Delete button clicked")
+        
         let index = roomAliases.index(of: sender)
         roomAliases.remove(at: index!)
         AliasTable.removeRows(at: IndexSet.init(integer: index!), withAnimation: [ .slideUp, .effectFade ])
@@ -78,6 +83,10 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     @IBAction func addButtonClicked(_ sender: NSButton) {
+        if sender != AliasAdd {
+            return
+        }
+        print("Add button clicked")
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
         cell?.parent = self
@@ -87,6 +96,10 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
+        if sender != AliasSave {
+            return
+        }
+        print("Save button clicked")
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
         let aliases = room!.state.aliases
