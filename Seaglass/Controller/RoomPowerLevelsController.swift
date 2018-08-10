@@ -44,21 +44,23 @@ class RoomPowerLevelsController: NSViewController {
         if roomId != "" {
             let room = MatrixServices.inst.session.room(withRoomId: roomId)
             
-            PowerLevelDefault.integerValue = room!.state.powerLevels.usersDefault
-            PowerLevelSendMessage.integerValue = room!.state.powerLevels.eventsDefault
-            PowerLevelInvite.integerValue = room!.state.powerLevels.invite
-           // PowerLevelConfigure.stringValue = room?.state.powerLevels.
-            PowerLevelKick.integerValue = room!.state.powerLevels.kick
-            PowerLevelBan.integerValue = room!.state.powerLevels.ban
-            PowerLevelRedactOther.integerValue = room!.state.powerLevels.redact
-           // PowerLevelNotifyAll.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeName.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeAvatar.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeCanonicalAlias.stringValue = room?.state.powerLevels
-           // PowerLevelChangeHistory.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeJoinRule.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeTopic.stringValue = room?.state.powerLevels.
-           // PowerLevelChangeWidgets.stringValue = room?.state.powerLevels.
+            print(room!.state.powerLevels.events)
+            
+            PowerLevelDefault.integerValue = room?.state.powerLevels.usersDefault ?? 0
+            PowerLevelSendMessage.integerValue = room?.state.powerLevels.eventsDefault ?? 0
+            PowerLevelInvite.integerValue = room?.state.powerLevels.invite ?? 0
+            PowerLevelConfigure.integerValue = room?.state.powerLevels.events["m.room.power_levels"] as? Int ?? 50
+            PowerLevelKick.integerValue = room?.state.powerLevels.kick ?? 50
+            PowerLevelBan.integerValue = room?.state.powerLevels.ban ?? 50
+            PowerLevelRedactOther.integerValue = room?.state.powerLevels.redact ?? 50
+           // PowerLevelNotifyAll.integerValue = room?.state.powerLevels. ?? 50
+            PowerLevelChangeName.integerValue = room?.state.powerLevels.events["m.room.name"] as? Int ?? 50
+            PowerLevelChangeAvatar.integerValue = room?.state.powerLevels.events["m.room.avatar"] as? Int ?? 50
+            PowerLevelChangeCanonicalAlias.integerValue = room?.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
+            PowerLevelChangeHistory.integerValue = room?.state.powerLevels.events["m.room.history_visibility"] as? Int ?? 100
+           // PowerLevelChangeJoinRule.integerValue = room?.state.powerLevels. ?? 100
+            PowerLevelChangeTopic.integerValue = room?.state.powerLevels.events["m.room.topic"] as? Int ?? 50
+            PowerLevelChangeWidgets.integerValue = room?.state.powerLevels.events["im.vector.modular.widgets"] as? Int ?? 50
         }
     }
     
