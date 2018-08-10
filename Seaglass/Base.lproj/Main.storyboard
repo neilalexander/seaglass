@@ -93,7 +93,7 @@ DQ
                 </viewController>
                 <customObject id="1ac-0U-iUk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="-186.5"/>
+            <point key="canvasLocation" x="747" y="-180"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
@@ -113,7 +113,11 @@ DQ
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="bia-fQ-Qtp" kind="show" id="U6j-Ng-hGh"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -684,7 +688,7 @@ DQ
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="450" height="200"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
@@ -964,7 +968,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="xjQ-w5-K3A" kind="sheet" id="ph7-ht-XEP"/>
+                                    <segue destination="bia-fQ-Qtp" kind="show" id="Clh-ah-Yzy"/>
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="66" horizontalPageScroll="10" verticalLineScroll="66" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-K1-Lqo">
@@ -2490,7 +2494,20 @@ Gw
                 </viewController>
                 <customObject id="qZt-zx-FlX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268.5" y="1904.5"/>
+            <point key="canvasLocation" x="515" y="1948"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="TDb-Eg-Du5">
+            <objects>
+                <viewController id="nCV-ms-r0K" sceneMemberID="viewController">
+                    <view key="view" id="QpN-fv-yIQ">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="xWW-NS-WGo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1246" y="1549"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wgK-pz-Eof">
@@ -2635,7 +2652,7 @@ DQ
                 </viewController>
                 <customObject id="ZjY-4u-aBz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="2368"/>
+            <point key="canvasLocation" x="514" y="2381"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="e7s-8z-WY8">
@@ -2938,6 +2955,27 @@ DQ
             </objects>
             <point key="canvasLocation" x="289" y="1222"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="rhq-PB-W3q">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="bia-fQ-Qtp" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="T1J-mp-AQt">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="320" y="352" width="212" height="97"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
+                        <connections>
+                            <outlet property="delegate" destination="bia-fQ-Qtp" id="yyj-Hs-IHB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="xjQ-w5-K3A" kind="relationship" relationship="window.shadowedContentViewController" id="d4I-fh-O9u"/>
+                    </connections>
+                </windowController>
+                <customObject id="CCg-xY-kAg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="1554"/>
+        </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
@@ -2960,4 +2998,7 @@ DQ
         <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="U6j-Ng-hGh"/>
+    </inferredMetricsTieBreakers>
 </document>
