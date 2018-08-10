@@ -102,7 +102,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         print("Save button clicked")
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
-        let aliases = room!.state.aliases
+        let aliases = room!.state.aliases != nil ? room!.state.aliases : []
         
         var uiCanonicalAlias: String = ""
         var uiAliases: [String] = []
