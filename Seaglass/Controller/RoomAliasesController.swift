@@ -179,7 +179,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
             self.StatusSpinner.isHidden = true
             self.StatusSpinner.stopAnimation(self)
             for button in [ self.AliasSave, self.AliasCancel, self.AliasAdd ] {
-                button!.isEnabled = false
+                button!.isEnabled = true
             }
             sender.window?.close()
         })
