@@ -189,7 +189,7 @@ class MatrixServices: NSObject {
         }
         
         room?.liveTimeline.resetPagination()
-        room?.liveTimeline.paginate(30, direction: .backwards, onlyFromStore: false) { _ in
+        room?.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
             // complete?
         }
     }

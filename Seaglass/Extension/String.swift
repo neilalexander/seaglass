@@ -31,7 +31,7 @@ extension String {
         
         let parser = TSMarkdownParser.standard()
         parser.monospaceAttributes["NSColor"] = NSColor.black
-        parser.monospaceAttributes["NSFont"] = NSFont.monospacedDigitSystemFont(ofSize: NSFont.systemFontSize, weight: .regular)
+        parser.monospaceAttributes["NSFont"] = NSFont.init(name: "Menlo", size: NSFont.smallSystemFontSize)
         parser.quoteAttributes[0]["NSColor"] = NSColor.gray
         parser.quoteAttributes[0]["NSFont"] = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         
