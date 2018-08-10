@@ -111,7 +111,11 @@ class MatrixServices: NSObject {
             }
             
             self.state = .starting
-            //self.session.crypto.warnOnUnknowDevices = false
+            
+            if self.session.crypto != nil {
+                self.session.crypto.warnOnUnknowDevices = false
+            }
+            
             self.session.start { response in
                 guard response.isSuccess else {
                     print("Assertion failed: setStore response was not true")
