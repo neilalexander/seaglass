@@ -152,6 +152,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let event = MatrixServices.inst.eventCache[roomId]![row]
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
+        
+        let padlockWidth: CGFloat = 16
+        let padlockHeight: CGFloat = 12
+        let padlockColor: NSColor = event.isEncrypted ?
+            NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
+            NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
+        let padlockImage: NSImage = event.isEncrypted ?
+            NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
+            NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
+        
         var cell: RoomMessageEntry
         
         switch event.type {
@@ -191,9 +201,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         cell.RoomMessageEntryOutboundCoalescedText.stringValue = cellStringValue
                     }
                     cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryOutboundCoalescedPadlock.image = event.isEncrypted ? NSImage(named: NSImage.Name.lockLockedTemplate) : NSImage(named: NSImage.Name.lockUnlockedTemplate)
-                    cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(16, 12) : NSMakeSize(0, 12))
-                    cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= 16 - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
+                    cell.RoomMessageEntryOutboundCoalescedPadlock.image = padlockImage
+                    cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
+                    cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
                     break
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageEntry
@@ -205,9 +215,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         cell.RoomMessageEntryOutboundText.stringValue = cellStringValue
                     }
                     cell.RoomMessageEntryOutboundPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryOutboundPadlock.image = event.isEncrypted ? NSImage(named: NSImage.Name.lockLockedTemplate) : NSImage(named: NSImage.Name.lockUnlockedTemplate)
-                    cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(16, 12) : NSMakeSize(0, 12))
-                    cell.RoomMessageEntryOutboundTextConstraint.constant -= 16 - cell.RoomMessageEntryOutboundPadlock.frame.size.width
+                    cell.RoomMessageEntryOutboundPadlock.image = padlockImage
+                    cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
+                    cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
                     if event.sentState == MXEventSentStateSending {
                         cell.alphaValue = 0.4
                     }
@@ -222,9 +232,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         cell.RoomMessageEntryInboundCoalescedText.stringValue = cellStringValue
                     }
                     cell.RoomMessageEntryInboundCoalescedPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryInboundCoalescedPadlock.image = event.isEncrypted ? NSImage(named: NSImage.Name.lockLockedTemplate) : NSImage(named: NSImage.Name.lockUnlockedTemplate)
-                    cell.RoomMessageEntryInboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(16, 12) : NSMakeSize(0, 12))
-                    cell.RoomMessageEntryInboundCoalescedTextConstraint.constant -= 16 - cell.RoomMessageEntryInboundCoalescedPadlock.frame.size.width
+                    cell.RoomMessageEntryInboundCoalescedPadlock.image = padlockImage
+                    cell.RoomMessageEntryInboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
+                    cell.RoomMessageEntryInboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundCoalescedPadlock.frame.size.width
                     break
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageEntry
@@ -236,9 +246,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         cell.RoomMessageEntryInboundText.stringValue = cellStringValue
                     }
                     cell.RoomMessageEntryInboundPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryInboundPadlock.image = event.isEncrypted ? NSImage(named: NSImage.Name.lockLockedTemplate) : NSImage(named: NSImage.Name.lockUnlockedTemplate)
-                    cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(16, 12) : NSMakeSize(0, 12))
-                    cell.RoomMessageEntryInboundTextConstraint.constant -= 16 - cell.RoomMessageEntryInboundPadlock.frame.size.width
+                    cell.RoomMessageEntryInboundPadlock.image = padlockImage
+                    cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
+                    cell.RoomMessageEntryInboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundPadlock.frame.size.width
                     if event.sentState == MXEventSentStateSending {
                         cell.alphaValue = 0.4
                     }

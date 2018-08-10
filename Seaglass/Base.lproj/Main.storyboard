@@ -1288,7 +1288,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
+                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1347,7 +1347,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="ZDC-ek-eU9"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
+                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1427,7 +1427,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
+                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1487,7 +1487,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="afV-jr-MaQ"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
+                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
