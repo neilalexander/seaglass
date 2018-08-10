@@ -183,8 +183,16 @@ class MatrixServices: NSObject {
                 } else {
                     self.eventCache[event.roomId]!.insert(event, at: 0)
                 }
-                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
+                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil);
                 self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+            } else {
+                let index = self.eventCache[event.roomId]!.index(of: event)
+                if index != nil {
+                    let original = self.eventCache[event.roomId]![index!].eventId
+                    self.eventCache[event.roomId]![index!] = event
+                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original);
+                    self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+                }
             }
         }
         

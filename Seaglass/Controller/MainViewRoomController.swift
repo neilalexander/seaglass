@@ -84,26 +84,29 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         var returnedEvent: MXEvent?
         if sender.stringValue.starts(with: "/me ") {
             let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 4)
+            var localReturnedEvent: String? = nil
             MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
-                    sender.stringValue = ""
                     MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
-                sender.isEnabled = true
-                sender.becomeFirstResponder()
             }
+            localReturnedEvent = returnedEvent?.eventId ?? nil
+            self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: nil)
         } else {
+            var localReturnedEvent: String? = nil
             MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
-                    sender.stringValue = ""
                     MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
-                sender.isEnabled = true
-                sender.becomeFirstResponder()
             }
+            localReturnedEvent = returnedEvent?.eventId ?? nil
+            self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: nil)
         }
+        sender.stringValue = ""
+        sender.isEnabled = true
+        sender.becomeFirstResponder()
     }
     
     public override func controlTextDidChange(_ obj: Notification) {
@@ -346,12 +349,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
     }
     
-    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?) {
         if event.roomId == nil {
             return
         }
         if !MatrixServices.inst.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
             return
+        }
+        if replaces != nil {
+            let index = MatrixServices.inst.eventCache[event.roomId]!.index(where: { $0.eventId == event.eventId })
+            if index != nil {
+                RoomMessageTableView.beginUpdates()
+                RoomMessageTableView.reloadData(forRowIndexes: IndexSet.init(integer: index!), columnIndexes: IndexSet.init(integer: 0))
+                RoomMessageTableView.noteNumberOfRowsChanged()
+                RoomMessageTableView.endUpdates()
+                return
+            }
         }
         switch event.type {
         case "m.typing":

@@ -33,7 +33,7 @@ protocol MatrixRoomsDelegate: AnyObject {
 
 protocol MatrixRoomDelegate: AnyObject {
     func uiDidSelectRoom(entry: RoomListEntry)
-    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?)
     func matrixDidRoomUserJoin()
     func martixDidRoomUserPart()
 }
