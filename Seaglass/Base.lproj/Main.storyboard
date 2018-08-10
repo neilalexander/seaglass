@@ -1146,7 +1146,7 @@ DQ
                                 </tokenFieldCell>
                             </tokenField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
-                                <rect key="frame" x="0.0" y="39" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="39" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
                             <textField identifier="RoomInput" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-A5-RaT">
@@ -1260,7 +1260,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField identifier="RoomMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
-                                                                    <rect key="frame" x="46" y="0.0" width="485" height="16"/>
+                                                                    <rect key="frame" x="62" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
                                                                             <mutableData key="keyedArchiveRepresentation">
@@ -1283,24 +1283,35 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs">
+                                                                    <rect key="frame" x="48" y="2" width="16" height="12"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="C9D-k5-z63" secondAttribute="trailing" constant="3" id="2E1-5X-4yL"/>
-                                                                <constraint firstAttribute="bottom" secondItem="ucJ-c5-qi7" secondAttribute="bottom" id="5S1-vr-0Fe"/>
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="6m0-ef-Shk"/>
-                                                                <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="E7U-E2-p9G"/>
+                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="72B-Rv-dBp"/>
+                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="64" id="Adj-Cj-u0h"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dcR-Ti-wrs" secondAttribute="bottom" id="D3m-oy-8rQ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="M9I-a1-b01"/>
+                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="SEv-1m-Zjw"/>
+                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="TKs-nR-jdd"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="WZ2-ZC-KYv"/>
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="ZcO-dR-pWR"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ru8-q8-hdY" secondAttribute="bottom" constant="1" id="gDZ-RZ-bo0"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="tW9-ec-nbp"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="wgQ-1E-BxK"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="RoomMessageEntryInboundFrom" destination="C9D-k5-z63" id="qTw-rh-abm"/>
                                                                 <outlet property="RoomMessageEntryInboundIcon" destination="ru8-q8-hdY" id="erc-Cq-6uC"/>
+                                                                <outlet property="RoomMessageEntryInboundPadlock" destination="dcR-Ti-wrs" id="yjE-M7-KiY"/>
                                                                 <outlet property="RoomMessageEntryInboundText" destination="ucJ-c5-qi7" id="1hv-BW-jQN"/>
+                                                                <outlet property="RoomMessageEntryInboundTextConstraint" destination="Adj-Cj-u0h" id="Rbn-6c-Apd"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryInboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="iEZ-b3-CBD" userLabel="Incoming Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -1308,7 +1319,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
-                                                                    <rect key="frame" x="46" y="0.0" width="485" height="16"/>
+                                                                    <rect key="frame" x="62" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
                                                                             <mutableData key="keyedArchiveRepresentation">
@@ -1331,15 +1342,26 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bkn-PY-xBl">
+                                                                    <rect key="frame" x="48" y="2" width="16" height="12"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="12" id="ZDC-ek-eU9"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="NCz-ko-Fmx"/>
-                                                                <constraint firstAttribute="trailing" secondItem="cZX-Kd-FHZ" secondAttribute="trailing" constant="48" id="Q93-n4-e9W"/>
-                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="48" id="wq2-eL-ZdF"/>
-                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="ych-5Y-mP4"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cZX-Kd-FHZ" secondAttribute="trailing" constant="48" id="7X5-N9-zvw"/>
+                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="CD5-7w-Hvc"/>
+                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="Ylh-Yr-1bJ"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="b0O-hi-QlL"/>
+                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="hEh-Gf-bMJ"/>
+                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="48" id="yIo-8E-Hei"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="RoomMessageEntryInboundCoalescedPadlock" destination="Bkn-PY-xBl" id="V65-u8-6NE"/>
                                                                 <outlet property="RoomMessageEntryInboundCoalescedText" destination="cZX-Kd-FHZ" id="fAt-zA-2iP"/>
+                                                                <outlet property="RoomMessageEntryInboundCoalescedTextConstraint" destination="CD5-7w-Hvc" id="fzs-J2-hUe"/>
                                                                 <outlet property="RoomMessageEntryInboundText" destination="cZX-Kd-FHZ" id="nl7-iq-CvI"/>
                                                             </connections>
                                                         </tableCellView>
@@ -1348,7 +1370,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="RoomMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
-                                                                    <rect key="frame" x="46" y="0.0" width="485" height="16"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
                                                                             <mutableData key="keyedArchiveRepresentation">
@@ -1400,24 +1422,36 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
                                                                 </imageView>
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M">
+                                                                    <rect key="frame" x="513" y="2" width="16" height="12"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="18" id="1iV-BG-2ev"/>
+                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="48" id="33d-Yw-gnS"/>
+                                                                <constraint firstAttribute="trailing" secondItem="eNx-7M-A4V" secondAttribute="trailing" constant="64" id="8CY-bg-Cb6"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eNx-7M-A4V" secondAttribute="bottom" id="AKp-6T-uZC"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="3" id="EFm-Cq-H9m"/>
+                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="30" id="FCg-n9-Lom"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Ldz-hR-14M" secondAttribute="trailing" constant="48" id="Nmj-iz-PLy"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" id="Qbb-0E-GCU"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cp3-pa-dQN" secondAttribute="bottom" constant="1" id="bhq-HZ-qmp"/>
-                                                                <constraint firstAttribute="bottom" secondItem="eNx-7M-A4V" secondAttribute="bottom" id="ifF-fm-P7k"/>
-                                                                <constraint firstAttribute="trailing" secondItem="eNx-7M-A4V" secondAttribute="trailing" constant="48" id="qnY-qm-hHt"/>
+                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="28" id="lWD-EK-69e"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Cp3-pa-dQN" secondAttribute="trailing" constant="10" id="sNH-yL-ftf"/>
-                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="28" id="tfq-DR-zhk"/>
                                                                 <constraint firstItem="Cp3-pa-dQN" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="u4T-8g-nOu"/>
-                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="48" id="uMs-Ol-lEU"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="RoomMessageEntryOutboundFrom" destination="uIe-8Q-fxc" id="ul3-Pg-oNf"/>
                                                                 <outlet property="RoomMessageEntryOutboundIcon" destination="Cp3-pa-dQN" id="tIh-fa-Wqi"/>
+                                                                <outlet property="RoomMessageEntryOutboundPadlock" destination="Ldz-hR-14M" id="EYa-2z-To0"/>
                                                                 <outlet property="RoomMessageEntryOutboundText" destination="eNx-7M-A4V" id="3rF-8j-weD"/>
+                                                                <outlet property="RoomMessageEntryOutboundTextConstraint" destination="8CY-bg-Cb6" id="pO3-bZ-gmv"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryOutboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="uiY-zu-QBZ" userLabel="Outgoing Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -1425,7 +1459,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="RoomMessageEntryOutboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-BP-DZa">
-                                                                    <rect key="frame" x="46" y="0.0" width="485" height="16"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
                                                                             <mutableData key="keyedArchiveRepresentation">
@@ -1448,16 +1482,27 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB">
+                                                                    <rect key="frame" x="519" y="2" width="10" height="12"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="12" id="afV-jr-MaQ"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="KDC-BP-DZa" secondAttribute="bottom" id="M5l-yi-J4s"/>
-                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="48" id="lcC-gK-ZtN"/>
-                                                                <constraint firstAttribute="trailing" secondItem="KDC-BP-DZa" secondAttribute="trailing" constant="48" id="pd8-16-gbX"/>
-                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="wfX-mc-EcY"/>
+                                                                <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="7EA-uw-nti"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="01c-6I-5AB" secondAttribute="bottom" constant="2" id="Xan-BJ-AkO"/>
+                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="ae4-Zd-qfK"/>
+                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="48" id="j1q-ql-cEU"/>
+                                                                <constraint firstAttribute="trailing" secondItem="01c-6I-5AB" secondAttribute="trailing" constant="48" id="yUb-pr-FUh"/>
+                                                                <constraint firstAttribute="trailing" secondItem="KDC-BP-DZa" secondAttribute="trailing" constant="64" id="zTv-ub-UnY"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="RoomMessageEntryInboundText" destination="KDC-BP-DZa" id="6Zf-ZV-lyS"/>
+                                                                <outlet property="RoomMessageEntryOutboundCoalescedPadlock" destination="01c-6I-5AB" id="oMH-zb-SbG"/>
                                                                 <outlet property="RoomMessageEntryOutboundCoalescedText" destination="KDC-BP-DZa" id="gTW-Dm-Hvj"/>
+                                                                <outlet property="RoomMessageEntryOutboundCoalescedTextConstraint" destination="zTv-ub-UnY" id="TcK-jw-d8N"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" userLabel="Status Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -2977,6 +3022,7 @@ DQ
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
+        <image name="NSLockLockedTemplate" width="10" height="14"/>
         <image name="NSLockUnlockedTemplate" width="10" height="14"/>
         <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="NSTouchBarAddTemplate" width="14" height="30"/>

@@ -22,13 +22,22 @@ class RoomMessageEntry: NSTableCellView {
     @IBOutlet var RoomMessageEntryInboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryInboundText: NSTextField!
     @IBOutlet var RoomMessageEntryInboundIcon: NSImageView!
+    @IBOutlet var RoomMessageEntryInboundPadlock: NSImageView!
+    @IBOutlet var RoomMessageEntryInboundTextConstraint: NSLayoutConstraint!
     
     @IBOutlet var RoomMessageEntryOutboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundText: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundIcon: NSImageView!
+    @IBOutlet var RoomMessageEntryOutboundPadlock: NSImageView!
+    @IBOutlet var RoomMessageEntryOutboundTextConstraint: NSLayoutConstraint!
     
     @IBOutlet var RoomMessageEntryInboundCoalescedText: NSTextField!
+    @IBOutlet var RoomMessageEntryInboundCoalescedPadlock: NSImageView!
+    @IBOutlet var RoomMessageEntryInboundCoalescedTextConstraint: NSLayoutConstraint!
+    
     @IBOutlet var RoomMessageEntryOutboundCoalescedText: NSTextField!
+    @IBOutlet var RoomMessageEntryOutboundCoalescedPadlock: NSImageView!
+    @IBOutlet var RoomMessageEntryOutboundCoalescedTextConstraint: NSLayoutConstraint!
     
     @IBOutlet var RoomMessageEntryInlineText: NSTextField!
 }
