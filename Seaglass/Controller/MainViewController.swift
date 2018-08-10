@@ -48,7 +48,7 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     weak var servicesDelegate: MatrixServicesDelegate?
     weak var roomsDelegate: MatrixRoomsDelegate?
     weak var channelDelegate: MatrixRoomDelegate?
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -99,7 +99,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     }
     
     func matrixDidLogout() {
-        self.view.window?.endSheet(self.view.window!.attachedSheet!)
+        // self.view.window?.endSheet(self.view.window!.attachedSheet!)
+        self.view.window?.close()
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
             self.view.window?.animator().alphaValue = 0

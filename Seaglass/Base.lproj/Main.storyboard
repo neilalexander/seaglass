@@ -24,7 +24,7 @@
                 </windowController>
                 <customObject id="4Ze-Od-dUm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="-179"/>
+            <point key="canvasLocation" x="604" y="-535"/>
         </scene>
         <!--About Seaglass-->
         <scene sceneID="YdZ-bc-Rgq">
@@ -63,17 +63,6 @@ Copyright 2018 © Avery Pierce</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
-                                <rect key="frame" x="357" y="277" width="121" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="recessed" title="View source code" bezelStyle="recessed" alignment="right" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MgY-YZ-hPJ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                    <font key="font" metaFont="systemBold" size="12"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-cb-2hd">
                                 <rect key="frame" x="403" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -88,12 +77,23 @@ DQ
                                     <action selector="dismissController:" target="mAy-xi-EWG" id="8dl-el-hsj"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
+                                <rect key="frame" x="255" y="13" width="148" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="View source code" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MgY-YZ-hPJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="1ac-0U-iUk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747" y="-180"/>
+            <point key="canvasLocation" x="747" y="-180.5"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
@@ -103,7 +103,7 @@ DQ
                         <items>
                             <menuItem title="Seaglass" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Seaglass" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Seaglass" systemMenu="apple" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
                                         <menuItem title="About Seaglass" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -113,12 +113,24 @@ DQ
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                        <menuItem title="Preferences…" tag="1" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
                                                 <segue destination="bia-fQ-Qtp" kind="show" id="U6j-Ng-hGh"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Log Out" tag="1" keyEquivalent="l" id="Au5-ot-kC2">
+                                            <attributedString key="attributedTitle"/>
+                                            <connections>
+                                                <binding destination="ybo-8F-whA" name="value" keyPath="values.MenuLogout" id="hIt-mw-ht2"/>
+                                                <segue destination="s9W-ym-WSG" kind="modal" id="2KX-Ci-6yp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Change Password..." tag="1" id="L6g-bn-PKc">
+                                            <attributedString key="attributedTitle"/>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4U0-gA-zgX"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
@@ -148,6 +160,9 @@ DQ
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="Voe-Tx-rLC" id="0bk-H1-9f1"/>
+                                    </connections>
                                 </menu>
                                 <connections>
                                     <action selector="terminate:" target="hnw-xV-0zn" id="wEA-oK-7hF"/>
@@ -673,16 +688,24 @@ DQ
                                 </menu>
                             </menuItem>
                         </items>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="R4L-nM-nco"/>
+                        </connections>
                     </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Seaglass" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Seaglass" customModuleProvider="target">
+                    <connections>
+                        <outlet property="MenuSeaglass" destination="uQy-DD-JDr" id="apX-OF-CcS"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="ybo-8F-whA"/>
             </objects>
-            <point key="canvasLocation" x="190" y="36"/>
+            <point key="canvasLocation" x="205" y="-70"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -2348,11 +2371,11 @@ Gw
             <objects>
                 <viewController showSeguePresentationStyle="single" id="xjQ-w5-K3A" sceneMemberID="viewController">
                     <view key="view" id="WDd-9k-mJ3">
-                        <rect key="frame" x="0.0" y="0.0" width="539" height="403"/>
+                        <rect key="frame" x="0.0" y="0.0" width="539" height="351"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIG-Hd-73B">
-                                <rect key="frame" x="18" y="210" width="148" height="17"/>
+                                <rect key="frame" x="18" y="158" width="148" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enable notifications for:" id="tda-pn-sla">
                                     <font key="font" metaFont="system"/>
@@ -2361,7 +2384,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-Vb-cKl">
-                                <rect key="frame" x="18" y="180" width="303" height="18"/>
+                                <rect key="frame" x="18" y="128" width="303" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="When my display name is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="zMk-W8-qL0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2369,7 +2392,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ot0-AK-kdB">
-                                <rect key="frame" x="18" y="154" width="278" height="18"/>
+                                <rect key="frame" x="18" y="102" width="278" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="When my Matrix ID is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="3Og-hM-jac">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2377,7 +2400,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMa-aB-gt9">
-                                <rect key="frame" x="18" y="103" width="207" height="18"/>
+                                <rect key="frame" x="18" y="51" width="207" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Messages in one-to-one chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="j6Y-07-fkG">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2385,7 +2408,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-Hf-UQ9">
-                                <rect key="frame" x="18" y="78" width="174" height="18"/>
+                                <rect key="frame" x="18" y="26" width="174" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Messages in group chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5Fo-Do-TMs">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2393,7 +2416,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZx-r4-UhS">
-                                <rect key="frame" x="18" y="129" width="168" height="18"/>
+                                <rect key="frame" x="18" y="77" width="168" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="The following keywords:" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="OAx-r8-jNQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2401,7 +2424,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-fi-416">
-                                <rect key="frame" x="192" y="127" width="327" height="22"/>
+                                <rect key="frame" x="192" y="75" width="327" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <tokenFieldCell key="cell" selectable="YES" editable="YES" enabled="NO" borderStyle="bezel" alignment="left" placeholderString="one, two, three, ..." drawsBackground="YES" allowsEditingTextAttributes="YES" id="xgm-II-fuL">
                                     <font key="font" metaFont="system"/>
@@ -2409,22 +2432,8 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </tokenFieldCell>
                             </tokenField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-W2-uQr">
-                                <rect key="frame" x="14" y="13" width="92" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Logout" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bTO-2I-Hft">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">l</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="xjQ-w5-K3A" id="lyJ-27-fYM"/>
-                                    <segue destination="Nr1-lW-dRd" kind="sheet" id="fdm-FT-4zf"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kue-mD-bWd">
-                                <rect key="frame" x="18" y="266" width="173" height="18"/>
+                                <rect key="frame" x="18" y="214" width="173" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Enable message bubbles" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="YT3-a1-e5F">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2432,25 +2441,15 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-Wd-8Vi">
-                                <rect key="frame" x="18" y="240" width="304" height="18"/>
+                                <rect key="frame" x="18" y="188" width="304" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show user Matrix IDs instead of display names" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="YSd-io-rEg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L0D-8W-DWa">
-                                <rect key="frame" x="107" y="13" width="154" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Change Password" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YBW-r2-RAf">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">p</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                            </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-JP-1pE">
-                                <rect key="frame" x="93" y="336" width="428" height="32"/>
+                                <rect key="frame" x="93" y="284" width="428" height="32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Click to edit your name" id="2By-BQ-qh2">
                                     <font key="font" metaFont="systemLight" size="26"/>
@@ -2459,12 +2458,12 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-fZ-Hs9" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="319" width="64" height="64"/>
+                                <rect key="frame" x="20" y="267" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserAddTemplate" id="HLa-dP-CMY"/>
                             </imageView>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="1qe-2v-KA6">
-                                <rect key="frame" x="20" y="308" width="499" height="5"/>
+                                <rect key="frame" x="20" y="256" width="499" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                         </subviews>
@@ -2483,7 +2482,7 @@ Gw
                     </defaultToolbarItems>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="402" y="2005"/>
+            <point key="canvasLocation" x="401.5" y="1978.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wgK-pz-Eof">
@@ -2601,6 +2600,27 @@ DQ
             </objects>
             <point key="canvasLocation" x="1244.5" y="1482"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="0TR-Yv-Vi3">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="s9W-ym-WSG" sceneMemberID="viewController">
+                    <window key="window" title="Logging out" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="Qcr-oV-icw">
+                        <windowStyleMask key="styleMask" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="320" y="343" width="288" height="76"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
+                        <connections>
+                            <outlet property="delegate" destination="s9W-ym-WSG" id="Lcy-IF-AgB"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Nr1-lW-dRd" kind="relationship" relationship="window.shadowedContentViewController" id="uKB-Yh-AUB"/>
+                    </connections>
+                </windowController>
+                <customObject id="PJm-sb-mRb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="93" y="-427"/>
+        </scene>
         <!--Logout View Controller-->
         <scene sceneID="a6h-OK-eNO">
             <objects>
@@ -2628,7 +2648,7 @@ DQ
                 </viewController>
                 <customObject id="ZjY-4u-aBz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="2413"/>
+            <point key="canvasLocation" x="-178" y="-132"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="e7s-8z-WY8">

@@ -19,7 +19,20 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+    
+    @IBOutlet var MenuSeaglass: NSMenu!
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        if menu == MenuSeaglass {
+            let loggedIn = MatrixServices.inst.state == .started
+            for menuItem in menu.items {
+                if menuItem.tag == 1 {
+                    menuItem.isEnabled = loggedIn
+                }
+            }
+        }
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application

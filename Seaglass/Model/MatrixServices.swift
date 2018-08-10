@@ -132,6 +132,10 @@ class MatrixServices: NSObject {
     }
     
     func logout() {
+        if session == nil {
+            return
+        }
+        
         self.mainController?.servicesDelegate?.matrixWillLogout()
         
         UserDefaults.standard.removeObject(forKey: MatrixServices.credKey)
