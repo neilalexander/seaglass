@@ -79,10 +79,12 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             defaults.string(forKey: "Homeserver") != nil &&
             defaults.string(forKey: "UserID") != nil &&
             defaults.string(forKey: "AccessToken") != nil &&
+            defaults.string(forKey: "DeviceID") != nil &&
             true {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
+            credentials!.deviceId = defaults.string(forKey: "DeviceID")
 
             LoginButton.isEnabled = false
             CancelButton.title = "Cancel"
@@ -121,6 +123,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         self.defaults.set(self.RememberCheckbox.state == .on, forKey: "LoginAutomatically")
         self.defaults.removeObject(forKey: "AccessToken")
         self.defaults.removeObject(forKey: "UserID")
+        self.defaults.removeObject(forKey: "DeviceID")
 
         print("Username: \(username)")
         print("Homeserver: \(homeserver)")
@@ -161,6 +164,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
                     self.defaults.set(credentials.accessToken, forKey: "AccessToken")
                     self.defaults.set(credentials.homeServer, forKey: "Homeserver")
                     self.defaults.set(credentials.userId, forKey: "UserID")
+                    self.defaults.set(credentials.deviceId, forKey: "DeviceID")
                 }
                 
                 print("Starting Matrix")

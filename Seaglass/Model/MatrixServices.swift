@@ -52,15 +52,17 @@ class MatrixServices: NSObject {
             guard
                 let homeServerURL = credentials?.homeServer,
                 let userId = credentials?.userId,
-                let accessToken = credentials?.accessToken
+                let accessToken = credentials?.accessToken,
+                let deviceId = credentials?.deviceId
                 else { UserDefaults.standard.removeObject(forKey: MatrixServices.credKey); return }
             
             let storedCredentials: [String: String] = [
                 "homeServer": homeServerURL,
                 "userId": userId,
-                "token": accessToken
+                "token": accessToken,
+                "deviceId": deviceId
             ]
-            
+
             UserDefaults.standard.set(storedCredentials, forKey: MatrixServices.credKey)
             UserDefaults.standard.synchronize()
             
@@ -74,9 +76,11 @@ class MatrixServices: NSObject {
         if  let savedCredentials = UserDefaults.standard.dictionary(forKey: MatrixServices.credKey),
             let homeServer = savedCredentials["homeServer"] as? String,
             let userId = savedCredentials["userId"] as? String,
-            let token = savedCredentials["token"] as? String {
+            let token = savedCredentials["token"] as? String,
+            let deviceId = savedCredentials["deviceId"] as? String {
             
             credentials = MXCredentials(homeServer: homeServer, userId: userId, accessToken: token)
+            credentials!.deviceId = deviceId
             state = .notStarted
         } else {
             state = .needsCredentials

@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             for menuItem in menu.items {
                 if menuItem.tag == 1 {
                     menuItem.isEnabled = loggedIn
+                    menuItem.state = .off
                 }
             }
         }
