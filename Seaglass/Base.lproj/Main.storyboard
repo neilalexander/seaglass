@@ -943,10 +943,10 @@ DQ
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl" userLabel="Room Search">
-                                <rect key="frame" x="20" y="421" width="185" height="22"/>
+                                <rect key="frame" x="40" y="421" width="180" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
-                                    <font key="font" metaFont="system"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
+                                    <font key="font" metaFont="system" size="12"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
@@ -961,9 +961,9 @@ DQ
                                 </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfa-Sa-Oxk">
-                                <rect key="frame" x="207" y="415" width="47" height="32"/>
+                                <rect key="frame" x="226" y="422" width="22" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarComposeTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JK8-kk-tT9">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarComposeTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="JK8-kk-tT9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -976,33 +976,22 @@ DQ
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-h1-DV9">
-                                <rect key="frame" x="193" y="11" width="23" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="11" y="422" width="23" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" alternateTitle="Directory" bezelStyle="shadowlessSquare" image="NSBookmarksTemplate" imagePosition="overlaps" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="hxi-pE-zP0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-lC-MJc">
-                                <rect key="frame" x="226" y="11" width="22" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="square" alternateTitle="Settings" bezelStyle="shadowlessSquare" image="NSSmartBadgeTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KDp-Ax-cjk">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="bia-fQ-Qtp" kind="show" id="Clh-ah-Yzy"/>
-                                </connections>
-                            </button>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="66" horizontalPageScroll="10" verticalLineScroll="66" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-K1-Lqo">
-                                <rect key="frame" x="-1" y="41" width="259" height="373"/>
+                                <rect key="frame" x="-1" y="42" width="259" height="371"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="hWk-kP-dDo">
-                                    <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="259" height="371"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="RoomList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="259" height="373"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="259" height="371"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
@@ -1146,7 +1135,7 @@ DQ
                                 </tokenFieldCell>
                             </tokenField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
-                                <rect key="frame" x="0.0" y="39" width="580" height="4"/>
+                                <rect key="frame" x="0.0" y="39" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
                             <textField identifier="RoomInput" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-A5-RaT">
@@ -3040,7 +3029,6 @@ DQ
         <image name="NSGoForwardTemplate" width="9" height="12"/>
         <image name="NSLockLockedTemplate" width="10" height="14"/>
         <image name="NSLockUnlockedTemplate" width="10" height="14"/>
-        <image name="NSSmartBadgeTemplate" width="14" height="14"/>
         <image name="NSTouchBarAddTemplate" width="14" height="30"/>
         <image name="NSTouchBarAudioOutputMuteTemplate" width="26" height="30"/>
         <image name="NSTouchBarCommunicationAudioTemplate" width="18" height="30"/>
@@ -3056,7 +3044,4 @@ DQ
         <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Clh-ah-Yzy"/>
-    </inferredMetricsTieBreakers>
 </document>
