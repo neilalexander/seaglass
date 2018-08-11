@@ -23,9 +23,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     @IBOutlet var RoomList: NSTableView!
     @IBOutlet var RoomSearch: NSSearchField!
     @IBOutlet var ConnectionStatus: NSButton!
-    
+
     var mainController: MainViewController?
-    
+
     @IBOutlet var roomsCacheController: NSArrayController!
     
     required init?(coder: NSCoder) {

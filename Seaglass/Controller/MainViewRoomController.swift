@@ -147,6 +147,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         return (MatrixServices.inst.eventCache[roomId]?.count)!
     }
     
+    
+    
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
         let event = MatrixServices.inst.eventCache[roomId]![row]
         MatrixServices.inst.session.room(withRoomId: roomId).acknowledgeEvent(event, andUpdateReadMarker: true)

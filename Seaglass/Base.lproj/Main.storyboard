@@ -945,7 +945,7 @@ DQ
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl" userLabel="Room Search">
                                 <rect key="frame" x="40" y="421" width="180" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" alignment="center" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
                                     <font key="font" metaFont="system" size="12"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2970,7 +2970,7 @@ DQ
         <scene sceneID="mWB-CY-Ycs">
             <objects>
                 <customObject id="7G5-5u-Rnu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="nR1-ZO-XNu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoomsPopoverController" id="nR1-ZO-XNu" sceneMemberID="viewController">
                     <view key="view" id="CIQ-H1-un0">
                         <rect key="frame" x="0.0" y="0.0" width="165" height="82"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2996,10 +2996,13 @@ DQ
                                 </buttonCell>
                             </button>
                         </subviews>
+                        <connections>
+                            <binding destination="nR1-ZO-XNu" name="hidden" keyPath="self.popoverController" id="sHa-wz-giG"/>
+                        </connections>
                     </view>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="289" y="1222"/>
+            <point key="canvasLocation" x="248" y="1236"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="rhq-PB-W3q">
