@@ -1108,6 +1108,8 @@ DQ
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <binding destination="El7-IA-8gq" name="selectionIndexes" keyPath="selectionIndexes" id="QiF-G5-Fr7"/>
+                                                <binding destination="El7-IA-8gq" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="QiF-G5-Fr7" id="D8a-9c-Wuh"/>
                                                 <outlet property="dataSource" destination="KsD-aF-a0Q" id="EwF-wG-ubq"/>
                                                 <outlet property="delegate" destination="KsD-aF-a0Q" id="Wvm-zI-tBh"/>
                                             </connections>

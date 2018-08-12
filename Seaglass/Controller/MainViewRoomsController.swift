@@ -94,7 +94,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.identifier = nil
         
         let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
-        state.update()
         cell?.roomsCacheEntry = state
     
         let count = state.members().count
