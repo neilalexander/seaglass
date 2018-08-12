@@ -22,33 +22,40 @@ import SwiftMatrixSDK
 class RoomsCacheEntry: NSObject {
     var room: MXRoom
     
-    @objc dynamic var roomId: String = ""
-    @objc dynamic var roomName: String = ""
-    @objc dynamic var roomAlias: String = ""
-    @objc dynamic var roomTopic: String = ""
-    @objc dynamic var roomAvatar: String = ""
+    @objc dynamic var roomId: String {
+        return room.roomId
+    }
+    @objc dynamic var roomName: String {
+        return room.state.name ?? ""
+    }
+    @objc dynamic var roomAlias: String {
+        return room.state.canonicalAlias ?? ""
+    }
+    @objc dynamic var roomTopic: String  {
+        return room.state.topic ?? ""
+    }
+    @objc dynamic var roomAvatar: String {
+        return room.state.avatar ?? ""
+    }
+    @objc dynamic var roomSortWeight: Int {
+        if self.room.isDirect || self.room.looksLikeDirect {
+            return 70
+        }
+        if self.room.summary.isEncrypted || self.room.state.isEncrypted {
+            return 10
+        }
+        if self.room.state.name == "" {
+            if self.room.state.topic == "" {
+                return 52
+            }
+            return 51
+        }
+        return 50
+    }
     
     init(_ room: MXRoom) {
         self.room = room
         super.init()
-        
-        self.roomId = room.roomId
-        self.update()
-    }
-    
-    func update() {
-        if room.state.name != nil {
-            self.roomName = room.state.name
-        }
-        if room.state.canonicalAlias != nil {
-            self.roomAlias = room.state.canonicalAlias
-        }
-        if room.state.topic != nil {
-            self.roomTopic = room.state.topic
-        }
-        if room.state.avatar != nil {
-            self.roomAvatar = room.state.avatar
-        }
     }
     
     func members() -> [MXRoomMember] {

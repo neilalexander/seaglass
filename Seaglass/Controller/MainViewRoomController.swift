@@ -354,6 +354,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         } else {
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
+        
+        MatrixServices.inst.session.room(withRoomId: roomId).markAllAsRead()
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?) {
@@ -400,6 +402,5 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageTableView.endUpdates()
     }
     func matrixDidRoomUserJoin() {}
-    func martixDidRoomUserPart() {}
     
 }

@@ -34,6 +34,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        roomsCacheController.sortDescriptors = [
+            NSSortDescriptor(key: "roomSortWeight", ascending: true),
+            NSSortDescriptor(key: "roomName", ascending: true)
+        ]
         
         switch MatrixServices.inst.state {
         case .started:
@@ -56,6 +60,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         roomsCacheController.insert(RoomsCacheEntry(room), atArrangedObjectIndex: 0)
+        roomsCacheController.rearrangeObjects()
+        
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
@@ -67,6 +73,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidPartRoom(_ room: MXRoom) {
         // TODO: unsubscribe from room
+        roomsCacheController.rearrangeObjects()
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         RoomSearch.placeholderString = "Search \(rooms.count) room"
@@ -76,10 +83,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func matrixDidUpdateRoom(_ room: MXRoom) {
+        roomsCacheController.rearrangeObjects()
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         for i in 0..<rooms.count {
             if rooms[i].roomId == room.roomId {
-                rooms[i].update()
                 RoomList.reloadData(forRowIndexes: IndexSet([i]), columnIndexes: IndexSet([0]))
             }
         }
