@@ -79,9 +79,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         for i in 0..<rooms.count {
             if rooms[i].roomId == room.roomId {
-                rooms[i].roomName = room.state.name
-                rooms[i].roomTopic = room.state.topic
-                rooms[i].roomAlias = room.state.canonicalAlias
+                rooms[i].update()
                 RoomList.reloadData(forRowIndexes: IndexSet([i]), columnIndexes: IndexSet([0]))
             }
         }
@@ -96,6 +94,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.identifier = nil
         
         let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
+        state.update()
         cell?.roomsCacheEntry = state
     
         let count = state.members().count
@@ -118,7 +117,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryName.stringValue = memberNames
         }
         
-        if state.members().count == 2 {
+        if state.roomAvatar == "" && state.members().count <= 2 {
             if state.members()[0].userId == MatrixServices.inst.session.myUser.userId {
                 cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[1].userId)
             } else {

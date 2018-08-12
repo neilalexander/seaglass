@@ -173,7 +173,7 @@ class MatrixServices: NSObject {
             if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
-            let cacheTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.canonical_alias" ]
+            let cacheTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias" ]
             if !cacheTypes.contains(event.type) {
                 return
             }

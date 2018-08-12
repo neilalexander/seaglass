@@ -26,11 +26,17 @@ class RoomsCacheEntry: NSObject {
     @objc dynamic var roomName: String = ""
     @objc dynamic var roomAlias: String = ""
     @objc dynamic var roomTopic: String = ""
+    @objc dynamic var roomAvatar: String = ""
     
     init(_ room: MXRoom) {
         self.room = room
+        super.init()
         
         self.roomId = room.roomId
+        self.update()
+    }
+    
+    func update() {
         if room.state.name != nil {
             self.roomName = room.state.name
         }
@@ -40,8 +46,9 @@ class RoomsCacheEntry: NSObject {
         if room.state.topic != nil {
             self.roomTopic = room.state.topic
         }
-        
-        super.init()
+        if room.state.avatar != nil {
+            self.roomAvatar = room.state.avatar
+        }
     }
     
     func members() -> [MXRoomMember] {

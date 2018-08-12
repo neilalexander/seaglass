@@ -20,7 +20,20 @@ import Cocoa
 import SwiftMatrixSDK
 
 extension NSImageView {
-    func setAvatar(forUserId userId: String) {
+    func isVisible(inView: NSView?) -> Bool {
+        guard let inView = inView else { return true }
+        let viewFrame = inView.convert(self.bounds, from: self)
+        if viewFrame.intersects(inView.bounds) {
+            return isVisible(inView: inView.superview)
+        }
+        return false
+    }
+    
+    func isVisible() -> Bool {
+        return self.isVisible(inView: self.superview)
+    }
+    
+    func setAvatar(forUserId userId: String, useCached: Bool = true) {
         if MatrixServices.inst.session.user(withUserId: userId) == nil {
             return
         }
@@ -29,18 +42,20 @@ extension NSImageView {
             let url = MatrixServices.inst.client.url(ofContent: user.avatarUrl)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
-                if FileManager.default.fileExists(atPath: path!) {
+                if FileManager.default.fileExists(atPath: path!) && useCached {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            // self.wantsLayer = true
-                            // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                            // self.layer?.cornerRadius = (self.frame.width)/2
-                            // self.layer?.masksToBounds = true
-                            // self.canDrawSubviewsIntoLayer = true
-                            self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                            // self.wantsLayer = true
+                            if self.isVisible() {
+                                // self.wantsLayer = true
+                                // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                                // self.layer?.cornerRadius = (self.frame.width)/2
+                                // self.layer?.masksToBounds = true
+                                // self.canDrawSubviewsIntoLayer = true
+                                self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                                // self.wantsLayer = true
+                            }
                         }) { (error) in
                             print("Error setting user avatar for \(userId)")
                         }
@@ -50,7 +65,7 @@ extension NSImageView {
         }
     }
     
-    func setAvatar(forRoomId roomId: String) {
+    func setAvatar(forRoomId roomId: String, useCached: Bool = true) {
         if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
             return
         }
@@ -62,18 +77,20 @@ extension NSImageView {
             let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
-                if FileManager.default.fileExists(atPath: path!) {
+                if FileManager.default.fileExists(atPath: path!) && useCached {
                     self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                           // self.wantsLayer = true
-                           // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                           // self.layer?.cornerRadius = (self.frame.width)/2
-                           // self.layer?.masksToBounds = true
-                           // self.canDrawSubviewsIntoLayer = true
-                            self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                           // self.wantsLayer = true
+                            if self.isVisible() {
+                               // self.wantsLayer = true
+                               // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                               // self.layer?.cornerRadius = (self.frame.width)/2
+                               // self.layer?.masksToBounds = true
+                               // self.canDrawSubviewsIntoLayer = true
+                                self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                               // self.wantsLayer = true
+                            }
                         }) { (error) in
                             print("Error setting room avatar for \(roomId)")
                         }

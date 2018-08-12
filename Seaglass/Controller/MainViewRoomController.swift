@@ -147,8 +147,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         return (MatrixServices.inst.eventCache[roomId]?.count)!
     }
     
-    
-    
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
         let event = MatrixServices.inst.eventCache[roomId]![row]
         MatrixServices.inst.session.room(withRoomId: roomId).acknowledgeEvent(event, andUpdateReadMarker: true)
@@ -287,6 +285,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 cell.RoomMessageEntryInlineText.stringValue = "Room topic removed"
             }
             return cell
+        case "m.room.avatar":
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
+            if event.content["url"] as! String != "" {
+                cell.RoomMessageEntryInlineText.stringValue = "Room avatar changed"
+            } else {
+                cell.RoomMessageEntryInlineText.stringValue = "Room avatar removed"
+            }
+            return cell
         case "m.room.canonical_alias":
             cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
             if event.content["alias"] as! String != "" {
@@ -373,31 +379,25 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         case "m.receipt":
             return
         case "m.room.message":
-            fallthrough
+            break
         case "m.room.member":
-            RoomMessageTableView.beginUpdates()
-            RoomMessageTableView.noteNumberOfRowsChanged()
-            RoomMessageTableView.endUpdates()
-            return
+            break
         case "m.room.name":
             if event.roomId == roomId {
                 RoomName.stringValue = event.content["name"] as! String
-                RoomMessageTableView.beginUpdates()
-                RoomMessageTableView.noteNumberOfRowsChanged()
-                RoomMessageTableView.endUpdates()
             }
-            return
+            break
         case "m.room.topic":
             if event.roomId == roomId {
                 RoomTopic.stringValue = event.content["topic"] as! String
-                RoomMessageTableView.beginUpdates()
-                RoomMessageTableView.noteNumberOfRowsChanged()
-                RoomMessageTableView.endUpdates()
             }
-            return
-        default:
             break
+        default:
+            return
         }
+        RoomMessageTableView.beginUpdates()
+        RoomMessageTableView.noteNumberOfRowsChanged()
+        RoomMessageTableView.endUpdates()
     }
     func matrixDidRoomUserJoin() {}
     func martixDidRoomUserPart() {}
