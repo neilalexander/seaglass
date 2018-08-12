@@ -330,6 +330,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if entry.roomsCacheEntry?.roomId == nil {
             return
         }
+        if entry.roomsCacheEntry?.roomId == roomId {
+            return
+        }
         
         roomTyping = false
 
@@ -402,5 +405,5 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageTableView.endUpdates()
     }
     func matrixDidRoomUserJoin() {}
-    
+    func matrixDidRoomUserPart() {}
 }

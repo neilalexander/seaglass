@@ -35,7 +35,7 @@ protocol MatrixRoomDelegate: AnyObject {
     func uiDidSelectRoom(entry: RoomListEntry)
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?)
     func matrixDidRoomUserJoin()
-    func martixDidRoomUserPart()
+    func matrixDidRoomUserPart()
 }
 
 class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
