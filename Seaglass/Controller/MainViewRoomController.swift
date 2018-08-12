@@ -278,7 +278,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 cell.RoomMessageEntryInlineText.stringValue = "Room name removed"
             }
-            
             return cell
         case "m.room.topic":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
@@ -379,6 +378,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomMessageTableView.beginUpdates()
             RoomMessageTableView.noteNumberOfRowsChanged()
             RoomMessageTableView.endUpdates()
+            return
+        case "m.room.name":
+            if event.roomId == roomId {
+                RoomName.stringValue = event.content["name"] as! String
+                RoomMessageTableView.beginUpdates()
+                RoomMessageTableView.noteNumberOfRowsChanged()
+                RoomMessageTableView.endUpdates()
+            }
+            return
+        case "m.room.topic":
+            if event.roomId == roomId {
+                RoomTopic.stringValue = event.content["topic"] as! String
+                RoomMessageTableView.beginUpdates()
+                RoomMessageTableView.noteNumberOfRowsChanged()
+                RoomMessageTableView.endUpdates()
+            }
             return
         default:
             break

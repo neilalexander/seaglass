@@ -79,6 +79,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         for i in 0..<rooms.count {
             if rooms[i].roomId == room.roomId {
+                rooms[i].roomName = room.state.name
+                rooms[i].roomTopic = room.state.topic
+                rooms[i].roomAlias = room.state.canonicalAlias
                 RoomList.reloadData(forRowIndexes: IndexSet([i]), columnIndexes: IndexSet([0]))
             }
         }
