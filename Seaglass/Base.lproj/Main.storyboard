@@ -1531,11 +1531,11 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryOutboundCoalescedTextConstraint" destination="zTv-ub-UnY" id="TcK-jw-d8N"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryInline" autoresizesSubviews="NO" wantsLayer="YES" id="juW-Tf-Uai" userLabel="Status Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryInline" wantsLayer="YES" id="juW-Tf-Uai" userLabel="Status Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="129" width="577" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="RoomMessageEntryInlineText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-2v-jWb">
+                                                                <textField identifier="RoomMessageEntryInlineText" autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-2v-jWb">
                                                                     <rect key="frame" x="1" y="3" width="575" height="14"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">

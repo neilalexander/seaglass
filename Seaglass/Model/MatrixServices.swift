@@ -174,25 +174,38 @@ class MatrixServices: NSObject {
                 self.eventCache[event.roomId] = []
             }
             let cacheTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias" ]
-            if !cacheTypes.contains(event.type) {
-                return
-            }
-            if !self.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
-                if direction == .forwards {
-                    self.eventCache[event.roomId]!.append(event)
-                } else {
-                    self.eventCache[event.roomId]!.insert(event, at: 0)
+            switch event.type {
+            case "m.room.redaction":
+                for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {
+                    let index = self.eventCache[event.roomId]!.index(of: e)
+                    if index != nil {
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: e.prune(), direction: direction, roomState: roomState, replaces: event.redacts!);
+                        self.eventCache[event.roomId]![index!] = e.prune()
+                    }
                 }
-                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil);
-                self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
-            } else {
-                let index = self.eventCache[event.roomId]!.index(of: event)
-                if index != nil {
-                    let original = self.eventCache[event.roomId]![index!].eventId
-                    self.eventCache[event.roomId]![index!] = event
-                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original);
+                break
+            default:
+                if !cacheTypes.contains(event.type) {
+                    return
+                }
+                if !self.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
+                    if direction == .forwards {
+                        self.eventCache[event.roomId]!.append(event)
+                    } else {
+                        self.eventCache[event.roomId]!.insert(event, at: 0)
+                    }
+                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil);
                     self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+                } else {
+                    let index = self.eventCache[event.roomId]!.index(of: event)
+                    if index != nil {
+                        let original = self.eventCache[event.roomId]![index!].eventId
+                        self.eventCache[event.roomId]![index!] = event
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original);
+                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+                    }
                 }
+                break
             }
         }
         

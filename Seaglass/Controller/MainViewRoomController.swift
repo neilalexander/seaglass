@@ -32,7 +32,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var RoomPartButton: NSButton!
     @IBOutlet var RoomInsertButton: NSButton!
     @IBOutlet var RoomEncryptionButton: NSButton!
-    
+
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
@@ -87,20 +87,32 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             var localReturnedEvent: String? = nil
             MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
-                    MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
+                    let index = MatrixServices.inst.eventCache[self.roomId]?.index(where: { $0.eventId == localReturnedEvent })
+                    if index != nil {
+                        MatrixServices.inst.eventCache[self.roomId]?[index!] = returnedEvent!
+                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
+                    }
+                } else {
+                    self.matrixDidRoomMessage(event: returnedEvent!.prune(), direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
             }
+            MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
             localReturnedEvent = returnedEvent?.eventId ?? nil
             self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: nil)
         } else {
             var localReturnedEvent: String? = nil
             MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
-                    MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
+                    let index = MatrixServices.inst.eventCache[self.roomId]?.index(where: { $0.eventId == localReturnedEvent })
+                    if index != nil {
+                        MatrixServices.inst.eventCache[self.roomId]?[index!] = returnedEvent!
+                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
+                    }
+                } else {
+                    self.matrixDidRoomMessage(event: returnedEvent!.prune(), direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
             }
+            MatrixServices.inst.eventCache[self.roomId]?.append(returnedEvent!)
             localReturnedEvent = returnedEvent?.eventId ?? nil
             self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: nil)
         }
@@ -137,6 +149,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
     }
     
+    func getFilteredRoomCache(for roomId: String) -> [MXEvent] {
+        return MatrixServices.inst.eventCache[roomId]?.filter {
+            !$0.isRedactedEvent() && $0.content.count > 0
+        } ?? []
+    }
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
         if !MatrixServices.inst.eventCache.keys.contains(roomId) {
             return 0
@@ -144,16 +162,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if roomId == "" || MatrixServices.inst.eventCache[roomId] == nil {
             return 0
         }
-        return (MatrixServices.inst.eventCache[roomId]?.count)!
+        return getFilteredRoomCache(for: roomId).count
     }
     
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
-        let event = MatrixServices.inst.eventCache[roomId]![row]
+        let event = getFilteredRoomCache(for: roomId)[row]
         MatrixServices.inst.session.room(withRoomId: roomId).acknowledgeEvent(event, andUpdateReadMarker: true)
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let event = MatrixServices.inst.eventCache[roomId]![row]
+        let event = getFilteredRoomCache(for: roomId)[row]
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         
         let padlockWidth: CGFloat = 16
@@ -187,7 +205,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             
             var isCoalesced = false
             if row >= 1 {
-                let previousEvent = MatrixServices.inst.eventCache[roomId]![row-1]
+                let previousEvent = getFilteredRoomCache(for: roomId)[row-1]
                 isCoalesced = (
                     event.sender == previousEvent.sender &&
                     event.type == previousEvent.type &&
@@ -222,7 +240,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
                     if event.sentState == MXEventSentStateSending {
-                        cell.alphaValue = 0.4
+                       // cell.alphaValue = 0.4
                     }
                     break
                 }
@@ -253,7 +271,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryInboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundPadlock.frame.size.width
                     if event.sentState == MXEventSentStateSending {
-                        cell.alphaValue = 0.4
+                       // cell.alphaValue = 0.4
                     }
                     break
                 }
@@ -348,9 +366,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         roomId = (entry.roomsCacheEntry?.roomId)!
 
-        RoomMessageTableView.beginUpdates()
         RoomMessageTableView.reloadData()
-        RoomMessageTableView.endUpdates()
         
         if entry.roomsCacheEntry!.encrypted() {
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
@@ -369,12 +385,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         if replaces != nil {
-            let index = MatrixServices.inst.eventCache[event.roomId]!.index(where: { $0.eventId == event.eventId })
+            let index = getFilteredRoomCache(for: roomId).index(where: { $0.eventId == event.eventId })
             if index != nil {
-                RoomMessageTableView.beginUpdates()
-                RoomMessageTableView.reloadData(forRowIndexes: IndexSet.init(integer: index!), columnIndexes: IndexSet.init(integer: 0))
-                RoomMessageTableView.noteNumberOfRowsChanged()
-                RoomMessageTableView.endUpdates()
+                if event.isRedactedEvent() || event.content.count == 0 {
+                    RoomMessageTableView.removeRows(at: IndexSet.init(integer: index!), withAnimation: [ .effectFade, .slideUp ])
+                } else {
+                    RoomMessageTableView.reloadData(forRowIndexes: IndexSet.init(integer: index!), columnIndexes: IndexSet.init(integer: 0))
+                }
                 return
             }
         }
@@ -400,9 +417,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         default:
             return
         }
-        RoomMessageTableView.beginUpdates()
-        RoomMessageTableView.noteNumberOfRowsChanged()
-        RoomMessageTableView.endUpdates()
+        if event.roomId == roomId {
+            RoomMessageTableView.noteNumberOfRowsChanged()
+        }
     }
     func matrixDidRoomUserJoin() {}
     func matrixDidRoomUserPart() {}
