@@ -43,7 +43,9 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                    if self.isVisible() && self.image != nil {
+                        self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                    }
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
@@ -78,7 +80,9 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                    if self.isVisible() && self.image != nil {
+                        self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                    }
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
