@@ -19,6 +19,8 @@
 import Cocoa
 
 class AboutViewController: NSViewController {
+    
+    @IBOutlet weak var versionTextField: NSTextField!
 
     @IBAction func viewSourceCodeButtonPressed(_: NSButton) {
         let sourceURL = NSURL(string: "https://github.com/neilalexander/seaglass")! as URL
@@ -27,7 +29,12 @@ class AboutViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        let shortHash: String = Bundle.main.object(forInfoDictionaryKey: "GIT_COMMIT_SHORT_HASH") as! String
+
+        versionTextField.stringValue = "Version " + appVersionString + " (" + buildNumber + ") " + shortHash
     }
     
 }

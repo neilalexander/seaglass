@@ -30,5 +30,7 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>GIT_COMMIT_SHORT_HASH</key>
+	<string></string>
 </dict>
 </plist>

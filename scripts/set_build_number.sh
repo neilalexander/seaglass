@@ -13,3 +13,6 @@ for plist in "$target_plist" "$dsym_plist"; do
     /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${git_release_version#*v}" "$plist"
   fi
 done
+
+GIT_COMMIT_SHORT_HASH=$("git" log --format=%h -1)
+/usr/libexec/PlistBuddy -c "Set :GIT_COMMIT_SHORT_HASH '${GIT_COMMIT_SHORT_HASH}'" "${PROJECT_DIR}/${INFOPLIST_FILE}"
