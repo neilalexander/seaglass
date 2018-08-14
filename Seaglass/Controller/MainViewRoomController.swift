@@ -174,6 +174,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let event = getFilteredRoomCache(for: roomId)[row]
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         
+        if event.decryptionError != nil {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
+            cell.RoomMessageEntryInlineText.stringValue = "Decryption failed of event \(event.eventId): \(event.decryptionError.localizedDescription)"
+            return cell
+        }
+        
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
         let padlockColor: NSColor = event.isEncrypted ?
