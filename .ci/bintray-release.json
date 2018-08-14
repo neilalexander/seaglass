@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "includePattern": "build/(Seaglass-.*.tar.gz)",
+      "uploadPattern": "Seaglass-VERSION_NAME_VALUE.tar.gz"
+    }
+  ],
+  "package": {
+    "desc": "A truly native Matrix client for macOS",
+    "issue_tracker_url": "https://github.com/neilalexander/seaglass",
+    "licenses": [
+      "GPL-3.0"
+    ],
+    "name": "Seaglass",
+    "subject": "neilalexander",
+    "repo": "Seaglass",
+    "public_download_numbers": true,
+    "public_stats": true,
+    "vcs_url": "https://github.com/neilalexander/seaglass",
+    "website_url": "https://neilalexander.eu/seaglass"
+  },
+  "version": {
+    "name": "VERSION_NAME_VALUE"
+  },
+  "publish": true
+}

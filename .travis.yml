@@ -1,0 +1,22 @@
+os: osx
+language: swift
+cache: cocoapods
+before_script:
+- set -o pipefail
+script:
+- xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath
+  $PWD/build/Seaglass.xcarchive | xcpretty
+- xcodebuild -exportArchive -archivePath $PWD/build/Seaglass.xcarchive -exportOptionsPlist
+  .ci/ExportOptions.plist -exportPath $PWD/build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+before_deploy:
+  - cd build && tar -zcf Seaglass-$(git log --format=%h -1).tar.gz Seaglass.app && cd ..
+  - sed -i -e "s/VERSION_NAME_VALUE/0.0.0-$(git log --format=%h -1)/g" .ci/bintray-release.json
+deploy:
+  - provider: bintray
+    file: .ci/bintray-release.json
+    user: $BINTRAY_USER
+    key:
+      secure: $BINTRAY_TOKEN
+    skip_cleanup: true
+    on:
+      all_branches: true

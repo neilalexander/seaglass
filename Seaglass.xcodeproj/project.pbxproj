@@ -14,8 +14,8 @@
 		391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */; };
 		391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2520C68AD200B4EFEC /* Assets.xcassets */; };
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
-		391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* MatrixTests.swift */; };
-		391BFE4020C68AD200B4EFEC /* MatrixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */; };
+		391BFE3520C68AD200B4EFEC /* SeaglassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */; };
+		391BFE4020C68AD200B4EFEC /* SeaglassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */; };
 		3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* RoomSettingsController.swift */; };
 		39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */; };
 		39373485211CA475008AAB7D /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39373483211CA475008AAB7D /* WindowController.swift */; };
@@ -69,10 +69,10 @@
 		391BFE2A20C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Seaglass.entitlements; sourceTree = "<group>"; };
 		391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		391BFE3420C68AD200B4EFEC /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
+		391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassTests.swift; sourceTree = "<group>"; };
 		391BFE3620C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixUITests.swift; sourceTree = "<group>"; };
+		391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3924444521184ED2001BAEE5 /* RoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsController.swift; sourceTree = "<group>"; };
 		39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPowerLevelsController.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		391BFE3320C68AD200B4EFEC /* SeaglassTests */ = {
 			isa = PBXGroup;
 			children = (
-				391BFE3420C68AD200B4EFEC /* MatrixTests.swift */,
+				391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */,
 				391BFE3620C68AD200B4EFEC /* Info.plist */,
 			);
 			path = SeaglassTests;
@@ -186,7 +186,7 @@
 		391BFE3E20C68AD200B4EFEC /* SeaglassUITests */ = {
 			isa = PBXGroup;
 			children = (
-				391BFE3F20C68AD200B4EFEC /* MatrixUITests.swift */,
+				391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */,
 				391BFE4120C68AD200B4EFEC /* Info.plist */,
 			);
 			path = SeaglassUITests;
@@ -276,6 +276,7 @@
 				391BFE1920C68AD100B4EFEC /* Resources */,
 				396F71E520CAB8C500F4F5E0 /* Headers */,
 				EC5C2F878741B0668D390541 /* [CP] Embed Pods Frameworks */,
+				3D51AF9B212264DB005B9ED5 /* Set build number */,
 			);
 			buildRules = (
 			);
@@ -397,6 +398,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D51AF9B212264DB005B9ED5 /* Set build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set build number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/scripts/set_build_number.sh;
+		};
 		7BA55CBFDF827B6882DF9FC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -485,7 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391BFE3520C68AD200B4EFEC /* MatrixTests.swift in Sources */,
+				391BFE3520C68AD200B4EFEC /* SeaglassTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391BFE4020C68AD200B4EFEC /* MatrixUITests.swift in Sources */,
+				391BFE4020C68AD200B4EFEC /* SeaglassUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +657,9 @@
 			baseConfigurationReference = 6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -660,7 +677,9 @@
 			baseConfigurationReference = 0A1F3485F5B9E56D87DEC192 /* Pods-Seaglass.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -678,15 +697,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MatrixTests/Info.plist;
+				INFOPLIST_FILE = SeaglassTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixTests;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seaglass.app/Contents/MacOS/Seaglass";
@@ -698,15 +719,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MatrixTests/Info.plist;
+				INFOPLIST_FILE = SeaglassTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixTests;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seaglass.app/Contents/MacOS/Seaglass";
@@ -717,16 +740,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MatrixUITests/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SeaglassUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Matrix;
 			};
@@ -736,16 +763,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MatrixUITests/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = SeaglassUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.MatrixUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Matrix;
 			};
