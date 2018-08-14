@@ -182,10 +182,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
-        let padlockColor: NSColor = event.isEncrypted ?
+        let padlockColor: NSColor = event.sentState == MXEventSentStateEncrypting || event.isEncrypted ?
             NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
             NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
-        let padlockImage: NSImage = event.isEncrypted ?
+        let padlockImage: NSImage = event.sentState == MXEventSentStateEncrypting || event.isEncrypted ?
             NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
             NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
         
