@@ -1,0 +1,15 @@
+os: osx
+language: swift
+script:
+  - xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath $PWD/build/Seaglass.xcarchive CODE_SIGNING_REQUIRED=NO
+  - xcodebuild -exportArchive -archivePath $PWD/build/Seaglass.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath $PWD/build # see https://medium.com/xcblog/xcodebuild-deploy-ios-app-from-command-line-c6defff0d8b8
+# cache: cocoapods
+deploy:
+  provider: bintray
+  file: bintray-release.json
+  user: aaronraimist
+  key:
+    secure: GisRH4glQo22KJWo/O3pJZmIlKYsI2isLg/xRblhwvewdMZr9EXKLEulej8ltr/Gz9Wb4ub2HxO9z00edB2UwDgJtuWrGivrLwbs42TLeqs0lc3J04UglqUzEGrlRn7k/ELNRGBpN5N589lTAr06waCIIAo66vye46V7MUYkB2AGxKKDALsyZ8ykpA+l/x/nPfC8jGD6djzI0wO1kbgDxVePLfdTNjrgnavS5ka6VLAG4Dy5RUq6MgBXKqySsNTeDteQgnDpUhJZBb5cilqPnXkgosMkck/FdXHuzNBKyzYxjanjL+rjYvWKF0t/5wkp5qoJsDcDmRbWBWMCBESHGVVi691Q5mHuPNnWEpCfZVUa1Z5ogMuSPYWfyrUyHUf4UCY6J48UuOdrsL6dA9O2J5LkRv1/aDCBAQRwcjN10cehogJ/XtmwLnQ5MUMQBHvHZhzi9M06Aqad4+fMifWtPvb7iTekbOxTbJxWg57cLiYkgcnVQOZdkDZiJhml7Q2WM1+1CBpaLdJRUUNBe0/s+q0YBxGG5OR7hGag9dOWEdlYrUvwsEmBuOpIdfrnIzrJ+5lxJY75QCqgOvOR71Ovm30dHLedmOo+nfJ/JynSPognoJ0KUy6sGQQGRD3JQL6A8Qmmm9YhE8o9i67otkLaca8S0rEtor6d2z+Q7AK0UvI=
+  skip_cleanup: true
+  on:
+    all_branches: true
