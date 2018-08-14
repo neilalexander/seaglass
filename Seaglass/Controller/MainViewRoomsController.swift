@@ -159,15 +159,17 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = notification.object as! NSTableView
         
-        if row.selectedRow < 0 {
+        if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
         
-        let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as! RoomListEntry
-        entry.RoomListEntryUnread.isHidden = true
-        
-        DispatchQueue.main.async {
-            self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
+        let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as? RoomListEntry
+        if entry != nil {
+            entry!.RoomListEntryUnread.isHidden = true
+            
+            DispatchQueue.main.async {
+                self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry!)
+            }
         }
     }
 }
