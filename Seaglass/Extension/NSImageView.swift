@@ -43,13 +43,13 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil {
+                    if self.isVisible() && self.image != nil && path != nil {
                         self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                     }
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() && self.image != nil {
+                            if self.isVisible() && self.image != nil && path != nil {
                                 // self.wantsLayer = true
                                 // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                 // self.layer?.cornerRadius = (self.frame.width)/2
@@ -80,13 +80,13 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil {
+                    if self.isVisible() && self.image != nil && path != nil {
                         self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                     }
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() && self.image != nil {
+                            if self.isVisible() && self.image != nil && path != nil {
                                // self.wantsLayer = true
                                // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                // self.layer?.cornerRadius = (self.frame.width)/2
