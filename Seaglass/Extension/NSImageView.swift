@@ -47,7 +47,7 @@ extension NSImageView {
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() {
+                            if self.isVisible() && self.image != nil {
                                 // self.wantsLayer = true
                                 // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                 // self.layer?.cornerRadius = (self.frame.width)/2
@@ -82,7 +82,7 @@ extension NSImageView {
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() {
+                            if self.isVisible() && self.image != nil {
                                // self.wantsLayer = true
                                // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                // self.layer?.cornerRadius = (self.frame.width)/2
