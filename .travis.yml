@@ -18,5 +18,4 @@ deploy:
     key:
       secure: $BINTRAY_TOKEN
     skip_cleanup: true
-    on:
-      all_branches: true
+    on: master
