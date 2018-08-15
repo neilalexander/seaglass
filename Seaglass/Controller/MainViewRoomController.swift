@@ -64,6 +64,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         var formattedText: String
         let unformattedText = sender.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        if unformattedText == "" {
+            sender.stringValue = ""
+            sender.isEnabled = true
+            sender.becomeFirstResponder()
+            return
+        }
         let options = DownOptions(rawValue: 1 << 3)
         do {
             // TODO: Make sure this is suitably sanitised
@@ -77,13 +83,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         } catch {
             formattedText = unformattedText
-        }
-        
-        if formattedText == "" {
-            sender.stringValue = ""
-            sender.isEnabled = true
-            sender.becomeFirstResponder()
-            return
         }
         
         self.roomTyping = false
