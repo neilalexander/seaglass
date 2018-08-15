@@ -141,29 +141,33 @@ class MatrixServices: NSObject {
                             if event.stateKey != MatrixServices.inst.session.myUser.userId {
                                 return
                             }
+                            if direction != .forwards {
+                                return
+                            }
                             switch event.content["membership"] as? String {
                             case "join":
-                               /* let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
+                                let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
                                 if room != nil {
                                     if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room!) == false {
-                                        print("Join room \(event.roomId)")
                                         self.mainController?.roomsDelegate?.matrixDidJoinRoom(room!)
                                     }
-                                } */
+                                }
                                 return
                             case "invite":
                                // print("Invited to room \(event.roomId)")
                                 return
                             case "leave":
-                               /* let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
+                                let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
                                 if room != nil {
                                     if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room!) == true {
-                                        print("Leave room \(event.roomId)")
                                         self.mainController?.roomsDelegate?.matrixDidPartRoom(room!)
                                     }
-                                } */
+                                }
                                 return
                             default:
+                               // print(event)
+                               // print(direction)
+                               // print("")
                                 return
                             }
                         default:

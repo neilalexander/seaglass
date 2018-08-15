@@ -34,6 +34,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        
+        roomsCacheController.preservesSelection = true
+        roomsCacheController.selectsInsertedObjects = false
         roomsCacheController.sortDescriptors = [
             NSSortDescriptor(key: "roomSortWeight", ascending: true),
             NSSortDescriptor(key: "roomName", ascending: true)
@@ -87,16 +90,13 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidPartRoom(_ room: MXRoom) {
         if MatrixServices.inst.eventListeners[room.roomId] != nil {
-            print("There's a listener for \(room.roomId) - should stop it")
-           // MatrixServices.inst.session.removeListener(MatrixServices.inst.eventListeners[room.roomId])
             MatrixServices.inst.eventListeners[room.roomId] = nil
         }
         let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
         if index != nil {
             roomsCacheController.remove(atArrangedObjectIndex: index!)
-            RoomList.removeRows(at: IndexSet(integer: index!), withAnimation: [ .slideUp, .effectFade ])
+            roomsCacheController.rearrangeObjects()
         }
-        roomsCacheController.rearrangeObjects()
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         RoomSearch.placeholderString = "Search \(rooms.count) room"

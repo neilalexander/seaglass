@@ -1142,7 +1142,7 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="RoomsCacheEntry" automaticallyRearrangesObjects="YES" id="El7-IA-8gq"/>
+                <arrayController objectClassName="RoomsCacheEntry" selectsInsertedObjects="NO" automaticallyRearrangesObjects="YES" id="El7-IA-8gq"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -2647,7 +2647,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
-                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <rect key="frame" x="155" y="12" width="14" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-M9-wpJ">
