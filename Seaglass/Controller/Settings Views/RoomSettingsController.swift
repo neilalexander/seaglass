@@ -238,7 +238,7 @@ class RoomSettingsController: NSViewController {
             for button in [ self.ButtonSave, self.ButtonCancel, self.ButtonPermissions, self.ButtonAliases ] {
                 button!.isEnabled = true
             }
-            sender.window?.close()
+            sender.window?.contentViewController?.dismiss(sender)
         })
     }
     

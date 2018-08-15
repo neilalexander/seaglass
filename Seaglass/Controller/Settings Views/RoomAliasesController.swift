@@ -181,7 +181,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
             for button in [ self.AliasSave, self.AliasCancel, self.AliasAdd ] {
                 button!.isEnabled = true
             }
-            sender.window?.close()
+            sender.window?.contentViewController?.dismiss(sender)
         })
     }
     
