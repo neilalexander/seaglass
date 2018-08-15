@@ -380,8 +380,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageTableView.reloadData()
         
         if entry.roomsCacheEntry!.encrypted() {
+            RoomMessageInput.placeholderString = "Encrypted message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
         } else {
+            RoomMessageInput.placeholderString = "Message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
         
