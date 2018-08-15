@@ -29,6 +29,7 @@ protocol MatrixRoomsDelegate: AnyObject {
     func matrixDidJoinRoom(_ room: MXRoom)
     func matrixDidPartRoom(_ room: MXRoom)
     func matrixDidUpdateRoom(_ room: MXRoom)
+    func matrixIsRoomKnown(_ room: MXRoom) -> Bool
 }
 
 protocol MatrixRoomDelegate: AnyObject {

@@ -58,16 +58,16 @@ extension NSImageView {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
                             if self != nil {
-                                // self.wantsLayer = true
-                                // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                                // self.layer?.cornerRadius = (self.frame.width)/2
-                                // self.layer?.masksToBounds = true
-                                // self.canDrawSubviewsIntoLayer = true
+                               // self.wantsLayer = true
+                               // self.layer?.contentsGravity = kCAGravityResizeAspectFill
+                               // self.layer?.cornerRadius = (self.frame.width)/2
+                               // self.layer?.masksToBounds = true
+                               // self.canDrawSubviewsIntoLayer = true
                                 let image = MXMediaManager.loadThroughCache(withFilePath: path)
                                 if image != nil {
                                     self?.image? = image!
                                 }
-                                // self.wantsLayer = true
+                               // self.wantsLayer = true
                             }
                         }) { [weak self] (error) in
                             print("Error setting user avatar for \(userId)")
@@ -109,16 +109,16 @@ extension NSImageView {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
                             if self != nil {
-                               // self.wantsLayer = true
-                               // self.layer?.contentsGravity = kCAGravityResizeAspectFill
-                               // self.layer?.cornerRadius = (self.frame.width)/2
-                               // self.layer?.masksToBounds = true
-                               // self.canDrawSubviewsIntoLayer = true
+                               // self?.wantsLayer = true
+                                self?.layer?.contentsGravity = kCAGravityResizeAspectFill
+                                self?.layer?.cornerRadius = (self?.frame.width)!/2
+                                self?.layer?.masksToBounds = true
+                                self?.canDrawSubviewsIntoLayer = true
                                 let image = MXMediaManager.loadThroughCache(withFilePath: path)
                                 if image != nil {
                                     self?.image? = image!
                                 }
-                               // self.wantsLayer = true
+                                self?.wantsLayer = true
                             }
                         }) { [weak self] (error) in
                             print("Error setting room avatar for \(roomId)")

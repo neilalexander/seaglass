@@ -77,8 +77,25 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
     }
     
+    func matrixIsRoomKnown(_ room: MXRoom) -> Bool {
+        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        if rooms.count > 0 {
+            return rooms.index(where: { $0.roomId == room.roomId }) != nil
+        }
+        return false
+    }
+    
     func matrixDidPartRoom(_ room: MXRoom) {
-        // TODO: unsubscribe from room
+        if MatrixServices.inst.eventListeners[room.roomId] != nil {
+            print("There's a listener for \(room.roomId) - should stop it")
+           // MatrixServices.inst.session.removeListener(MatrixServices.inst.eventListeners[room.roomId])
+            MatrixServices.inst.eventListeners[room.roomId] = nil
+        }
+        let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
+        if index != nil {
+            roomsCacheController.remove(atArrangedObjectIndex: index!)
+            RoomList.removeRows(at: IndexSet(integer: index!), withAnimation: [ .slideUp, .effectFade ])
+        }
         roomsCacheController.rearrangeObjects()
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
@@ -164,15 +181,18 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = notification.object as! NSTableView
-        
         if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
-        
         let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as? RoomListEntry
         if entry != nil {
+            if entry!.roomsCacheEntry == nil {
+                return
+            }
+            if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry!.roomsCacheEntry!.roomId }) == nil {
+                return
+            }
             entry!.RoomListEntryUnread.isHidden = true
-            
             DispatchQueue.main.async {
                 self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry!)
             }

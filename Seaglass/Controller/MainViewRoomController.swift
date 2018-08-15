@@ -356,7 +356,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
         if entry.roomsCacheEntry?.roomId == roomId {
             return
-        }
+        } 
         
         roomTyping = false
 
