@@ -20,6 +20,8 @@
 	<string>0.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>Set automatically by scripts/set_build_number.sh</string>
+	<key>GIT_COMMIT_SHORT_HASH</key>
+	<string>c76e8be</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.social-networking</string>
 	<key>LSMinimumSystemVersion</key>

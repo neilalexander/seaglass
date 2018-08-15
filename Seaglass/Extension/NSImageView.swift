@@ -42,24 +42,30 @@ extension NSImageView {
             let url = MatrixServices.inst.client.url(ofContent: user.avatarUrl)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
+                if path == nil {
+                    return
+                }
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil && path != nil {
+                    if self.isVisible() && self.image != nil {
                         self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() && self.image != nil && path != nil {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
+                            if self != nil {
                                 // self.wantsLayer = true
                                 // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                 // self.layer?.cornerRadius = (self.frame.width)/2
                                 // self.layer?.masksToBounds = true
                                 // self.canDrawSubviewsIntoLayer = true
-                                self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                                self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                                 // self.wantsLayer = true
                             }
-                        }) { (error) in
+                        }) { [weak self] (error) in
                             print("Error setting user avatar for \(userId)")
+                            if self != nil {
+                                self?.image? = NSImage.init(named: NSImage.Name.touchBarUserTemplate)!
+                            }
                         }
                     }
                 }
@@ -79,24 +85,30 @@ extension NSImageView {
             let url = MatrixServices.inst.client.url(ofContent: room.summary.avatar)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
+                if path == nil {
+                    return
+                }
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil && path != nil {
+                    if self.isVisible() && self.image != nil {
                         self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                     }
                 } else {
                     DispatchQueue.main.async {
-                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: {
-                            if self.isVisible() && self.image != nil && path != nil {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
+                            if self != nil {
                                // self.wantsLayer = true
                                // self.layer?.contentsGravity = kCAGravityResizeAspectFill
                                // self.layer?.cornerRadius = (self.frame.width)/2
                                // self.layer?.masksToBounds = true
                                // self.canDrawSubviewsIntoLayer = true
-                                self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                                self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
                                // self.wantsLayer = true
                             }
-                        }) { (error) in
+                        }) { [weak self] (error) in
                             print("Error setting room avatar for \(roomId)")
+                            if self != nil {
+                                self?.image? = NSImage.init(named: NSImage.Name.touchBarNewMessageTemplate)!
+                            }
                         }
                     }
                 }
