@@ -48,7 +48,10 @@ extension NSImageView {
                 if FileManager.default.fileExists(atPath: path!) && useCached {
                     { [weak self] in
                         if self != nil {
-                            self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                            let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                            if image != nil {
+                                self?.image? = image!
+                            }
                         }
                     }()
                 } else {
@@ -60,7 +63,10 @@ extension NSImageView {
                                 // self.layer?.cornerRadius = (self.frame.width)/2
                                 // self.layer?.masksToBounds = true
                                 // self.canDrawSubviewsIntoLayer = true
-                                self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                                let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                                if image != nil {
+                                    self?.image? = image!
+                                }
                                 // self.wantsLayer = true
                             }
                         }) { [weak self] (error) in
@@ -93,7 +99,10 @@ extension NSImageView {
                 if FileManager.default.fileExists(atPath: path!) && useCached {
                     { [weak self] in
                         if self != nil {
-                            self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                            let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                            if image != nil {
+                                self?.image? = image!
+                            }
                         }
                     }()
                 } else {
@@ -105,7 +114,10 @@ extension NSImageView {
                                // self.layer?.cornerRadius = (self.frame.width)/2
                                // self.layer?.masksToBounds = true
                                // self.canDrawSubviewsIntoLayer = true
-                                self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                                let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                                if image != nil {
+                                    self?.image? = image!
+                                }
                                // self.wantsLayer = true
                             }
                         }) { [weak self] (error) in
