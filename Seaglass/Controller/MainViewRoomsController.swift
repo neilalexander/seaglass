@@ -106,8 +106,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func matrixDidUpdateRoom(_ room: MXRoom) {
-       // roomsCacheController.rearrangeObjects()
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        if rooms.count == 0 {
+            return
+        }
         for i in 0..<rooms.count {
             if rooms[i].roomId == room.roomId {
                 RoomList.reloadData(forRowIndexes: IndexSet([i]), columnIndexes: IndexSet([0]))
