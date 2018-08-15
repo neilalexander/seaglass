@@ -46,9 +46,11 @@ extension NSImageView {
                     return
                 }
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil {
-                        self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                    }
+                    { [weak self] in
+                        if self != nil {
+                            self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                        }
+                    }()
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
@@ -89,9 +91,11 @@ extension NSImageView {
                     return
                 }
                 if FileManager.default.fileExists(atPath: path!) && useCached {
-                    if self.isVisible() && self.image != nil {
-                        self.image? = MXMediaManager.loadThroughCache(withFilePath: path)
-                    }
+                    { [weak self] in
+                        if self != nil {
+                            self?.image? = MXMediaManager.loadThroughCache(withFilePath: path)
+                        }
+                    }()
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
