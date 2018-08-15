@@ -143,6 +143,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToPartRoom":
+                if let dest = segue.destinationController as? MainViewPartController {
+                    dest.roomId = roomId
+                }
+                break
             default:
                 return
             }

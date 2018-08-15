@@ -921,10 +921,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="2291" y="1333"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Join Controller-->
         <scene sceneID="kPG-AZ-8dK">
             <objects>
-                <viewController id="cN8-VT-9ct" sceneMemberID="viewController">
+                <viewController id="cN8-VT-9ct" customClass="MainViewJoinController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jEi-BN-ox8">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="148"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -948,6 +948,9 @@ DQ
 DQ
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="pZM-Ex-Sqj"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-mG-SnZ">
                                 <rect key="frame" x="18" y="89" width="307" height="39"/>
@@ -960,6 +963,9 @@ DQ
                             </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="ChannelEntryField" destination="rwa-uT-QHE" id="RAh-dh-4rZ"/>
+                    </connections>
                 </viewController>
                 <customObject id="ola-J4-z2w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1003,7 +1009,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="cN8-VT-9ct" kind="popover" popoverAnchorView="Wfa-Sa-Oxk" popoverBehavior="t" preferredEdge="maxY" id="KAz-aJ-uB6"/>
+                                    <segue destination="cN8-VT-9ct" kind="popover" identifier="SegueToJoinRoom" popoverAnchorView="Wfa-Sa-Oxk" popoverBehavior="t" preferredEdge="maxY" id="KAz-aJ-uB6"/>
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
@@ -1220,7 +1226,7 @@ DQ
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="GNV-Xu-rSV" kind="popover" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
+                                    <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
                                 </connections>
                             </button>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="GvZ-sd-DTW">
@@ -1638,10 +1644,10 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
             </objects>
             <point key="canvasLocation" x="1029" y="1028"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Part Controller-->
         <scene sceneID="Bcb-5U-On0">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="GNV-Xu-rSV" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="GNV-Xu-rSV" customClass="MainViewPartController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qgk-PF-7EH">
                         <rect key="frame" x="0.0" y="0.0" width="303" height="128"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1674,9 +1680,15 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
 DQ
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="leaveButtonClicked:" target="GNV-Xu-rSV" id="dcf-tH-kf4"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="LeaveButton" destination="IFL-5P-WFY" id="2a1-zO-GLx"/>
+                    </connections>
                 </viewController>
                 <customObject id="Fl4-G6-dLE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

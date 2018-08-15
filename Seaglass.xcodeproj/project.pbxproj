@@ -33,6 +33,8 @@
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
 		39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BE2447211DBF25006B0A8B /* NSImage.swift */; };
+		39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */; };
+		39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */; };
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
@@ -91,6 +93,8 @@
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
 		39BE2447211DBF25006B0A8B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
+		39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewJoinController.swift; sourceTree = "<group>"; };
+		39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPartController.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 				399E6FC520C806E700A2644A /* MainViewRoomController.swift */,
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
 				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
+				39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */,
+				39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */,
 			);
 			path = "Main View";
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				39373485211CA475008AAB7D /* WindowController.swift in Sources */,
+				39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */,
 				39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */,
 				39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,
@@ -524,6 +531,7 @@
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,
 				39432C952118727800FF3E5A /* String.swift in Sources */,
 				3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */,
+				39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */,
 				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
