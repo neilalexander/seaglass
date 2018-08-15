@@ -79,6 +79,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             formattedText = unformattedText
         }
         
+        if formattedText == "" {
+            sender.stringValue = ""
+            sender.isEnabled = true
+            sender.becomeFirstResponder()
+            return
+        }
+        
         self.roomTyping = false
         
         var returnedEvent: MXEvent?
