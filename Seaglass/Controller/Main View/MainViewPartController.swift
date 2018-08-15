@@ -45,7 +45,7 @@ class MainViewPartController: NSViewController {
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
             }
-            sender.window?.close()
+            sender.window?.contentViewController?.dismiss(sender)
         }
     }
 }
