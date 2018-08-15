@@ -59,12 +59,18 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func matrixDidJoinRoom(_ room: MXRoom) {
-        roomsCacheController.insert(RoomsCacheEntry(room), atArrangedObjectIndex: 0)
+        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        if rooms.count > 0 {
+            if rooms.index(where: { $0.roomId == room.roomId }) != nil {
+                return
+            }
+        }
+        
+        roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
         roomsCacheController.rearrangeObjects()
         
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
         
-        let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         RoomSearch.placeholderString = "Search \(rooms.count) room"
         if rooms.count != 1 {
             RoomSearch.placeholderString?.append(contentsOf: "s")
