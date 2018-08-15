@@ -20,6 +20,7 @@ import Cocoa
 
 class MainViewPartController: NSViewController {
     @IBOutlet weak var LeaveButton: NSButton!
+    @IBOutlet weak var LeaveSpinner: NSProgressIndicator!
     
     var roomId: String = ""
     
@@ -35,17 +36,24 @@ class MainViewPartController: NSViewController {
         }
         
         LeaveButton.isEnabled = false
+        LeaveSpinner.startAnimation(sender)
         
-        MatrixServices.inst.session.leaveRoom(roomId) { (response) in
-            if response.isFailure {
-                let alert = NSAlert()
-                alert.messageText = "Failed to leave room \(self.roomId)"
-                alert.informativeText = response.error!.localizedDescription
-                alert.alertStyle = .warning
-                alert.addButton(withTitle: "OK")
-                alert.runModal()
+        NSAnimationContext.runAnimationGroup({ (context) in
+            context.duration = 0.5
+            LeaveButton.animator().alphaValue = 0
+            LeaveSpinner.animator().alphaValue = 1
+        }, completionHandler: {
+            MatrixServices.inst.session.leaveRoom(self.roomId) { (response) in
+                if response.isFailure {
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to leave room \(self.roomId)"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
+                }
+                sender.window?.contentViewController?.dismiss(sender)
             }
-            sender.window?.contentViewController?.dismiss(sender)
-        }
+        })
     }
 }

@@ -1684,10 +1684,15 @@ DQ
                                     <action selector="leaveButtonClicked:" target="GNV-Xu-rSV" id="dcf-tH-kf4"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="0wY-ER-W7Q">
+                                <rect key="frame" x="143" y="23" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="LeaveButton" destination="IFL-5P-WFY" id="2a1-zO-GLx"/>
+                        <outlet property="LeaveSpinner" destination="0wY-ER-W7Q" id="dBC-a7-IV9"/>
                     </connections>
                 </viewController>
                 <customObject id="Fl4-G6-dLE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
