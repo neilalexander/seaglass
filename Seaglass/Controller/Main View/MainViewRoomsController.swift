@@ -134,7 +134,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryName.stringValue = state.roomName
         } else if state.roomAlias != "" {
             cell?.RoomListEntryName.stringValue = state.roomAlias
-        } else {
+        } else if count > 0 {
             var memberNames: String = ""
             for m in 0..<count {
                 if state.members()[m].userId == MatrixServices.inst.client?.credentials.userId {
@@ -146,6 +146,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                 }
             }
             cell?.RoomListEntryName.stringValue = memberNames
+        } else {
+            cell?.RoomListEntryName.stringValue = ""
         }
         
         if state.roomAvatar == "" && state.members().count <= 2 {

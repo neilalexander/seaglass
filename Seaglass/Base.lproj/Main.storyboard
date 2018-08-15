@@ -1165,11 +1165,11 @@ DQ
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
-                                <rect key="frame" x="18" y="425" width="116" height="17"/>
+                                <rect key="frame" x="18" y="425" width="101" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="rm2-dd-1VU"/>
                                 </constraints>
-                                <tokenFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" enabled="NO" alignment="left" title="Room Name" placeholderString="Room Name" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
+                                <tokenFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" enabled="NO" alignment="left" placeholderString="Unnamed Room" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
@@ -1608,7 +1608,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                 </connections>
                             </button>
                             <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" alphaValue="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
-                                <rect key="frame" x="138" y="425" width="350" height="17"/>
+                                <rect key="frame" x="123" y="425" width="365" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="U0L-Aj-cwK"/>
                                 </constraints>
@@ -1803,7 +1803,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-Kd-f9g">
-                                <rect key="frame" x="384" y="61" width="5" height="451"/>
+                                <rect key="frame" x="384" y="61" width="115" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                             <textField identifier="RoomSettingsName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWS-OG-RG6">
@@ -2633,7 +2633,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6ZY-r1-ePk">
-                                <rect key="frame" x="20" y="118" width="281" height="5"/>
+                                <rect key="frame" x="20" y="118" width="281" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                         </subviews>
@@ -2664,7 +2664,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
-                                <rect key="frame" x="155" y="12" width="14" height="58"/>
+                                <rect key="frame" x="155" y="12" width="5" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-M9-wpJ">
