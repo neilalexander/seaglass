@@ -992,10 +992,10 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                                 <connections>
-                                    <binding destination="El7-IA-8gq" name="predicate" keyPath="filterPredicate" id="6cb-qa-cFs">
+                                    <binding destination="El7-IA-8gq" name="predicate" keyPath="filterPredicate" id="MBd-ux-SUz">
                                         <dictionary key="options">
                                             <string key="NSDisplayName">predicate</string>
-                                            <string key="NSPredicateFormat">self.roomName contains[cd] $value or self.roomTopic contains[cd] $value</string>
+                                            <string key="NSPredicateFormat">self.roomDisplayName contains[cd] $value or self.roomTopic contains[cd] $value</string>
                                             <bool key="NSValidatesImmediately" value="YES"/>
                                         </dictionary>
                                     </binding>

@@ -52,6 +52,27 @@ class RoomsCacheEntry: NSObject {
         }
         return 50
     }
+    @objc dynamic var roomDisplayName: String {
+        let count = self.members().count
+        if self.roomName != "" {
+            return self.roomName
+        } else if self.roomAlias != "" {
+            return self.roomAlias
+        } else if count > 0 {
+            var memberNames: String = ""
+            for m in 0..<count {
+                if self.members()[m].userId == MatrixServices.inst.client?.credentials.userId {
+                    continue
+                }
+                memberNames.append(self.members()[m].displayname ?? (self.members()[m].userId)!)
+                if m < count-2 {
+                    memberNames.append(", ")
+                }
+            }
+            return memberNames
+        }
+        return ""
+    }
     
     init(_ room: MXRoom) {
         self.room = room

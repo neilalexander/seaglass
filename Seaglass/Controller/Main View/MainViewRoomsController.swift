@@ -127,28 +127,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         
         let state: RoomsCacheEntry = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
         cell?.roomsCacheEntry = state
+        cell?.RoomListEntryName.stringValue = state.roomDisplayName
     
         let count = state.members().count
-
-        if state.roomName != "" {
-            cell?.RoomListEntryName.stringValue = state.roomName
-        } else if state.roomAlias != "" {
-            cell?.RoomListEntryName.stringValue = state.roomAlias
-        } else if count > 0 {
-            var memberNames: String = ""
-            for m in 0..<count {
-                if state.members()[m].userId == MatrixServices.inst.client?.credentials.userId {
-                    continue
-                }
-                memberNames.append(state.members()[m].displayname ?? (state.members()[m].userId)!)
-                if m < count-2 {
-                    memberNames.append(", ")
-                }
-            }
-            cell?.RoomListEntryName.stringValue = memberNames
-        } else {
-            cell?.RoomListEntryName.stringValue = ""
-        }
         
         if state.roomAvatar == "" {
             if state.members().count == 2 {
