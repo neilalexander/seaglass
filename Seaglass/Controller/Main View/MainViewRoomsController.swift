@@ -193,6 +193,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             return [
                 NSTableViewRowAction(style: .destructive, title: "Leave", handler: { (action, row) in
                     let roomId = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row].roomId
+                    tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideUp, .effectFade])
                     MatrixServices.inst.session.leaveRoom(roomId) { (response) in
                         if response.isFailure {
                             tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
