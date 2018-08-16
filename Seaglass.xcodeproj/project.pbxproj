@@ -35,6 +35,8 @@
 		39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BE2447211DBF25006B0A8B /* NSImage.swift */; };
 		39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */; };
 		39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */; };
+		39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA82212603A500BDA001 /* PopoverRoomList.swift */; };
+		39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA84212603F700BDA001 /* PopoverUserList.swift */; };
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
@@ -95,6 +97,8 @@
 		39BE2447211DBF25006B0A8B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewJoinController.swift; sourceTree = "<group>"; };
 		39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPartController.swift; sourceTree = "<group>"; };
+		39E5AA82212603A500BDA001 /* PopoverRoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomList.swift; sourceTree = "<group>"; };
+		39E5AA84212603F700BDA001 /* PopoverUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUserList.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
@@ -168,8 +172,8 @@
 				395C008920D6AA7400C67609 /* Model */,
 				3943E0EE20CD9EF70061D51D /* Subclass */,
 				3943E0EC20CD9E4E0061D51D /* Controller */,
-				391BFE2520C68AD200B4EFEC /* Assets.xcassets */,
 				391BFE2720C68AD200B4EFEC /* Main.storyboard */,
+				391BFE2520C68AD200B4EFEC /* Assets.xcassets */,
 				391BFE2A20C68AD200B4EFEC /* Info.plist */,
 				391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */,
 				391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */,
@@ -211,6 +215,7 @@
 			children = (
 				39373483211CA475008AAB7D /* WindowController.swift */,
 				3943E0E820CC21590061D51D /* AboutViewController.swift */,
+				39E5AA812126037B00BDA001 /* Popover Views */,
 				39E5AA7A2124C7DC00BDA001 /* Login Logout Views */,
 				39E5AA792124C7C900BDA001 /* Embedded Views */,
 				39E5AA782124C7B500BDA001 /* Settings Views */,
@@ -281,6 +286,15 @@
 				3943E0E620CB43A60061D51D /* LogoutViewController.swift */,
 			);
 			path = "Login Logout Views";
+			sourceTree = "<group>";
+		};
+		39E5AA812126037B00BDA001 /* Popover Views */ = {
+			isa = PBXGroup;
+			children = (
+				39E5AA82212603A500BDA001 /* PopoverRoomList.swift */,
+				39E5AA84212603F700BDA001 /* PopoverUserList.swift */,
+			);
+			path = "Popover Views";
 			sourceTree = "<group>";
 		};
 		600042570E1B4E8E38C9BC0D /* Frameworks */ = {
@@ -523,6 +537,7 @@
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
 				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,
 				39F3126121189F9200A75E16 /* NSImageView.swift in Sources */,
+				39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
 				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
@@ -532,6 +547,7 @@
 				39432C952118727800FF3E5A /* String.swift in Sources */,
 				3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */,
 				39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */,
+				39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */,
 				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

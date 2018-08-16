@@ -949,6 +949,17 @@ DQ
                                     <action selector="openButtonClicked:" target="cN8-VT-9ct" id="pZM-Ex-Sqj"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKc-q7-YLF">
+                                <rect key="frame" x="127" y="175" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2AN-KJ-vSe">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="NPM-Jz-i1J"/>
+                                </connections>
+                            </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-mG-SnZ">
                                 <rect key="frame" x="18" y="84" width="316" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -986,7 +997,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oea-9K-mEE">
-                                <rect key="frame" x="20" y="162" width="312" height="5"/>
+                                <rect key="frame" x="0.0" y="162" width="352" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLK-qn-utr">
@@ -996,17 +1007,6 @@ DQ
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKc-q7-YLF">
-                                <rect key="frame" x="127" y="175" width="98" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2AN-KJ-vSe">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="NPM-Jz-i1J"/>
-                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -1192,6 +1192,7 @@ DQ
                         <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
                         <outlet property="RoomSearch" destination="jnD-59-Pkl" id="bgM-5W-IxY"/>
                         <outlet property="roomsCacheController" destination="El7-IA-8gq" id="enl-tI-EnW"/>
+                        <segue destination="vrm-yE-FSO" kind="sheet" identifier="SegueRoomsToRoomSettings" id="ggZ-vC-hmq"/>
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -3018,10 +3019,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="75" y="1020"/>
         </scene>
-        <!--View Controller-->
+        <!--Popover User List-->
         <scene sceneID="Xp7-LZ-gMb">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="XnJ-du-pMW" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="XnJ-du-pMW" customClass="PopoverUserList" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="B6p-xd-Mnm">
                         <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3077,44 +3078,6 @@ DQ
             </objects>
             <point key="canvasLocation" x="2245.5" y="902"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mWB-CY-Ycs">
-            <objects>
-                <customObject id="7G5-5u-Rnu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="RoomsPopoverController" id="nR1-ZO-XNu" sceneMemberID="viewController">
-                    <view key="view" id="CIQ-H1-un0">
-                        <rect key="frame" x="0.0" y="0.0" width="165" height="82"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4J7-ss-Sew">
-                                <rect key="frame" x="13" y="12" width="56" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="ifY-cb-7gx">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                            </button>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="pMr-oN-KoW">
-                                <rect key="frame" x="80" y="12" width="5" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zgg-1R-s7s">
-                                <rect key="frame" x="91" y="12" width="63" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="Leave" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="v0O-a6-oZ7">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                            </button>
-                        </subviews>
-                        <connections>
-                            <binding destination="nR1-ZO-XNu" name="hidden" keyPath="self.popoverController" id="sHa-wz-giG"/>
-                        </connections>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="248" y="1236"/>
-        </scene>
         <!--Window Controller-->
         <scene sceneID="rhq-PB-W3q">
             <objects>
@@ -3159,4 +3122,7 @@ DQ
         <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ggZ-vC-hmq"/>
+    </inferredMetricsTieBreakers>
 </document>
