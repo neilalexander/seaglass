@@ -41,6 +41,7 @@ class RoomSettingsController: NSViewController {
     
     @IBOutlet var RoomName: NSTextField!
     @IBOutlet var RoomTopic: NSTextField!
+    @IBOutlet var RoomAvatar: NSImageView!
     @IBOutlet var RoomPublishInDirectory: NSButton!
     
     @IBOutlet var RoomAccessOnlyInvited: NSButton!
@@ -259,6 +260,8 @@ class RoomSettingsController: NSViewController {
         RoomTopic.stringValue = room.state.topic ?? ""
         RoomTopic.isEnabled = true
         RoomTopic.isEditable = true
+        
+        RoomAvatar.setAvatar(forRoomId: roomId)
         
         initialRoomName = RoomName.stringValue
         initialRoomTopic = RoomTopic.stringValue

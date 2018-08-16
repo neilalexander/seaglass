@@ -926,34 +926,31 @@ DQ
             <objects>
                 <viewController id="cN8-VT-9ct" customClass="MainViewJoinController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jEi-BN-ox8">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="148"/>
+                        <rect key="frame" x="0.0" y="0.0" width="352" height="315"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-uT-QHE">
-                                <rect key="frame" x="20" y="59" width="303" height="22"/>
+                                <rect key="frame" x="20" y="56" width="312" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org, #channel:matrix.org, ..." drawsBackground="YES" id="mOa-Z0-Ny3">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org, #channel:matrix.org, ..." drawsBackground="YES" id="mOa-Z0-Ny3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0t-Sz-QGE">
-                                <rect key="frame" x="122" y="13" width="98" height="32"/>
+                                <rect key="frame" x="127" y="13" width="98" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8oM-tp-hq5">
+                                <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8oM-tp-hq5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="openButtonClicked:" target="cN8-VT-9ct" id="pZM-Ex-Sqj"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-mG-SnZ">
-                                <rect key="frame" x="18" y="89" width="307" height="39"/>
+                                <rect key="frame" x="18" y="84" width="316" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="To join a specific room or send a message to a specific Matrix ID, enter it below:" id="rVv-Pn-Rso">
                                     <font key="font" metaFont="system"/>
@@ -961,6 +958,56 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Edd-fh-l3W">
+                                <rect key="frame" x="18" y="271" width="316" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Create an empty room" id="KEb-11-avA">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6C9-q6-ZkL">
+                                <rect key="frame" x="18" y="126" width="316" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Join a room or send a direct message" id="vaX-mg-hR9">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-XZ-uKK">
+                                <rect key="frame" x="38" y="207" width="287" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" title="When selected, users from other homeservers will not be able to join the room. This cannot be changed later." id="vUf-dk-GPM">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oea-9K-mEE">
+                                <rect key="frame" x="20" y="162" width="312" height="5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLK-qn-utr">
+                                <rect key="frame" x="18" y="245" width="316" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Disable federation for this room" bezelStyle="regularSquare" imagePosition="left" inset="2" id="CNq-na-h6e">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKc-q7-YLF">
+                                <rect key="frame" x="127" y="175" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2AN-KJ-vSe">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="NPM-Jz-i1J"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -969,7 +1016,7 @@ DQ
                 </viewController>
                 <customObject id="ola-J4-z2w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="1528"/>
+            <point key="canvasLocation" x="-15" y="1565.5"/>
         </scene>
         <!--Main View Rooms Controller-->
         <scene sceneID="Gq1-CI-Ahz">
@@ -986,7 +1033,7 @@ DQ
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl" userLabel="Room Search">
                                 <rect key="frame" x="40" y="421" width="180" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" alignment="center" usesSingleLineMode="YES" bezelStyle="round" id="gxO-XS-aCn">
+                                <searchFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" borderStyle="bezel" placeholderString="Search 0 rooms" usesSingleLineMode="YES" bezelStyle="round" recentsAutosaveName="RoomsListSearch" id="gxO-XS-aCn">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1164,7 +1211,7 @@ DQ
                                 <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
-                            <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
+                            <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
                                 <rect key="frame" x="18" y="425" width="101" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="rm2-dd-1VU"/>
@@ -1222,7 +1269,9 @@ DQ
                                 <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">w</string>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
@@ -1607,7 +1656,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <segue destination="pny-lE-NfQ" kind="popover" popoverAnchorView="EGm-dG-DZW" popoverBehavior="t" preferredEdge="maxY" id="Wab-EX-BXE"/>
                                 </connections>
                             </button>
-                            <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" alphaValue="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
+                            <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" alphaValue="0.29999999999999999" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
                                 <rect key="frame" x="123" y="425" width="365" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="U0L-Aj-cwK"/>
@@ -1664,7 +1713,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1J8-as-zIH">
                                 <rect key="frame" x="18" y="49" width="267" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Are you sure you want to leave this room? Depending on room settings, you may not be able to rejoin." id="VuO-W6-tVG">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Are you sure you want to leave this room? Depending on room settings, you may not be able to rejoin without being invited." id="VuO-W6-tVG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1676,9 +1725,6 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                 <buttonCell key="cell" type="push" title="Leave" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZXJ-Ip-OdH">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="leaveButtonClicked:" target="GNV-Xu-rSV" id="dcf-tH-kf4"/>
@@ -1802,12 +1848,8 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-Kd-f9g">
-                                <rect key="frame" x="384" y="61" width="115" height="451"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                            </box>
                             <textField identifier="RoomSettingsName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWS-OG-RG6">
-                                <rect key="frame" x="20" y="457" width="343" height="22"/>
+                                <rect key="frame" x="76" y="457" width="287" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="A short friendly name for your room" drawsBackground="YES" id="sdA-FW-okQ">
                                     <font key="font" metaFont="system"/>
@@ -1841,7 +1883,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h0S-4T-SoM">
-                                <rect key="frame" x="18" y="487" width="80" height="17"/>
+                                <rect key="frame" x="74" y="487" width="80" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Room name:" id="hwz-QZ-3wP">
                                     <font key="font" metaFont="system"/>
@@ -1858,7 +1900,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5O-br-AYe">
-                                <rect key="frame" x="396" y="61" width="214" height="451"/>
+                                <rect key="frame" x="396" y="53" width="214" height="451"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="JgL-ue-YD9" kind="embed" identifier="SegueToMemberList" id="zHQ-ci-OI8"/>
@@ -1918,6 +1960,15 @@ DQ
                                 <rect key="frame" x="302" y="23" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qd6-V2-gUo">
+                                <rect key="frame" x="20" y="456" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="SPx-Fb-dog"/>
+                            </imageView>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ZSM-1o-sYo">
+                                <rect key="frame" x="383" y="53" width="5" height="451"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -1928,6 +1979,7 @@ DQ
                         <outlet property="RoomAccessExceptGuests" destination="JXg-rb-Tf9" id="e7j-gr-KEv"/>
                         <outlet property="RoomAccessIncludingGuests" destination="cY8-Ji-QeO" id="dqU-Ur-DGe"/>
                         <outlet property="RoomAccessOnlyInvited" destination="LeR-Pc-hgf" id="QUG-Qb-r2b"/>
+                        <outlet property="RoomAvatar" destination="Qd6-V2-gUo" id="Sxz-bj-g4s"/>
                         <outlet property="RoomHistoryAnyone" destination="TaO-cA-m6u" id="3Q6-53-YQf"/>
                         <outlet property="RoomHistorySinceInvited" destination="9ia-nc-3AT" id="wZF-Vu-NKS"/>
                         <outlet property="RoomHistorySinceJoined" destination="nuD-8V-4zq" id="acx-mY-4Mm"/>
@@ -2488,7 +2540,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-Vb-cKl">
                                 <rect key="frame" x="18" y="128" width="303" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="When my display name is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="zMk-W8-qL0">
+                                <buttonCell key="cell" type="check" title="When my display name is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="zMk-W8-qL0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2496,7 +2548,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ot0-AK-kdB">
                                 <rect key="frame" x="18" y="102" width="278" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="When my Matrix ID is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="3Og-hM-jac">
+                                <buttonCell key="cell" type="check" title="When my Matrix ID is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="3Og-hM-jac">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2504,7 +2556,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMa-aB-gt9">
                                 <rect key="frame" x="18" y="51" width="207" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Messages in one-to-one chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="j6Y-07-fkG">
+                                <buttonCell key="cell" type="check" title="Messages in one-to-one chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="j6Y-07-fkG">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2512,7 +2564,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-Hf-UQ9">
                                 <rect key="frame" x="18" y="26" width="174" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Messages in group chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5Fo-Do-TMs">
+                                <buttonCell key="cell" type="check" title="Messages in group chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="5Fo-Do-TMs">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2520,7 +2572,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZx-r4-UhS">
                                 <rect key="frame" x="18" y="77" width="168" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="The following keywords:" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="OAx-r8-jNQ">
+                                <buttonCell key="cell" type="check" title="The following keywords:" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="OAx-r8-jNQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2537,7 +2589,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kue-mD-bWd">
                                 <rect key="frame" x="18" y="214" width="173" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Enable message bubbles" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="YT3-a1-e5F">
+                                <buttonCell key="cell" type="check" title="Enable message bubbles" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="YT3-a1-e5F">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2545,7 +2597,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-Wd-8Vi">
                                 <rect key="frame" x="18" y="188" width="304" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Show user Matrix IDs instead of display names" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="YSd-io-rEg">
+                                <buttonCell key="cell" type="check" title="Show user Matrix IDs instead of display names" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="YSd-io-rEg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2584,26 +2636,26 @@ Gw
                     </defaultToolbarItems>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="401.5" y="1978.5"/>
+            <point key="canvasLocation" x="415" y="1986"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="wgK-pz-Eof">
             <objects>
                 <viewController id="pny-lE-NfQ" sceneMemberID="viewController">
                     <view key="view" id="w6m-Ih-Z0k">
-                        <rect key="frame" x="0.0" y="0.0" width="321" height="216"/>
+                        <rect key="frame" x="0.0" y="0.0" width="321" height="236"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBC-tn-2C2">
-                                <rect key="frame" x="18" y="180" width="279" height="18"/>
+                                <rect key="frame" x="18" y="200" width="206" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Enable end-to-end encryption in this room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="v0b-4f-06b">
+                                <buttonCell key="cell" type="check" title="Enable encryption in this room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="v0b-4f-06b">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X76-22-Rqt">
-                                <rect key="frame" x="18" y="133" width="285" height="45"/>
+                                <rect key="frame" x="18" y="100" width="285" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="Cp4-4H-GaQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2613,11 +2665,22 @@ unverified devices from this client</string>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plu-cM-m1W">
-                                <rect key="frame" x="18" y="55" width="285" height="51"/>
+                                <rect key="frame" x="37" y="151" width="266" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Enabling end-to-end encryption in a room is a permanent action. Once it is enabled, it cannot be disabled again." id="T86-8u-xyS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="T86-8u-xyS">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <string key="title">When selected, messages sent to the room will be encrypted end-to-end. Once encryption has been enabled in a room, it cannot be disabled.</string>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SoM-Yt-W5l">
+                                <rect key="frame" x="37" y="61" width="266" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="xJH-VY-pWE">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <string key="title">Paranoid mode - you will need to manually verify your contact's devices before you will be able to send encrypted messages to them.</string>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -2632,16 +2695,12 @@ DQ
 </string>
                                 </buttonCell>
                             </button>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6ZY-r1-ePk">
-                                <rect key="frame" x="20" y="118" width="281" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="7D9-J3-usd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="1549"/>
+            <point key="canvasLocation" x="899.5" y="1559"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qJA-ta-oKM">
@@ -2843,14 +2902,6 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
-                                <rect key="frame" x="88" y="65" width="256" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sJH-i8-DfP">
                                 <rect key="frame" x="18" y="196" width="414" height="48"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -2870,6 +2921,14 @@ DQ
                                 <connections>
                                     <segue destination="OJS-MA-od8" kind="popover" popoverAnchorView="fER-D9-2bd" popoverBehavior="t" preferredEdge="maxY" id="qMQ-tO-rvZ"/>
                                 </connections>
+                            </button>
+                            <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
+                                <rect key="frame" x="91" y="68" width="256" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
                             </button>
                         </subviews>
                         <backgroundFilters>
