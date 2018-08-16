@@ -1270,10 +1270,6 @@ DQ
                                 <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
@@ -3123,6 +3119,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>
