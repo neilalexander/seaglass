@@ -33,8 +33,8 @@ extension NSImageView {
         return self.isVisible(inView: self.superview)
     }
     
-    func setAvatar(forMxcUrl: String?, defaultImageName: NSImage.Name, useCached: Bool = true) {
-        self.image? = NSImage.init(named: defaultImageName)!
+    func setAvatar(forMxcUrl: String?, defaultImage: NSImage, useCached: Bool = true) {
+        self.image? = defaultImage
         if forMxcUrl == nil {
             return
         }
@@ -65,7 +65,7 @@ extension NSImageView {
                             }
                         }) { [weak self] (error) in
                             if self != nil {
-                                self?.image? = NSImage.init(named: defaultImageName)!
+                                self?.image? = defaultImage
                             }
                         }
                     }
@@ -81,7 +81,7 @@ extension NSImageView {
         }
         let user = MatrixServices.inst.session.user(withUserId: userId)!
         if user.avatarUrl != "" {
-            self.setAvatar(forMxcUrl: user.avatarUrl, defaultImageName: NSImage.Name.user, useCached: useCached)
+            self.setAvatar(forMxcUrl: user.avatarUrl, defaultImage: NSImage.create(withLetterString: user.displayname ?? "?"), useCached: useCached)
         } else {
             self.setAvatar(forText: user.displayname)
         }
@@ -94,7 +94,7 @@ extension NSImageView {
         }
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
         if room.summary.avatar != "" {
-            self.setAvatar(forMxcUrl: room.summary.avatar, defaultImageName: NSImage.Name.userGroup, useCached: useCached)
+            self.setAvatar(forMxcUrl: room.summary.avatar, defaultImage: NSImage.create(withLetterString: room.summary.displayname ?? "?"), useCached: useCached)
         } else {
             self.setAvatar(forText: room.summary.displayname)
         }
