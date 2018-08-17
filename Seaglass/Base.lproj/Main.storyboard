@@ -1209,7 +1209,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -3119,6 +3119,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfp-e2-cpe"/>
+        <segue reference="ggZ-vC-hmq"/>
     </inferredMetricsTieBreakers>
 </document>

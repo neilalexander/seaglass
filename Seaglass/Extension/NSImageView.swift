@@ -34,8 +34,8 @@ extension NSImageView {
     }
     
     func setAvatar(forMxcUrl: String?, defaultImageName: NSImage.Name, useCached: Bool = true) {
+        self.image? = NSImage.init(named: defaultImageName)!
         if forMxcUrl == nil {
-            self.image? = NSImage.init(named: defaultImageName)!
             return
         }
         if forMxcUrl!.hasPrefix("mxc://") {
@@ -43,7 +43,6 @@ extension NSImageView {
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if path == nil {
-                    self.image? = NSImage.init(named: defaultImageName)!
                     return
                 }
                 if FileManager.default.fileExists(atPath: path!) && useCached {
@@ -52,8 +51,6 @@ extension NSImageView {
                             let image = MXMediaManager.loadThroughCache(withFilePath: path)
                             if image != nil {
                                 self?.image? = image!
-                            } else {
-                                self?.image? = NSImage.init(named: defaultImageName)!
                             }
                         }
                     }()
@@ -64,23 +61,16 @@ extension NSImageView {
                                 let image = MXMediaManager.loadThroughCache(withFilePath: path)
                                 if image != nil {
                                     self?.image? = image!
-                                } else {
-                                    self?.image? = NSImage.init(named: defaultImageName)!
                                 }
                             }
                         }) { [weak self] (error) in
-                            print("Error setting avatar from MXC URL \(forMxcUrl)")
                             if self != nil {
                                 self?.image? = NSImage.init(named: defaultImageName)!
                             }
                         }
                     }
                 }
-            } else {
-                self.image? = NSImage.init(named: defaultImageName)!
             }
-        } else {
-            self.image? = NSImage.init(named: defaultImageName)!
         }
     }
     
