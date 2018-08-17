@@ -868,7 +868,7 @@ DQ
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                 </button>
-                                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-b4-s9H">
+                                                                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-b4-s9H" customClass="AvatarImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="3" y="4" width="36" height="36"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="9wR-wt-Hh7"/>
@@ -1209,7 +1209,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -1963,7 +1963,7 @@ DQ
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="SPx-Fb-dog"/>
                             </imageView>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ZSM-1o-sYo">
-                                <rect key="frame" x="383" y="53" width="4" height="451"/>
+                                <rect key="frame" x="383" y="53" width="5" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                         </subviews>

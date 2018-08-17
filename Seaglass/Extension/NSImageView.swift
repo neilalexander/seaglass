@@ -33,8 +33,12 @@ extension NSImageView {
         return self.isVisible(inView: self.superview)
     }
     
-    func setAvatar(forMxcUrl: String, defaultImageName: NSImage.Name, useCached: Bool = true) {
-        if forMxcUrl.hasPrefix("mxc://") {
+    func setAvatar(forMxcUrl: String?, defaultImageName: NSImage.Name, useCached: Bool = true) {
+        if forMxcUrl == nil {
+            self.image? = NSImage.init(named: defaultImageName)!
+            return
+        }
+        if forMxcUrl!.hasPrefix("mxc://") {
             let url = MatrixServices.inst.client.url(ofContent: forMxcUrl)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
@@ -52,7 +56,7 @@ extension NSImageView {
                                 self?.image? = NSImage.init(named: defaultImageName)!
                             }
                         }
-                        }()
+                    }()
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
@@ -85,9 +89,7 @@ extension NSImageView {
             return
         }
         let user = MatrixServices.inst.session.user(withUserId: userId)!
-        if user.avatarUrl != nil {
-            self.setAvatar(forMxcUrl: user.avatarUrl, defaultImageName: NSImage.Name.touchBarUserTemplate, useCached: useCached)
-        }
+        self.setAvatar(forMxcUrl: user.avatarUrl, defaultImageName: NSImage.Name.touchBarUserTemplate, useCached: useCached)
     }
     
     func setAvatar(forRoomId roomId: String, useCached: Bool = true) {
@@ -95,8 +97,6 @@ extension NSImageView {
             return
         }
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
-        if room.summary.avatar != nil {
-            self.setAvatar(forMxcUrl: room.summary.avatar, defaultImageName: NSImage.Name.touchBarNewMessageTemplate, useCached: useCached)
-        }
+        self.setAvatar(forMxcUrl: room.summary.avatar, defaultImageName: NSImage.Name.touchBarNewMessageTemplate, useCached: useCached)
     }
 }
