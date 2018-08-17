@@ -1,6 +1,6 @@
 # Seaglass
 [![Build Status](https://travis-ci.org/neilalexander/seaglass.svg?branch=master)](https://travis-ci.org/neilalexander/seaglass)
-[![Latest Build](https://img.shields.io/badge/Download-Latest%20Build-green.svg)](https://bintray.com/neilalexander/Seaglass/Seaglass)
+[![Download Latest Build](https://api.bintray.com/packages/neilalexander/Seaglass/Seaglass/images/download.svg)](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files)
 
 Seaglass is a truly native macOS client for Matrix. It is written in Swift and
 uses the Cocoa user interface framework.
