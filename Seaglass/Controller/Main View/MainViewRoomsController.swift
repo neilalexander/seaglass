@@ -140,6 +140,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                 }
             } else if state.members().count == 1 {
                 cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+            } else {
+                cell?.RoomListEntryIcon.setAvatar(forText: state.roomDisplayName)
             }
         } else {
             cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)

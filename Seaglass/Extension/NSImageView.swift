@@ -76,17 +76,31 @@ extension NSImageView {
     
     func setAvatar(forUserId userId: String, useCached: Bool = true) {
         if MatrixServices.inst.session.user(withUserId: userId) == nil {
+            self.setAvatar(forText: "?")
             return
         }
         let user = MatrixServices.inst.session.user(withUserId: userId)!
-        self.setAvatar(forMxcUrl: user.avatarUrl, defaultImageName: NSImage.Name.touchBarUserTemplate, useCached: useCached)
+        if user.avatarUrl != "" {
+            self.setAvatar(forMxcUrl: user.avatarUrl, defaultImageName: NSImage.Name.user, useCached: useCached)
+        } else {
+            self.setAvatar(forText: user.displayname)
+        }
     }
     
     func setAvatar(forRoomId roomId: String, useCached: Bool = true) {
         if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
+            self.setAvatar(forText: "?")
             return
         }
         let room = MatrixServices.inst.session.room(withRoomId: roomId)!
-        self.setAvatar(forMxcUrl: room.summary.avatar, defaultImageName: NSImage.Name.touchBarNewMessageTemplate, useCached: useCached)
+        if room.summary.avatar != "" {
+            self.setAvatar(forMxcUrl: room.summary.avatar, defaultImageName: NSImage.Name.userGroup, useCached: useCached)
+        } else {
+            self.setAvatar(forText: room.summary.displayname)
+        }
+    }
+    
+    func setAvatar(forText: String) {
+        self.image? = NSImage.create(withLetterString: forText)
     }
 }
