@@ -39,7 +39,7 @@ extension NSImageView {
             return
         }
         if forMxcUrl!.hasPrefix("mxc://") {
-            let url = MatrixServices.inst.client.url(ofContent: forMxcUrl)!
+            let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale)!
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
                 if path == nil {
