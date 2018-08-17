@@ -1059,10 +1059,6 @@ DQ
                                     <segue destination="cN8-VT-9ct" kind="popover" identifier="SegueToJoinRoom" popoverAnchorView="Wfa-Sa-Oxk" popoverBehavior="t" preferredEdge="maxY" id="KAz-aJ-uB6"/>
                                 </connections>
                             </button>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
-                                <rect key="frame" x="0.0" y="39" width="257" height="19"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-h1-DV9">
                                 <rect key="frame" x="11" y="422" width="23" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1185,6 +1181,10 @@ DQ
                                     <font key="font" metaFont="cellTitle"/>
                                 </buttonCell>
                             </button>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
+                                <rect key="frame" x="0.0" y="32" width="257" height="19"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
