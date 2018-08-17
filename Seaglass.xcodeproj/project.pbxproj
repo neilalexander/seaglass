@@ -42,6 +42,7 @@
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
 		39F3126121189F9200A75E16 /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3126021189F9200A75E16 /* NSImageView.swift */; };
 		39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F312622118F21C00A75E16 /* RoomAliasesController.swift */; };
+		A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC29052126BAE800F37E0E /* AvatarImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		39F312622118F21C00A75E16 /* RoomAliasesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasesController.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
+		A5EC29052126BAE800F37E0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
 				39850C502118F51D00D20974 /* RoomListEntry.swift */,
 				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
+				A5EC29052126BAE800F37E0E /* AvatarImageView.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */,
 				39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */,
 				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
+				A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
