@@ -21,13 +21,13 @@ import Cocoa
 class RoomMessageEntry: NSTableCellView {
     @IBOutlet var RoomMessageEntryInboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryInboundText: NSTextField!
-    @IBOutlet var RoomMessageEntryInboundIcon: NSImageView!
+    @IBOutlet var RoomMessageEntryInboundIcon: AvatarImageView!
     @IBOutlet var RoomMessageEntryInboundPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryInboundTextConstraint: NSLayoutConstraint!
     
     @IBOutlet var RoomMessageEntryOutboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundText: NSTextField!
-    @IBOutlet var RoomMessageEntryOutboundIcon: NSImageView!
+    @IBOutlet var RoomMessageEntryOutboundIcon: AvatarImageView!
     @IBOutlet var RoomMessageEntryOutboundPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryOutboundTextConstraint: NSLayoutConstraint!
     

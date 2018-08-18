@@ -17,6 +17,7 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class AvatarImageView: NSImageView {
     
@@ -38,11 +39,73 @@ class AvatarImageView: NSImageView {
     
     override var image: NSImage? {
         set {
-            self.layer?.contents = newValue
+            layer?.contents = newValue
             super.image = newValue
         }
         get {
             return super.image
         }
     }
+    
+    func setAvatar(forMxcUrl: String?, defaultImage: NSImage, useCached: Bool = true) {
+        image = defaultImage
+        guard let mxcURL = forMxcUrl else { return }
+        
+        if mxcURL.hasPrefix("mxc://") {
+            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale) else { return }
+            
+            if url.hasPrefix("http://") || url.hasPrefix("https://") {
+                guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder) else { return }
+                
+                if FileManager.default.fileExists(atPath: path) && useCached {
+                    { [weak self] in
+                        if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                            self?.image = image
+                        }
+                    }()
+                } else {
+                    DispatchQueue.main.async {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
+                            if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                                self?.image = image
+                            }
+                        }) { [weak self] (error) in
+                            self?.image = defaultImage
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setAvatar(forUserId userId: String, useCached: Bool = true) {
+        guard let user = MatrixServices.inst.session.user(withUserId: userId) else {
+            setAvatar(forText: "?")
+            return
+        }
+        
+        if user.avatarUrl != "" {
+            setAvatar(forMxcUrl: user.avatarUrl, defaultImage: NSImage.create(withLetterString: user.displayname ?? "?"), useCached: useCached)
+        } else {
+            setAvatar(forText: user.displayname)
+        }
+    }
+    
+    func setAvatar(forRoomId roomId: String, useCached: Bool = true) {
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else {
+            setAvatar(forText: "?")
+            return
+        }
+        
+        if room.summary.avatar != "" {
+            setAvatar(forMxcUrl: room.summary.avatar, defaultImage: NSImage.create(withLetterString: room.summary.displayname ?? "?"), useCached: useCached)
+        } else {
+            setAvatar(forText: room.summary.displayname)
+        }
+    }
+    
+    func setAvatar(forText: String) {
+        image = NSImage.create(withLetterString: forText)
+    }
+    
 }
