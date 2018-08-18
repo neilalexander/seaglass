@@ -939,14 +939,14 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w0t-Sz-QGE">
-                                <rect key="frame" x="127" y="13" width="98" height="32"/>
+                                <rect key="frame" x="127" y="14" width="98" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8oM-tp-hq5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="pZM-Ex-Sqj"/>
+                                    <action selector="joinRoomButtonClicked:" target="cN8-VT-9ct" id="Qk6-Au-nKq"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKc-q7-YLF">
@@ -957,7 +957,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openButtonClicked:" target="cN8-VT-9ct" id="NPM-Jz-i1J"/>
+                                    <action selector="createRoomButtonClicked:" target="cN8-VT-9ct" id="ElB-VW-KSs"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E1f-mG-SnZ">
@@ -1008,10 +1008,24 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2K3-se-GSi">
+                                <rect key="frame" x="168" y="185" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-Xh-C7k">
+                                <rect key="frame" x="168" y="24" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="ChannelEntryField" destination="rwa-uT-QHE" id="RAh-dh-4rZ"/>
+                        <outlet property="CreateRoomButton" destination="DKc-q7-YLF" id="j1H-bB-2e3"/>
+                        <outlet property="CreateRoomDisableFederationCheckbox" destination="WLK-qn-utr" id="Hhc-AB-og6"/>
+                        <outlet property="CreateRoomSpinner" destination="2K3-se-GSi" id="lJv-0N-f9Y"/>
+                        <outlet property="JoinRoomButton" destination="w0t-Sz-QGE" id="F0k-M1-OYf"/>
+                        <outlet property="JoinRoomSpinner" destination="lCZ-Xh-C7k" id="ahe-TX-Fej"/>
+                        <outlet property="JoinRoomText" destination="rwa-uT-QHE" id="7Ub-7p-LUf"/>
                     </connections>
                 </viewController>
                 <customObject id="ola-J4-z2w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
