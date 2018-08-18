@@ -44,10 +44,10 @@ class MainViewPartController: NSViewController {
             LeaveSpinner.animator().alphaValue = 1
         }, completionHandler: {
             MatrixServices.inst.session.leaveRoom(self.roomId) { (response) in
-                if response.isFailure {
+                if response.isFailure, let error = response.error {
                     let alert = NSAlert()
                     alert.messageText = "Failed to leave room \(self.roomId)"
-                    alert.informativeText = response.error!.localizedDescription
+                    alert.informativeText = error.localizedDescription
                     alert.alertStyle = .warning
                     alert.addButton(withTitle: "OK")
                     alert.runModal()
