@@ -58,24 +58,18 @@ class AvatarImageView: NSImageView {
                 
                 if FileManager.default.fileExists(atPath: path) && useCached {
                     { [weak self] in
-                        if self != nil {
-                            if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
-                                self?.image = image
-                            }
+                        if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                            self?.image = image
                         }
                     }()
                 } else {
                     DispatchQueue.main.async {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
-                            if self != nil {
-                                if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
-                                    self?.image = image
-                                }
+                            if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                                self?.image = image
                             }
                         }) { [weak self] (error) in
-                            if self != nil {
-                                self?.image = defaultImage
-                            }
+                            self?.image = defaultImage
                         }
                     }
                 }
