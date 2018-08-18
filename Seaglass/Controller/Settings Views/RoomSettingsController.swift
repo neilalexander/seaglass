@@ -247,22 +247,33 @@ class RoomSettingsController: NSViewController {
         super.viewDidLoad()
         
         if roomId == "" {
+            let alert = NSAlert()
+            alert.messageText = "Failed to open room settings"
+            alert.informativeText = "Room ID was not set by caller"
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
             self.dismissViewController(self)
             return
         }
         
-        let room = MatrixServices.inst.session.room(withRoomId: roomId) as MXRoom
-        
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)
         if room == nil {
+            let alert = NSAlert()
+            alert.messageText = "Failed to open room settings"
+            alert.informativeText = "Session does not have an entry for \"\(roomId)\""
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
             self.dismissViewController(self)
             return
         }
         
-        RoomName.stringValue = room.state.name ?? ""
+        RoomName.stringValue = room!.state.name ?? ""
         RoomName.isEnabled = true
         RoomName.isEditable = true
         
-        RoomTopic.stringValue = room.state.topic ?? ""
+        RoomTopic.stringValue = room!.state.topic ?? ""
         RoomTopic.isEnabled = true
         RoomTopic.isEditable = true
         
@@ -271,7 +282,7 @@ class RoomSettingsController: NSViewController {
         initialRoomName = RoomName.stringValue
         initialRoomTopic = RoomTopic.stringValue
         
-        room.getDirectoryVisibility(completion: { (visibility) in
+        room!.getDirectoryVisibility(completion: { (visibility) in
             if visibility.isSuccess {
               //  self.RoomPublishInDirectory.isEnabled = true
                 self.RoomPublishInDirectory.state = visibility.value == .public ? .on : .off
@@ -288,9 +299,9 @@ class RoomSettingsController: NSViewController {
             return myPowerLevel >= aliasPowerLevel
         }() */
         
-        RoomAccessOnlyInvited.state = !room.state.isJoinRulePublic ? .on : .off
-        RoomAccessExceptGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .forbidden ? .on : .off
-        RoomAccessIncludingGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .canJoin ? .on : .off
+        RoomAccessOnlyInvited.state = !room!.state.isJoinRulePublic ? .on : .off
+        RoomAccessExceptGuests.state = room!.state.isJoinRulePublic && room!.state.guestAccess == .forbidden ? .on : .off
+        RoomAccessIncludingGuests.state = room!.state.isJoinRulePublic && room!.state.guestAccess == .canJoin ? .on : .off
         RoomAccessOnlyInvited.isEnabled = roomAccessEnabled
         RoomAccessExceptGuests.isEnabled = roomAccessEnabled
         RoomAccessIncludingGuests.isEnabled = roomAccessEnabled
@@ -301,18 +312,18 @@ class RoomSettingsController: NSViewController {
 
         let roomHistoryEnabled = { () -> Bool in
             let aliasPowerLevel = { () -> Int in
-                if room.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.history_visibility" }) {
-                    return room.state.powerLevels.events["m.room.history_visibility"] as! Int
+                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.history_visibility" }) {
+                    return room!.state.powerLevels.events["m.room.history_visibility"] as! Int
                 }
                 return 100
             }()
-            return room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= aliasPowerLevel
+            return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= aliasPowerLevel
         }()
         
-        RoomHistorySinceJoined.state = room.state.historyVisibility == .joined ? .on : .off
-        RoomHistorySinceInvited.state = room.state.historyVisibility == .invited ? .on : .off
-        RoomHistorySinceSelected.state = room.state.historyVisibility == .shared ? .on : .off
-        RoomHistoryAnyone.state = room.state.historyVisibility == .worldReadable ? .on : .off
+        RoomHistorySinceJoined.state = room!.state.historyVisibility == .joined ? .on : .off
+        RoomHistorySinceInvited.state = room!.state.historyVisibility == .invited ? .on : .off
+        RoomHistorySinceSelected.state = room!.state.historyVisibility == .shared ? .on : .off
+        RoomHistoryAnyone.state = room!.state.historyVisibility == .worldReadable ? .on : .off
         RoomHistorySinceJoined.isEnabled = roomHistoryEnabled
         RoomHistorySinceInvited.isEnabled = roomHistoryEnabled
         RoomHistorySinceSelected.isEnabled = roomHistoryEnabled

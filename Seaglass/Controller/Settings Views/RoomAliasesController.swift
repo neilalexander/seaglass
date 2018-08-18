@@ -35,8 +35,13 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         
         if roomId != "" {
             let room = MatrixServices.inst.session.room(withRoomId: roomId)
-            
             if room == nil {
+                let alert = NSAlert()
+                alert.messageText = "Failed to open room settings"
+                alert.informativeText = "Session does not have an entry for \"\(roomId)\""
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
                 self.dismissViewController(self)
                 return
             }
@@ -68,6 +73,15 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 cell?.RoomAliasDelete.isEnabled = alias.hasSuffix(suffix)
                 roomAliases.append(cell!)
             }
+        } else {
+            let alert = NSAlert()
+            alert.messageText = "Failed to open room settings"
+            alert.informativeText = "Room ID was not set by caller"
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            self.dismissViewController(self)
+            return
         }
     }
     
