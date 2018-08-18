@@ -17,6 +17,7 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class AvatarImageView: NSImageView {
     
@@ -45,4 +46,76 @@ class AvatarImageView: NSImageView {
             return super.image
         }
     }
+    
+    func setAvatar(forMxcUrl: String?, defaultImage: NSImage, useCached: Bool = true) {
+        self.image? = defaultImage
+        if forMxcUrl == nil {
+            return
+        }
+        if forMxcUrl!.hasPrefix("mxc://") {
+            let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale)!
+            if url.hasPrefix("http://") || url.hasPrefix("https://") {
+                let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder)
+                if path == nil {
+                    return
+                }
+                if FileManager.default.fileExists(atPath: path!) && useCached {
+                    { [weak self] in
+                        if self != nil {
+                            let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                            if image != nil {
+                                self?.image? = image!
+                            }
+                        }
+                        }()
+                } else {
+                    DispatchQueue.main.async {
+                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
+                            if self != nil {
+                                let image = MXMediaManager.loadThroughCache(withFilePath: path)
+                                if image != nil {
+                                    self?.image? = image!
+                                }
+                            }
+                        }) { [weak self] (error) in
+                            if self != nil {
+                                self?.image? = defaultImage
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setAvatar(forUserId userId: String, useCached: Bool = true) {
+        if MatrixServices.inst.session.user(withUserId: userId) == nil {
+            self.setAvatar(forText: "?")
+            return
+        }
+        let user = MatrixServices.inst.session.user(withUserId: userId)!
+        if user.avatarUrl != "" {
+            self.setAvatar(forMxcUrl: user.avatarUrl, defaultImage: NSImage.create(withLetterString: user.displayname ?? "?"), useCached: useCached)
+        } else {
+            self.setAvatar(forText: user.displayname)
+        }
+    }
+    
+    func setAvatar(forRoomId roomId: String, useCached: Bool = true) {
+        if MatrixServices.inst.session.room(withRoomId: roomId) == nil {
+            self.setAvatar(forText: "?")
+            return
+        }
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)!
+        if room.summary.avatar != "" {
+            self.setAvatar(forMxcUrl: room.summary.avatar, defaultImage: NSImage.create(withLetterString: room.summary.displayname ?? "?"), useCached: useCached)
+        } else {
+            self.setAvatar(forText: room.summary.displayname)
+        }
+    }
+    
+    func setAvatar(forText: String) {
+        self.image? = NSImage.create(withLetterString: forText)
+    }
+    
 }

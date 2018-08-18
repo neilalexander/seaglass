@@ -41,7 +41,7 @@ class RoomSettingsController: NSViewController {
     
     @IBOutlet var RoomName: NSTextField!
     @IBOutlet var RoomTopic: NSTextField!
-    @IBOutlet var RoomAvatar: NSImageView!
+    @IBOutlet var RoomAvatar: AvatarImageView!
     @IBOutlet var RoomPublishInDirectory: NSButton!
     
     @IBOutlet var RoomAccessOnlyInvited: NSButton!
