@@ -290,16 +290,14 @@ class RoomSettingsController: NSViewController {
         initialRoomAccessExceptGuests = RoomAccessExceptGuests.state
         initialRoomAccessIncludingGuests = RoomAccessIncludingGuests.state
         
-        let roomHistoryEnabled = { () -> Bool in
+        let roomHistoryEnabled = true
+       /* let roomHistoryEnabled = { () -> Bool in
             let aliasPowerLevel = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.history_visibility"] as! Int? {
-                    return powerLevel
-                }
-                return 100
+                guard return room.state.powerLevels.events["m.room.history_visibility"] as! Int? else { return 100 }
             }()
             let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
             return myPowerLevel >= aliasPowerLevel
-        }()
+        }() */
         
         RoomHistorySinceJoined.state = room.state.historyVisibility == .joined ? .on : .off
         RoomHistorySinceInvited.state = room.state.historyVisibility == .invited ? .on : .off
