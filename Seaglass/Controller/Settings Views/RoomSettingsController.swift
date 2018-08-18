@@ -291,7 +291,12 @@ class RoomSettingsController: NSViewController {
         initialRoomAccessIncludingGuests = RoomAccessIncludingGuests.state
         
         let roomHistoryEnabled = { () -> Bool in
-            let aliasPowerLevel = room.state.powerLevels.events["m.room.history_visibility"] as? Int ?? 50
+            let aliasPowerLevel = { () -> Int in
+                if let powerLevel = room.state.powerLevels.events["m.room.history_visibility"] as! Int? {
+                    return powerLevel
+                }
+                return 100
+            }()
             let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
             return myPowerLevel >= aliasPowerLevel
         }()
