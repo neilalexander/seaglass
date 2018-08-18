@@ -82,7 +82,7 @@ class MatrixServices: NSObject {
             let deviceId = savedCredentials["deviceId"] as? String {
             
             credentials = MXCredentials(homeServer: homeServer, userId: userId, accessToken: token)
-            credentials!.deviceId = deviceId
+            credentials?.deviceId = deviceId
             state = .notStarted
         } else {
             state = .needsCredentials
@@ -146,10 +146,9 @@ class MatrixServices: NSObject {
                             }
                             switch event.content["membership"] as? String {
                             case "join":
-                                let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
-                                if room != nil {
-                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room!) == false {
-                                        self.mainController?.roomsDelegate?.matrixDidJoinRoom(room!)
+                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                                        self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
                                     }
                                 }
                                 return
@@ -157,10 +156,9 @@ class MatrixServices: NSObject {
                                // print("Invited to room \(event.roomId)")
                                 return
                             case "leave":
-                                let room = MatrixServices.inst.session.room(withRoomId: event.roomId)
-                                if room != nil {
-                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room!) == true {
-                                        self.mainController?.roomsDelegate?.matrixDidPartRoom(room!)
+                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == true {
+                                        self.mainController?.roomsDelegate?.matrixDidPartRoom(room)
                                     }
                                 }
                                 return
@@ -205,12 +203,12 @@ class MatrixServices: NSObject {
     }
     
     func subscribeToRoom(roomId: String) {
-        let room = self.session.room(withRoomId: roomId)
+        guard let room = self.session.room(withRoomId: roomId) else { return }
         if eventListeners[roomId] != nil {
             return
         }
         
-        eventListeners[roomId] = room?.liveTimeline.listenToEvents() { (event, direction, roomState) in
+        eventListeners[roomId] = room.liveTimeline.listenToEvents() { (event, direction, roomState) in
             if event.roomId == nil {
                 return
             }
@@ -224,10 +222,9 @@ class MatrixServices: NSObject {
             switch event.type {
             case "m.room.redaction":
                 for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {
-                    let index = self.eventCache[event.roomId]!.index(of: e)
-                    if index != nil {
+                    if let index = self.eventCache[event.roomId]!.index(of: e) {
                         self.mainController?.channelDelegate?.matrixDidRoomMessage(event: e.prune(), direction: direction, roomState: roomState, replaces: event.redacts!);
-                        self.eventCache[event.roomId]![index!] = e.prune()
+                        self.eventCache[event.roomId]![index] = e.prune()
                     }
                 }
                 break
@@ -242,22 +239,21 @@ class MatrixServices: NSObject {
                         self.eventCache[event.roomId]!.insert(event, at: 0)
                     }
                     self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil);
-                    self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+                    self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                 } else {
-                    let index = self.eventCache[event.roomId]!.index(of: event)
-                    if index != nil {
-                        let original = self.eventCache[event.roomId]![index!].eventId
-                        self.eventCache[event.roomId]![index!] = event
+                    if let index = self.eventCache[event.roomId]!.index(of: event) {
+                        let original = self.eventCache[event.roomId]![index].eventId
+                        self.eventCache[event.roomId]![index] = event
                         self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original);
-                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room!)
+                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 }
                 break
             }
         } as? MXEventListener
         
-        room?.liveTimeline.resetPagination()
-        room?.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+        room.liveTimeline.resetPagination()
+        room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
             // complete?
         }
     }

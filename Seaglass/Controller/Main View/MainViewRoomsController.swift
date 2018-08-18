@@ -129,17 +129,17 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.roomsCacheEntry = state
         cell?.RoomListEntryName.stringValue = state.roomDisplayName
     
-        let count = state.members().count
+        let count = state.members.count
         
         if state.roomAvatar == "" {
-            if state.members().count == 2 {
-                if state.members()[0].userId == MatrixServices.inst.session.myUser.userId {
-                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[1].userId)
+            if state.members.count == 2 {
+                if state.members[0].userId == MatrixServices.inst.session.myUser.userId {
+                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[1].userId)
                 } else {
-                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[0].userId)
                 }
-            } else if state.members().count == 1 {
-                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+            } else if state.members.count == 1 {
+                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[0].userId)
             } else {
                 cell?.RoomListEntryIcon.setAvatar(forText: state.roomDisplayName)
             }
