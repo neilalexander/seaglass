@@ -438,4 +438,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     func matrixDidRoomUserJoin() {}
     func matrixDidRoomUserPart() {}
+    
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return [] }
+        var actions: [NSTableViewRowAction] = []
+        if edge == .trailing {
+            if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
+                actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
+                    print("Redact!")
+                }))
+            }
+        } else {
+            
+        }
+        return actions
+    }
 }

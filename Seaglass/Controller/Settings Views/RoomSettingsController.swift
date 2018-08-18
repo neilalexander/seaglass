@@ -276,11 +276,11 @@ class RoomSettingsController: NSViewController {
             self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
-        let roomAccessEnabled = { () -> Bool in
+       /* let roomAccessEnabled = { () -> Bool in
             let aliasPowerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
             let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
             return myPowerLevel >= aliasPowerLevel
-        }()
+        }() */
         
         RoomAccessOnlyInvited.state = !room.state.isJoinRulePublic ? .on : .off
         RoomAccessExceptGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .forbidden ? .on : .off
