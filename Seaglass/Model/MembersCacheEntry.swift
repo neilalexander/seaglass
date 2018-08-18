@@ -22,24 +22,20 @@ import SwiftMatrixSDK
 class MembersCacheEntry: NSObject {
     var member: MXRoomMember
     
-    @objc dynamic var displayName: String = ""
-    @objc dynamic var userId: String = ""
+    @objc dynamic var displayName: String
+    @objc dynamic var userId: String
     
     init(_ member: MXRoomMember) {
         self.member = member
         
-        self.userId = member.userId
-        if member.displayname != nil {
-            self.displayName = member.displayname
-        }
+        userId = member.userId
+        displayName = member.displayname ?? ""
         
         super.init()
     }
     
     func name() -> String {
-        if self.displayName != "" {
-            return self.displayName
-        }
-        return self.userId
+        guard displayName != "" else { return userId }
+        return displayName
     }
 }

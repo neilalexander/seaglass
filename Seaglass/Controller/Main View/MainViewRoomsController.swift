@@ -57,7 +57,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     override func viewDidAppear() {
         for room in MatrixServices.inst.session.rooms {
-            self.matrixDidJoinRoom(room)
+            matrixDidJoinRoom(room)
         }
     }
     
@@ -129,17 +129,17 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.roomsCacheEntry = state
         cell?.RoomListEntryName.stringValue = state.roomDisplayName
     
-        let count = state.members().count
+        let count = state.members.count
         
         if state.roomAvatar == "" {
-            if state.members().count == 2 {
-                if state.members()[0].userId == MatrixServices.inst.session.myUser.userId {
-                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[1].userId)
+            if state.members.count == 2 {
+                if state.members[0].userId == MatrixServices.inst.session.myUser.userId {
+                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[1].userId)
                 } else {
-                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+                    cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[0].userId)
                 }
-            } else if state.members().count == 1 {
-                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members()[0].userId)
+            } else if state.members.count == 1 {
+                cell?.RoomListEntryIcon.setAvatar(forUserId: state.members[0].userId)
             } else {
                 cell?.RoomListEntryIcon.setAvatar(forText: state.roomDisplayName)
             }
@@ -171,22 +171,20 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        let row = notification.object as! NSTableView
+        guard let row = notification.object as? NSTableView else { return }
         if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
-        let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as? RoomListEntry
-        if entry != nil {
-            if entry!.roomsCacheEntry == nil {
-                return
-            }
-            if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry!.roomsCacheEntry!.roomId }) == nil {
-                return
-            }
-            entry!.RoomListEntryUnread.isHidden = true
-            DispatchQueue.main.async {
-                self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry!)
-            }
+        guard let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as? RoomListEntry else { return }
+        if entry.roomsCacheEntry == nil {
+            return
+        }
+        if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
+            return
+        }
+        entry.RoomListEntryUnread.isHidden = true
+        DispatchQueue.main.async {
+            self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
         }
     }
     
@@ -197,11 +195,11 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                     let roomId = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row].roomId
                     tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideUp, .effectFade])
                     MatrixServices.inst.session.leaveRoom(roomId) { (response) in
-                        if response.isFailure {
+                        if response.isFailure, let error = response.error {
                             tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
                             let alert = NSAlert()
                             alert.messageText = "Failed to leave room \(roomId)"
-                            alert.informativeText = response.error!.localizedDescription
+                            alert.informativeText = error.localizedDescription
                             alert.alertStyle = .warning
                             alert.addButton(withTitle: "OK")
                             alert.runModal()

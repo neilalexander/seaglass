@@ -21,7 +21,7 @@ import Cocoa
 class AboutViewController: NSViewController {
 
     @IBAction func viewSourceCodeButtonPressed(_: NSButton) {
-        let sourceURL = NSURL(string: "https://github.com/neilalexander/seaglass")! as URL
+        guard let sourceURL = URL(string: "https://github.com/neilalexander/seaglass") else { return }
         NSWorkspace.shared.open(sourceURL)
     }
     

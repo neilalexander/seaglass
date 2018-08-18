@@ -77,7 +77,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     func deleteButtonClicked(sender: RoomAliasEntry) {
         let index = roomAliases.index(of: sender)
         roomAliases.remove(at: index!)
-        AliasTable.removeRows(at: IndexSet.init(integer: index!), withAnimation: [ .slideUp, .effectFade ])
+        AliasTable.removeRows(at: IndexSet(integer: index!), withAnimation: [ .slideUp, .effectFade ])
         AliasTable.noteNumberOfRowsChanged()
     }
     

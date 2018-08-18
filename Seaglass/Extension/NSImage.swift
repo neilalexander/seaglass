@@ -34,7 +34,7 @@ extension NSImage {
         textPara.alignment = .center
         
         let textFontAttributes: [NSAttributedStringKey: Any] = [
-            .font: NSFont.init(name: "Arial Rounded MT Bold", size: letterSize)!,
+            .font: NSFont(name: "Arial Rounded MT Bold", size: letterSize)!,
             .paragraphStyle: textPara,
             .foregroundColor: NSColor.white
         ]

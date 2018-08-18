@@ -61,8 +61,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     }
 
     override func viewWillAppear() {
-        roomsController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first!
-        channelController = self.childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first!
+        roomsController = childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first
+        channelController = childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first
         
         roomsController?.mainController = self
         channelController?.mainController = self
@@ -77,10 +77,10 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
         roomsDelegate = roomsController
         channelDelegate = channelController
         
-        self.view.window?.title = "Seaglass"
-        self.view.window?.styleMask.update(with: .closable)
-        self.view.window?.styleMask.update(with: .miniaturizable)
-        self.view.window?.styleMask.update(with: .resizable)
+        view.window?.title = "Seaglass"
+        view.window?.styleMask.update(with: .closable)
+        view.window?.styleMask.update(with: .miniaturizable)
+        view.window?.styleMask.update(with: .resizable)
     }
     
     override var representedObject: Any? {
@@ -101,10 +101,10 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     
     func matrixDidLogout() {
         // self.view.window?.endSheet(self.view.window!.attachedSheet!)
-        self.view.window?.close()
+        view.window?.close()
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
-            self.view.window?.animator().alphaValue = 0
+            view.window?.animator().alphaValue = 0
         }, completionHandler: {
             NSApplication.shared.terminate(self)
         })

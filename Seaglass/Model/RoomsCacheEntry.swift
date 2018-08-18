@@ -38,14 +38,14 @@ class RoomsCacheEntry: NSObject {
         return room.state.avatar ?? ""
     }
     @objc dynamic var roomSortWeight: Int {
-        if self.room.isDirect || self.room.looksLikeDirect {
+        if room.isDirect || room.looksLikeDirect {
             return 70
         }
-        if self.room.summary.isEncrypted || self.room.state.isEncrypted {
+        if room.summary.isEncrypted || room.state.isEncrypted {
             return 10
         }
-        if self.room.state.name == "" {
-            if self.room.state.topic == "" {
+        if room.state.name == "" {
+            if room.state.topic == "" {
                 return 52
             }
             return 51
@@ -53,18 +53,18 @@ class RoomsCacheEntry: NSObject {
         return 50
     }
     @objc dynamic var roomDisplayName: String {
-        let count = self.members().count
-        if self.roomName != "" {
-            return self.roomName
-        } else if self.roomAlias != "" {
-            return self.roomAlias
+        let count = members.count
+        if roomName != "" {
+            return roomName
+        } else if roomAlias != "" {
+            return roomAlias
         } else if count > 0 {
             var memberNames: String = ""
             for m in 0..<count {
-                if self.members()[m].userId == MatrixServices.inst.client?.credentials.userId {
+                if members[m].userId == MatrixServices.inst.client?.credentials.userId {
                     continue
                 }
-                memberNames.append(self.members()[m].displayname ?? (self.members()[m].userId)!)
+                memberNames.append(members[m].displayname ?? (members[m].userId) ?? "?")
                 if m < count-2 {
                     memberNames.append(", ")
                 }
@@ -73,25 +73,24 @@ class RoomsCacheEntry: NSObject {
         }
         return ""
     }
+    var members: [MXRoomMember] {
+        return room.state.members
+    }
     
     init(_ room: MXRoom) {
         self.room = room
         super.init()
     }
     
-    func members() -> [MXRoomMember] {
-        return self.room.state.members
-    }
-    
     func topic() -> String {
-        return self.room.state.topic
+        return room.state.topic
     }
     
     func unread() -> Bool {
-        return self.room.summary.localUnreadEventCount > 0
+        return room.summary.localUnreadEventCount > 0
     }
     
     func encrypted() -> Bool {
-        return self.room.summary.isEncrypted || self.room.state.isEncrypted
+        return room.summary.isEncrypted || room.state.isEncrypted
     }
 }

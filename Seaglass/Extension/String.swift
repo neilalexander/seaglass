@@ -30,8 +30,8 @@ extension String {
         }
         
         let parser = TSMarkdownParser.standard()
-        parser.monospaceAttributes["NSColor"] = NSColor.init(calibratedRed: 0.53, green: 0.54, blue: 0.58, alpha: 1.00)
-        parser.monospaceAttributes["NSFont"] = NSFont.init(name: "Menlo", size: NSFont.smallSystemFontSize)
+        parser.monospaceAttributes["NSColor"] = NSColor(calibratedRed: 0.53, green: 0.54, blue: 0.58, alpha: 1.00)
+        parser.monospaceAttributes["NSFont"] = NSFont(name: "Menlo", size: NSFont.smallSystemFontSize)
         parser.quoteAttributes[0]["NSColor"] = NSColor.gray
         parser.quoteAttributes[0]["NSFont"] = NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         
