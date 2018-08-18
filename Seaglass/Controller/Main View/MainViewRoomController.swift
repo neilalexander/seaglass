@@ -445,7 +445,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if edge == .trailing {
             if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
                 actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
-                    print("Redact!")
+                    let event = self.getFilteredRoomCache(for: room.roomId)[row]
+                    tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
+                    room.redactEvent(event.eventId, reason: nil, completion: { (response) in
+                        if response.isFailure, let error = response.error {
+                            tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
+                            let alert = NSAlert()
+                            alert.messageText = "Failed to redact message"
+                            alert.informativeText = error.localizedDescription
+                            alert.alertStyle = .warning
+                            alert.addButton(withTitle: "OK")
+                            alert.runModal()
+                        }
+                    })
                 }))
             }
         } else {
