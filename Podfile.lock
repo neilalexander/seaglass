@@ -22,6 +22,7 @@ PODS:
   - Realm (3.3.2):
     - Realm/Headers (= 3.3.2)
   - Realm/Headers (3.3.2)
+  - Sparkle (1.20.0)
   - SwiftMatrixSDK (0.10.11):
     - AFNetworking (~> 3.2.0)
     - GZIP (~> 1.2.1)
@@ -31,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - Down
+  - Sparkle
   - SwiftMatrixSDK (= 0.10.11)
   - TSMarkdownParser
 
@@ -41,6 +43,7 @@ SPEC REPOS:
     - GZIP
     - OLMKit
     - Realm
+    - Sparkle
     - SwiftMatrixSDK
     - TSMarkdownParser
 
@@ -50,9 +53,10 @@ SPEC CHECKSUMS:
   GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
   OLMKit: b9d8c0ffee9ea8c45bc0aaa9afb47f93fba7efbd
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
+  Sparkle: 48999e7ee032f05ca05e28451eadf4af8ede6b44
   SwiftMatrixSDK: 30c9120a0312e2d9f4781ee3fb85052fdc9a26d2
   TSMarkdownParser: 3224ea196ecc7148fa7e03bc438f9390d4edfb6d
 
-PODFILE CHECKSUM: c6cc078e6a88905942f0744448f811bcb4134426
+PODFILE CHECKSUM: a2bca1d44b7b9f8aa8c9c372820bf4b19e80f2da
 
 COCOAPODS: 1.5.3

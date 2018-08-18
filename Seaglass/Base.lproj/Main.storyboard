@@ -147,6 +147,11 @@ DQ
                                                 <segue destination="aqV-Si-XFo" kind="modal" id="IGX-BI-8df"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for Updates..." keyEquivalent="u" id="ldv-pT-3ib">
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="Ady-hI-5gd" id="g5m-90-HZH"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" tag="1" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
