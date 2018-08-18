@@ -465,7 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/scripts/set_build_number.sh";
+			shellScript = $SRCROOT/scripts/set_build_number.sh;
 		};
 		7BA55CBFDF827B6882DF9FC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
