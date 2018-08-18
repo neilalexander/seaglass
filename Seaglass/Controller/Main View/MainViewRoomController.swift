@@ -403,9 +403,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if replaces != nil {
             if let index = getFilteredRoomCache(for: roomId).index(where: { $0.eventId == event.eventId }) {
                 if event.isRedactedEvent() || event.content.count == 0 {
-                    RoomMessageTableView.removeRows(at: IndexSet.init(integer: index), withAnimation: [ .effectFade, .slideUp ])
+                    RoomMessageTableView.removeRows(at: IndexSet(integer: index), withAnimation: [ .effectFade, .slideUp ])
                 } else {
-                    RoomMessageTableView.reloadData(forRowIndexes: IndexSet.init(integer: index), columnIndexes: IndexSet.init(integer: 0))
+                    RoomMessageTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
                 }
                 return
             }
