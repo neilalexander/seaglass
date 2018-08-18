@@ -1182,7 +1182,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
-                                <rect key="frame" x="0.0" y="32" width="257" height="5"/>
+                                <rect key="frame" x="0.0" y="39" width="257" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </box>
                         </subviews>
@@ -3032,7 +3032,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
-                                <rect key="frame" x="75" y="12" width="5" height="58"/>
+                                <rect key="frame" x="75" y="12" width="90" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
@@ -3064,7 +3064,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Qur-rS-aSh">
-                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <rect key="frame" x="155" y="12" width="80" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                         </subviews>
