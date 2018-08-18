@@ -276,6 +276,7 @@ class RoomSettingsController: NSViewController {
             self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
+        let roomAccessEnabled = true
        /* let roomAccessEnabled = { () -> Bool in
             let aliasPowerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
             let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
@@ -285,6 +286,9 @@ class RoomSettingsController: NSViewController {
         RoomAccessOnlyInvited.state = !room.state.isJoinRulePublic ? .on : .off
         RoomAccessExceptGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .forbidden ? .on : .off
         RoomAccessIncludingGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .canJoin ? .on : .off
+        RoomAccessOnlyInvited.isEnabled = roomAccessEnabled
+        RoomAccessExceptGuests.isEnabled = roomAccessEnabled
+        RoomAccessIncludingGuests.isEnabled = roomAccessEnabled
         
         initialRoomAccessOnlyInvited = RoomAccessOnlyInvited.state
         initialRoomAccessExceptGuests = RoomAccessExceptGuests.state
