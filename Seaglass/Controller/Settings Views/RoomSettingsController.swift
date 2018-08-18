@@ -253,6 +253,11 @@ class RoomSettingsController: NSViewController {
         
         let room = MatrixServices.inst.session.room(withRoomId: roomId) as MXRoom
         
+        if room == nil {
+            self.dismissViewController(self)
+            return
+        }
+        
         RoomName.stringValue = room.state.name ?? ""
         RoomName.isEnabled = true
         RoomName.isEditable = true

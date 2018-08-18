@@ -35,6 +35,12 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         
         if roomId != "" {
             let room = MatrixServices.inst.session.room(withRoomId: roomId)
+            
+            if room == nil {
+                self.dismissViewController(self)
+                return
+            }
+            
             let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
             let aliases = room!.state.aliases
             if aliases == nil {
