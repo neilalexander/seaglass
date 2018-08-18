@@ -52,7 +52,8 @@ class AvatarImageView: NSImageView {
         guard let mxcURL = forMxcUrl else { return }
         
         if mxcURL.hasPrefix("mxc://") {
-            let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale)!
+            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale) else { return }
+            
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder) else { return }
                 
