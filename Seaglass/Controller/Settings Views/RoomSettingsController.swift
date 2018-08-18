@@ -276,6 +276,12 @@ class RoomSettingsController: NSViewController {
             self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
+        let roomAccessEnabled = { () -> Bool in
+            let aliasPowerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
+            let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+            return myPowerLevel >= aliasPowerLevel
+        }()
+        
         RoomAccessOnlyInvited.state = !room.state.isJoinRulePublic ? .on : .off
         RoomAccessExceptGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .forbidden ? .on : .off
         RoomAccessIncludingGuests.state = room.state.isJoinRulePublic && room.state.guestAccess == .canJoin ? .on : .off
@@ -284,10 +290,20 @@ class RoomSettingsController: NSViewController {
         initialRoomAccessExceptGuests = RoomAccessExceptGuests.state
         initialRoomAccessIncludingGuests = RoomAccessIncludingGuests.state
         
+        let roomHistoryEnabled = { () -> Bool in
+            let aliasPowerLevel = room.state.powerLevels.events["m.room.history_visibility"] as? Int ?? 50
+            let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+            return myPowerLevel >= aliasPowerLevel
+        }()
+        
         RoomHistorySinceJoined.state = room.state.historyVisibility == .joined ? .on : .off
         RoomHistorySinceInvited.state = room.state.historyVisibility == .invited ? .on : .off
         RoomHistorySinceSelected.state = room.state.historyVisibility == .shared ? .on : .off
         RoomHistoryAnyone.state = room.state.historyVisibility == .worldReadable ? .on : .off
+        RoomHistorySinceJoined.isEnabled = roomHistoryEnabled
+        RoomHistorySinceInvited.isEnabled = roomHistoryEnabled
+        RoomHistorySinceSelected.isEnabled = roomHistoryEnabled
+        RoomHistoryAnyone.isEnabled = roomHistoryEnabled
         
         initialRoomHistorySinceJoined = RoomHistorySinceJoined.state
         initialRoomHistorySinceInvited = RoomHistorySinceInvited.state

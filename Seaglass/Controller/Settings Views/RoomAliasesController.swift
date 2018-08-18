@@ -48,11 +48,14 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 cell?.parent = self
                 cell?.RoomAliasName.stringValue = alias
                 cell?.RoomAliasName.placeholderString = "#youralias\(suffix)"
+                cell?.RoomAliasPrimary.isEnabled = { () -> Bool in
+                    let aliasPowerLevel = room!.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
+                    let myPowerLevel = room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+                    return myPowerLevel >= aliasPowerLevel
+                }()
                 cell?.RoomAliasPrimary.state = room!.state.canonicalAlias == alias ? .on : .off
-                if !alias.hasSuffix(suffix) {
-                    cell?.RoomAliasName.isEnabled = false
-                    cell?.RoomAliasDelete.isEnabled = false
-                }
+                cell?.RoomAliasName.isEnabled = alias.hasSuffix(suffix)
+                cell?.RoomAliasDelete.isEnabled = alias.hasSuffix(suffix)
                 roomAliases.append(cell!)
             }
         }
