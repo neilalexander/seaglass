@@ -147,24 +147,29 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
         }
         
-        var memberString: String = ""
-        var topicString: String = "No topic set"
-        
-        if state.roomTopic != "" {
-            topicString = state.roomTopic
-        }
-        
-        switch count {
-        case 0: fallthrough
-        case 1: memberString = "Empty room"; break
-        case 2: memberString = "Direct chat"; break
-        default: memberString = "\(count) members"
-        }
-        
-        cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
-        
-        if tableView.selectedRow != row {
-            cell?.RoomListEntryUnread.isHidden = !state.unread()
+        if state.isInvite() {
+            cell?.RoomListEntryTopic.stringValue = "Room invite"
+            cell?.RoomListEntryUnread.isHidden = false
+        } else {
+            var memberString: String = ""
+            var topicString: String = "No topic set"
+            
+            if state.roomTopic != "" {
+                topicString = state.roomTopic
+            }
+            
+            switch count {
+            case 0: fallthrough
+            case 1: memberString = "Empty room"; break
+            case 2: memberString = "Direct chat"; break
+            default: memberString = "\(count) members"
+            }
+            
+            cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
+            
+            if tableView.selectedRow != row {
+                cell?.RoomListEntryUnread.isHidden = !state.unread()
+            }
         }
         
         return cell
@@ -182,7 +187,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
             return
         }
-        entry.RoomListEntryUnread.isHidden = true
+        entry.RoomListEntryUnread.isHidden = !entry.roomsCacheEntry!.isInvite()
         DispatchQueue.main.async {
             self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
         }

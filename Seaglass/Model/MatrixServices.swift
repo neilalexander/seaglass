@@ -153,7 +153,20 @@ class MatrixServices: NSObject {
                                 }
                                 return
                             case "invite":
-                               // print("Invited to room \(event.roomId)")
+                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                                    MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
+                                        if response.isFailure {
+                                            return
+                                        }
+                                        if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                                            self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                                            room.liveTimeline.resetPagination()
+                                            room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+                                                // complete?
+                                            }
+                                        }
+                                    })
+                                }
                                 return
                             case "leave":
                                 if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
@@ -264,6 +277,9 @@ class MatrixServices: NSObject {
             return false
         }
         if room!.state.powerLevels == nil {
+            return false
+        }
+        if session.invitedRooms().contains(where: { $0.roomId == inRoomId }) {
             return false
         }
         let powerLevel = { () -> Int in

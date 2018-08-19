@@ -376,16 +376,17 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         } 
         
         roomTyping = false
-
-        RoomName.isEnabled = true
+        
+        let isInvite = cacheEntry.isInvite()
+        RoomName.isEnabled = !isInvite
         RoomInfoButton.isEnabled = true
-        RoomPartButton.isEnabled = true
-        RoomEncryptionButton.isEnabled = true
-        RoomInsertButton.isEnabled = true
-        RoomMessageInput.isEnabled = true
+        RoomPartButton.isEnabled = !isInvite
+        RoomEncryptionButton.isEnabled = !isInvite
+        RoomInsertButton.isEnabled = !isInvite
+        RoomMessageInput.isEnabled = !isInvite
 
-        RoomName.stringValue = entry.RoomListEntryName.stringValue
-        RoomTopic.stringValue = entry.RoomListEntryTopic.stringValue.components(separatedBy: "\n")[1]
+        RoomName.stringValue = cacheEntry.roomDisplayName
+        RoomTopic.stringValue = cacheEntry.roomTopic
         
         roomId = cacheEntry.roomId
 
