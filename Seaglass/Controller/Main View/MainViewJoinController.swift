@@ -22,7 +22,7 @@ import SwiftMatrixSDK
 class MainViewJoinController: NSViewController {
     @IBOutlet weak var CreateRoomButton: NSButton!
     @IBOutlet weak var CreateRoomSpinner: NSProgressIndicator!
-    @IBOutlet weak var CreateRoomDisableFederationCheckbox: NSButton!
+    @IBOutlet weak var CreateRoomName: NSTextField!
     @IBOutlet weak var JoinRoomButton: NSButton!
     @IBOutlet weak var JoinRoomSpinner: NSProgressIndicator!
     @IBOutlet weak var JoinRoomText: NSTextField!
@@ -31,7 +31,7 @@ class MainViewJoinController: NSViewController {
 
     override func viewDidLoad() {
         controls = [ CreateRoomButton, JoinRoomButton,
-                     JoinRoomText, CreateRoomDisableFederationCheckbox ]
+                     JoinRoomText, CreateRoomName ]
         for control in controls {
             control.isEnabled = true
         }
@@ -39,6 +39,11 @@ class MainViewJoinController: NSViewController {
     }
     
     @IBAction func createRoomButtonClicked(_ sender: NSButton) {
+        let roomNameField = self.CreateRoomName.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        var roomName: String? = nil
+        if roomNameField.count > 0 {
+            roomName = roomNameField
+        }
         for control in controls {
             control.isEnabled = false
         }
@@ -48,7 +53,7 @@ class MainViewJoinController: NSViewController {
             CreateRoomButton.animator().alphaValue = 0
             CreateRoomSpinner.alphaValue = 1
         }, completionHandler: {
-            MatrixServices.inst.session.createRoom(name: nil, visibility: nil, alias: nil, topic: nil, preset: MXRoomPreset.publicChat, completion: { (response) in
+            MatrixServices.inst.session.createRoom(name: roomName, visibility: nil, alias: nil, topic: nil, preset: MXRoomPreset.publicChat, completion: { (response) in
                 if response.isFailure, let error = response.error {
                     let alert = NSAlert()
                     alert.messageText = "Failed to create room"

@@ -258,4 +258,23 @@ class MatrixServices: NSObject {
         }
     }
     
+    func userHasPower(inRoomId: String, forEvent: String) -> Bool {
+        let room = session.room(withRoomId: inRoomId)
+        if room == nil {
+            return false
+        }
+        if room!.state.powerLevels == nil {
+            return false
+        }
+        let powerLevel = { () -> Int in
+            if room!.state.powerLevels.events.count == 0 {
+                return room!.state.powerLevels.stateDefault
+            }
+            if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as? String == forEvent }) {
+                return room!.state.powerLevels.events[forEvent] as! Int
+            }
+            return room!.state.powerLevels.stateDefault
+        }()
+        return room!.state.powerLevels.powerLevelOfUser(withUserID: session.myUser.userId) >= powerLevel
+    }
 }
