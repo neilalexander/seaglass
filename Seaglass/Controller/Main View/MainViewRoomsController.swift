@@ -177,6 +177,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard let row = notification.object as? NSTableView else { return }
+        let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
@@ -184,7 +185,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if entry.roomsCacheEntry == nil {
             return
         }
-        if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
+        if roomsCache.index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
             return
         }
         entry.RoomListEntryUnread.isHidden = !entry.roomsCacheEntry!.isInvite()
@@ -193,11 +194,27 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
     }
     
+    func updateAttentionRooms() {
+        let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        let invites = roomsCache.filter({ $0.isInvite() }).count
+        NSApp.dockTile.badgeLabel = invites > 0 ? String(invites) : ""
+    }
+    
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        updateAttentionRooms()
+    }
+    
+    func tableView(_ tableView: NSTableView, didRemove rowView: NSTableRowView, forRow row: Int) {
+        updateAttentionRooms()
+    }
+    
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        let roomCacheEntry = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
+        let roomId = roomCacheEntry.roomId
         if edge == .trailing {
+            let label = roomCacheEntry.isInvite() ? "Decline" : "Leave"
             return [
-                NSTableViewRowAction(style: .destructive, title: "Leave", handler: { (action, row) in
-                    let roomId = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row].roomId
+                NSTableViewRowAction(style: .destructive, title: label, handler: { (action, row) in
                     tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideUp, .effectFade])
                     MatrixServices.inst.session.leaveRoom(roomId) { (response) in
                         if response.isFailure, let error = response.error {

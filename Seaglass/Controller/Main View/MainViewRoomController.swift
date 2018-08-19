@@ -388,7 +388,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         RoomInviteAcceptButton.isHidden = !isInvite
         RoomInviteDeclineButton.isHidden = !isInvite
+        
         RoomInviteLabel.isHidden = !isInvite
+       // RoomInviteLabel.stringValue = MatrixServices.inst.session
         
         RoomInsertButton.isHidden = isInvite
         RoomMessageInput.isHidden = isInvite
