@@ -67,19 +67,19 @@ class RoomPowerLevelsController: NSViewController {
                 if let powerLevel = room.state.powerLevels.events["m.room.name"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeAvatar.integerValue = { () -> Int in
                 if let powerLevel = room.state.powerLevels.events["m.room.avatar"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeCanonicalAlias.integerValue = { () -> Int in
                 if let powerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeHistory.integerValue = { () -> Int in
                 if let powerLevel = room.state.powerLevels.events["m.room.history_visibility"] as! Int? {
@@ -91,13 +91,13 @@ class RoomPowerLevelsController: NSViewController {
                 if let powerLevel = room.state.powerLevels.events["m.room.topic"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeWidgets.integerValue = { () -> Int in
                 if let powerLevel = room.state.powerLevels.events["im.vector.modular.widgets"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             
             let powerChangeLevel = { () -> Int in
