@@ -72,7 +72,7 @@ class MainViewJoinController: NSViewController {
         JoinRoomSpinner.startAnimation(sender)
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
-            JoinRoomButton.animator().alphaValue = 0
+            JoinRoomButton.animator().alphaValue = 0 
             JoinRoomSpinner.alphaValue = 1
         }, completionHandler: {
             MatrixServices.inst.session.joinRoom(room, completion: { (response) in

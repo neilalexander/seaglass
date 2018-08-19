@@ -228,6 +228,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
+            let eventTime = Date(timeIntervalSince1970: TimeInterval(event.originServerTs / 1000))
+            let eventTimeFormatter = DateFormatter()
+            eventTimeFormatter.timeZone = TimeZone.current
+            eventTimeFormatter.dateFormat = "HH:mm"
+            
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                 if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageEntry
@@ -240,6 +245,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundCoalescedPadlock.image = padlockImage
                     cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
+                    cell.RoomMessageEntryOutboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
                     break
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageEntry
@@ -254,6 +260,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundPadlock.image = padlockImage
                     cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
+                    cell.RoomMessageEntryOutboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
                     if event.sentState == MXEventSentStateSending {
                        // cell.alphaValue = 0.4
                     }
@@ -271,6 +278,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryInboundCoalescedPadlock.image = padlockImage
                     cell.RoomMessageEntryInboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryInboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundCoalescedPadlock.frame.size.width
+                    cell.RoomMessageEntryInboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
                     break
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageEntry
@@ -285,6 +293,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryInboundPadlock.image = padlockImage
                     cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryInboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundPadlock.frame.size.width
+                    cell.RoomMessageEntryInboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
                     if event.sentState == MXEventSentStateSending {
                        // cell.alphaValue = 0.4
                     }

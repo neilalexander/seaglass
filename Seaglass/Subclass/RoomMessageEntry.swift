@@ -24,20 +24,24 @@ class RoomMessageEntry: NSTableCellView {
     @IBOutlet var RoomMessageEntryInboundIcon: AvatarImageView!
     @IBOutlet var RoomMessageEntryInboundPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryInboundTextConstraint: NSLayoutConstraint!
+    @IBOutlet var RoomMessageEntryInboundTime: NSTextField!
     
     @IBOutlet var RoomMessageEntryOutboundFrom: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundText: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundIcon: AvatarImageView!
     @IBOutlet var RoomMessageEntryOutboundPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryOutboundTextConstraint: NSLayoutConstraint!
+    @IBOutlet var RoomMessageEntryOutboundTime: NSTextField!
     
     @IBOutlet var RoomMessageEntryInboundCoalescedText: NSTextField!
     @IBOutlet var RoomMessageEntryInboundCoalescedPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryInboundCoalescedTextConstraint: NSLayoutConstraint!
+    @IBOutlet var RoomMessageEntryInboundCoalescedTime: NSTextField!
     
     @IBOutlet var RoomMessageEntryOutboundCoalescedText: NSTextField!
     @IBOutlet var RoomMessageEntryOutboundCoalescedPadlock: NSImageView!
     @IBOutlet var RoomMessageEntryOutboundCoalescedTextConstraint: NSLayoutConstraint!
+    @IBOutlet var RoomMessageEntryOutboundCoalescedTime: NSTextField!
     
     @IBOutlet var RoomMessageEntryInlineText: NSTextField!
 }

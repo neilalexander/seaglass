@@ -1380,9 +1380,34 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
                                                                 </imageView>
+                                                                <textField identifier="RoomMessageEntryInboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-49-RxG">
+                                                                    <rect key="frame" x="524" y="1" width="58" height="13"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="54" id="XeA-Wb-mFH"/>
+                                                                    </constraints>
+                                                                    <animations>
+                                                                        <caTransition key="subviews">
+                                                                            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
+EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
+c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
+c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
+cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
+MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
++QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
+</mutableData>
+                                                                        </caTransition>
+                                                                    </animations>
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Vpo-1U-rCt">
+                                                                        <font key="font" metaFont="system" size="10"/>
+                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="C9D-k5-z63" secondAttribute="trailing" constant="3" id="2E1-5X-4yL"/>
+                                                                <constraint firstItem="0Cu-49-RxG" firstAttribute="top" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="4" id="6ex-TF-MWC"/>
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="6m0-ef-Shk"/>
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="72B-Rv-dBp"/>
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="64" id="Adj-Cj-u0h"/>
@@ -1390,8 +1415,11 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="M9I-a1-b01"/>
                                                                 <constraint firstItem="dcR-Ti-wrs" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="SEv-1m-Zjw"/>
                                                                 <constraint firstItem="dcR-Ti-wrs" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="TKs-nR-jdd"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0Cu-49-RxG" secondAttribute="trailing" constant="-3" id="USZ-AI-vOv"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="WZ2-ZC-KYv"/>
+                                                                <constraint firstItem="0Cu-49-RxG" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="YrF-Ig-g15"/>
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="ZcO-dR-pWR"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0Cu-49-RxG" secondAttribute="trailing" constant="-3" id="flg-Az-Uv8"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ru8-q8-hdY" secondAttribute="bottom" constant="1" id="gDZ-RZ-bo0"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
@@ -1403,6 +1431,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryInboundPadlock" destination="dcR-Ti-wrs" id="yjE-M7-KiY"/>
                                                                 <outlet property="RoomMessageEntryInboundText" destination="ucJ-c5-qi7" id="1hv-BW-jQN"/>
                                                                 <outlet property="RoomMessageEntryInboundTextConstraint" destination="Adj-Cj-u0h" id="Rbn-6c-Apd"/>
+                                                                <outlet property="RoomMessageEntryInboundTime" destination="0Cu-49-RxG" id="K57-yD-mEe"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryInboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="iEZ-b3-CBD" userLabel="Incoming Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -1440,10 +1469,36 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
                                                                 </imageView>
+                                                                <textField identifier="RoomMessageEntryInboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-7Z-LJb">
+                                                                    <rect key="frame" x="524" y="1" width="58" height="13"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="54" id="sQz-fc-p8M"/>
+                                                                    </constraints>
+                                                                    <animations>
+                                                                        <caTransition key="subviews">
+                                                                            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
+EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
+c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
+c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
+cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
+MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
++QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
+</mutableData>
+                                                                        </caTransition>
+                                                                    </animations>
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="wU8-Wq-zNT">
+                                                                        <font key="font" metaFont="system" size="10"/>
+                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="cZX-Kd-FHZ" secondAttribute="trailing" constant="48" id="7X5-N9-zvw"/>
                                                                 <constraint firstItem="cZX-Kd-FHZ" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="CD5-7w-Hvc"/>
+                                                                <constraint firstItem="ffP-7Z-LJb" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="HLJ-rJ-JMH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="ffP-7Z-LJb" secondAttribute="trailing" constant="-3" id="ULX-Cb-qdo"/>
                                                                 <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="Ylh-Yr-1bJ"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="b0O-hi-QlL"/>
                                                                 <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="hEh-Gf-bMJ"/>
@@ -1453,6 +1508,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryInboundCoalescedPadlock" destination="Bkn-PY-xBl" id="V65-u8-6NE"/>
                                                                 <outlet property="RoomMessageEntryInboundCoalescedText" destination="cZX-Kd-FHZ" id="fAt-zA-2iP"/>
                                                                 <outlet property="RoomMessageEntryInboundCoalescedTextConstraint" destination="CD5-7w-Hvc" id="fzs-J2-hUe"/>
+                                                                <outlet property="RoomMessageEntryInboundCoalescedTime" destination="ffP-7Z-LJb" id="8zX-qK-3vj"/>
                                                                 <outlet property="RoomMessageEntryInboundText" destination="cZX-Kd-FHZ" id="nl7-iq-CvI"/>
                                                             </connections>
                                                         </tableCellView>
@@ -1520,6 +1576,30 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
                                                                 </imageView>
+                                                                <textField identifier="RoomMessageEntryOutboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9y-EX-0dL">
+                                                                    <rect key="frame" x="-4" y="1" width="58" height="13"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="54" id="FOv-3g-NyB"/>
+                                                                    </constraints>
+                                                                    <animations>
+                                                                        <caTransition key="subviews">
+                                                                            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
+EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
+c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
+c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
+cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
+MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
++QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
+</mutableData>
+                                                                        </caTransition>
+                                                                    </animations>
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="giU-YN-Tp8">
+                                                                        <font key="font" metaFont="system" size="10"/>
+                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="18" id="1iV-BG-2ev"/>
@@ -1530,9 +1610,11 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="Ldz-hR-14M" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="30" id="FCg-n9-Lom"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Ldz-hR-14M" secondAttribute="trailing" constant="48" id="Nmj-iz-PLy"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" id="Qbb-0E-GCU"/>
+                                                                <constraint firstItem="G9y-EX-0dL" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="-2" id="Xok-lu-DW8"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cp3-pa-dQN" secondAttribute="bottom" constant="1" id="bhq-HZ-qmp"/>
+                                                                <constraint firstItem="G9y-EX-0dL" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="30" id="hd6-fV-x16"/>
                                                                 <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="28" id="lWD-EK-69e"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Cp3-pa-dQN" secondAttribute="trailing" constant="10" id="sNH-yL-ftf"/>
                                                                 <constraint firstItem="Cp3-pa-dQN" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="u4T-8g-nOu"/>
@@ -1543,6 +1625,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryOutboundPadlock" destination="Ldz-hR-14M" id="EYa-2z-To0"/>
                                                                 <outlet property="RoomMessageEntryOutboundText" destination="eNx-7M-A4V" id="3rF-8j-weD"/>
                                                                 <outlet property="RoomMessageEntryOutboundTextConstraint" destination="8CY-bg-Cb6" id="pO3-bZ-gmv"/>
+                                                                <outlet property="RoomMessageEntryOutboundTime" destination="G9y-EX-0dL" id="TMq-Cd-iEy"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryOutboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="uiY-zu-QBZ" userLabel="Outgoing Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -1580,13 +1663,39 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
                                                                 </imageView>
+                                                                <textField identifier="RoomMessageEntryOutboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3u-xl-T0k">
+                                                                    <rect key="frame" x="-4" y="1" width="58" height="13"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="54" id="gwH-Zn-a1H"/>
+                                                                    </constraints>
+                                                                    <animations>
+                                                                        <caTransition key="subviews">
+                                                                            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
+EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
+c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
+c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
+cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
+MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
++QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
+</mutableData>
+                                                                        </caTransition>
+                                                                    </animations>
+                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Nsz-od-H5c">
+                                                                        <font key="font" metaFont="system" size="10"/>
+                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="2" id="7EA-uw-nti"/>
+                                                                <constraint firstItem="r3u-xl-T0k" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="2" id="G1k-pe-Qcn"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="01c-6I-5AB" secondAttribute="bottom" constant="2" id="Xan-BJ-AkO"/>
                                                                 <constraint firstItem="KDC-BP-DZa" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="ae4-Zd-qfK"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KDC-BP-DZa" secondAttribute="bottom" id="eMa-5H-0j4"/>
                                                                 <constraint firstItem="KDC-BP-DZa" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="48" id="j1q-ql-cEU"/>
+                                                                <constraint firstItem="r3u-xl-T0k" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="-2" id="tPz-UK-9iQ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="01c-6I-5AB" secondAttribute="trailing" constant="48" id="yUb-pr-FUh"/>
                                                                 <constraint firstAttribute="trailing" secondItem="KDC-BP-DZa" secondAttribute="trailing" constant="64" id="zTv-ub-UnY"/>
                                                             </constraints>
@@ -1595,6 +1704,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryOutboundCoalescedPadlock" destination="01c-6I-5AB" id="oMH-zb-SbG"/>
                                                                 <outlet property="RoomMessageEntryOutboundCoalescedText" destination="KDC-BP-DZa" id="gTW-Dm-Hvj"/>
                                                                 <outlet property="RoomMessageEntryOutboundCoalescedTextConstraint" destination="zTv-ub-UnY" id="TcK-jw-d8N"/>
+                                                                <outlet property="RoomMessageEntryOutboundCoalescedTime" destination="r3u-xl-T0k" id="b8K-ho-1EF"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="RoomMessageEntryInline" wantsLayer="YES" id="juW-Tf-Uai" userLabel="Status Room Message Entry" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
@@ -3134,6 +3244,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>
