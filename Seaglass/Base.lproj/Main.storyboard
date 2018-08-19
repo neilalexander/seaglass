@@ -1135,15 +1135,6 @@ DQ
                                                                 <imageView identifier="RoomListEntryUnread" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVp-eF-82p">
                                                                     <rect key="frame" x="2" y="24" width="16" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <contentFilters>
-                                                                        <ciFilter name="CIFalseColor">
-                                                                            <configuration>
-                                                                                <ciColor key="inputColor0" red="0.0" green="0.27448001190643012" blue="1" alpha="1"/>
-                                                                                <ciColor key="inputColor1" red="0.0" green="0.84684324907031849" blue="0.98328465223312378" alpha="1"/>
-                                                                                <null key="inputImage"/>
-                                                                            </configuration>
-                                                                        </ciFilter>
-                                                                    </contentFilters>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSTouchBarRecordStartTemplate" id="Gl4-oB-Rwg"/>
                                                                 </imageView>
                                                                 <imageView identifier="RoomListEntryIcon" autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-19-xHX" customClass="AvatarImageView" customModule="Seaglass" customModuleProvider="target">
@@ -3279,6 +3270,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfp-e2-cpe"/>
+        <segue reference="ggZ-vC-hmq"/>
     </inferredMetricsTieBreakers>
 </document>
