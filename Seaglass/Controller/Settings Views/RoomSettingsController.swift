@@ -270,11 +270,27 @@ class RoomSettingsController: NSViewController {
         }
         
         RoomName.stringValue = room!.state.name ?? ""
-        RoomName.isEnabled = true
+        RoomName.isEnabled = { () -> Bool in
+            let roomNamePowerLevel = { () -> Int in
+                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.name" }) {
+                    return room!.state.powerLevels.events["m.room.name"] as! Int
+                }
+                return room!.state.powerLevels.stateDefault
+            }()
+            return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= roomNamePowerLevel
+        }()
         RoomName.isEditable = true
         
         RoomTopic.stringValue = room!.state.topic ?? ""
-        RoomTopic.isEnabled = true
+        RoomTopic.isEnabled = { () -> Bool in
+            let roomTopicPowerLevel = { () -> Int in
+                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.topic" }) {
+                    return room!.state.powerLevels.events["m.room.topic"] as! Int
+                }
+                return room!.state.powerLevels.stateDefault
+            }()
+            return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= roomTopicPowerLevel
+        }()
         RoomTopic.isEditable = true
         
         RoomAvatar.setAvatar(forRoomId: roomId)
