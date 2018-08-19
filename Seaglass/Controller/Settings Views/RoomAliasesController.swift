@@ -64,7 +64,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                         if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.canonical_alias" }) {
                             return room!.state.powerLevels.events["m.room.canonical_alias"] as! Int
                         }
-                        return 50
+                        return room!.state.powerLevels.stateDefault
                     }()
                     return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= aliasPowerLevel
                 }()

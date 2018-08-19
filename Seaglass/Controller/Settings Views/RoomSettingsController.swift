@@ -292,12 +292,21 @@ class RoomSettingsController: NSViewController {
             self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
-        let roomAccessEnabled = true
-       /* let roomAccessEnabled = { () -> Bool in
-            let aliasPowerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
-            let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
-            return myPowerLevel >= aliasPowerLevel
-        }() */
+        let roomAccessEnabled = { () -> Bool in
+            let guestAccessPowerLevel = { () -> Int in
+                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.guest_access" }) {
+                    return room!.state.powerLevels.events["m.room.guest_access"] as! Int
+                }
+                return room!.state.powerLevels.stateDefault
+            }()
+            let joinRulesPowerLevel = { () -> Int in
+                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.join_rules" }) {
+                    return room!.state.powerLevels.events["m.room.join_rules"] as! Int
+                }
+                return room!.state.powerLevels.stateDefault
+            }()
+            return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= min(guestAccessPowerLevel, joinRulesPowerLevel)
+        }()
         
         RoomAccessOnlyInvited.state = !room!.state.isJoinRulePublic ? .on : .off
         RoomAccessExceptGuests.state = room!.state.isJoinRulePublic && room!.state.guestAccess == .forbidden ? .on : .off
