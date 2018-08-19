@@ -1224,7 +1224,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -1789,6 +1789,37 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lw-iO-KBm">
+                                <rect key="frame" x="487" y="3" width="86" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Decline" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hac-l3-61d">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="declineInviteButtonClicked:" target="WXz-Io-9JK" id="ASr-Xe-Hsw"/>
+                                </connections>
+                            </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNq-sO-aV7">
+                                <rect key="frame" x="12" y="13" width="213" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="You have been invited to this room" id="Ax3-Ic-aG0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLd-dR-ivF">
+                                <rect key="frame" x="403" y="3" width="86" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Accept" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jDa-3k-X6s">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="acceptInviteButtonClicked:" target="WXz-Io-9JK" id="z0R-hj-R69"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" constant="20" id="3W4-A8-xcX"/>
@@ -1802,6 +1833,9 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                         <outlet property="RoomEncryptionButton" destination="EGm-dG-DZW" id="aLC-Ru-ioY"/>
                         <outlet property="RoomInfoButton" destination="gmZ-EC-5H5" id="ENX-DV-Ilq"/>
                         <outlet property="RoomInsertButton" destination="Pix-y5-gjY" id="D9T-Bc-1nk"/>
+                        <outlet property="RoomInviteAcceptButton" destination="MLd-dR-ivF" id="LLt-bE-EnW"/>
+                        <outlet property="RoomInviteDeclineButton" destination="9lw-iO-KBm" id="SCf-BZ-6ru"/>
+                        <outlet property="RoomInviteLabel" destination="SNq-sO-aV7" id="wgh-lC-0Zi"/>
                         <outlet property="RoomMessageClipView" destination="yGf-GP-99e" id="ikp-6Q-WdD"/>
                         <outlet property="RoomMessageInput" destination="8dF-A5-RaT" id="hSd-0U-VxJ"/>
                         <outlet property="RoomMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
@@ -2088,7 +2122,7 @@ DQ
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="SPx-Fb-dog"/>
                             </imageView>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ZSM-1o-sYo">
-                                <rect key="frame" x="383" y="53" width="5" height="451"/>
+                                <rect key="frame" x="383" y="53" width="4" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                         </subviews>

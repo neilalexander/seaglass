@@ -32,7 +32,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var RoomPartButton: NSButton!
     @IBOutlet var RoomInsertButton: NSButton!
     @IBOutlet var RoomEncryptionButton: NSButton!
-
+    @IBOutlet var RoomInviteLabel: NSTextField!
+    @IBOutlet var RoomInviteAcceptButton: NSButton!
+    @IBOutlet var RoomInviteDeclineButton: NSButton!
+    
     weak public var mainController: MainViewController?
     
     var roomId: String = ""
@@ -382,6 +385,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInfoButton.isEnabled = true
         RoomPartButton.isEnabled = !isInvite
         RoomEncryptionButton.isEnabled = !isInvite
+        
+        RoomInviteAcceptButton.isHidden = !isInvite
+        RoomInviteDeclineButton.isHidden = !isInvite
+        RoomInviteLabel.isHidden = !isInvite
+        
+        RoomInsertButton.isHidden = isInvite
+        RoomMessageInput.isHidden = isInvite
+        
         RoomInsertButton.isEnabled = !isInvite
         RoomMessageInput.isEnabled = !isInvite
 
@@ -474,5 +485,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             
         }
         return actions
+    }
+    
+    @IBAction func acceptInviteButtonClicked(_ sender: NSButton) {
+    }
+    
+    @IBAction func declineInviteButtonClicked(_ sender: NSButton) {
     }
 }
