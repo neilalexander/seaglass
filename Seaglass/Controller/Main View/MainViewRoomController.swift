@@ -396,14 +396,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInfoButton.isEnabled = true
         RoomPartButton.isEnabled = !isInvite
         RoomEncryptionButton.isEnabled = !isInvite
-        
-        RoomInviteAcceptButton.isHidden = !isInvite
-        RoomInviteDeclineButton.isHidden = !isInvite
+ 
+        RoomInsertButton.alphaValue = isInvite ? 0 : 1
+        RoomMessageInput.alphaValue = isInvite ? 0 : 1
         
         RoomInviteLabel.isHidden = !isInvite
-        
-        RoomInsertButton.isHidden = isInvite
-        RoomMessageInput.isHidden = isInvite
+        RoomInviteLabel.alphaValue = isInvite ? 1 : 0
+        RoomInviteAcceptButton.isHidden = !isInvite
+        RoomInviteAcceptButton.alphaValue = isInvite ? 1 : 0
+        RoomInviteDeclineButton.isHidden = !isInvite
+        RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
         
         RoomInsertButton.isEnabled = !isInvite
         RoomMessageInput.isEnabled = !isInvite
@@ -477,6 +479,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return [] }
+        if MatrixServices.inst.session.invitedRooms().contains(where: { $0.roomId == room.roomId }) {
+            return []
+        }
         var actions: [NSTableViewRowAction] = []
         if edge == .trailing {
             if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
@@ -503,8 +508,61 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     @IBAction func acceptInviteButtonClicked(_ sender: NSButton) {
+        if !MatrixServices.inst.session.invitedRooms().contains(where: { $0.roomId == roomId }) {
+            return
+        }
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        RoomInviteAcceptButton.isEnabled = false
+        RoomInviteDeclineButton.isEnabled = false
+        MatrixServices.inst.session.stopPeeking(MXPeekingRoom(roomId: room.roomId, andMatrixSession: MatrixServices.inst.session))
+        MatrixServices.inst.session.joinRoom(roomId) { (response) in
+            if response.isFailure, let error = response.error {
+                let alert = NSAlert()
+                alert.messageText = "Failed to accept invite for \(self.roomId)"
+                alert.informativeText = error.localizedDescription
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+                self.RoomInviteAcceptButton.isEnabled = true
+                self.RoomInviteDeclineButton.isEnabled = true
+            } else {
+                NSAnimationContext.runAnimationGroup({ (context) in
+                    context.duration = 1
+                    self.RoomInviteLabel.animator().alphaValue = 0
+                    self.RoomInviteAcceptButton.animator().alphaValue = 0
+                    self.RoomInviteDeclineButton.animator().alphaValue = 0
+                    self.RoomMessageInput.animator().alphaValue = 1
+                    self.RoomInsertButton.animator().alphaValue = 1
+                }, completionHandler: {
+                    self.RoomMessageInput.isEnabled = true
+                    self.RoomInsertButton.isEnabled = true
+                    self.RoomInviteLabel.animator().isHidden = true
+                    self.RoomInviteAcceptButton.animator().isHidden = true
+                    self.RoomInviteDeclineButton.animator().isHidden = true
+                })
+            }
+        }
     }
     
     @IBAction func declineInviteButtonClicked(_ sender: NSButton) {
+        if !MatrixServices.inst.session.invitedRooms().contains(where: { $0.roomId == roomId }) {
+            return
+        }
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        RoomInviteAcceptButton.isEnabled = false
+        RoomInviteDeclineButton.isEnabled = false
+        MatrixServices.inst.session.stopPeeking(MXPeekingRoom(roomId: room.roomId, andMatrixSession: MatrixServices.inst.session))
+        mainController?.roomsDelegate?.matrixDidPartRoom(room)
+        MatrixServices.inst.session.leaveRoom(roomId) { (response) in
+            if response.isFailure, let error = response.error {
+                let alert = NSAlert()
+                alert.messageText = "Failed to decline invite for \(self.roomId)"
+                alert.informativeText = error.localizedDescription
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+                self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+            }
+        }
     }
 }
