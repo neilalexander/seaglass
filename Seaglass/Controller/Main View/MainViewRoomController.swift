@@ -309,13 +309,35 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         case "m.room.member":
             cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.stateKey) ?? event.stateKey as String
+            let senderDisplayName = room.state.memberName(event.sender) ?? event.sender as String
+            let stateKeyDisplayName = room.state.memberName(event.stateKey) ?? event.stateKey as String
+            let prevDisplayName = event.prevContent != nil && event.prevContent.keys.contains("displayname") ? event.prevContent["displayname"] as! String? : stateKeyDisplayName
+            let newDisplayName = event.content != nil && event.content.keys.contains("displayname") ? event.content["displayname"] as! String? : stateKeyDisplayName
             switch event.content["membership"] as! String {
-            case "join":    cell.RoomMessageEntryInlineText.stringValue = "\(displayName) joined the room"; break
-            case "leave":   cell.RoomMessageEntryInlineText.stringValue = "\(displayName) left the room"; break
-            case "invite":  cell.RoomMessageEntryInlineText.stringValue = "\(displayName) was invited to the room"; break
-            case "ban":     cell.RoomMessageEntryInlineText.stringValue = "\(displayName) was banned from the room"; break
-            default:        cell.RoomMessageEntryInlineText.stringValue = "\(displayName) unknown event: \(event.stateKey)"; break
+            case "join":
+                let prevMembership = event.prevContent != nil && event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : "leave"
+                if prevMembership == "leave" {
+                    cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) joined the room"
+                    break
+                }
+                if newDisplayName != nil && prevDisplayName != nil && newDisplayName != prevDisplayName {
+                    cell.RoomMessageEntryInlineText.stringValue = "\(prevDisplayName!) is now \(newDisplayName!)"
+                } else if newDisplayName != nil {
+                    cell.RoomMessageEntryInlineText.stringValue = "\(event.stateKey!) is now \(newDisplayName!)"
+                } else {
+                    let prevAvatarUrl: String? = event.prevContent.keys.contains("avatar_url") ? event.prevContent["avatar_url"] as! String? : nil
+                    let newAvatarUrl: String? = event.content.keys.contains("avatar_url") ? event.content["avatar_url"] as! String? : nil
+                    if prevAvatarUrl != newAvatarUrl {
+                        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) changed their avatar"
+                    } else {
+                        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) unknown state change event"
+                    }
+                }
+                break
+            case "leave":   cell.RoomMessageEntryInlineText.stringValue = "\(prevDisplayName!) left the room"; break
+            case "invite":  cell.RoomMessageEntryInlineText.stringValue = "\(senderDisplayName) invited \(newDisplayName!)"; break
+            case "ban":     cell.RoomMessageEntryInlineText.stringValue = "\(senderDisplayName) banned \(newDisplayName!)"; break
+            default:        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) unknown event: \(event.stateKey)"; break
             }
             return cell
         case "m.room.name":
