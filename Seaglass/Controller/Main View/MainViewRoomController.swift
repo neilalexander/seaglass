@@ -39,7 +39,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     weak public var mainController: MainViewController?
     
     var cellScrolledTo: Int = 0
-    var cellHeights: [Int: CGFloat] = [:]
     
     var roomId: String = ""
     var roomIsTyping: Bool = false
@@ -371,7 +370,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         guard let scrollview = tableView.enclosingScrollView else { return }
         let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
         let y2 = scrollview.documentVisibleRect.origin.y
-        if abs(y1 - y2) < (cellHeights[row-1] ?? 64) {
+        if abs(y1 - y2) < 64 {
             if row > cellScrolledTo {
                 RoomMessageTableView.scrollRowToVisible(row: row, animated: true)
                 cellScrolledTo = row
@@ -379,14 +378,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
     }
     
-    func tableView(_ tableView: NSTableView, willDisplay cell: NSTableCellView, forRowAt indexPath: IndexPath) {
-        cellHeights[indexPath.first!] = cell.frame.size.height
-    }
-    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        if let height = self.cellHeights[row] {
-            return height
-        }
         return 1
     }
     
@@ -422,7 +414,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomId = cacheEntry.roomId
         
         cellScrolledTo = 0
-        cellHeights = [:]
         
         RoomMessageTableView.beginUpdates()
         RoomMessageTableView.reloadData()
