@@ -134,8 +134,23 @@ class MatrixServices: NSObject {
                     self.mainController?.servicesDelegate?.matrixDidLogin(self.session);
                 }
                 
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+                    print("Room key request")
+                    print(notification)
+                })
+                
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+                    print("Room key request cancellation")
+                    print(notification)
+                })
+                
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+                    print("Did decrypt event")
+                    print(notification)
+                })
+                
                 DispatchQueue.main.async {
-                    self.sessionListener = self.session.listenToEvents([.roomMember], { (event, direction, roomState) in
+                    self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
                         switch event.type {
                         case "m.room.member":
                             if event.stateKey != MatrixServices.inst.session.myUser.userId {
@@ -176,12 +191,15 @@ class MatrixServices: NSObject {
                                 }
                                 return
                             default:
-                               // print(event)
-                               // print(direction)
-                               // print("")
+                                print(event)
+                                print(direction)
+                                print("")
                                 return
                             }
                         default:
+                            print(event)
+                            print(direction)
+                            print("")
                             return
                         }
                     }) as? MXSessionEventListener

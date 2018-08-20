@@ -38,6 +38,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     weak public var mainController: MainViewController?
     
+    var cellScrolledTo: Int = 0
+    var cellHeights: [Int: CGFloat] = [:]
+    
     var roomId: String = ""
     var roomIsTyping: Bool = false
     var roomTyping: Bool {
@@ -140,6 +143,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        
+       // RoomMessageTableView.estimated
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -366,9 +371,23 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         guard let scrollview = tableView.enclosingScrollView else { return }
         let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
         let y2 = scrollview.documentVisibleRect.origin.y
-        if abs(y1 - y2) < 32 {
-            RoomMessageTableView.scroll(NSPoint(x: 0, y: y1 + rowView.intrinsicContentSize.height + (RoomMessageTableView.enclosingScrollView?.contentInsets.bottom)!))
+        if abs(y1 - y2) < (cellHeights[row-1] ?? 64) {
+            if row > cellScrolledTo {
+                RoomMessageTableView.scrollRowToVisible(row: row, animated: true)
+                cellScrolledTo = row
+            }
         }
+    }
+    
+    func tableView(_ tableView: NSTableView, willDisplay cell: NSTableCellView, forRowAt indexPath: IndexPath) {
+        cellHeights[indexPath.first!] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        if let height = self.cellHeights[row] {
+            return height
+        }
+        return 1
     }
     
     func uiDidSelectRoom(entry: RoomListEntry) {
@@ -390,7 +409,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInviteDeclineButton.isHidden = !isInvite
         
         RoomInviteLabel.isHidden = !isInvite
-       // RoomInviteLabel.stringValue = MatrixServices.inst.session
         
         RoomInsertButton.isHidden = isInvite
         RoomMessageInput.isHidden = isInvite
@@ -402,8 +420,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomTopic.stringValue = cacheEntry.roomTopic
         
         roomId = cacheEntry.roomId
-
+        
+        cellScrolledTo = 0
+        cellHeights = [:]
+        
+        RoomMessageTableView.beginUpdates()
         RoomMessageTableView.reloadData()
+        RoomMessageTableView.endUpdates()
         
         if cacheEntry.encrypted() {
             RoomMessageInput.placeholderString = "Encrypted message"
@@ -412,8 +435,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomMessageInput.placeholderString = "Message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
-        
-        MatrixServices.inst.session.room(withRoomId: roomId).markAllAsRead()
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?) {
@@ -423,8 +444,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if !MatrixServices.inst.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
             return
         }
+        let cache = getFilteredRoomCache(for: roomId)
         if replaces != nil {
-            if let index = getFilteredRoomCache(for: roomId).index(where: { $0.eventId == event.eventId }) {
+            if let index = cache.index(where: { $0.eventId == event.eventId }) {
                 if event.isRedactedEvent() || event.content.count == 0 {
                     RoomMessageTableView.removeRows(at: IndexSet(integer: index), withAnimation: [ .effectFade, .slideUp ])
                 } else {
@@ -456,7 +478,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         if event.roomId == roomId {
+            RoomMessageTableView.beginUpdates()
             RoomMessageTableView.noteNumberOfRowsChanged()
+            RoomMessageTableView.endUpdates()
         }
     }
     func matrixDidRoomUserJoin() {}

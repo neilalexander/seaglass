@@ -152,7 +152,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             unreadColor = NSColor(calibratedRed: 0.90, green: 0.35, blue: 0.29, alpha: 1.00)
             cell?.RoomListEntryTopic.stringValue = "Room invite"
             cell?.RoomListEntryUnread.isHidden = false
-            
         } else {
             var memberString: String = ""
             var topicString: String = "No topic set"
