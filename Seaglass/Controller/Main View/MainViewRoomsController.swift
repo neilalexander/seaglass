@@ -95,7 +95,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
         if index != nil {
             roomsCacheController.remove(atArrangedObjectIndex: index!)
-            roomsCacheController.rearrangeObjects()
         }
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
@@ -219,6 +218,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             return [
                 NSTableViewRowAction(style: .destructive, title: label, handler: { (action, row) in
                     tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideUp, .effectFade])
+                    self.roomsCacheController.remove(atArrangedObjectIndex: row)
                     MatrixServices.inst.session.leaveRoom(roomId) { (response) in
                         if response.isFailure, let error = response.error {
                             tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
