@@ -438,9 +438,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let cache = getFilteredRoomCache(for: roomId)
         if replaces != nil {
             if let index = cache.index(where: { $0.eventId == event.eventId }) {
-                if event.isRedactedEvent() || event.content.count == 0 {
-                    RoomMessageTableView.removeRows(at: IndexSet(integer: index), withAnimation: [ .effectFade, .slideUp ])
-                } else {
+                if !event.isRedactedEvent() && event.content.count > 0 {
                     RoomMessageTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
                 }
                 return
