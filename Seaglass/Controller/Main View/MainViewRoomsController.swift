@@ -94,7 +94,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
         if index != nil {
+            RoomList.beginUpdates()
             roomsCacheController.remove(atArrangedObjectIndex: index!)
+            RoomList.endUpdates()
         }
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
