@@ -17,6 +17,8 @@
 //
 
 import Cocoa
+import Sparkle
+import LetsMove
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -37,6 +39,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+    }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        print("Seaglass version: " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String))
+
+        PFMoveToApplicationsFolderIfNecessary();
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

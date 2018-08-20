@@ -8,4 +8,5 @@ target 'Seaglass' do
   pod 'Down'
   pod 'TSMarkdownParser'
   pod 'Sparkle'
+  pod 'LetsMove'
 end

@@ -70,7 +70,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44FCB0A3CA4A437748DC9C2FBF66F951"
+               BlueprintIdentifier = "475696B7D71137C99FE09DA02297B071"
                BuildableName = "Pods_Seaglass.framework"
                BlueprintName = "Pods-Seaglass"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9D6E767D6ED327278171495E995210A"
+               BlueprintIdentifier = "EF1156AC0DA746A3218EDB5E3D321733"
                BuildableName = "Realm.framework"
                BlueprintName = "Realm"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA91DAE759D8FAC359C55E02AADADCC7"
+               BlueprintIdentifier = "B3E2FF11A9ED73A750EDC7B63FE62548"
                BuildableName = "SwiftMatrixSDK.framework"
                BlueprintName = "SwiftMatrixSDK"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -112,9 +112,23 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "806CFF46C2E9D3DC12E6095E3D5EE950"
+               BlueprintIdentifier = "5886142C0E3C028FE5C1461B94070E03"
                BuildableName = "TSMarkdownParser.framework"
                BlueprintName = "TSMarkdownParser"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "92A4DE1508C6CA686DC4DDEB83341720"
+               BuildableName = "LetsMove.framework"
+               BlueprintName = "LetsMove"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
