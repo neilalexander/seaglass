@@ -3014,7 +3014,7 @@ DQ
                             <textField identifier="AccountName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-hl-hdI">
                                 <rect key="frame" x="91" y="124" width="339" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org" drawsBackground="YES" id="HWw-US-Imp">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Your matrix.org username" drawsBackground="YES" id="HWw-US-Imp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3035,7 +3035,7 @@ DQ
                             <secureTextField identifier="AccountPassword" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3K-Ue-7Yt">
                                 <rect key="frame" x="91" y="92" width="339" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="5Ya-Zh-bXZ">
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Your matrix.org password" drawsBackground="YES" usesSingleLineMode="YES" id="5Ya-Zh-bXZ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3073,7 +3073,7 @@ DQ
                             <button identifier="LoginAdvancedButton" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fER-D9-2bd">
                                 <rect key="frame" x="20" y="22" width="183" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="recessed" title="  matrix.org" bezelStyle="recessed" image="NSActionTemplate" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="8BC-qt-Sph">
+                                <buttonCell key="cell" type="recessed" title=" matrix.org" bezelStyle="recessed" image="NSActionTemplate" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="8BC-qt-Sph">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemLight" size="12"/>
                                 </buttonCell>

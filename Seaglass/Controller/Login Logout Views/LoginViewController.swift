@@ -103,9 +103,10 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     }
     
     @objc func refreshUsernamePlaceholder() {
-        let homeserver = URL(string: defaults.string(forKey: "Homeserver") ?? "https://matrix.org")!.host
-        UsernameField.placeholderString = "@user:\(homeserver ?? "matrix.org")"
-        AdvancedSettingsButton.title = "  \(homeserver ?? "matrix.org")"
+        let homeserver = URL(string: defaults.string(forKey: "Homeserver") ?? "https://matrix.org")!.host ?? "matrix.org"
+        UsernameField.placeholderString = "\(homeserver) username"
+        PasswordField.placeholderString = "\(homeserver) password"
+        AdvancedSettingsButton.title = " \(homeserver)"
     }
     
     @IBAction func LoginButtonClicked(_ sender: NSButton) {
