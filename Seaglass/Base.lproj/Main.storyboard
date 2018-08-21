@@ -3014,7 +3014,7 @@ DQ
                             <textField identifier="AccountName" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kb5-hl-hdI">
                                 <rect key="frame" x="91" y="124" width="339" height="22"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:server.com" drawsBackground="YES" id="HWw-US-Imp">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org" drawsBackground="YES" id="HWw-US-Imp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3062,24 +3062,24 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button identifier="LoginAdvancedButton" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fER-D9-2bd">
-                                <rect key="frame" x="20" y="22" width="17" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSActionTemplate" imagePosition="left" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8BC-qt-Sph">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="OJS-MA-od8" kind="popover" popoverAnchorView="fER-D9-2bd" popoverBehavior="t" preferredEdge="maxY" id="qMQ-tO-rvZ"/>
-                                </connections>
-                            </button>
                             <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
-                                <rect key="frame" x="90" y="68" width="256" height="18"/>
+                                <rect key="frame" x="91" y="66" width="256" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                            </button>
+                            <button identifier="LoginAdvancedButton" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fER-D9-2bd">
+                                <rect key="frame" x="20" y="22" width="183" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="recessed" title="  matrix.org" bezelStyle="recessed" image="NSActionTemplate" imagePosition="left" alignment="left" imageScaling="proportionallyDown" inset="2" id="8BC-qt-Sph">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="systemLight" size="12"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="OJS-MA-od8" kind="popover" popoverAnchorView="fER-D9-2bd" popoverBehavior="t" preferredEdge="maxY" id="qMQ-tO-rvZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <backgroundFilters>
