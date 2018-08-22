@@ -19,7 +19,7 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class AvatarImageView: NSImageView {
+class AvatarImageView: ContextImageView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

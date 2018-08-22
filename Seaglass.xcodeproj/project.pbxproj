@@ -27,6 +27,7 @@
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
 		3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0EA20CD57B30061D51D /* MainViewTableView.swift */; };
 		395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */; };
+		39640E38212E09130060F170 /* MainViewSendErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39640E37212E09130060F170 /* MainViewSendErrorController.swift */; };
 		39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C502118F51D00D20974 /* RoomListEntry.swift */; };
 		39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C522118F55200D20974 /* RoomAliasEntry.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
@@ -91,6 +92,7 @@
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
 		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomsCacheEntry.swift; path = Seaglass/Model/RoomsCacheEntry.swift; sourceTree = "<group>"; };
+		39640E37212E09130060F170 /* MainViewSendErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSendErrorController.swift; sourceTree = "<group>"; };
 		39850C502118F51D00D20974 /* RoomListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListEntry.swift; sourceTree = "<group>"; };
 		39850C522118F55200D20974 /* RoomAliasEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasEntry.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */,
 				39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */,
+				39640E37212E09130060F170 /* MainViewSendErrorController.swift */,
 			);
 			path = "Main View";
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				39373485211CA475008AAB7D /* WindowController.swift in Sources */,
 				39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */,
+				39640E38212E09130060F170 /* MainViewSendErrorController.swift in Sources */,
 				39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */,
 				39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */,
 				390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */,

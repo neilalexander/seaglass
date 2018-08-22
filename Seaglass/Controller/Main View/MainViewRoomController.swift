@@ -232,6 +232,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             eventTimeFormatter.timeZone = TimeZone.current
             eventTimeFormatter.dateFormat = "HH:mm"
             
+            let messageSendErrorHandler = { (roomId, eventId, userId) in
+                let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
+                sheet.roomId = roomId!
+                sheet.eventId = eventId!
+                self.presentViewControllerAsSheet(sheet)
+            } as (_: String?, _: String?, _: String?) -> ()
+            
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                 if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageEntry
@@ -243,7 +250,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = !room.state.isEncrypted
                     cell.RoomMessageEntryOutboundCoalescedPadlock.image = padlockImage
                     cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                   // cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
                     cell.RoomMessageEntryOutboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
                     switch event.sentState {
                     case MXEventSentStateSending:
@@ -255,9 +261,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
                         }
                         cell.RoomMessageEntryOutboundCoalescedPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-                        cell.RoomMessageEntryOutboundCoalescedPadlock.contextType = .sendFailed
                         cell.RoomMessageEntryOutboundCoalescedPadlock.roomId = roomId
                         cell.RoomMessageEntryOutboundCoalescedPadlock.eventId = event.eventId
+                        cell.RoomMessageEntryOutboundCoalescedPadlock.handler = messageSendErrorHandler
                         cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.red
                         break
                     default:
@@ -288,9 +294,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             cell.RoomMessageEntryOutboundPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
                         }
                         cell.RoomMessageEntryOutboundPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-                        cell.RoomMessageEntryOutboundPadlock.contextType = .sendFailed
                         cell.RoomMessageEntryOutboundPadlock.roomId = roomId
                         cell.RoomMessageEntryOutboundPadlock.eventId = event.eventId
+                        cell.RoomMessageEntryOutboundPadlock.handler = messageSendErrorHandler
                         cell.RoomMessageEntryOutboundText.textColor = NSColor.red
                         break
                     default:
@@ -472,7 +478,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true) })
     }
     
-    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?) {
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool = false) {
         if event.roomId == nil {
             return
         }
@@ -485,6 +491,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 if !event.isRedactedEvent() && event.content.count > 0 {
                     OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
                     OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
+                } else if removeOnReplace {
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp) })
                 }
                 return
             }

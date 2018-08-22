@@ -9,39 +9,30 @@
 import Cocoa
 
 class ContextImageView: NSImageView {
-    enum ContextType {
-        case encryptedEvent
-        case sendFailed
+    var handler: ((_: String?, _: String?, _: String?) -> ())?
+    
+    var roomId: String?
+    var eventId: String?
+    var userId: String?
+    
+    init(handler: @escaping (_: String?, _: String?, _: String?) -> ()?) {
+        self.handler = handler as? ((String?, String?, String?) -> ()) ?? nil
+        super.init(frame: NSRect())
     }
     
-    public var roomId: String?
-    public var eventId: String?
-    public var contextType: ContextType?
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
     
     override func mouseDown(with event: NSEvent) {
-        if contextType == nil {
+        if handler == nil {
             return
         }
         
-        switch contextType {
-        case .encryptedEvent?:
-            if roomId == nil || eventId == nil {
-                return
-            }
-            print("Encrypted event")
-            break
-        case .sendFailed?:
-            if roomId == nil || eventId == nil {
-                return
-            }
-            print("Send failed for \(eventId) in \(roomId)")
-            break
-        default:
-            break
-        }
+        self.handler!(roomId, eventId, userId)
     }
 }

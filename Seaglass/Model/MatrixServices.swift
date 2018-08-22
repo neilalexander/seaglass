@@ -254,7 +254,7 @@ class MatrixServices: NSObject {
             case "m.room.redaction":
                 for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {
                     if let index = self.eventCache[event.roomId]!.index(of: e) {
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: e.prune(), direction: direction, roomState: roomState, replaces: event.redacts!);
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: e.prune(), direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: false);
                         self.eventCache[event.roomId]![index] = e.prune()
                     }
                 }
@@ -269,13 +269,13 @@ class MatrixServices: NSObject {
                     } else {
                         self.eventCache[event.roomId]!.insert(event, at: 0)
                     }
-                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil);
+                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil, removeOnReplace: false);
                     self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                 } else {
                     if let index = self.eventCache[event.roomId]!.index(of: event) {
                         let original = self.eventCache[event.roomId]![index].eventId
                         self.eventCache[event.roomId]![index] = event
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original);
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original, removeOnReplace: false);
                         self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 }
