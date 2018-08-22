@@ -255,6 +255,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
                         }
                         cell.RoomMessageEntryOutboundCoalescedPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
+                        cell.RoomMessageEntryOutboundCoalescedPadlock.contextType = .sendFailed
+                        cell.RoomMessageEntryOutboundCoalescedPadlock.roomId = roomId
+                        cell.RoomMessageEntryOutboundCoalescedPadlock.eventId = event.eventId
                         cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.red
                         break
                     default:
@@ -285,6 +288,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             cell.RoomMessageEntryOutboundPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
                         }
                         cell.RoomMessageEntryOutboundPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
+                        cell.RoomMessageEntryOutboundPadlock.contextType = .sendFailed
+                        cell.RoomMessageEntryOutboundPadlock.roomId = roomId
+                        cell.RoomMessageEntryOutboundPadlock.eventId = event.eventId
                         cell.RoomMessageEntryOutboundText.textColor = NSColor.red
                         break
                     default:
@@ -601,5 +607,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
             }
         }
+    }
+    
+    @objc func messagePadlockClicked() {
+        print("CLICK!")
     }
 }

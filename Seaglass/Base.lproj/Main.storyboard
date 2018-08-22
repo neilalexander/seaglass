@@ -1365,12 +1365,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs">
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="48" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
+                                                                    <imageCell key="cell" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryInboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-49-RxG">
                                                                     <rect key="frame" x="524" y="1" width="58" height="13"/>
@@ -1454,12 +1454,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bkn-PY-xBl">
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bkn-PY-xBl" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="48" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="ZDC-ek-eU9"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
+                                                                    <imageCell key="cell" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryInboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-7Z-LJb">
                                                                     <rect key="frame" x="524" y="1" width="58" height="13"/>
@@ -1561,12 +1561,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
                                                                 </imageView>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M">
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="513" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
+                                                                    <imageCell key="cell" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryOutboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9y-EX-0dL">
                                                                     <rect key="frame" x="-4" y="1" width="58" height="13"/>
@@ -1648,12 +1648,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB">
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="519" y="1" width="10" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="afV-jr-MaQ"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
+                                                                    <imageCell key="cell" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryOutboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3u-xl-T0k">
                                                                     <rect key="frame" x="-4" y="2" width="58" height="13"/>
@@ -3063,7 +3063,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
-                                <rect key="frame" x="91" y="66" width="256" height="18"/>
+                                <rect key="frame" x="90" y="66" width="256" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
