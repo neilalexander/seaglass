@@ -37,9 +37,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var RoomInviteDeclineButton: NSButton!
     
     weak public var mainController: MainViewController?
-    
-    var cellScrolledTo: Int = 0
-    
+
     var roomId: String = ""
     var roomIsTyping: Bool = false
     var roomTyping: Bool {
@@ -142,8 +140,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-       // RoomMessageTableView.estimated
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -393,10 +389,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
         let y2 = scrollview.documentVisibleRect.origin.y
         if abs(y1 - y2) < 64 {
-            if row > cellScrolledTo {
-                RoomMessageTableView.scrollRowToVisible(row: row, animated: true)
-                cellScrolledTo = row
-            }
+            OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true) })
         }
     }
     
@@ -436,9 +429,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomTopic.stringValue = cacheEntry.roomTopic
         
         roomId = cacheEntry.roomId
-        
-        cellScrolledTo = 0
-        
+ 
         RoomMessageTableView.beginUpdates()
         RoomMessageTableView.reloadData()
         RoomMessageTableView.endUpdates()
@@ -450,6 +441,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomMessageInput.placeholderString = "Message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
+        
+        OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true) })
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?) {
