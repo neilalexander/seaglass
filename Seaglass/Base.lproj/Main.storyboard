@@ -1366,7 +1366,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs">
-                                                                    <rect key="frame" x="48" y="2" width="16" height="12"/>
+                                                                    <rect key="frame" x="48" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
                                                                     </constraints>
@@ -1403,10 +1403,10 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="6m0-ef-Shk"/>
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="72B-Rv-dBp"/>
                                                                 <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="64" id="Adj-Cj-u0h"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dcR-Ti-wrs" secondAttribute="bottom" id="D3m-oy-8rQ"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dcR-Ti-wrs" secondAttribute="bottom" constant="1" id="D3m-oy-8rQ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="M9I-a1-b01"/>
                                                                 <constraint firstItem="dcR-Ti-wrs" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="SEv-1m-Zjw"/>
-                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="TKs-nR-jdd"/>
+                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="31" id="TKs-nR-jdd"/>
                                                                 <constraint firstAttribute="trailing" secondItem="0Cu-49-RxG" secondAttribute="trailing" constant="-3" id="USZ-AI-vOv"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="WZ2-ZC-KYv"/>
                                                                 <constraint firstItem="0Cu-49-RxG" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="YrF-Ig-g15"/>
@@ -1455,7 +1455,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bkn-PY-xBl">
-                                                                    <rect key="frame" x="48" y="2" width="16" height="12"/>
+                                                                    <rect key="frame" x="48" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="ZDC-ek-eU9"/>
                                                                     </constraints>
@@ -1491,7 +1491,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="cZX-Kd-FHZ" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="CD5-7w-Hvc"/>
                                                                 <constraint firstItem="ffP-7Z-LJb" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="HLJ-rJ-JMH"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ffP-7Z-LJb" secondAttribute="trailing" constant="-3" id="ULX-Cb-qdo"/>
-                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="Ylh-Yr-1bJ"/>
+                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="3" id="Ylh-Yr-1bJ"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="b0O-hi-QlL"/>
                                                                 <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="hEh-Gf-bMJ"/>
                                                                 <constraint firstItem="Bkn-PY-xBl" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="48" id="yIo-8E-Hei"/>
@@ -1562,7 +1562,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
                                                                 </imageView>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M">
-                                                                    <rect key="frame" x="513" y="2" width="16" height="12"/>
+                                                                    <rect key="frame" x="513" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
                                                                     </constraints>
@@ -1599,9 +1599,9 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstAttribute="trailing" secondItem="eNx-7M-A4V" secondAttribute="trailing" constant="64" id="8CY-bg-Cb6"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eNx-7M-A4V" secondAttribute="bottom" id="AKp-6T-uZC"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="3" id="EFm-Cq-H9m"/>
-                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="30" id="FCg-n9-Lom"/>
+                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="31" id="FCg-n9-Lom"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Ldz-hR-14M" secondAttribute="trailing" constant="48" id="Nmj-iz-PLy"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" id="Qbb-0E-GCU"/>
+                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" constant="1" id="Qbb-0E-GCU"/>
                                                                 <constraint firstItem="G9y-EX-0dL" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="-2" id="Xok-lu-DW8"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
@@ -1620,12 +1620,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="RoomMessageEntryOutboundTime" destination="G9y-EX-0dL" id="TMq-Cd-iEy"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryOutboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="uiY-zu-QBZ" userLabel="Outgoing Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
+                                                        <tableCellView identifier="RoomMessageEntryOutboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" misplaced="YES" id="uiY-zu-QBZ" userLabel="Outgoing Room Message Entry Coalesced" customClass="RoomMessageEntry" customModule="Seaglass" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="111" width="577" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="RoomMessageEntryOutboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-BP-DZa">
-                                                                    <rect key="frame" x="46" y="0.0" width="469" height="16"/>
+                                                                    <rect key="frame" x="46" y="1" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
                                                                             <mutableData key="keyedArchiveRepresentation">
@@ -1648,15 +1648,15 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB">
-                                                                    <rect key="frame" x="519" y="2" width="10" height="12"/>
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB">
+                                                                    <rect key="frame" x="519" y="1" width="10" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="afV-jr-MaQ"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
                                                                 </imageView>
                                                                 <textField identifier="RoomMessageEntryOutboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3u-xl-T0k">
-                                                                    <rect key="frame" x="-4" y="1" width="58" height="13"/>
+                                                                    <rect key="frame" x="-4" y="2" width="58" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="54" id="gwH-Zn-a1H"/>
                                                                     </constraints>
@@ -1681,7 +1681,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="2" id="7EA-uw-nti"/>
+                                                                <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="3" id="7EA-uw-nti"/>
                                                                 <constraint firstItem="r3u-xl-T0k" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="2" id="G1k-pe-Qcn"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="01c-6I-5AB" secondAttribute="bottom" constant="2" id="Xan-BJ-AkO"/>
                                                                 <constraint firstItem="KDC-BP-DZa" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="ae4-Zd-qfK"/>
@@ -3273,6 +3273,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>

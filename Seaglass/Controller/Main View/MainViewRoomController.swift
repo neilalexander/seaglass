@@ -98,11 +98,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.eventCache[self.roomId]?.index(where: { $0.eventId == localReturnedEvent }) {
                         MatrixServices.inst.eventCache[self.roomId]?[index] = returnedEvent!
-                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                     }
-                } else {
-                    self.matrixDidRoomMessage(event: returnedEvent!.prune(), direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
+                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
             }
             MatrixServices.inst.eventCache[roomId]?.append(returnedEvent!)
             localReturnedEvent = returnedEvent?.eventId ?? nil
@@ -113,11 +111,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.eventCache[self.roomId]?.index(where: { $0.eventId == localReturnedEvent }) {
                         MatrixServices.inst.eventCache[self.roomId]?[index] = returnedEvent!
-                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                     }
-                } else {
-                    self.matrixDidRoomMessage(event: returnedEvent!.prune(), direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
                 }
+                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state, replaces: localReturnedEvent)
             }
             MatrixServices.inst.eventCache[roomId]?.append(returnedEvent!)
             localReturnedEvent = returnedEvent?.eventId ?? nil
@@ -247,8 +243,24 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = !room.state.isEncrypted
                     cell.RoomMessageEntryOutboundCoalescedPadlock.image = padlockImage
                     cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
+                   // cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
                     cell.RoomMessageEntryOutboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
+                    switch event.sentState {
+                    case MXEventSentStateSending:
+                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.gridColor
+                        break
+                    case MXEventSentStateFailed:
+                        if !room.state.isEncrypted {
+                            cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = false
+                            cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
+                        }
+                        cell.RoomMessageEntryOutboundCoalescedPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
+                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.red
+                        break
+                    default:
+                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.textColor
+                    }
+                    cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
                     break
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageEntry
@@ -262,11 +274,23 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryOutboundPadlock.isHidden = !room.state.isEncrypted
                     cell.RoomMessageEntryOutboundPadlock.image = padlockImage
                     cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
                     cell.RoomMessageEntryOutboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    if event.sentState == MXEventSentStateSending {
-                       // cell.alphaValue = 0.4
+                    switch event.sentState {
+                    case MXEventSentStateSending:
+                        cell.RoomMessageEntryOutboundText.textColor = NSColor.gridColor
+                        break
+                    case MXEventSentStateFailed:
+                        if !room.state.isEncrypted {
+                            cell.RoomMessageEntryOutboundPadlock.isHidden = false
+                            cell.RoomMessageEntryOutboundPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
+                        }
+                        cell.RoomMessageEntryOutboundPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
+                        cell.RoomMessageEntryOutboundText.textColor = NSColor.red
+                        break
+                    default:
+                        cell.RoomMessageEntryOutboundText.textColor = NSColor.textColor
                     }
+                    cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
                     break
                 }
             } else {
@@ -297,9 +321,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
                     cell.RoomMessageEntryInboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundPadlock.frame.size.width
                     cell.RoomMessageEntryInboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    if event.sentState == MXEventSentStateSending {
-                       // cell.alphaValue = 0.4
-                    }
                     break
                 }
             }
@@ -456,7 +477,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if replaces != nil {
             if let index = cache.index(where: { $0.eventId == event.eventId }) {
                 if !event.isRedactedEvent() && event.content.count > 0 {
-                    RoomMessageTableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
                 }
                 return
             }
