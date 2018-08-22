@@ -42,6 +42,7 @@
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
 		39F3126121189F9200A75E16 /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3126021189F9200A75E16 /* NSImageView.swift */; };
 		39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F312622118F21C00A75E16 /* RoomAliasesController.swift */; };
+		3D502D80212E012F00C8D06E /* ContextImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502D7F212E012F00C8D06E /* ContextImageView.swift */; };
 		A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC29052126BAE800F37E0E /* AvatarImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
 		39F3126021189F9200A75E16 /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
 		39F312622118F21C00A75E16 /* RoomAliasesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasesController.swift; sourceTree = "<group>"; };
+		3D502D7F212E012F00C8D06E /* ContextImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextImageView.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 		A5EC29052126BAE800F37E0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				39850C502118F51D00D20974 /* RoomListEntry.swift */,
 				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
 				A5EC29052126BAE800F37E0E /* AvatarImageView.swift */,
+				3D502D7F212E012F00C8D06E /* ContextImageView.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				39F3126121189F9200A75E16 /* NSImageView.swift in Sources */,
 				39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
+				3D502D80212E012F00C8D06E /* ContextImageView.swift in Sources */,
 				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
 				39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */,
