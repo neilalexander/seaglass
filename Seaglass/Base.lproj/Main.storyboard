@@ -1037,7 +1037,7 @@ DQ
         <scene sceneID="Gq1-CI-Ahz">
             <objects>
                 <viewController id="KsD-aF-a0Q" customClass="MainViewRoomsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="IwP-4A-58S">
+                    <view key="view" id="IwP-4A-58S" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="257" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1210,7 +1210,7 @@ DQ
         <scene sceneID="scY-wB-0g8">
             <objects>
                 <viewController id="WXz-Io-9JK" customClass="MainViewRoomController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="RoomView" id="chW-xk-j9x" customClass="RoomView" customModule="Seaglass" customModuleProvider="target">
+                    <view key="view" identifier="RoomView" id="chW-xk-j9x" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="580" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1847,7 +1847,7 @@ DQ
         <scene sceneID="Bcb-5U-On0">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="GNV-Xu-rSV" customClass="MainViewPartController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="qgk-PF-7EH">
+                    <view key="view" id="qgk-PF-7EH" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="303" height="128"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1899,7 +1899,7 @@ DQ
         <scene sceneID="C8s-yD-xBh">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="vrm-yE-FSO" customClass="RoomSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Qly-RI-67g">
+                    <view key="view" id="Qly-RI-67g" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="621" height="524"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2148,7 +2148,7 @@ DQ
         <scene sceneID="nZk-Qb-vB9">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="jxX-9w-UBJ" customClass="RoomAliasesController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="vFT-Ni-bN8">
+                    <view key="view" id="vFT-Ni-bN8" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2320,7 +2320,7 @@ DQ
         <scene sceneID="7EC-R9-KTe">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="y0A-pr-MKw" customClass="RoomPowerLevelsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Nj6-Um-sPZ">
+                    <view key="view" id="Nj6-Um-sPZ" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="456" height="318"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2793,7 +2793,7 @@ Gw
         <scene sceneID="wgK-pz-Eof">
             <objects>
                 <viewController id="pny-lE-NfQ" sceneMemberID="viewController">
-                    <view key="view" id="w6m-Ih-Z0k">
+                    <view key="view" id="w6m-Ih-Z0k" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="321" height="236"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2966,7 +2966,7 @@ DQ
         <scene sceneID="e7s-8z-WY8">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="c2d-7t-jsh" customClass="LoginViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="BBu-tV-gvF">
+                    <view key="view" wantsLayer="YES" id="BBu-tV-gvF" customClass="NSVisualEffectView" customModule="Seaglass" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="264"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -3122,7 +3122,7 @@ DQ
         <scene sceneID="IF4-CQ-Fou">
             <objects>
                 <viewController id="OJS-MA-od8" customClass="LoginViewSettingsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="cbF-TO-Htg">
+                    <view key="view" id="cbF-TO-Htg" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="464" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -3173,7 +3173,7 @@ DQ
         <scene sceneID="Xp7-LZ-gMb">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="XnJ-du-pMW" customClass="PopoverUserList" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="B6p-xd-Mnm">
+                    <view key="view" id="B6p-xd-Mnm" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
