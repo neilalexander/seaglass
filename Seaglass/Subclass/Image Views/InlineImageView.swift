@@ -8,23 +8,43 @@
 
 import Cocoa
 import SwiftMatrixSDK
+import Quartz
 
-class InlineImageView: ContextImageView {
+class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, QLPreviewPanelDataSource {
+    var previewItemURL: URL!
+    
     var maxDimensionWidth: CGFloat = 256
     var maxDimensionHeight: CGFloat = 256
+    
+    func numberOfPreviewItems(in panel: QLPreviewPanel!) -> Int {
+        return previewItemURL.isFileURL ? 1 : 0
+    }
+    
+    func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> QLPreviewItem! {
+        return previewItemURL as QLPreviewItem
+    }
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
     
-    func setImage(forMxcUrl: String?, useCached: Bool = true) {
+    func setImage(forMxcUrl: String?, withMimeType: String?, useCached: Bool = true) {
         guard let mxcURL = forMxcUrl else { return }
         
         if mxcURL.hasPrefix("mxc://") {
             guard let url = MatrixServices.inst.client.url(ofContent: forMxcUrl) else { return }
             
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
-                guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerDefaultCacheFolder) else { return }
+                guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: withMimeType, inFolder: kMXMediaManagerDefaultCacheFolder) else { return }
+                previewItemURL = URL(fileURLWithPath: path)
+                
+                self.handler = { (roomId, eventId, userId) in
+                    if self.previewItemURL.isFileURL {
+                        QLPreviewPanel.shared().delegate = self
+                        QLPreviewPanel.shared().dataSource = self
+                        QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                    }
+                } as (_: String?, _: String?, _: String?) -> ()
                 
                 if FileManager.default.fileExists(atPath: path) && useCached {
                     { [weak self] in

@@ -58,7 +58,12 @@ class RoomMessageOutgoing: RoomMessage {
             
             switch msgtype {
             case "m.image":
-                InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, useCached: true)
+                if let info = event!.content["info"] as? [String: Any] {
+                    let mimetype = info["mimetype"] as? String? ?? "application/octet-stream"
+                    InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: mimetype,  useCached: true)
+                } else {
+                    InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: "application/octet-stream",  useCached: true)
+                }
                 break
             case "m.emote":
                 Text.attributedStringValue = super.emoteContent(align: .left)
