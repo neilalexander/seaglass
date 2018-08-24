@@ -44,9 +44,15 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         Icon.image = icon.image
         Icon.setFrameSize(room!.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
         
+        var finalTextColor = NSColor.textColor
+        
         if let msgtype = event!.content["msgtype"] as? String? {
             switch msgtype {
             case "m.emote":
+                Text.attributedStringValue = super.emoteContent(align: .right)
+                break
+            case "m.notice":
+                finalTextColor = NSColor.selectedMenuItemColor
                 fallthrough
             case "m.text":
                 let text = super.textContent()
@@ -81,7 +87,7 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
             Text.textColor = NSColor.red
             break
         default:
-            Text.textColor = NSColor.textColor
+            Text.textColor = finalTextColor
         }
         TextConstraint.constant = 48 + Icon.frame.size.width
     }

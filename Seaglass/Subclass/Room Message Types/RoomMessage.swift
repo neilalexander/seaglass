@@ -82,9 +82,21 @@ class RoomMessage: NSTableCellView {
         
         if event!.content["body"] != nil {
             let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+            cellStringValue = (event!.content["body"] as! String)
             cellAttributedStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
         }
         
         return (cellStringValue, cellAttributedStringValue)
+    }
+    
+    func emoteContent(align: NSTextAlignment = .left) -> NSAttributedString {
+        let para = NSMutableParagraphStyle()
+        para.alignment = align
+        
+        let text = NSMutableAttributedString(string: "*", attributes: [.paragraphStyle: para])
+        text.append(self.textContent().attributedString!)
+        text.append(NSMutableAttributedString(string: "*"))
+
+        return text
     }
 }
