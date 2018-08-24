@@ -24,6 +24,8 @@ class RoomMessageOutgoing: RoomMessage {
     @IBOutlet var Text: NSTextField!
     @IBOutlet var TextConstraint: NSLayoutConstraint!
     @IBOutlet var Avatar: AvatarImageView!
+    @IBOutlet var InlineImage: InlineImageView!
+    @IBOutlet var InlineImageConstraint: NSLayoutConstraint!
     @IBOutlet var Icon: ContextImageView!
     @IBOutlet var Time: NSTextField!
     
@@ -51,9 +53,15 @@ class RoomMessageOutgoing: RoomMessage {
         var finalTextColor = NSColor.textColor
         
         if let msgtype = event!.content["msgtype"] as? String? {
+            InlineImage.isHidden = ["m.emote", "m.notice", "m.text"].contains(where: { $0 == msgtype })
+            Text.isHidden = !InlineImage.isHidden
+            
             switch msgtype {
+            case "m.image":
+                InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, useCached: true)
+                break
             case "m.emote":
-                Text.attributedStringValue = super.emoteContent(align: .right)
+                Text.attributedStringValue = super.emoteContent(align: .left)
                 break
             case "m.notice":
                 finalTextColor = NSColor.headerColor
@@ -93,5 +101,6 @@ class RoomMessageOutgoing: RoomMessage {
             Text.textColor = finalTextColor
         }
         TextConstraint.constant = 48 + Icon.frame.size.width
+        InlineImageConstraint.constant = 48 + Icon.frame.size.width
     }
 }
