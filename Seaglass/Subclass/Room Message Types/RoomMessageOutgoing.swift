@@ -95,7 +95,7 @@ class RoomMessageOutgoing: RoomMessage {
             Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
             Icon.roomId = roomId
             Icon.eventId = event!.eventId
-            Icon.isUserInteractionEnabled = true
+            Icon.resendEventOnClick = true
             Text.textColor = NSColor.red
             break
         default:
