@@ -1,9 +1,19 @@
 //
-//  MessageIncomingCoalesced.swift
-//  Seaglass
+// Seaglass, a native macOS Matrix client
+// Copyright © 2018, Neil Alexander
 //
-//  Created by Neil Alexander on 24/08/2018.
-//  Copyright © 2018 Neil Alexander. All rights reserved.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
 import Cocoa
@@ -27,18 +37,33 @@ class RoomMessageIncomingCoalesced: RoomMessage {
         let roomId = event!.roomId
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         
-        let text = super.textContent()
-        let icon = super.icon()
+        Time.stringValue = super.timestamp()
         
-        if text.attributedString != nil {
-            Text.attributedStringValue = text.attributedString!
-        } else if text.string != "" {
-            Text.stringValue = text.string!
-        }
+        let icon = super.icon()
         Icon.isHidden = !room!.state.isEncrypted
         Icon.image = icon.image
         Icon.setFrameSize(room!.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
-        Time.stringValue = super.timestamp()
+        
+        if let msgtype = event!.content["msgtype"] as? String? {
+            switch msgtype {
+            case "m.emote":
+                fallthrough
+            case "m.text":
+                let text = super.textContent()
+                if text.attributedString != nil {
+                    Text.attributedStringValue = text.attributedString!
+                } else if text.string != "" {
+                    Text.stringValue = text.string!
+                }
+                break
+            default:
+                Text.stringValue = ""
+                Text.placeholderString = "Message type '\(msgtype!)' not supported"
+                break
+            }
+        } else {
+            Text.stringValue = "No content type"
+        }
         
         switch event!.sentState {
         case MXEventSentStateSending:
