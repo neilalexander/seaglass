@@ -19,9 +19,7 @@ class RoomMessageOutgoing: RoomMessage {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-    }
-    
-    override func viewWillDraw() {
+        
         if event == nil {
             return
         }
@@ -62,6 +60,6 @@ class RoomMessageOutgoing: RoomMessage {
         default:
             Text.textColor = NSColor.textColor
         }
-        TextConstraint.constant -= icon.width - Icon.frame.size.width
+        TextConstraint.constant = 48 + Icon.frame.size.width
     }
 }

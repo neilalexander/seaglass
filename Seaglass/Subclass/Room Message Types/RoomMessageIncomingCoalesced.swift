@@ -58,7 +58,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
         default:
             Text.textColor = NSColor.textColor
         }
-        TextConstraint.constant -= icon.width - Icon.frame.size.width
+        TextConstraint.constant = 48 + Icon.frame.size.width
     }
     
 }
