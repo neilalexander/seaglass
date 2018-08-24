@@ -197,7 +197,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
             NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
         
-        var cell: RoomMessageEntry
+        var cell: RoomMessage
         
         switch event.type {
         case "m.room.message":
@@ -240,176 +240,34 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } as (_: String?, _: String?, _: String?) -> ()
             
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-                if isCoalesced {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageEntry
-                    if cellAttributedStringValue.length > 0 {
-                        cell.RoomMessageEntryOutboundCoalescedText.attributedStringValue = cellAttributedStringValue
-                    } else if cellStringValue != "" {
-                        cell.RoomMessageEntryOutboundCoalescedText.stringValue = cellStringValue
-                    }
-                    cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryOutboundCoalescedPadlock.image = padlockImage
-                    cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryOutboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    switch event.sentState {
-                    case MXEventSentStateSending:
-                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.gridColor
-                        break
-                    case MXEventSentStateFailed:
-                        if !room.state.isEncrypted {
-                            cell.RoomMessageEntryOutboundCoalescedPadlock.isHidden = false
-                            cell.RoomMessageEntryOutboundCoalescedPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
-                        }
-                        cell.RoomMessageEntryOutboundCoalescedPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-                        cell.RoomMessageEntryOutboundCoalescedPadlock.roomId = roomId
-                        cell.RoomMessageEntryOutboundCoalescedPadlock.eventId = event.eventId
-                        cell.RoomMessageEntryOutboundCoalescedPadlock.handler = messageSendErrorHandler
-                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.red
-                        break
-                    default:
-                        cell.RoomMessageEntryOutboundCoalescedText.textColor = NSColor.textColor
-                    }
-                    cell.RoomMessageEntryOutboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundCoalescedPadlock.frame.size.width
-                    break
+                if event.isMediaAttachment() {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
+                    cell.event = event
                 } else {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageEntry
-                    cell.RoomMessageEntryOutboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
-                    cell.RoomMessageEntryOutboundIcon.setAvatar(forUserId: event.sender)
-                    if cellAttributedStringValue.length > 0 {
-                        cell.RoomMessageEntryOutboundText.attributedStringValue = cellAttributedStringValue
-                    } else if cellStringValue != "" {
-                        cell.RoomMessageEntryOutboundText.stringValue = cellStringValue
-                    }
-                    cell.RoomMessageEntryOutboundPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryOutboundPadlock.image = padlockImage
-                    cell.RoomMessageEntryOutboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryOutboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    switch event.sentState {
-                    case MXEventSentStateSending:
-                        cell.RoomMessageEntryOutboundText.textColor = NSColor.gridColor
+                    if isCoalesced {
+                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
+                        cell.event = event
                         break
-                    case MXEventSentStateFailed:
-                        if !room.state.isEncrypted {
-                            cell.RoomMessageEntryOutboundPadlock.isHidden = false
-                            cell.RoomMessageEntryOutboundPadlock.setFrameSize(NSMakeSize(padlockWidth, padlockHeight))
-                        }
-                        cell.RoomMessageEntryOutboundPadlock.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-                        cell.RoomMessageEntryOutboundPadlock.roomId = roomId
-                        cell.RoomMessageEntryOutboundPadlock.eventId = event.eventId
-                        cell.RoomMessageEntryOutboundPadlock.handler = messageSendErrorHandler
-                        cell.RoomMessageEntryOutboundText.textColor = NSColor.red
-                        break
-                    default:
-                        cell.RoomMessageEntryOutboundText.textColor = NSColor.textColor
-                    }
-                    cell.RoomMessageEntryOutboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryOutboundPadlock.frame.size.width
-                    break
-                }
-            } else {
-                if isCoalesced {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageEntry
-                    if cellAttributedStringValue.length > 0 {
-                        cell.RoomMessageEntryInboundCoalescedText.attributedStringValue = cellAttributedStringValue
-                    } else if cellStringValue != "" {
-                        cell.RoomMessageEntryInboundCoalescedText.stringValue = cellStringValue
-                    }
-                    cell.RoomMessageEntryInboundCoalescedPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryInboundCoalescedPadlock.image = padlockImage
-                    cell.RoomMessageEntryInboundCoalescedPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryInboundCoalescedTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundCoalescedPadlock.frame.size.width
-                    cell.RoomMessageEntryInboundCoalescedTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    break
-                } else {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageEntry
-                    cell.RoomMessageEntryInboundFrom.stringValue = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender as String
-                    cell.RoomMessageEntryInboundIcon.setAvatar(forUserId: event.sender)
-                    if cellAttributedStringValue.length > 0 {
-                        cell.RoomMessageEntryInboundText.attributedStringValue = cellAttributedStringValue
-                    } else if cellStringValue != "" {
-                        cell.RoomMessageEntryInboundText.stringValue = cellStringValue
-                    }
-                    cell.RoomMessageEntryInboundPadlock.isHidden = !room.state.isEncrypted
-                    cell.RoomMessageEntryInboundPadlock.image = padlockImage
-                    cell.RoomMessageEntryInboundPadlock.setFrameSize(room.state.isEncrypted ? NSMakeSize(padlockWidth, padlockHeight) : NSMakeSize(0, padlockHeight))
-                    cell.RoomMessageEntryInboundTextConstraint.constant -= padlockWidth - cell.RoomMessageEntryInboundPadlock.frame.size.width
-                    cell.RoomMessageEntryInboundTime.stringValue = eventTimeFormatter.string(from: eventTime)
-                    break
-                }
-            }
-        case "m.room.member":
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            let senderDisplayName = room.state.memberName(event.sender) ?? event.sender as String
-            let stateKeyDisplayName = room.state.memberName(event.stateKey) ?? event.stateKey as String
-            let prevDisplayName = event.prevContent != nil && event.prevContent.keys.contains("displayname") ? event.prevContent["displayname"] as! String? : stateKeyDisplayName
-            let newDisplayName = event.content != nil && event.content.keys.contains("displayname") ? event.content["displayname"] as! String? : stateKeyDisplayName
-            switch event.content["membership"] as! String {
-            case "join":
-                let prevMembership = event.prevContent != nil && event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : "leave"
-                if prevMembership == "leave" {
-                    cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) joined the room"
-                    break
-                }
-                if newDisplayName != nil && prevDisplayName != nil && newDisplayName != prevDisplayName {
-                    cell.RoomMessageEntryInlineText.stringValue = "\(prevDisplayName!) is now \(newDisplayName!)"
-                } else if newDisplayName != nil {
-                    cell.RoomMessageEntryInlineText.stringValue = "\(event.stateKey!) is now \(newDisplayName!)"
-                } else {
-                    let prevAvatarUrl: String? = event.prevContent.keys.contains("avatar_url") ? event.prevContent["avatar_url"] as! String? : nil
-                    let newAvatarUrl: String? = event.content.keys.contains("avatar_url") ? event.content["avatar_url"] as! String? : nil
-                    if prevAvatarUrl != newAvatarUrl {
-                        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) changed their avatar"
                     } else {
-                        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) unknown state change event"
+                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
+                        cell.event = event
+                        break
                     }
                 }
-                break
-            case "leave":   cell.RoomMessageEntryInlineText.stringValue = "\(prevDisplayName!) left the room"; break
-            case "invite":  cell.RoomMessageEntryInlineText.stringValue = "\(senderDisplayName) invited \(newDisplayName!)"; break
-            case "ban":     cell.RoomMessageEntryInlineText.stringValue = "\(senderDisplayName) banned \(newDisplayName!)"; break
-            default:        cell.RoomMessageEntryInlineText.stringValue = "\(newDisplayName!) unknown event: \(event.stateKey)"; break
-            }
-            return cell
-        case "m.room.name":
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            if event.content["name"] as! String != "" {
-                cell.RoomMessageEntryInlineText.stringValue = "Room renamed: \(event.content["name"] as! String)"
             } else {
-                cell.RoomMessageEntryInlineText.stringValue = "Room name removed"
+                if isCoalesced {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
+                    cell.event = event
+                    break
+                } else {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
+                    cell.event = event
+                    break
+                }
             }
-            return cell
-        case "m.room.topic":
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            if event.content["topic"] as! String != "" {
-                cell.RoomMessageEntryInlineText.stringValue = "Room topic changed: \(event.content["topic"] as! String)"
-            } else {
-                cell.RoomMessageEntryInlineText.stringValue = "Room topic removed"
-            }
-            return cell
-        case "m.room.avatar":
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            if event.content["url"] as! String != "" {
-                cell.RoomMessageEntryInlineText.stringValue = "Room avatar changed"
-            } else {
-                cell.RoomMessageEntryInlineText.stringValue = "Room avatar removed"
-            }
-            return cell
-        case "m.room.canonical_alias":
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            if event.content["alias"] as! String != "" {
-                cell.RoomMessageEntryInlineText.stringValue = "Primary room alias set to \(event.content["alias"] as! String)"
-            } else {
-                cell.RoomMessageEntryInlineText.stringValue = "Primary room alias removed"
-            }
-            break
-        case "m.room.create":
-            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.content["creator"] as! String) ?? event.content["creator"] as! String
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Room created by \(displayName)"
-            break
         default:
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Unknown event \(event.type)"
-            print(event)
+            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.event = event
             break
         }
 
