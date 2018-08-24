@@ -56,7 +56,7 @@ class RoomMessageOutgoing: RoomMessage {
                 Text.attributedStringValue = super.emoteContent(align: .right)
                 break
             case "m.notice":
-                finalTextColor = NSColor.selectedMenuItemColor
+                finalTextColor = NSColor.headerColor
                 fallthrough
             case "m.text":
                 let text = super.textContent()

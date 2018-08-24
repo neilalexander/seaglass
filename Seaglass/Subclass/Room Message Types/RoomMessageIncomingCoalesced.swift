@@ -52,7 +52,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                 Text.attributedStringValue = super.emoteContent(align: .left)
                 break
             case "m.notice":
-                finalTextColor = NSColor.selectedMenuItemColor
+                finalTextColor = NSColor.headerColor
                 fallthrough
             case "m.text":
                 let text = super.textContent()

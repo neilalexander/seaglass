@@ -93,9 +93,9 @@ class RoomMessage: NSTableCellView {
         let para = NSMutableParagraphStyle()
         para.alignment = align
         
-        let text = NSMutableAttributedString(string: "*", attributes: [.paragraphStyle: para])
+        let text = NSMutableAttributedString(string: "* ", attributes: [ .paragraphStyle: para, .foregroundColor: NSColor.headerColor ])
         text.append(self.textContent().attributedString!)
-        text.append(NSMutableAttributedString(string: "*"))
+        text.append(NSMutableAttributedString(string: " *", attributes: [ .foregroundColor: NSColor.headerColor ]))
 
         return text
     }
