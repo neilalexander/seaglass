@@ -200,40 +200,37 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
-            // TODO: Fix this
-            /*
             let messageSendErrorHandler = { (roomId, eventId, userId) in
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
                 sheet.roomId = roomId!
                 sheet.eventId = eventId!
                 self.presentViewControllerAsSheet(sheet)
             } as (_: String?, _: String?, _: String?) -> ()
-            */
- 
+            
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                 if event.isMediaAttachment() {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
+                    
                 } else {
                     if isCoalesced {
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
+                        (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageSendErrorHandler
                     } else {
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
+                        (cell as! RoomMessageOutgoing).Icon.handler = messageSendErrorHandler
                     }
                 }
             } else {
-                if event.isMediaAttachment() {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
+                if isCoalesced {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
                 } else {
-                    if isCoalesced {
-                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
-                    } else {
-                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
-                    }
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
                 }
             }
             break
         default:
             cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.event = event
         }
 
         cell.event = event
