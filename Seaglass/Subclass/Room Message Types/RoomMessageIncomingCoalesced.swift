@@ -91,7 +91,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
             Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
             Icon.roomId = roomId
             Icon.eventId = event!.eventId
-            // Icon = messageSendErrorHandler
+            Icon.isUserInteractionEnabled = true
             Text.textColor = NSColor.red
             break
         default:

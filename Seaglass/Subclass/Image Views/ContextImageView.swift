@@ -20,6 +20,7 @@ import Cocoa
 
 class ContextImageView: NSImageView {
     var handler: ((_: String?, _: String?, _: String?) -> ())?
+    var isUserInteractionEnabled = false
     
     var roomId: String?
     var eventId: String?
@@ -39,10 +40,7 @@ class ContextImageView: NSImageView {
     }
     
     override func mouseDown(with event: NSEvent) {
-        if handler == nil {
-            return
-        }
-        
-        self.handler!(roomId, eventId, userId)
+        guard isUserInteractionEnabled else { return }
+        handler?(roomId, eventId, userId)
     }
 }
