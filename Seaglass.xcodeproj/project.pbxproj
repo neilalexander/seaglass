@@ -241,6 +241,42 @@
 			path = "Room Message Types";
 			sourceTree = "<group>";
 		};
+		3943AC6B21302EEA00760967 /* Image Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5EC29052126BAE800F37E0E /* AvatarImageView.swift */,
+				3D502D7F212E012F00C8D06E /* ContextImageView.swift */,
+			);
+			path = "Image Views";
+			sourceTree = "<group>";
+		};
+		3943AC6C21302F0000760967 /* Member Lists */ = {
+			isa = PBXGroup;
+			children = (
+				39432C912118716700FF3E5A /* MemberListTableView.swift */,
+				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
+			);
+			path = "Member Lists";
+			sourceTree = "<group>";
+		};
+		3943AC6D21302F1300760967 /* Room Lists */ = {
+			isa = PBXGroup;
+			children = (
+				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
+				39850C502118F51D00D20974 /* RoomListEntry.swift */,
+			);
+			path = "Room Lists";
+			sourceTree = "<group>";
+		};
+		3943AC6E21302F2300760967 /* Room View */ = {
+			isa = PBXGroup;
+			children = (
+				3943E0EA20CD57B30061D51D /* MainViewTableView.swift */,
+				39432C96211872F600FF3E5A /* RoomMessageEntry.swift */,
+			);
+			path = "Room View";
+			sourceTree = "<group>";
+		};
 		3943E0EC20CD9E4E0061D51D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,15 +294,11 @@
 		3943E0EE20CD9EF70061D51D /* Subclass */ = {
 			isa = PBXGroup;
 			children = (
+				3943AC6E21302F2300760967 /* Room View */,
+				3943AC6D21302F1300760967 /* Room Lists */,
+				3943AC6C21302F0000760967 /* Member Lists */,
+				3943AC6B21302EEA00760967 /* Image Views */,
 				3943AC5E21300A6600760967 /* Room Message Types */,
-				3943E0EA20CD57B30061D51D /* MainViewTableView.swift */,
-				39432C912118716700FF3E5A /* MemberListTableView.swift */,
-				39432C96211872F600FF3E5A /* RoomMessageEntry.swift */,
-				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
-				39850C502118F51D00D20974 /* RoomListEntry.swift */,
-				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
-				A5EC29052126BAE800F37E0E /* AvatarImageView.swift */,
-				3D502D7F212E012F00C8D06E /* ContextImageView.swift */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
