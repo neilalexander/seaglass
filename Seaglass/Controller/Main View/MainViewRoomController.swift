@@ -208,10 +208,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } as (_: String?, _: String?, _: String?) -> ()
             
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-                if event.isMediaAttachment() {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
-                    
-                } else {
+               // if event.isMediaAttachment() {
+               //     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
+               // } else {
                     if isCoalesced {
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
                         (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageSendErrorHandler
@@ -219,7 +218,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
                         (cell as! RoomMessageOutgoing).Icon.handler = messageSendErrorHandler
                     }
-                }
+               // }
             } else {
                 if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
