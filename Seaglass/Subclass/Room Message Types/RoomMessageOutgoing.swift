@@ -16,6 +16,8 @@ class RoomMessageOutgoing: RoomMessage {
     @IBOutlet var Avatar: AvatarImageView!
     @IBOutlet var Icon: ContextImageView!
     @IBOutlet var Time: NSTextField!
+    
+    
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

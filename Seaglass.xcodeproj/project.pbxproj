@@ -233,8 +233,8 @@
 			children = (
 				3943AC6321300C5800760967 /* RoomMessage.swift */,
 				3943AC5F21300A9900760967 /* RoomMessageIncoming.swift */,
-				3943AC6121300AA400760967 /* RoomMessageIncomingCoalesced.swift */,
 				3943AC652130152300760967 /* RoomMessageOutgoing.swift */,
+				3943AC6121300AA400760967 /* RoomMessageIncomingCoalesced.swift */,
 				3943AC6921301B9300760967 /* RoomMessageOutgoingCoalesced.swift */,
 				3943AC672130161C00760967 /* RoomMessageInline.swift */,
 			);

@@ -180,43 +180,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let event = getFilteredRoomCache(for: roomId)[row]
-        let room = MatrixServices.inst.session.room(withRoomId: roomId)!
+        var cell: RoomMessage
         
         if event.decryptionError != nil {
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageEntry
-            cell.RoomMessageEntryInlineText.stringValue = "Decryption failed of event \(event.eventId): \(event.decryptionError.localizedDescription)"
+            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.event = event
             return cell
         }
         
-        let padlockWidth: CGFloat = 16
-        let padlockHeight: CGFloat = 12
-        let padlockColor: NSColor = event.sentState == MXEventSentStateEncrypting || event.isEncrypted ?
-            NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
-            NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
-        let padlockImage: NSImage = event.sentState == MXEventSentStateEncrypting || event.isEncrypted ?
-            NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
-            NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
-        
-        var cell: RoomMessage
-        
         switch event.type {
         case "m.room.message":
-            var cellAttributedStringValue: NSAttributedString = NSAttributedString()
-            var cellStringValue: String = ""
-            
-           // if event.content["formatted_body"] != nil {
-           //     let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-           //     cellAttributedStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
-           //     cellStringValue = (event.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
-           // } else if event.content["body"] != nil {
-           //     cellStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
-           // }
-            
-            if event.content["body"] != nil {
-                let justification = event.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-                cellAttributedStringValue = (event.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
-            }
-            
             var isCoalesced = false
             if row >= 1 {
                 let previousEvent = getFilteredRoomCache(for: roomId)[row-1]
@@ -227,11 +200,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
-            let eventTime = Date(timeIntervalSince1970: TimeInterval(event.originServerTs / 1000))
-            let eventTimeFormatter = DateFormatter()
-            eventTimeFormatter.timeZone = TimeZone.current
-            eventTimeFormatter.dateFormat = "HH:mm"
-            
+            // TODO: Fix this
             let messageSendErrorHandler = { (roomId, eventId, userId) in
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
                 sheet.roomId = roomId!
@@ -255,14 +224,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     }
                 }
             } else {
-                if isCoalesced {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
+                if event.isMediaAttachment() {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
                     cell.event = event
-                    break
                 } else {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
-                    cell.event = event
-                    break
+                    if isCoalesced {
+                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
+                        cell.event = event
+                        break
+                    } else {
+                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
+                        cell.event = event
+                        break
+                    }
                 }
             }
         default:
@@ -473,9 +447,5 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
             }
         }
-    }
-    
-    @objc func messagePadlockClicked() {
-        print("CLICK!")
     }
 }
