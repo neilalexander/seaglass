@@ -19,30 +19,21 @@
 import Cocoa
 
 class ContextImageView: NSImageView {
-    var handler: ((_: String?, _: String?, _: String?) -> ())?
-    
     var roomId: String?
     var eventId: String?
     var userId: String?
     
-    init(handler: @escaping (_: String?, _: String?, _: String?) -> ()?) {
-        self.handler = handler as? ((String?, String?, String?) -> ()) ?? nil
-        super.init(frame: NSRect())
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    var resendEventOnClick = false
+    weak var roomDelegate: RoomDelegate?
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
     
     override func mouseDown(with event: NSEvent) {
-        if handler == nil {
-            return
+        if resendEventOnClick {
+            guard let roomId = roomId, let eventId = eventId else { return }
+            roomDelegate?.showResendDialog(roomId: roomId, eventId: eventId)
         }
-        
-        self.handler!(roomId, eventId, userId)
     }
 }

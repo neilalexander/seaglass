@@ -20,7 +20,11 @@ import Cocoa
 import SwiftMatrixSDK
 import Down
 
-class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
+protocol RoomDelegate: class {
+    func showResendDialog(roomId: String, eventId: String)
+}
+
+class MainViewRoomController: NSViewController, MatrixRoomDelegate, RoomDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     @IBOutlet var RoomName: NSTokenField!
     @IBOutlet var RoomTopic: NSTextField!
@@ -200,23 +204,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
-            let messageSendErrorHandler = { (roomId, eventId, userId) in
-                let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
-                sheet.roomId = roomId!
-                sheet.eventId = eventId!
-                self.presentViewControllerAsSheet(sheet)
-            } as (_: String?, _: String?, _: String?) -> ()
-            
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                // if event.isMediaAttachment() {
                //     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
                // } else {
                     if isCoalesced {
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
-                        (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageSendErrorHandler
+                        (cell as! RoomMessageOutgoingCoalesced).Icon.roomDelegate = self
                     } else {
                         cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
-                        (cell as! RoomMessageOutgoing).Icon.handler = messageSendErrorHandler
+                        (cell as! RoomMessageOutgoing).Icon.roomDelegate = self
                     }
                // }
             } else {
@@ -435,5 +432,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
             }
         }
+    }
+    
+    func showResendDialog(roomId: String, eventId: String) {
+        let sheet = storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
+        sheet.roomId = roomId
+        sheet.eventId = eventId
+        presentViewControllerAsSheet(sheet)
     }
 }
