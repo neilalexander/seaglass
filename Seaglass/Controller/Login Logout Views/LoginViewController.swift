@@ -58,11 +58,12 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     @IBOutlet weak var PasswordField: NSSecureTextField!
     @IBOutlet weak var PasswordLabel: NSTextField!
     @IBOutlet weak var ProgressIndicator: NSProgressIndicator!
-    @IBOutlet weak var AdvancedSettingsLabel: NSTextField!
     @IBOutlet weak var RememberCheckbox: NSButton!
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshUsernamePlaceholder), name: UserDefaults.didChangeNotification, object: nil)
         
         servicesDelegate = self
         
@@ -74,13 +75,13 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         if defaults.string(forKey: "Homeserver") == nil {
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         }
+        refreshUsernamePlaceholder()
         
         if defaults.bool(forKey: "LoginAutomatically") &&
             defaults.string(forKey: "Homeserver") != nil &&
             defaults.string(forKey: "UserID") != nil &&
             defaults.string(forKey: "AccessToken") != nil &&
-            defaults.string(forKey: "DeviceID") != nil &&
-            true {
+            defaults.string(forKey: "DeviceID") != nil {
             let credentials = MXCredentials(homeServer: defaults.string(forKey: "Homeserver"),
                                             userId: defaults.string(forKey: "UserID"),
                                             accessToken: defaults.string(forKey: "AccessToken"))
@@ -99,6 +100,13 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
             
             MatrixServices.inst.start(credentials!, disableCache: defaults.bool(forKey: "DisableCache"))
         }
+    }
+    
+    @objc func refreshUsernamePlaceholder() {
+        let homeserver = URL(string: defaults.string(forKey: "Homeserver") ?? "https://matrix.org")!.host ?? "matrix.org"
+        UsernameField.placeholderString = "\(homeserver) username"
+        PasswordField.placeholderString = "\(homeserver) password"
+        AdvancedSettingsButton.title = " \(homeserver)"
     }
     
     @IBAction func LoginButtonClicked(_ sender: NSButton) {

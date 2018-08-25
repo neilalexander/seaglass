@@ -63,17 +63,11 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
-        if rooms.count > 0 {
-            if rooms.index(where: { $0.roomId == room.roomId }) != nil {
-                return
-            }
+        if !matrixIsRoomKnown(room) {
+            roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
+            roomsCacheController.rearrangeObjects()
         }
-        
-        roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
-        roomsCacheController.rearrangeObjects()
-        
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
-        
         RoomSearch.placeholderString = "Search \(rooms.count) room"
         if rooms.count != 1 {
             RoomSearch.placeholderString?.append(contentsOf: "s")
@@ -94,8 +88,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
         if index != nil {
+            RoomList.beginUpdates()
             roomsCacheController.remove(atArrangedObjectIndex: index!)
-            roomsCacheController.rearrangeObjects()
+            RoomList.endUpdates()
         }
         
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
@@ -147,31 +142,40 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
         }
         
-        var memberString: String = ""
-        var topicString: String = "No topic set"
-        
-        if state.roomTopic != "" {
-            topicString = state.roomTopic
+        var unreadColor = NSColor(calibratedRed: 0.51, green: 0.61, blue: 0.95, alpha: 1.00)
+        if state.isInvite() {
+            unreadColor = NSColor(calibratedRed: 0.90, green: 0.35, blue: 0.29, alpha: 1.00)
+            cell?.RoomListEntryTopic.stringValue = "Room invite"
+            cell?.RoomListEntryUnread.isHidden = false
+        } else {
+            var memberString: String = ""
+            var topicString: String = "No topic set"
+            
+            if state.roomTopic != "" {
+                topicString = state.roomTopic
+            }
+            
+            switch count {
+            case 0: fallthrough
+            case 1: memberString = "Empty room"; break
+            case 2: memberString = "Direct chat"; break
+            default: memberString = "\(count) members"
+            }
+            
+            cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
+            cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: NSColor.blue))!
+            if tableView.selectedRow != row {
+                cell?.RoomListEntryUnread.isHidden = !state.unread()
+            }
         }
-        
-        switch count {
-        case 0: fallthrough
-        case 1: memberString = "Empty room"; break
-        case 2: memberString = "Direct chat"; break
-        default: memberString = "\(count) members"
-        }
-        
-        cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
-        
-        if tableView.selectedRow != row {
-            cell?.RoomListEntryUnread.isHidden = !state.unread()
-        }
+        cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: unreadColor))!
         
         return cell
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         guard let row = notification.object as? NSTableView else { return }
+        let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
@@ -179,21 +183,38 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if entry.roomsCacheEntry == nil {
             return
         }
-        if (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
+        if roomsCache.index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
             return
         }
-        entry.RoomListEntryUnread.isHidden = true
+        entry.RoomListEntryUnread.isHidden = !entry.roomsCacheEntry!.isInvite()
         DispatchQueue.main.async {
             self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
         }
     }
     
+    func updateAttentionRooms() {
+        let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        let invites = roomsCache.filter({ $0.isInvite() }).count
+        NSApp.dockTile.badgeLabel = invites > 0 ? String(invites) : ""
+    }
+    
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        updateAttentionRooms()
+    }
+    
+    func tableView(_ tableView: NSTableView, didRemove rowView: NSTableRowView, forRow row: Int) {
+        updateAttentionRooms()
+    }
+    
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
+        let roomCacheEntry = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row]
+        let roomId = roomCacheEntry.roomId
         if edge == .trailing {
+            let label = roomCacheEntry.isInvite() ? "Decline" : "Leave"
             return [
-                NSTableViewRowAction(style: .destructive, title: "Leave", handler: { (action, row) in
-                    let roomId = (self.roomsCacheController.arrangedObjects as! [RoomsCacheEntry])[row].roomId
+                NSTableViewRowAction(style: .destructive, title: label, handler: { (action, row) in
                     tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideUp, .effectFade])
+                    self.roomsCacheController.remove(atArrangedObjectIndex: row)
                     MatrixServices.inst.session.leaveRoom(roomId) { (response) in
                         if response.isFailure, let error = response.error {
                             tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])

@@ -50,58 +50,63 @@ class RoomPowerLevelsController: NSViewController {
                          /* PowerLevelChangeJoinRule,*/ PowerLevelChangeTopic, PowerLevelChangeWidgets,
                          PowerLevelChangePowerLevels, PowerLevelSaveButton ] as [NSControl]
         
+        for control in controls {
+            control.isEnabled = false
+        }
+        
         if roomId != "" {
             guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+            guard let powerLevels = room.state.powerLevels else { return }
             
-            PowerLevelDefault.integerValue = room.state.powerLevels.usersDefault
-            PowerLevelSendMessage.integerValue = room.state.powerLevels.eventsDefault
-            PowerLevelInvite.integerValue = room.state.powerLevels.invite
-            PowerLevelKick.integerValue = room.state.powerLevels.kick
-            PowerLevelBan.integerValue = room.state.powerLevels.ban
-            PowerLevelRedactOther.integerValue = room.state.powerLevels.redact
+            PowerLevelDefault.integerValue = powerLevels.usersDefault
+            PowerLevelSendMessage.integerValue = powerLevels.eventsDefault
+            PowerLevelInvite.integerValue = powerLevels.invite
+            PowerLevelKick.integerValue = powerLevels.kick
+            PowerLevelBan.integerValue = powerLevels.ban
+            PowerLevelRedactOther.integerValue = powerLevels.redact
             
-            // PowerLevelNotifyAll.integerValue = room?.state.powerLevels. ?? 50
-            // PowerLevelChangeJoinRule.integerValue = room?.state.powerLevels. ?? 100
+            // PowerLevelNotifyAll.integerValue = powerLevels. ?? 50
+            // PowerLevelChangeJoinRule.integerValue = powerLevels. ?? 100
 
             PowerLevelChangeName.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.name"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.name"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeAvatar.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.avatar"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.avatar"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeCanonicalAlias.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.canonical_alias"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeHistory.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.history_visibility"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.history_visibility"] as! Int? {
                     return powerLevel
                 }
                 return 100
             }()
             PowerLevelChangeTopic.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.topic"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.topic"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             PowerLevelChangeWidgets.integerValue = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["im.vector.modular.widgets"] as! Int? {
+                if let powerLevel = powerLevels.events["im.vector.modular.widgets"] as! Int? {
                     return powerLevel
                 }
-                return 50
+                return room.state.powerLevels.stateDefault
             }()
             
             let powerChangeLevel = { () -> Int in
-                if let powerLevel = room.state.powerLevels.events["m.room.power_levels"] as! Int? {
+                if let powerLevel = powerLevels.events["m.room.power_levels"] as! Int? {
                     return powerLevel
                 }
                 return 100
@@ -109,7 +114,7 @@ class RoomPowerLevelsController: NSViewController {
             PowerLevelChangePowerLevels.integerValue = powerChangeLevel
             
             for control in controls {
-                control.isEnabled = powerChangeLevel <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+                control.isEnabled = powerChangeLevel <= powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
             }
         }
     }
