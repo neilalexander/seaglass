@@ -62,7 +62,9 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                                 height = maxDimensionHeight
                                 width = width! * factor
                             }
-                            self?.constraints.first(where: { $0.identifier! == "height" })?.constant = height!
+                            if let constraint = self?.constraints.first(where: { $0.identifier! == "height" }) {
+                                constraint.constant = height!
+                            }
                             self?.setNeedsDisplay()
                         }
                     }()
@@ -83,7 +85,9 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                                     height = 256
                                     width = width! * factor
                                 }
-                                self?.constraints.first(where: { $0.identifier! == "height" })?.constant = height!
+                                if let constraint = self?.constraints.first(where: { $0.identifier! == "height" }) {
+                                    constraint.constant = height!
+                                }
                                 self?.setNeedsDisplay()
                             }
                         }) { [weak self] (error) in

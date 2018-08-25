@@ -1042,7 +1042,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-6g-QmI">
-                                <rect key="frame" x="0.0" y="411" width="257" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="257" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnD-59-Pkl" userLabel="Room Search">
@@ -1341,7 +1341,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField identifier="RoomMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
+                                                                <textField identifier="RoomMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
                                                                     <rect key="frame" x="62" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1400,7 +1400,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <rect key="frame" x="64" y="0.0" width="256" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="0j6-Xh-9HQ"/>
-                                                                        <constraint firstAttribute="height" constant="16" identifier="height" id="U7o-6W-PGV"/>
+                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="U7o-6W-PGV"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="SYi-UB-Wbd"/>
                                                                 </imageView>
@@ -1443,7 +1443,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <rect key="frame" x="1" y="47" width="577" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
+                                                                <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
                                                                     <rect key="frame" x="62" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1501,7 +1501,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-t4-IyO" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="64" y="0.0" width="256" height="16"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" identifier="height" id="g2e-Xb-CXe"/>
+                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="g2e-Xb-CXe"/>
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="wZ9-a3-npp"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gui-og-tP2"/>
@@ -1532,7 +1532,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <rect key="frame" x="1" y="65" width="577" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="RoomMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
+                                                                <textField identifier="RoomMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
                                                                     <rect key="frame" x="46" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1619,7 +1619,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfS-z5-daf" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="257" y="-1" width="256" height="16"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" identifier="height" id="c9R-hg-8hS"/>
+                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="c9R-hg-8hS"/>
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="yOW-h1-Cue"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gnG-qw-1Mg"/>
@@ -1661,7 +1661,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <rect key="frame" x="1" y="111" width="577" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="RoomMessageEntryOutboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-BP-DZa">
+                                                                <textField identifier="RoomMessageEntryOutboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-BP-DZa">
                                                                     <rect key="frame" x="46" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1720,7 +1720,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     <rect key="frame" x="257" y="0.0" width="256" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="dtP-WJ-kwD"/>
-                                                                        <constraint firstAttribute="height" constant="16" identifier="height" id="htj-x3-gkZ"/>
+                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="htj-x3-gkZ"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gRh-GG-jHO"/>
                                                                 </imageView>
@@ -3002,7 +3002,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QzN-Wx-HL1">
-                                <rect key="frame" x="75" y="12" width="5" height="58"/>
+                                <rect key="frame" x="75" y="12" width="182" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
