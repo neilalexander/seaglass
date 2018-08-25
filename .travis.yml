@@ -3,6 +3,7 @@ language: swift
 cache: cocoapods
 before_script:
 - set -o pipefail
+- pod install --repo-update
 script:
 - xcodebuild -workspace Seaglass.xcworkspace -scheme "Seaglass Release" archive -archivePath
   $PWD/build/Seaglass.xcarchive | xcpretty
