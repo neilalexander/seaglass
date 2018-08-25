@@ -1,0 +1,76 @@
+#!/bin/bash
+
+: '
+Based on https://github.com/named-data/ChronoShare/blob/master/auto-release.sh
+
+Copyright (C) 2017 Yukai Tu
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+'
+
+usage()
+{
+  echo "Usage:"
+  echo "  $0 <SPARKLE_PATH> <SPARKLE_KEY>"
+  echo ""
+  echo "Options:"
+  echo "  <SPARKLE_PATH>: path to Sparkle"
+  echo "  <SPARKLE_PRIV_KEY>: path to Sparkle private key"
+  echo ""
+  exit
+}
+
+SPARKLE_PATH=${SPARKLE_PATH:-$1}
+KEY_LOCATION=${KEY_LOCATION:-$2}
+
+if [[ -z $SPARKLE_PATH ]] || [[ -z $KEY_LOCATION ]]; then
+  usage
+fi
+
+echo "Preparing release"
+echo "  Path to Sparkle folder: $SPARKLE_PATH"
+echo "  will sign with Sparkle key: $KEY_LOCATION"
+
+#######################################
+## build Seaglass.app
+
+xcodebuild -workspace Seaglass.xcworkspace -scheme "Seaglass Release" archive -archivePath build/Seaglass.xcarchive | xcpretty
+xcodebuild -exportArchive -archivePath $PWD/build/Seaglass.xcarchive -exportOptionsPlist .ci/ExportOptions.plist -exportPath $PWD/build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+#######################################
+## create .tar.gz
+
+HUMAN_VERSION=$(defaults read "$PWD/build/Seaglass.app/Contents/Info.plist" CFBundleShortVersionString)
+VERSION=$(defaults read "$PWD/build/Seaglass.app/Contents/Info.plist" CFBundleVersion)
+
+cd build/
+tar -zcf Seaglass-${HUMAN_VERSION}-$(git log --format=%h -1).tar.gz Seaglass.app
+cd ..
+
+#######################################
+## change bintray-release.json
+## eventually integrate this script with bintray but for now probably not needed
+
+#sed -i -e "s/VERSION_NAME_VALUE/${HUMAN_VERSION}-$(git log --format=%h -1)/g" .ci/bintray-release.json
+
+#######################################
+## sign update and generate appcast
+
+cd ${SPARKLE_PATH}
+echo "Sparkle dsaSignature: "
+echo ""
+./bin/sign_update $OLDPWD/build/Seaglass-*.tar.gz ${KEY_LOCATION}
+echo ""
+./bin/generate_appcast ${KEY_LOCATION} $OLDPWD/build/
+cd -

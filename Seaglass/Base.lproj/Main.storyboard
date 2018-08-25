@@ -149,7 +149,7 @@ DQ
                                         </menuItem>
                                         <menuItem title="Check for Updates..." keyEquivalent="u" id="ldv-pT-3ib">
                                             <connections>
-                                                <action selector="checkForUpdates:" target="Ady-hI-5gd" id="g5m-90-HZH"/>
+                                                <action selector="checkForUpdates:" target="r3d-3G-sPt" id="Trm-Vl-Owz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -741,6 +741,7 @@ DQ
                         <outlet property="MenuSeaglass" destination="uQy-DD-JDr" id="apX-OF-CcS"/>
                     </connections>
                 </customObject>
+                <customObject id="r3d-3G-sPt" customClass="SUUpdater"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="ybo-8F-whA"/>
@@ -3125,6 +3126,6 @@ DQ
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>

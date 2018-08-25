@@ -43,6 +43,7 @@
 		39F3126121189F9200A75E16 /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3126021189F9200A75E16 /* NSImageView.swift */; };
 		39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F312622118F21C00A75E16 /* RoomAliasesController.swift */; };
 		3D18BBA1212885CA008D5731 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D18BBA0212885CA008D5731 /* Security.framework */; };
+		3D502D822130F72E00C8D06E /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3D502D812130F72E00C8D06E /* dsa_pub.pem */; };
 		A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC29052126BAE800F37E0E /* AvatarImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		39F3126021189F9200A75E16 /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
 		39F312622118F21C00A75E16 /* RoomAliasesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasesController.swift; sourceTree = "<group>"; };
 		3D18BBA0212885CA008D5731 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3D502D812130F72E00C8D06E /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
 		A5EC29052126BAE800F37E0E /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */,
 				391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */,
 				391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */,
+				3D502D812130F72E00C8D06E /* dsa_pub.pem */,
 			);
 			path = Seaglass;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */,
+				3D502D822130F72E00C8D06E /* dsa_pub.pem in Resources */,
 				391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,7 +643,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -700,7 +705,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -759,7 +765,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.seaglass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
