@@ -20,3 +20,10 @@ deploy:
       secure: $BINTRAY_TOKEN
     skip_cleanup: true
     on: master
+notifications:
+    webhooks:
+        urls:
+            - $MATRIX_WEBHOOK_URL
+        on_success: change  # always|never|change
+        on_failure: always
+        on_start: never

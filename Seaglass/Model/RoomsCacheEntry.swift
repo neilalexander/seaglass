@@ -38,6 +38,9 @@ class RoomsCacheEntry: NSObject {
         return room.state.avatar ?? ""
     }
     @objc dynamic var roomSortWeight: Int {
+        if isInvite() {
+            return 0
+        }
         if room.isDirect || room.looksLikeDirect {
             return 70
         }
@@ -92,5 +95,9 @@ class RoomsCacheEntry: NSObject {
     
     func encrypted() -> Bool {
         return room.summary.isEncrypted || room.state.isEncrypted
+    }
+    
+    func isInvite() -> Bool {
+        return MatrixServices.inst.session.invitedRooms().contains(where: { $0.roomId == room.roomId })
     }
 }

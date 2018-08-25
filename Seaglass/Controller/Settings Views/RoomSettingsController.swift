@@ -270,11 +270,11 @@ class RoomSettingsController: NSViewController {
         }
         
         RoomName.stringValue = room!.state.name ?? ""
-        RoomName.isEnabled = true
+        RoomName.isEnabled = MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.name")
         RoomName.isEditable = true
         
         RoomTopic.stringValue = room!.state.topic ?? ""
-        RoomTopic.isEnabled = true
+        RoomTopic.isEnabled = MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.topic")
         RoomTopic.isEditable = true
         
         RoomAvatar.setAvatar(forRoomId: roomId)
@@ -292,12 +292,9 @@ class RoomSettingsController: NSViewController {
             self.initialRoomPublishInDirectory = self.RoomPublishInDirectory.state
         })
         
-        let roomAccessEnabled = true
-       /* let roomAccessEnabled = { () -> Bool in
-            let aliasPowerLevel = room.state.powerLevels.events["m.room.canonical_alias"] as? Int ?? 50
-            let myPowerLevel = room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
-            return myPowerLevel >= aliasPowerLevel
-        }() */
+        let roomAccessEnabled =
+            MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.guest_access") &&
+            MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.join_rules")
         
         RoomAccessOnlyInvited.state = !room!.state.isJoinRulePublic ? .on : .off
         RoomAccessExceptGuests.state = room!.state.isJoinRulePublic && room!.state.guestAccess == .forbidden ? .on : .off
@@ -310,15 +307,7 @@ class RoomSettingsController: NSViewController {
         initialRoomAccessExceptGuests = RoomAccessExceptGuests.state
         initialRoomAccessIncludingGuests = RoomAccessIncludingGuests.state
 
-        let roomHistoryEnabled = { () -> Bool in
-            let aliasPowerLevel = { () -> Int in
-                if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as! String == "m.room.history_visibility" }) {
-                    return room!.state.powerLevels.events["m.room.history_visibility"] as! Int
-                }
-                return 100
-            }()
-            return room!.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) >= aliasPowerLevel
-        }()
+        let roomHistoryEnabled = MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.history_visibility")
         
         RoomHistorySinceJoined.state = room!.state.historyVisibility == .joined ? .on : .off
         RoomHistorySinceInvited.state = room!.state.historyVisibility == .invited ? .on : .off
