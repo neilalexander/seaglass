@@ -39,3 +39,5 @@ if [ $BRANCH != "master" ]; then
   fi
 fi
 
+# Append the short commit hash for now
+printf -- "-$(git rev-parse --short HEAD)"
