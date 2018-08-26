@@ -11,28 +11,27 @@
         <scene sceneID="MTs-cc-1GA">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="aqV-Si-XFo" sceneMemberID="viewController">
-                    <window key="window" title="About Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="8Rg-uj-Dgd">
-                        <windowStyleMask key="styleMask" closable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="320" y="352" width="212" height="97"/>
+                    <window key="window" title="About Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="8Rg-uj-Dgd" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="917" y="437" width="212" height="97"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
                         <connections>
                             <outlet property="delegate" destination="aqV-Si-XFo" id="sua-es-Ecg"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="mAy-xi-EWG" kind="relationship" relationship="window.shadowedContentViewController" id="T86-gO-RHW"/>
+                        <segue destination="mAy-xi-EWG" kind="relationship" relationship="window.shadowedContentViewController" id="05O-N9-rDJ"/>
                     </connections>
                 </windowController>
                 <customObject id="4Ze-Od-dUm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="-535"/>
+            <point key="canvasLocation" x="604" y="-545"/>
         </scene>
         <!--About Seaglass-->
         <scene sceneID="YdZ-bc-Rgq">
             <objects>
                 <viewController title="About Seaglass" showSeguePresentationStyle="single" id="mAy-xi-EWG" customClass="AboutViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="10O-uP-oCs">
+                    <view key="view" autoresizesSubviews="NO" id="10O-uP-oCs">
                         <rect key="frame" x="0.0" y="0.0" width="631" height="323"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -109,20 +108,6 @@ Copyright 2018 © Avery Pierce</string>
                                 <color key="borderColor" red="0.48506314766839376" green="0.48506314766839376" blue="0.48506314766839376" alpha="0.41999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH9-cb-2hd">
-                                <rect key="frame" x="542" y="13" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VtQ-bj-ZjV">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="mAy-xi-EWG" id="DK7-GT-Kre"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                 </viewController>
@@ -144,7 +129,7 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
-                                                <segue destination="aqV-Si-XFo" kind="modal" id="IGX-BI-8df"/>
+                                                <segue destination="aqV-Si-XFo" kind="show" id="IGX-BI-8df"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -3003,6 +2988,7 @@ DQ
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QzN-Wx-HL1">
                                 <rect key="frame" x="75" y="12" width="182" height="58"/>
+                                <rect key="frame" x="75" y="12" width="182" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
