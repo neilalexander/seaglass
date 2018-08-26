@@ -1392,7 +1392,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </animations>
                                                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Vpo-1U-rCt">
                                                                         <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -1494,7 +1494,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </animations>
                                                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="wU8-Wq-zNT">
                                                                         <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -1612,7 +1612,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </animations>
                                                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="giU-YN-Tp8">
                                                                         <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
@@ -1712,7 +1712,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </animations>
                                                                     <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Nsz-od-H5c">
                                                                         <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
