@@ -436,4 +436,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         }
     }
+    
+    @IBAction func emojiButtonClicked(_ sender: NSButton) {
+        RoomMessageInput.becomeFirstResponder()
+        NSApp.orderFrontCharacterPalette(nil)
+    }
 }

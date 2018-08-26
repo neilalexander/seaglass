@@ -1862,6 +1862,17 @@ DQ
                                     <action selector="declineInviteButtonClicked:" target="WXz-Io-9JK" id="ASr-Xe-Hsw"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sn1-31-etF" userLabel="Emoji Picker Button">
+                                <rect key="frame" x="510" y="0.0" width="39" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="round" bezelStyle="circular" image="NSAppleMenuImage" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="pm4-9U-T1V">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="emojiButtonClicked:" target="WXz-Io-9JK" id="61G-Xx-ygN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" constant="20" id="3W4-A8-xcX"/>
@@ -3002,7 +3013,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QzN-Wx-HL1">
-                                <rect key="frame" x="75" y="12" width="182" height="58"/>
+                                <rect key="frame" x="75" y="12" width="182" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
@@ -3318,7 +3329,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
-                                <rect key="frame" x="75" y="12" width="90" height="5"/>
+                                <rect key="frame" x="75" y="12" width="90" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
@@ -3385,6 +3396,7 @@ DQ
     <resources>
         <image name="AppIcon" width="128" height="128"/>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSAppleMenuImage" width="11" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
         <image name="NSLockLockedTemplate" width="10" height="14"/>
