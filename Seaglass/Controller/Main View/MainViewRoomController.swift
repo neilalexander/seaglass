@@ -438,7 +438,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     @IBAction func emojiButtonClicked(_ sender: NSButton) {
-        RoomMessageInput.becomeFirstResponder()
-        NSApp.orderFrontCharacterPalette(nil)
+        RoomMessageInput.selectText(self)
+        
+        let lengthOfInput = NSString(string: RoomMessageInput.stringValue).length
+        RoomMessageInput.currentEditor()?.selectedRange = NSMakeRange(lengthOfInput, 0)
+        
+        NSApplication.shared.orderFrontCharacterPalette(nil)
     }
 }
