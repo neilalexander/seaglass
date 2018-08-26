@@ -17,6 +17,8 @@
 //
 
 import Cocoa
+import Sparkle
+import LetsMove
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
@@ -37,6 +39,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+    }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        print("Seaglass version: " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String))
+
+        // if you checked the box that said "Do not show this message again" but want see the Move to Applications dialog box again, run:
+        // defaults write eu.neilalexander.seaglass moveToApplicationsFolderAlertSuppress NO
+        #if RELEASE
+            PFMoveToApplicationsFolderIfNecessary();
+        #endif
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

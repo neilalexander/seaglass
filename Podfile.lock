@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - Down (0.5.2)
   - GZIP (1.2.1)
+  - LetsMove (1.24)
   - OLMKit (2.2.2):
     - OLMKit/olmc (= 2.2.2)
     - OLMKit/olmcpp (= 2.2.2)
@@ -22,6 +23,7 @@ PODS:
   - Realm (3.3.2):
     - Realm/Headers (= 3.3.2)
   - Realm/Headers (3.3.2)
+  - Sparkle (1.20.0)
   - SwiftMatrixSDK (0.10.11):
     - AFNetworking (~> 3.2.0)
     - GZIP (~> 1.2.1)
@@ -31,6 +33,8 @@ PODS:
 
 DEPENDENCIES:
   - Down
+  - LetsMove
+  - Sparkle
   - SwiftMatrixSDK (= 0.10.11)
   - TSMarkdownParser
 
@@ -39,8 +43,10 @@ SPEC REPOS:
     - AFNetworking
     - Down
     - GZIP
+    - LetsMove
     - OLMKit
     - Realm
+    - Sparkle
     - SwiftMatrixSDK
     - TSMarkdownParser
 
@@ -48,11 +54,13 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Down: 587371ad58002b06023d9c602519216862c3acbc
   GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
+  LetsMove: fefe56bc7bc7fb7d37049e28a14f297961229fc5
   OLMKit: b9d8c0ffee9ea8c45bc0aaa9afb47f93fba7efbd
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
+  Sparkle: 48999e7ee032f05ca05e28451eadf4af8ede6b44
   SwiftMatrixSDK: 30c9120a0312e2d9f4781ee3fb85052fdc9a26d2
   TSMarkdownParser: 3224ea196ecc7148fa7e03bc438f9390d4edfb6d
 
-PODFILE CHECKSUM: c6cc078e6a88905942f0744448f811bcb4134426
+PODFILE CHECKSUM: e2699859d709e5e753147d04e1b3b2d332ffe7f3
 
 COCOAPODS: 1.5.3
