@@ -67,7 +67,7 @@ class RoomMessageOutgoing: RoomMessage {
                 }
                 break
             case "m.emote":
-                Text.attributedStringValue = super.emoteContent(align: .left)
+                Text.attributedStringValue = super.emoteContent(align: .right)
                 break
             case "m.notice":
                 finalTextColor = NSColor.headerColor
