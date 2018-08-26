@@ -95,9 +95,18 @@ Copyright 2018 © Avery Pierce</string>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="Bgo-pV-E1e"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-BI-uBj">
-                                            <rect key="frame" x="-2" y="49" width="239" height="25"/>
+                                            <rect key="frame" x="-2" y="0.0" width="239" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Experimental Build" id="NaX-Gd-pAe">
+                                                <font key="font" metaFont="systemLight" size="13"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1y-bc-snR">
+                                            <rect key="frame" x="-2" y="32" width="239" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Version:" id="PFQ-kW-PRi">
                                                 <font key="font" metaFont="systemLight" size="13"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -110,6 +119,9 @@ Copyright 2018 © Avery Pierce</string>
                             </box>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="versionTextField" destination="K1y-bc-snR" id="lVv-xA-lGg"/>
+                    </connections>
                 </viewController>
                 <customObject id="1ac-0U-iUk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3346,7 +3358,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Qur-rS-aSh">
-                                <rect key="frame" x="155" y="12" width="80" height="5"/>
+                                <rect key="frame" x="155" y="12" width="149" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                         </subviews>
