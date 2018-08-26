@@ -18,9 +18,9 @@ MINOR=$(echo $TAG | cut -c 2- | cut -d "." -f 2)
 
 # Output version number in the desired format
 if [ $PATCH = 0 ]; then
-  printf 'v%d.%d' "$MAJOR" "$MINOR"
+  printf '%d.%d' "$MAJOR" "$MINOR"
 else
-  printf 'v%d.%d.%d' "$MAJOR" "$MINOR" "$PATCH"
+  printf '%d.%d.%d' "$MAJOR" "$MINOR" "$PATCH"
 fi
 
 # Get the current checked out branch
