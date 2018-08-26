@@ -10,7 +10,7 @@ script:
   .ci/ExportOptions.plist -exportPath $PWD/build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 before_deploy:
   - cd build && tar -zcf Seaglass-$(sh scripts/version.sh).tar.gz Seaglass.app && cd ..
-  - sed -i -e "s/VERSION_NAME_VALUE/$(sh scripts/version.sh))/g" .ci/bintray-release.json
+  - sed -i -e "s/VERSION_NAME_VALUE/$(sh scripts/version.sh)/g" .ci/bintray-release.json
 deploy:
   - provider: bintray
     file: .ci/bintray-release.json
