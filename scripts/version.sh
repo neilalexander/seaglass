@@ -27,7 +27,7 @@ fi
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Add the build tag on non-master branches
-if [ $BRANCH != "master" ]; then
+if [ $BRANCH != "master" ] && [ $BRANCH != "HEAD" ]; then
   # Get the number of merges on the current branch since that tag
   BUILD=$(git rev-list master...$BRANCH --count)
 
