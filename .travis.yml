@@ -1,6 +1,9 @@
 os: osx
 language: swift
 cache: cocoapods
+install:
+- git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+- git fetch --unshallow --tags
 before_script:
 - set -o pipefail
 script:
