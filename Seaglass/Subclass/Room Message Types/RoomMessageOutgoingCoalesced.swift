@@ -40,6 +40,7 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
 
         Time.stringValue = super.timestamp()
+        Time.toolTip = super.timestamp(.medium, andDate: .medium)
         
         let icon = super.icon()
         Icon.isHidden = !room!.state.isEncrypted

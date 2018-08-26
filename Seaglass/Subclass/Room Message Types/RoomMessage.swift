@@ -51,7 +51,7 @@ class RoomMessage: NSTableCellView {
         return ""
     }
     
-    func timestamp() -> String {
+    func timestamp(_ timeStyle: DateFormatter.Style = .short, andDate dateStyle: DateFormatter.Style = .none) -> String {
         if event == nil {
             return "XX:XX"
         }
@@ -59,7 +59,8 @@ class RoomMessage: NSTableCellView {
         let eventTime = Date(timeIntervalSince1970: TimeInterval(event!.originServerTs / 1000))
         let eventTimeFormatter = DateFormatter()
         eventTimeFormatter.timeZone = TimeZone.current
-        eventTimeFormatter.timeStyle = .short
+        eventTimeFormatter.timeStyle = timeStyle
+        eventTimeFormatter.dateStyle = dateStyle
         
         return eventTimeFormatter.string(from: eventTime)
     }

@@ -34,6 +34,7 @@ class RoomMessageInline: RoomMessage {
         if room == nil {
             return
         }
+        Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
         case "m.room.member":
             let senderDisplayName = room!.state.memberName(event!.sender) ?? event!.sender as String

@@ -43,6 +43,7 @@ class RoomMessageOutgoing: RoomMessage {
         
         From.stringValue = super.from()
         Time.stringValue = super.timestamp()
+        Time.toolTip = super.timestamp(.medium, andDate: .medium)
         Avatar.setAvatar(forUserId: event!.sender)
         
         let icon = super.icon()
