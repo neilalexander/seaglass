@@ -9,7 +9,7 @@ uses the Cocoa user interface framework.
 
 ## Pre-built binaries
 
-Travis CI is used to build binaries from the GitHub repository. You can [find them here](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files).
+Travis CI is used to build binaries from the GitHub repository. You can [find the latest build here](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files).
 
 ## Building from source
 
