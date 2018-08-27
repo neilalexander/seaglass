@@ -93,6 +93,21 @@ class RoomsCacheEntry: NSObject {
         return room.summary.localUnreadEventCount > 0
     }
     
+    func highlights() -> Int {
+        var highlights: Int = 0
+        if !MatrixServices.inst.eventCache.keys.contains(self.roomId) {
+            return 0
+        }
+       /* let eventCache = MatrixServices.inst.eventCache[self.roomId]!
+        let filtered = eventCache.filter({
+            $0.type == "m.room.message" &&
+            $0.content.keys.contains("msgtype") && ($0.content["msgtype"] as! String) == "m.text" &&
+            $0.content.keys.contains("body") && ($0.content["body"] as! String).contains(MatrixServices.inst.session.myUser.displayname)
+        })
+        highlights += filtered.count */
+        return highlights
+    }
+    
     func encrypted() -> Bool {
         return room.summary.isEncrypted || room.state.isEncrypted
     }

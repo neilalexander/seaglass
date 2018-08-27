@@ -284,7 +284,7 @@ class MatrixServices: NSObject {
         } as? MXEventListener
         
         room.liveTimeline.resetPagination()
-        room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+        room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
             // complete?
         }
     }

@@ -52,6 +52,7 @@ class RoomMessageIncoming: RoomMessage {
         Icon.setFrameSize(room!.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
         
         var finalTextColor = NSColor.textColor
+        let displayname = MatrixServices.inst.session.myUser.displayname ?? MatrixServices.inst.session.myUser.userId
         
         if let msgtype = event!.content["msgtype"] as? String? {
             InlineImage.isHidden = ["m.emote", "m.notice", "m.text"].contains(where: { $0 == msgtype })
@@ -68,6 +69,11 @@ class RoomMessageIncoming: RoomMessage {
                 break
             case "m.emote":
                 Text.attributedStringValue = super.emoteContent(align: .left)
+                if Text.attributedStringValue.string.contains(displayname!) {
+                    Text.wantsLayer = true
+                    Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
+                    Text.layer?.cornerRadius = 6
+                }
                 break
             case "m.notice":
                 finalTextColor = NSColor.headerColor
@@ -78,6 +84,11 @@ class RoomMessageIncoming: RoomMessage {
                     Text.attributedStringValue = text.attributedString!
                 } else if text.string != "" {
                     Text.stringValue = text.string!
+                }
+                if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
+                    Text.wantsLayer = true
+                    Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
+                    Text.layer?.cornerRadius = 6
                 }
                 break
             default:

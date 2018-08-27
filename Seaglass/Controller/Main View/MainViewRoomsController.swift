@@ -166,6 +166,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: NSColor.blue))!
             if tableView.selectedRow != row {
                 cell?.RoomListEntryUnread.isHidden = !state.unread()
+            } else {
+                cell?.RoomListEntryUnread.isHidden = true
             }
         }
         cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: unreadColor))!
@@ -194,8 +196,11 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func updateAttentionRooms() {
         let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
-        let invites = roomsCache.filter({ $0.isInvite() }).count
-        NSApp.dockTile.badgeLabel = invites > 0 ? String(invites) : ""
+        var count = roomsCache.filter({ $0.isInvite() }).count
+        for room in roomsCache {
+            count += room.highlights()
+        }
+        NSApp.dockTile.badgeLabel = count > 0 ? String(count) : ""
     }
     
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
