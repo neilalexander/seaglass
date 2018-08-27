@@ -81,8 +81,24 @@ class RoomMessageOutgoing: RoomMessage {
                 }
                 break
             default:
-                Text.stringValue = ""
-                Text.placeholderString = "Message type '\(msgtype!)' not supported"
+                InlineImage.isHidden = true
+                Text.isHidden = false
+                if event!.isMediaAttachment() {
+                    if let filename = event?.content["filename"] as? String ?? event?.content["body"] as? String {
+                        if let mxcUrl = event!.content["url"] as? String {
+                            let httpUrl = MatrixServices.inst.client.url(ofContent: mxcUrl)
+                            let link: NSMutableAttributedString = NSMutableAttributedString(string: filename)
+                            link.addAttribute(NSAttributedStringKey.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
+                            Text.attributedStringValue = link
+                        } else {
+                            Text.placeholderString = filename
+                        }
+                    } else {
+                        Text.placeholderString = "Unnamed attachment"
+                    }
+                } else {
+                    Text.placeholderString = "Message type '\(msgtype!)' not supported"
+                }
                 break
             }
         } else {
