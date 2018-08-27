@@ -7,11 +7,20 @@ uses the Cocoa user interface framework.
 
 ![Screenshot of Seaglass](image.png)
 
-## Building
+## Pre-built binaries
+
+Travis CI is used to build binaries from the GitHub repository. You can [find them here](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files).
+
+## Building from source
 
 Use Xcode 9.4 on macOS 10.13. Seaglass may require macOS 10.13 as a result of
 using auto-layout for some table views, which seems to have been introduced with
 High Sierra. I hope to find an alternate way to relax this requirement.
+
+If you do not already have CocoaPods installed, then install it:
+```
+sudo gem install cocoapods
+```
 
 Clone the Seaglass repository and install dependencies:
 ```
