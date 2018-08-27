@@ -1860,11 +1860,11 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sn1-31-etF" userLabel="Emoji Picker Button">
-                                <rect key="frame" x="525" y="12" width="16" height="19"/>
+                                <rect key="frame" x="523" y="14" width="18" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="recessed" bezelStyle="recessed" image="EmojiPicker" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="pm4-9U-T1V">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="systemBold" size="12"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="EmojiPicker" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="pm4-9U-T1V">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="emojiButtonClicked:" target="WXz-Io-9JK" id="61G-Xx-ygN"/>
@@ -3014,7 +3014,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
-                                <rect key="frame" x="155" y="12" width="5" height="58"/>
+                                <rect key="frame" x="155" y="12" width="168" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-M9-wpJ">
@@ -3326,7 +3326,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
-                                <rect key="frame" x="75" y="12" width="90" height="5"/>
+                                <rect key="frame" x="75" y="12" width="90" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
@@ -3392,7 +3392,7 @@ DQ
     </scenes>
     <resources>
         <image name="AppIcon" width="128" height="128"/>
-        <image name="EmojiPicker" width="34" height="34"/>
+        <image name="EmojiPicker" width="32" height="32"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>

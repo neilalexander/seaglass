@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "emoji-1.png",
+      "filename" : "emojix1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "emoji.png",
+      "filename" : "emojix2.png",
       "scale" : "2x"
     },
     {
