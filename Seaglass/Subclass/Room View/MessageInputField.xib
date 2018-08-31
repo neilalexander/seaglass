@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-cF-Lvc">
-                                <rect key="frame" x="8" y="1" width="527" height="19"/>
+                                <rect key="frame" x="8" y="0.0" width="527" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="85" id="YBy-LC-IIq"/>
                                 </constraints>
@@ -54,10 +54,10 @@
                             <constraint firstItem="FYx-px-XCW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gxf-2d-YHg" secondAttribute="top" constant="2" id="3vc-ba-buR"/>
                             <constraint firstAttribute="bottom" secondItem="FYx-px-XCW" secondAttribute="bottom" constant="3" id="CFg-k6-Lhe"/>
                             <constraint firstItem="FYx-px-XCW" firstAttribute="leading" secondItem="V7Y-cF-Lvc" secondAttribute="trailing" constant="6" id="D1D-sc-uCo"/>
-                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" constant="1" id="KEb-Kc-dH5"/>
-                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" constant="1" id="ReP-mH-Hcf"/>
+                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" id="KEb-Kc-dH5"/>
+                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" id="ReP-mH-Hcf"/>
                             <constraint firstAttribute="trailing" secondItem="FYx-px-XCW" secondAttribute="trailing" constant="4" id="VZx-F7-836"/>
-                            <constraint firstItem="V7Y-cF-Lvc" firstAttribute="top" secondItem="gxf-2d-YHg" secondAttribute="top" constant="2" id="Vu3-wS-zhh"/>
+                            <constraint firstItem="V7Y-cF-Lvc" firstAttribute="top" secondItem="gxf-2d-YHg" secondAttribute="top" constant="3" id="Vu3-wS-zhh"/>
                             <constraint firstItem="V7Y-cF-Lvc" firstAttribute="leading" secondItem="gxf-2d-YHg" secondAttribute="leading" constant="10" id="yv7-h0-XJz"/>
                         </constraints>
                     </view>

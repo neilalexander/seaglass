@@ -46,7 +46,6 @@ import Cocoa
         if obj.object as? NSTextField == textField {
             textField.invalidateIntrinsicContentSize()
             self.invalidateIntrinsicContentSize()
-           // self.layoutSubtreeIfNeeded()
             if delegate != nil {
                 delegate?.controlTextDidChange(obj)
             }
