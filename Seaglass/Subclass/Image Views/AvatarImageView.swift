@@ -30,6 +30,7 @@ class AvatarImageView: ContextImageView {
         layer = CALayer()
         layer?.masksToBounds = true
         layer?.contentsGravity = kCAGravityResizeAspectFill
+        layer?.cornerRadius = (frame.width)/2
     }
     
     override func layout() {
@@ -61,6 +62,7 @@ class AvatarImageView: ContextImageView {
                     { [weak self] in
                         if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
                             self?.image = image
+                            self?.layout()
                         }
                     }()
                 } else {
@@ -68,9 +70,11 @@ class AvatarImageView: ContextImageView {
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
                                 self?.image = image
+                                self?.layout()
                             }
                         }) { [weak self] (error) in
                             self?.image = defaultImage
+                            self?.layout()
                         }
                     }
                 }
