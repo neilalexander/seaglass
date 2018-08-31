@@ -1080,14 +1080,14 @@ Copyright 2018 © Avery Pierce</string>
                                 </buttonCell>
                             </button>
                             <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="66" horizontalPageScroll="10" verticalLineScroll="66" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="Ylu-K1-Lqo">
-                                <rect key="frame" x="-1" y="42" width="259" height="371"/>
+                                <rect key="frame" x="-1" y="0.0" width="259" height="413"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="hWk-kP-dDo">
-                                    <rect key="frame" x="0.0" y="0.0" width="259" height="371"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="259" height="413"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView identifier="RoomList" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="64" viewBased="YES" id="pUw-mO-WbM" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="259" height="371"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="259" height="413"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
@@ -1176,22 +1176,9 @@ Copyright 2018 © Avery Pierce</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button identifier="ConnectionStatus" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewz-Fy-OEj">
-                                <rect key="frame" x="15" y="12" width="170" height="19"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="roundRect" title="Seaglass" bezelStyle="roundedRect" imagePosition="left" enabled="NO" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="o7F-Ih-BP0">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="cellTitle"/>
-                                </buttonCell>
-                            </button>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-6k-tih">
-                                <rect key="frame" x="0.0" y="39" width="257" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </box>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="ConnectionStatus" destination="Ewz-Fy-OEj" id="Nc7-zi-sFR"/>
                         <outlet property="RoomList" destination="pUw-mO-WbM" id="yvb-tq-qoH"/>
                         <outlet property="RoomSearch" destination="jnD-59-Pkl" id="bgM-5W-IxY"/>
                         <outlet property="roomsCacheController" destination="El7-IA-8gq" id="enl-tI-EnW"/>
@@ -1228,7 +1215,7 @@ Copyright 2018 © Avery Pierce</string>
                                 </tokenFieldCell>
                             </tokenField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
-                                <rect key="frame" x="0.0" y="38" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="39" width="580" height="5"/>
                             </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-y5-gjY">
                                 <rect key="frame" x="550" y="11" width="22" height="20"/>
@@ -1266,13 +1253,13 @@ Copyright 2018 © Avery Pierce</string>
                                 </connections>
                             </button>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="GvZ-sd-DTW">
-                                <rect key="frame" x="0.0" y="41" width="580" height="372"/>
+                                <rect key="frame" x="0.0" y="42" width="580" height="371"/>
                                 <clipView key="contentView" wantsLayer="YES" id="yGf-GP-99e">
-                                    <rect key="frame" x="0.0" y="0.0" width="580" height="372"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="580" height="360"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="580" height="359"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1847,7 +1834,7 @@ DQ
                                 </connections>
                             </button>
                             <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="4Ed-eJ-aDl" customClass="MessageInputField" customModule="Seaglass" customModuleProvider="target">
-                                <rect key="frame" x="9" y="8" width="535" height="24"/>
+                                <rect key="frame" x="9" y="9" width="535" height="24"/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -1861,7 +1848,7 @@ DQ
                             <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" constant="28" id="JhP-FP-0lp"/>
                             <constraint firstAttribute="trailing" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="94" id="Mhq-bu-3Bo"/>
                             <constraint firstAttribute="trailing" secondItem="YrB-MB-1om" secondAttribute="trailing" id="VN7-q4-b4S"/>
-                            <constraint firstAttribute="bottom" secondItem="4Ed-eJ-aDl" secondAttribute="bottom" constant="8" id="YJq-tw-Ake"/>
+                            <constraint firstAttribute="bottom" secondItem="4Ed-eJ-aDl" secondAttribute="bottom" constant="9" id="YJq-tw-Ake"/>
                             <constraint firstItem="YrB-MB-1om" firstAttribute="top" secondItem="GvZ-sd-DTW" secondAttribute="bottom" id="cXU-bj-yUt"/>
                             <constraint firstAttribute="trailing" secondItem="GvZ-sd-DTW" secondAttribute="trailing" id="dd8-Cz-LNi"/>
                             <constraint firstAttribute="trailing" secondItem="4Ed-eJ-aDl" secondAttribute="trailing" constant="36" id="f9f-Sd-7fX"/>

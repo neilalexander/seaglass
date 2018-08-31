@@ -22,7 +22,6 @@ import SwiftMatrixSDK
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet var RoomList: NSTableView!
     @IBOutlet var RoomSearch: NSSearchField!
-    @IBOutlet var ConnectionStatus: NSButton!
 
     var mainController: MainViewController?
 
@@ -41,18 +40,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             NSSortDescriptor(key: "roomSortWeight", ascending: true),
             NSSortDescriptor(key: "roomName", ascending: true)
         ]
-        
-        switch MatrixServices.inst.state {
-        case .started:
-            ConnectionStatus.title = MatrixServices.inst.session.myUser.userId
-            ConnectionStatus.alphaValue = 0.2
-        case .starting:
-            ConnectionStatus.title = "Authenticating..."
-            ConnectionStatus.alphaValue = 1
-        default:
-            ConnectionStatus.title = "Not authenticated"
-            ConnectionStatus.alphaValue = 1
-        }
     }
     
     override func viewDidAppear() {
