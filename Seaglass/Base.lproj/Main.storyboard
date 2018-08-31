@@ -1426,7 +1426,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                             <rect key="frame" x="1" y="47" width="577" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" ambiguous="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
+                                                                <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
                                                                     <rect key="frame" x="62" y="0.0" width="469" height="16"/>
                                                                     <animations>
                                                                         <caTransition key="subviews">
@@ -1497,6 +1497,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstItem="ffP-7Z-LJb" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="HLJ-rJ-JMH"/>
                                                                 <constraint firstItem="MD2-t4-IyO" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="N5p-xj-QFb"/>
                                                                 <constraint firstItem="MD2-t4-IyO" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="Np7-Dr-PwN"/>
+                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="Oac-M0-egY"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ffP-7Z-LJb" secondAttribute="trailing" constant="-3" id="ULX-Cb-qdo"/>
                                                                 <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="3" id="Ylh-Yr-1bJ"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="b0O-hi-QlL"/>
@@ -3376,18 +3377,6 @@ DQ
                 <customObject id="CCg-xY-kAg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="464" y="1579"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="quq-lV-vtm">
-            <objects>
-                <viewController id="ei8-fW-Yzv" sceneMemberID="viewController">
-                    <view key="view" id="1OT-HC-3S2">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="qH1-3X-FeN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>
