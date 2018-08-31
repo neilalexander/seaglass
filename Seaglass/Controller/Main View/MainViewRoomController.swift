@@ -20,11 +20,11 @@ import Cocoa
 import SwiftMatrixSDK
 import Down
 
-class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
+class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource {
     
     @IBOutlet var RoomName: NSTokenField!
     @IBOutlet var RoomTopic: NSTextField!
-    @IBOutlet var RoomMessageInput: NSTextField!
+    @IBOutlet var RoomMessageInput: MessageInputField!
     @IBOutlet var RoomMessageScrollView: NSScrollView!
     @IBOutlet var RoomMessageClipView: NSClipView!
     @IBOutlet var RoomMessageTableView: MainViewTableView!
@@ -125,8 +125,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     public override func controlTextDidChange(_ obj: Notification) {
-        if obj.object as? NSTextField == RoomMessageInput {
-            roomTyping = !RoomMessageInput.stringValue.isEmpty
+        if obj.object as? NSTextField == RoomMessageInput.textField {
+            roomTyping = !RoomMessageInput.textField.stringValue.isEmpty
         }
     }
     
@@ -136,6 +136,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        RoomMessageInput.textField.action = #selector(messageEntryFieldSubmit)
+        RoomMessageInput.textField.target = self
+        RoomMessageInput.delegate = self
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -276,7 +279,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
         
         RoomInsertButton.isEnabled = !isInvite
-        RoomMessageInput.isEnabled = !isInvite
+        RoomMessageInput.textField.isEnabled = !isInvite
 
         RoomName.stringValue = cacheEntry.roomDisplayName
         RoomTopic.stringValue = cacheEntry.roomTopic
@@ -288,10 +291,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageTableView.endUpdates()
         
         if cacheEntry.encrypted() {
-            RoomMessageInput.placeholderString = "Encrypted message"
+            RoomMessageInput.textField.placeholderString = "Encrypted message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
         } else {
-            RoomMessageInput.placeholderString = "Message"
+            RoomMessageInput.textField.placeholderString = "Message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
         
@@ -405,7 +408,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     self.RoomMessageInput.animator().alphaValue = 1
                     self.RoomInsertButton.animator().alphaValue = 1
                 }, completionHandler: {
-                    self.RoomMessageInput.isEnabled = true
+                    self.RoomMessageInput.textField.isEnabled = true
                     self.RoomInsertButton.isEnabled = true
                     self.RoomInviteLabel.animator().isHidden = true
                     self.RoomInviteAcceptButton.animator().isHidden = true
@@ -435,14 +438,5 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
             }
         }
-    }
-    
-    @IBAction func emojiButtonClicked(_ sender: NSButton) {
-        RoomMessageInput.selectText(self)
-        
-        let lengthOfInput = NSString(string: RoomMessageInput.stringValue).length
-        RoomMessageInput.currentEditor()?.selectedRange = NSMakeRange(lengthOfInput, 0)
-        
-        NSApplication.shared.orderFrontCharacterPalette(nil)
     }
 }

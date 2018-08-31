@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="MessageInputField" customClass="MessageInputField" customModule="Seaglass" customModuleProvider="target">
+            <connections>
+                <outlet property="emojiButton" destination="FYx-px-XCW" id="Aba-0F-NVf"/>
+                <outlet property="textField" destination="V7Y-cF-Lvc" id="rw4-aN-6E7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="561" height="24"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <box boxType="custom" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="TL7-Go-HbO">
+                    <rect key="frame" x="0.0" y="0.0" width="561" height="24"/>
+                    <view key="contentView" id="gxf-2d-YHg">
+                        <rect key="frame" x="1" y="1" width="559" height="22"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-cF-Lvc">
+                                <rect key="frame" x="8" y="1" width="527" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="85" id="YBy-LC-IIq"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" state="on" placeholderString="Message" id="FWT-aQ-TV2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYx-px-XCW" userLabel="Emoji Picker Button">
+                                <rect key="frame" x="539" y="3" width="16" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="7y2-q6-oPM"/>
+                                    <constraint firstAttribute="width" constant="16" id="mow-im-ifl"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="EmojiPicker" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="u41-bx-gW7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="emojiButtonClicked:" target="-2" id="tHE-L1-ztU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="FYx-px-XCW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gxf-2d-YHg" secondAttribute="top" constant="2" id="3vc-ba-buR"/>
+                            <constraint firstAttribute="bottom" secondItem="FYx-px-XCW" secondAttribute="bottom" constant="3" id="CFg-k6-Lhe"/>
+                            <constraint firstItem="FYx-px-XCW" firstAttribute="leading" secondItem="V7Y-cF-Lvc" secondAttribute="trailing" constant="6" id="D1D-sc-uCo"/>
+                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" constant="1" id="KEb-Kc-dH5"/>
+                            <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" constant="1" id="ReP-mH-Hcf"/>
+                            <constraint firstAttribute="trailing" secondItem="FYx-px-XCW" secondAttribute="trailing" constant="4" id="VZx-F7-836"/>
+                            <constraint firstItem="V7Y-cF-Lvc" firstAttribute="top" secondItem="gxf-2d-YHg" secondAttribute="top" constant="2" id="Vu3-wS-zhh"/>
+                            <constraint firstItem="V7Y-cF-Lvc" firstAttribute="leading" secondItem="gxf-2d-YHg" secondAttribute="leading" constant="10" id="yv7-h0-XJz"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                    <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="TL7-Go-HbO" secondAttribute="trailing" id="DNH-h7-s5w"/>
+                <constraint firstAttribute="bottom" secondItem="TL7-Go-HbO" secondAttribute="bottom" id="Ey5-oa-PYZ"/>
+                <constraint firstItem="TL7-Go-HbO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Zwi-0j-Jba"/>
+                <constraint firstItem="TL7-Go-HbO" firstAttribute="height" secondItem="c22-O7-iKe" secondAttribute="height" id="inZ-fO-3iX"/>
+                <constraint firstItem="TL7-Go-HbO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="vpk-oa-3c2"/>
+            </constraints>
+            <point key="canvasLocation" x="4.5" y="64.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="EmojiPicker" width="32" height="32"/>
+    </resources>
+</document>
