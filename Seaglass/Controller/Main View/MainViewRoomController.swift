@@ -40,6 +40,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
 
     var roomId: String = ""
     var roomIsTyping: Bool = false
+    var roomIsPaginating: Bool = false
+    var roomIsOverscrolling: Bool = false
     var roomTyping: Bool {
         set {
             if (newValue && !roomIsTyping) || (!newValue && roomIsTyping) {
@@ -139,6 +141,31 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageInput.textField.action = #selector(messageEntryFieldSubmit)
         RoomMessageInput.textField.target = self
         RoomMessageInput.delegate = self
+        
+        RoomMessageScrollView.postsBoundsChangedNotifications = true
+        RoomMessageScrollView.postsFrameChangedNotifications = true
+        NotificationCenter.default.addObserver(self, selector: #selector(scrollViewDidScroll), name: NSScrollView.didLiveScrollNotification, object: RoomMessageScrollView)
+    }
+    
+    @objc func scrollViewDidScroll(_ notification: NSNotification) {
+        if RoomMessageClipView.bounds.minY >= 0 {
+            roomIsOverscrolling = false
+            return
+        }
+        if roomIsPaginating || roomIsOverscrolling {
+            return
+        }
+        roomIsOverscrolling = true
+        if MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.canPaginate(.backwards) {
+            roomIsPaginating = true
+            MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.paginate(5, direction: .backwards, onlyFromStore: false) { (response) in
+                self.roomIsPaginating = false
+                if response.isFailure {
+                    print("Failed to paginate: \(response.error!.localizedDescription)")
+                    return
+                }
+            }
+        }
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -343,9 +370,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         if event.roomId == roomId {
-            RoomMessageTableView.beginUpdates()
-            RoomMessageTableView.noteNumberOfRowsChanged()
-            RoomMessageTableView.endUpdates()
+            if direction == .backwards {
+                if let index = cache.index(where: { $0.eventId == event.eventId }) {
+                    self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
+                }
+            } else {
+                RoomMessageTableView.beginUpdates()
+                RoomMessageTableView.noteNumberOfRowsChanged()
+                RoomMessageTableView.endUpdates()
+            }
         }
     }
     func matrixDidRoomUserJoin() {}
