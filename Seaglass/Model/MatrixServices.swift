@@ -265,8 +265,10 @@ class MatrixServices: NSObject {
                 }
                 if !self.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
                     self.eventCache[event.roomId]!.insertByOriginServerTS(event)
-                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil, removeOnReplace: false);
-                    self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
+                    if direction == .forwards {
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil, removeOnReplace: false);
+                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
+                    }
                 } else {
                     if let index = self.eventCache[event.roomId]!.index(of: event) {
                         let original = self.eventCache[event.roomId]![index].eventId

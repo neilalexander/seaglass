@@ -19,6 +19,7 @@
 		3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* RoomSettingsController.swift */; };
 		3931F29A21398189001F91DC /* MessageInputField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3931F29921398189001F91DC /* MessageInputField.xib */; };
 		3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3931F29B213981A4001F91DC /* MessageInputField.swift */; };
+		393301E8213DE070006BFDB5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393301E7213DE070006BFDB5 /* Array.swift */; };
 		39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */; };
 		39373485211CA475008AAB7D /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39373483211CA475008AAB7D /* WindowController.swift */; };
 		39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C912118716700FF3E5A /* MemberListTableView.swift */; };
@@ -93,6 +94,7 @@
 		3924444521184ED2001BAEE5 /* RoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsController.swift; sourceTree = "<group>"; };
 		3931F29921398189001F91DC /* MessageInputField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageInputField.xib; sourceTree = "<group>"; };
 		3931F29B213981A4001F91DC /* MessageInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputField.swift; sourceTree = "<group>"; };
+		393301E7213DE070006BFDB5 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPowerLevelsController.swift; sourceTree = "<group>"; };
 		39373483211CA475008AAB7D /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		39432C912118716700FF3E5A /* MemberListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListTableView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				39432C942118727800FF3E5A /* String.swift */,
 				39F3126021189F9200A75E16 /* NSImageView.swift */,
 				39BE2447211DBF25006B0A8B /* NSImage.swift */,
+				393301E7213DE070006BFDB5 /* Array.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 			files = (
 				391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */,
 				3943AC6021300A9900760967 /* RoomMessageIncoming.swift in Sources */,
+				393301E8213DE070006BFDB5 /* Array.swift in Sources */,
 				395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */,
 				3943AC682130161C00760967 /* RoomMessageInline.swift in Sources */,
 				399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */,

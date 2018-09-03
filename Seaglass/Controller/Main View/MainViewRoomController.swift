@@ -156,13 +156,21 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         roomIsOverscrolling = true
-        if MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.canPaginate(.backwards) {
-            roomIsPaginating = true
-            MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.paginate(15, direction: .backwards, onlyFromStore: false) { (response) in
-                self.roomIsPaginating = false
-                if response.isFailure {
-                    print("Failed to paginate: \(response.error!.localizedDescription)")
-                    return
+        if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
+            if room.liveTimeline.canPaginate(.backwards) {
+                roomIsPaginating = true
+                let eventCacheCountBeforePagination = getFilteredRoomCache(for: roomId).count
+                room.liveTimeline.paginate(15, direction: .backwards, onlyFromStore: false) { (response) in
+                    self.roomIsPaginating = false
+                    if response.isFailure {
+                        print("Failed to paginate: \(response.error!.localizedDescription)")
+                        return
+                    }
+                    let numberPaginatedEvents = min(15, self.getFilteredRoomCache(for: self.roomId).count - eventCacheCountBeforePagination)
+                    self.RoomMessageTableView.beginUpdates()
+                    self.RoomMessageTableView.insertRows(at: IndexSet(0..<numberPaginatedEvents), withAnimation: NSTableView.AnimationOptions.slideUp)
+                    self.RoomMessageTableView.endUpdates()
+                    self.RoomMessageTableView.noteNumberOfRowsChanged()
                 }
             }
         }
