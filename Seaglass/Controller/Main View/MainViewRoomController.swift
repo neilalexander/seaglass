@@ -158,7 +158,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomIsOverscrolling = true
         if MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.canPaginate(.backwards) {
             roomIsPaginating = true
-            MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.paginate(5, direction: .backwards, onlyFromStore: false) { (response) in
+            MatrixServices.inst.session.room(withRoomId: roomId).liveTimeline.paginate(15, direction: .backwards, onlyFromStore: false) { (response) in
                 self.roomIsPaginating = false
                 if response.isFailure {
                     print("Failed to paginate: \(response.error!.localizedDescription)")
