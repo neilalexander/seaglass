@@ -40,7 +40,7 @@ extension Array where Element == MXEvent {
                     return
                 }
             }
-            self.insert(element, at: 0)
+            self.append(element)
         }
     }
 }
