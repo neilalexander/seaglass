@@ -19,23 +19,31 @@
 import SwiftMatrixSDK
 
 extension Array where Element == MXEvent {
-    mutating func insertByOriginServerTS(_ element: MXEvent) {
+    mutating func insertByTS(_ element: MXEvent) {
         switch self.count {
         case 0:
             self.insert(element, at: 0)
             return
         case 1:
-            if element.originServerTs > self[0].originServerTs {
+            if element.ageLocalTs >= self[0].ageLocalTs {
                 self.append(element)
             } else {
                 self.insert(element, at: 0)
             }
             return
         default:
+            if element.ageLocalTs < self.first!.ageLocalTs {
+                self.insert(element, at: 0)
+                return
+            }
+            if element.ageLocalTs > self.last!.ageLocalTs {
+                self.append(element)
+                return
+            }
             for n in 0..<self.count-1 {
                 let a = self[n]
                 let b = self[n+1]
-                if a.originServerTs >= element.originServerTs && b.originServerTs <= element.originServerTs {
+                if a.ageLocalTs >= element.ageLocalTs && element.ageLocalTs <= b.ageLocalTs {
                     self.insert(element, at: n+1)
                     return
                 }
