@@ -90,7 +90,7 @@ class MatrixServices: NSObject {
         }
     }
     
-    func sync(_ response: MXResponse<Void>) -> Void {
+    func didStart(_ response: MXResponse<Void>) -> Void {
         guard response.isSuccess && session.store != nil else {
             print("Can't start session - no store set")
             return
@@ -175,7 +175,7 @@ class MatrixServices: NSObject {
         }
     }
     
-    @objc func start(_ credentials: MXCredentials, disableCache: Bool) {
+    func start(_ credentials: MXCredentials, disableCache: Bool) {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
         
@@ -216,10 +216,10 @@ class MatrixServices: NSObject {
                     return
                 }
                 
-                self.session.start(withMessagesLimit: nil, completion: self.sync)
+                self.session.start(withMessagesLimit: nil, completion: self.didStart)
             }
         } else {
-            self.session.start(withMessagesLimit: nil, completion: self.sync)
+            self.session.start(withMessagesLimit: nil, completion: self.didStart)
         }
     }
     
