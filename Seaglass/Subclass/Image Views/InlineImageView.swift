@@ -65,6 +65,8 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                             QLPreviewPanel.shared().makeKeyAndOrderFront(self)
                         }
                     } as (_: String?, _: String?, _: String?) -> ()
+                } else {
+                    self.handler = nil
                 }
                 
                 if FileManager.default.fileExists(atPath: path) && useCached {
