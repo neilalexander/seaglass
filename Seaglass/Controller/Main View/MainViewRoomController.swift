@@ -148,7 +148,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     @objc func scrollViewDidScroll(_ notification: NSNotification) {
-        if RoomMessageClipView.bounds.minY >= 0 {
+        let overscrollHeight = RoomMessageTableView.frame.height + RoomMessageClipView.contentInsets.top + RoomMessageClipView.contentInsets.bottom
+        if RoomMessageClipView.bounds.minY >= 0  &&
+           RoomMessageClipView.bounds.maxY <= overscrollHeight {
             roomIsOverscrolling = false
             return
         }
@@ -157,10 +159,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
         roomIsOverscrolling = true
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
-            if room.liveTimeline.canPaginate(.backwards) {
+            let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
+            if room.liveTimeline.canPaginate(direction) {
                 roomIsPaginating = true
                 let eventCacheCountBeforePagination = getFilteredRoomCache(for: roomId).count
-                room.liveTimeline.paginate(15, direction: .backwards, onlyFromStore: false) { (response) in
+                room.liveTimeline.paginate(15, direction: direction, onlyFromStore: false) { (response) in
                     if response.isFailure {
                         print("Failed to paginate: \(response.error!.localizedDescription)")
                         return
