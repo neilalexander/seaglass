@@ -90,6 +90,91 @@ class MatrixServices: NSObject {
         }
     }
     
+    func sync(_ response: MXResponse<Void>) -> Void {
+        guard response.isSuccess && session.store != nil else {
+            print("Can't start session - no store set")
+            return
+        }
+        print("Opening session...")
+        
+        DispatchQueue.main.async {
+            print("Handing off to services delegate")
+            self.state = .started
+            self.mainController?.servicesDelegate?.matrixDidLogin(self.session);
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+            print("Room key request")
+            print(notification)
+        })
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+            print("Room key request cancellation")
+            print(notification)
+        })
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+            print("Did decrypt event")
+            print(notification)
+        })
+        
+        DispatchQueue.main.async {
+            self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
+                switch event.type {
+                case "m.room.member":
+                    if event.stateKey != MatrixServices.inst.session.myUser.userId {
+                        return
+                    }
+                    if direction != .forwards {
+                        return
+                    }
+                    switch event.content["membership"] as? String {
+                    case "join":
+                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                                self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                            }
+                        }
+                        return
+                    case "invite":
+                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                            MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
+                                if response.isFailure {
+                                    return
+                                }
+                                if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                                    self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                                    room.liveTimeline.resetPagination()
+                                    room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+                                        // complete?
+                                    }
+                                }
+                            })
+                        }
+                        return
+                    case "leave":
+                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == true {
+                                self.mainController?.roomsDelegate?.matrixDidPartRoom(room)
+                            }
+                        }
+                        return
+                    default:
+                        print(event)
+                        print(direction)
+                        print("")
+                        return
+                    }
+                default:
+                    print(event)
+                    print(direction)
+                    print("")
+                    return
+                }
+            }) as? MXSessionEventListener
+        }
+    }
+    
     @objc func start(_ credentials: MXCredentials, disableCache: Bool) {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
@@ -115,110 +200,26 @@ class MatrixServices: NSObject {
                 fileStore = MXFileStore()
             }
         }
-
-        session.setStore(fileStore) { response in
-            print("Setting store...")
-            if case .failure(let error) = response {
-                print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.start(credentials, disableCache: disableCache)
-                }
-                return
-            }
-            
-            self.state = .starting
-            
-            if self.session.crypto != nil {
-                self.session.crypto.warnOnUnknowDevices = false
-            }
-            
-            self.session.start { response in
-                print("Opening session...")
-                guard response.isSuccess else {
-                    print("Open session failed: \(response.error!.localizedDescription), trying again in 5 seconds...")
+        
+        if self.session.crypto != nil {
+            self.session.crypto.warnOnUnknowDevices = false
+        }
+        
+        if session.store == nil {
+            session.setStore(fileStore) { response in
+                print("Setting store...")
+                if case .failure(let error) = response {
+                    print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         self.start(credentials, disableCache: disableCache)
                     }
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    print("Handing off to services delegate")
-                    self.state = .started
-                    self.mainController?.servicesDelegate?.matrixDidLogin(self.session);
-                }
-                
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-                    print("Room key request")
-                    print(notification)
-                })
-                
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-                    print("Room key request cancellation")
-                    print(notification)
-                })
-                
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-                    print("Did decrypt event")
-                    print(notification)
-                })
-                
-                DispatchQueue.main.async {
-                    self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
-                        switch event.type {
-                        case "m.room.member":
-                            if event.stateKey != MatrixServices.inst.session.myUser.userId {
-                                return
-                            }
-                            if direction != .forwards {
-                                return
-                            }
-                            switch event.content["membership"] as? String {
-                            case "join":
-                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
-                                        self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
-                                    }
-                                }
-                                return
-                            case "invite":
-                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                                    MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
-                                        if response.isFailure {
-                                            return
-                                        }
-                                        if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
-                                            self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
-                                            room.liveTimeline.resetPagination()
-                                            room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
-                                                // complete?
-                                            }
-                                        }
-                                    })
-                                }
-                                return
-                            case "leave":
-                                if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                                    if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == true {
-                                        self.mainController?.roomsDelegate?.matrixDidPartRoom(room)
-                                    }
-                                }
-                                return
-                            default:
-                                print(event)
-                                print(direction)
-                                print("")
-                                return
-                            }
-                        default:
-                            print(event)
-                            print(direction)
-                            print("")
-                            return
-                        }
-                    }) as? MXSessionEventListener
-                }
+                self.session.start(withMessagesLimit: nil, completion: self.sync)
             }
+        } else {
+            self.session.start(withMessagesLimit: nil, completion: self.sync)
         }
     }
     
