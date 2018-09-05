@@ -69,6 +69,8 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                     Text.wantsLayer = true
                     Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
                     Text.layer?.cornerRadius = 6
+                }  else {
+                    Text.wantsLayer = false
                 }
                 break
             case "m.notice":
@@ -85,6 +87,8 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                     Text.wantsLayer = true
                     Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
                     Text.layer?.cornerRadius = 6
+                } else {
+                    Text.wantsLayer = false
                 }
                 break
             default:
