@@ -225,6 +225,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
         
         switch event.type {
+        case "m.sticker":
+            fallthrough
         case "m.room.message":
             var isCoalesced = false
             if row >= 1 {

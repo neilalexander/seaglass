@@ -1593,7 +1593,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="c9R-hg-8hS"/>
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="yOW-h1-Cue"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gnG-qw-1Mg"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gnG-qw-1Mg"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1693,7 +1693,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                         <constraint firstAttribute="width" constant="256" identifier="width" id="dtP-WJ-kwD"/>
                                                                         <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="htj-x3-gkZ"/>
                                                                     </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gRh-GG-jHO"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gRh-GG-jHO"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>

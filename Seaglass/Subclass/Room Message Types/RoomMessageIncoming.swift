@@ -54,73 +54,89 @@ class RoomMessageIncoming: RoomMessage {
         var finalTextColor = NSColor.textColor
         let displayname = MatrixServices.inst.session.myUser.displayname ?? MatrixServices.inst.session.myUser.userId
         
-        if let msgtype = event!.content["msgtype"] as? String? {
-            InlineImage.isHidden = ["m.emote", "m.notice", "m.text"].contains(where: { $0 == msgtype })
-            if InlineImage.isHidden {
-                InlineImage.resetImage()
-            }
-            Text.isHidden = !InlineImage.isHidden
-            
-            switch msgtype {
-            case "m.image":
-                if let info = event!.content["info"] as? [String: Any] {
+        switch event!.type {
+        case "m.sticker":
+            if let info = event!.content["info"] as? [String: Any] {
+                if let thumbnailUrl = info["thumbnail_url"] as? String {
                     let mimetype = info["mimetype"] as? String? ?? "application/octet-stream"
-                    InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: mimetype,  useCached: true)
+                    InlineImage.setImage(forMxcUrl: thumbnailUrl, withMimeType: mimetype, useCached: true, enableQuickLook: false)
+                    InlineImage.isHidden = false
                 } else {
-                    InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: "application/octet-stream",  useCached: true)
+                    Text.stringValue = event!.content["body"] as? String ?? "Sticker failed to load"
+                    InlineImage.isHidden = true
                 }
-                break
-            case "m.emote":
-                Text.attributedStringValue = super.emoteContent(align: .left)
-                Text.wantsLayer = true
-                if Text.attributedStringValue.string.contains(displayname!) {
-                    Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
-                    Text.layer?.cornerRadius = 6
-                } else {
-                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
+                Text.isHidden = !InlineImage.isHidden
+            }
+            break
+        default:
+            if let msgtype = event!.content["msgtype"] as? String? {
+                InlineImage.isHidden = ["m.emote", "m.notice", "m.text"].contains(where: { $0 == msgtype })
+                if InlineImage.isHidden {
+                    InlineImage.resetImage()
                 }
-                break
-            case "m.notice":
-                finalTextColor = NSColor.headerColor
-                fallthrough
-            case "m.text":
-                let text = super.textContent()
-                if text.attributedString != nil {
-                    Text.attributedStringValue = text.attributedString!
-                } else if text.string != "" {
-                    Text.stringValue = text.string!
-                }
-                Text.wantsLayer = true
-                if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
-                    Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
-                    Text.layer?.cornerRadius = 6
-                } else {
-                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
-                }
-                break
-            default:
-                InlineImage.isHidden = true
-                Text.isHidden = false
-                if event!.isMediaAttachment() {
-                    if let filename = event?.content["filename"] as? String ?? event?.content["body"] as? String {
-                        if let mxcUrl = event!.content["url"] as? String {
-                            let httpUrl = MatrixServices.inst.client.url(ofContent: mxcUrl)
-                            let link: NSMutableAttributedString = NSMutableAttributedString(string: filename)
-                            link.addAttribute(NSAttributedStringKey.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
-                            Text.attributedStringValue = link
+                Text.isHidden = !InlineImage.isHidden
+            
+                switch msgtype {
+                case "m.image":
+                    if let info = event!.content["info"] as? [String: Any] {
+                        let mimetype = info["mimetype"] as? String? ?? "application/octet-stream"
+                        InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: mimetype,  useCached: true)
+                    } else {
+                        InlineImage.setImage(forMxcUrl: event!.content["url"] as? String, withMimeType: "application/octet-stream",  useCached: true)
+                    }
+                    break
+                case "m.emote":
+                    Text.attributedStringValue = super.emoteContent(align: .left)
+                    Text.wantsLayer = true
+                    if Text.attributedStringValue.string.contains(displayname!) {
+                        Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
+                        Text.layer?.cornerRadius = 6
+                    } else {
+                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
+                    }
+                    break
+                case "m.notice":
+                    finalTextColor = NSColor.headerColor
+                    fallthrough
+                case "m.text":
+                    let text = super.textContent()
+                    if text.attributedString != nil {
+                        Text.attributedStringValue = text.attributedString!
+                    } else if text.string != "" {
+                        Text.stringValue = text.string!
+                    }
+                    Text.wantsLayer = true
+                    if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
+                        Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
+                        Text.layer?.cornerRadius = 6
+                    } else {
+                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
+                    }
+                    break
+                default:
+                    InlineImage.isHidden = true
+                    Text.isHidden = false
+                    if event!.isMediaAttachment() {
+                        if let filename = event?.content["filename"] as? String ?? event?.content["body"] as? String {
+                            if let mxcUrl = event!.content["url"] as? String {
+                                let httpUrl = MatrixServices.inst.client.url(ofContent: mxcUrl)
+                                let link: NSMutableAttributedString = NSMutableAttributedString(string: filename)
+                                link.addAttribute(NSAttributedStringKey.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
+                                Text.attributedStringValue = link
+                            } else {
+                                Text.placeholderString = filename
+                            }
                         } else {
-                            Text.placeholderString = filename
+                            Text.placeholderString = "Unnamed attachment"
                         }
                     } else {
-                        Text.placeholderString = "Unnamed attachment"
+                        Text.placeholderString = "Message type '\(msgtype!)' not supported"
                     }
-                } else {
-                    Text.placeholderString = "Message type '\(msgtype!)' not supported"
+                    break
                 }
-                break
+            } else {
+                Text.stringValue = "No content type"
             }
-        } else {
-            Text.stringValue = "No content type"
         }
 
         switch event!.sentState {

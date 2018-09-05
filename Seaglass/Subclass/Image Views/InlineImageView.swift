@@ -43,10 +43,11 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
         if let constraint = self.constraints.first(where: { $0.identifier! == "height" }) {
             constraint.constant = 16
         }
+        self.handler = nil
         self.setNeedsDisplay()
     }
     
-    func setImage(forMxcUrl: String?, withMimeType: String?, useCached: Bool = true) {
+    func setImage(forMxcUrl: String?, withMimeType: String?, useCached: Bool = true, enableQuickLook: Bool = true) {
         guard let mxcURL = forMxcUrl else { return }
         
         if mxcURL.hasPrefix("mxc://") {
@@ -56,13 +57,15 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                 guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: withMimeType, inFolder: kMXMediaManagerDefaultCacheFolder) else { return }
                 previewItemURL = URL(fileURLWithPath: path)
                 
-                self.handler = { (roomId, eventId, userId) in
-                    if self.previewItemURL.isFileURL {
-                        QLPreviewPanel.shared().delegate = self
-                        QLPreviewPanel.shared().dataSource = self
-                        QLPreviewPanel.shared().makeKeyAndOrderFront(self)
-                    }
-                } as (_: String?, _: String?, _: String?) -> ()
+                if enableQuickLook {
+                    self.handler = { (roomId, eventId, userId) in
+                        if self.previewItemURL.isFileURL {
+                            QLPreviewPanel.shared().delegate = self
+                            QLPreviewPanel.shared().dataSource = self
+                            QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                        }
+                    } as (_: String?, _: String?, _: String?) -> ()
+                }
                 
                 if FileManager.default.fileExists(atPath: path) && useCached {
                     { [weak self] in
