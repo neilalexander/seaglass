@@ -220,7 +220,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let event = getFilteredRoomCache(for: roomId)[row]
+        let filteredRoomCache = getFilteredRoomCache(for: roomId)
+        guard filteredRoomCache.count > row else {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.Text.stringValue = "Missing event - this shouldn't happen"
+            return cell
+        }
+        let event = filteredRoomCache[row]
         var cell: RoomMessage
         
         if event.decryptionError != nil {
