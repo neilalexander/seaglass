@@ -38,6 +38,14 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
         super.draw(dirtyRect)
     }
     
+    func resetImage() {
+        self.image = nil
+        if let constraint = self.constraints.first(where: { $0.identifier! == "height" }) {
+            constraint.constant = 16
+        }
+        self.setNeedsDisplay()
+    }
+    
     func setImage(forMxcUrl: String?, withMimeType: String?, useCached: Bool = true) {
         guard let mxcURL = forMxcUrl else { return }
         

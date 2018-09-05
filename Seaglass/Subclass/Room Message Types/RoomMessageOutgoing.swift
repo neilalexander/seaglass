@@ -55,6 +55,9 @@ class RoomMessageOutgoing: RoomMessage {
         
         if let msgtype = event!.content["msgtype"] as? String? {
             InlineImage.isHidden = ["m.emote", "m.notice", "m.text"].contains(where: { $0 == msgtype })
+            if InlineImage.isHidden {
+                InlineImage.resetImage()
+            }
             Text.isHidden = !InlineImage.isHidden
             
             switch msgtype {
