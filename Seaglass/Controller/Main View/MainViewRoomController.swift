@@ -269,7 +269,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
 
         cell.event = event
-        cell.identifier = nil
         return cell
     }
     
