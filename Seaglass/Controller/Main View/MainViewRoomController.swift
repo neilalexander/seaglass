@@ -169,9 +169,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         return
                     }
                     let numberPaginatedEvents = min(15, self.getFilteredRoomCache(for: self.roomId).count - eventCacheCountBeforePagination)
-                    self.RoomMessageTableView.insertRows(at: IndexSet(0..<numberPaginatedEvents), withAnimation: NSTableView.AnimationOptions.slideUp)
-                    self.RoomMessageTableView.noteNumberOfRowsChanged()
-                    self.roomIsPaginating = false
+                    if numberPaginatedEvents > 0 {
+                        self.RoomMessageTableView.insertRows(at: IndexSet(0..<numberPaginatedEvents), withAnimation: NSTableView.AnimationOptions.slideUp)
+                        self.RoomMessageTableView.noteNumberOfRowsChanged()
+                        self.roomIsPaginating = false
+                    }
                 }
             }
         }
@@ -323,10 +325,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         roomId = cacheEntry.roomId
  
-        RoomMessageTableView.beginUpdates()
-        RoomMessageTableView.reloadData()
-        RoomMessageTableView.endUpdates()
-        
         if cacheEntry.encrypted() {
             RoomMessageInput.textField.placeholderString = "Encrypted message"
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
@@ -335,28 +333,29 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
         
+        let roomDidPaginate = {
+            self.RoomMessageTableView.beginUpdates()
+            self.RoomMessageTableView.reloadData()
+            self.RoomMessageTableView.endUpdates()
+            OperationQueue.main.addOperation({
+                self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
+                self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
+            })
+        }
+        
         if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
             room.liveTimeline.resetPagination()
             if let eventCache = MatrixServices.inst.eventCache[cacheEntry.roomId] {
-                if eventCache.count == 0 {
+                if eventCache.count < 50 {
                     room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                        OperationQueue.main.addOperation({
-                            self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
-                            self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
-                        })
+                        roomDidPaginate()
                     }
                 } else {
-                    OperationQueue.main.addOperation({
-                        self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
-                        self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
-                    })
+                    roomDidPaginate()
                 }
             } else {
                 room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                    OperationQueue.main.addOperation({
-                        self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
-                        self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
-                    })
+                    roomDidPaginate()
                 }
             }
         }
