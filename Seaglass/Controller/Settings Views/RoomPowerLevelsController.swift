@@ -149,11 +149,65 @@ class RoomPowerLevelsController: NSViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
-        let room = MatrixServices.inst.session.room(withRoomId: roomId)
+        let group = DispatchGroup()
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        guard let powerLevels = room.state.powerLevels else { return }
         
-        if PowerLevelDefault.integerValue != room!.state.powerLevels.usersDefault {
-           // room!.
+        if PowerLevelDefault.integerValue != initialPowerLevelDefault! {
+            print("Default power level changed")
         }
+        
+        if PowerLevelSendMessage.integerValue != initialPowerLevelSendMessage! {
+            print("Send message power level changed")
+        }
+        
+        if PowerLevelInvite.integerValue != initialPowerLevelInvite! {
+            print("Invite power level changed")
+        }
+        
+        if PowerLevelKick.integerValue != initialPowerLevelKick! {
+            print("Kick power level changed")
+        }
+        
+        if PowerLevelBan.integerValue != initialPowerLevelBan! {
+            print("Ban power level changed")
+        }
+        
+        if PowerLevelRedactOther.integerValue != initialPowerLevelRedactOther! {
+            print("Redact other power level changed")
+        }
+        
+        if PowerLevelChangeName.integerValue != initialPowerLevelChangeName! {
+            print("Change name level changed")
+        }
+        
+        if PowerLevelChangeAvatar.integerValue != initialPowerLevelChangeAvatar! {
+            print("Change avatar power level changed")
+        }
+        
+        if PowerLevelChangeCanonicalAlias.integerValue != initialPowerLevelChangeCanonicalAlias! {
+            print("Change canonical alias level changed")
+        }
+        
+        if PowerLevelChangeHistory.integerValue != initialPowerLevelChangeHistory! {
+            print("Change history level changed")
+        }
+        
+        if PowerLevelChangeTopic.integerValue != initialPowerLevelChangeTopic! {
+            print("Change topic level changed")
+        }
+        
+        if PowerLevelChangeWidgets.integerValue != initialPowerLevelChangeWidgets! {
+            print("Change widgets level changed")
+        }
+        
+        if PowerLevelChangePowerLevels.integerValue != initialPowerLevelChangePowerLevels! {
+            print("Change power level power level changed")
+        }
+        
+        group.notify(queue: .main, execute: {
+            sender.window?.contentViewController?.dismiss(sender)
+        })
     }
     
 }
