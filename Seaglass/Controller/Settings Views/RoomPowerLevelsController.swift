@@ -143,7 +143,8 @@ class RoomPowerLevelsController: NSViewController {
             // PowerLevelChangeJoinRule.integerValue = initialPowerLevelChangeJoinRule
             
             for control in controls {
-                control.isEnabled = initialPowerLevelChangePowerLevels! <= powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+               // control.isEnabled = initialPowerLevelChangePowerLevels! <= powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+                control.isEnabled = false
             }
         }
     }
