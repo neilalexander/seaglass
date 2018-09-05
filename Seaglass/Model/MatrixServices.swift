@@ -92,7 +92,7 @@ class MatrixServices: NSObject {
     
     func didStart(_ response: MXResponse<Void>) -> Void {
         guard response.isSuccess else {
-            print("Can't start session - trying again in 5 seconds")
+            print("Open session failed: \(response.error!.localizedDescription), trying again in 5 seconds...")
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 self.session.start(withMessagesLimit: nil, completion: self.didStart)
             }
