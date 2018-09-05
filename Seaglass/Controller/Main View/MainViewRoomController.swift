@@ -295,7 +295,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         
         if cacheEntry.roomId == roomId {
             return
-        } 
+        }
+        
+        if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
+            room.liveTimeline.resetPagination()
+            if let eventCache = MatrixServices.inst.eventCache[cacheEntry.roomId] {
+                if eventCache.count == 0 {
+                    room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                        // complete?
+                    }
+                }
+            } else {
+                room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                    // complete?
+                }
+            }
+        }
         
         roomTyping = false
         

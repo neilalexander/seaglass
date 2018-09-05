@@ -296,11 +296,6 @@ class MatrixServices: NSObject {
                 break
             }
         } as? MXEventListener
-        
-        room.liveTimeline.resetPagination()
-        room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-            // complete?
-        }
     }
     
     func userHasPower(inRoomId: String, forEvent: String) -> Bool {
