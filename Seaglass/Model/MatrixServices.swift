@@ -91,8 +91,11 @@ class MatrixServices: NSObject {
     }
     
     func didStart(_ response: MXResponse<Void>) -> Void {
-        guard response.isSuccess && session.store != nil else {
-            print("Can't start session - no store set")
+        guard response.isSuccess else {
+            print("Can't start session - trying again in 5 seconds")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.session.start(withMessagesLimit: nil, completion: self.didStart)
+            }
             return
         }
         print("Opening session...")
@@ -205,20 +208,16 @@ class MatrixServices: NSObject {
             self.session.crypto.warnOnUnknowDevices = false
         }
         
-        if session.store == nil {
-            session.setStore(fileStore) { response in
-                print("Setting store...")
-                if case .failure(let error) = response {
-                    print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                        self.start(credentials, disableCache: disableCache)
-                    }
-                    return
+        session.setStore(fileStore) { response in
+            print("Setting store...")
+            if case .failure(let error) = response {
+                print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.start(credentials, disableCache: disableCache)
                 }
-                
-                self.session.start(withMessagesLimit: nil, completion: self.didStart)
+                return
             }
-        } else {
+                
             self.session.start(withMessagesLimit: nil, completion: self.didStart)
         }
     }
