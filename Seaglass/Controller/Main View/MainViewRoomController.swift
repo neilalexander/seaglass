@@ -297,21 +297,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
         
-        if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
-            room.liveTimeline.resetPagination()
-            if let eventCache = MatrixServices.inst.eventCache[cacheEntry.roomId] {
-                if eventCache.count == 0 {
-                    room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                        // complete?
-                    }
-                }
-            } else {
-                room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                    // complete?
-                }
-            }
-        }
-        
         roomTyping = false
         
         let isInvite = cacheEntry.isInvite()
@@ -350,10 +335,31 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
         
-        OperationQueue.main.addOperation({
-            self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
-            self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
-        })
+        if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
+            room.liveTimeline.resetPagination()
+            if let eventCache = MatrixServices.inst.eventCache[cacheEntry.roomId] {
+                if eventCache.count == 0 {
+                    room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                        OperationQueue.main.addOperation({
+                            self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
+                            self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
+                        })
+                    }
+                } else {
+                    OperationQueue.main.addOperation({
+                        self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
+                        self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
+                    })
+                }
+            } else {
+                room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                    OperationQueue.main.addOperation({
+                        self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
+                        self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
+                    })
+                }
+            }
+        }
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool = false) {
