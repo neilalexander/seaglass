@@ -90,7 +90,7 @@ class MatrixServices: NSObject {
         }
     }
     
-    func start(_ credentials: MXCredentials, disableCache: Bool) {
+    @objc func start(_ credentials: MXCredentials, disableCache: Bool) {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
         
@@ -111,8 +111,10 @@ class MatrixServices: NSObject {
         }
 
         session.setStore(fileStore) { response in
+            print("Setting store...")
             if case .failure(let error) = response {
-                print("An error occurred setting the store: \(error)")
+                print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
+                self.perform(#selector(self.start), with: nil, afterDelay: 5.0, inModes: [.commonModes])
                 return
             }
             
@@ -123,8 +125,10 @@ class MatrixServices: NSObject {
             }
             
             self.session.start { response in
+                print("Opening session...")
                 guard response.isSuccess else {
-                    print("Assertion failed: setStore response was not true")
+                    print("Open session failed: \(response.error!.localizedDescription), trying again in 5 seconds...")
+                    self.perform(#selector(self.start), with: nil, afterDelay: 5.0, inModes: [.commonModes])
                     return
                 }
                 
