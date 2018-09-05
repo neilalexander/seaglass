@@ -90,24 +90,30 @@ class MatrixServices: NSObject {
         }
     }
     
-    @objc func start(_ credentials: MXCredentials, disableCache: Bool) {       
+    @objc func start(_ credentials: MXCredentials, disableCache: Bool) {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
         
-        print("Creating REST client")
-        client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
+        if client == nil {
+            print("Creating REST client")
+            client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
+        }
         
-        print("Creating session")
-        session = MXSession(matrixRestClient: client)
+        if session == nil {
+            print("Creating session")
+            session = MXSession(matrixRestClient: client)
+        }
         
         state = .starting
         
-        if disableCache {
-            print("Disabling cache")
-            fileStore = MXNoStore()
-        } else {
-            print("Enabling cache")
-            fileStore = MXFileStore()
+        if fileStore == nil {
+            if disableCache {
+                print("Disabling cache")
+                fileStore = MXNoStore()
+            } else {
+                print("Enabling cache")
+                fileStore = MXFileStore()
+            }
         }
 
         session.setStore(fileStore) { response in
