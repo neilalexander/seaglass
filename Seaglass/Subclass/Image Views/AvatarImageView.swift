@@ -85,6 +85,9 @@ class AvatarImageView: ContextImageView {
                                 self?.layout()
                             }
                         }) { [weak self] (error) in
+                            if previousUrl != self?.url {
+                                return
+                            }
                             self?.image = defaultImage
                             self?.layout()
                         }
