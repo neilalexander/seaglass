@@ -65,12 +65,12 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                 break
             case "m.emote":
                 Text.attributedStringValue = super.emoteContent(align: .left)
+                Text.wantsLayer = true
                 if Text.attributedStringValue.string.contains(displayname!) {
-                    Text.wantsLayer = true
                     Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
                     Text.layer?.cornerRadius = 6
                 }  else {
-                    Text.wantsLayer = false
+                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
                 }
                 break
             case "m.notice":
@@ -83,12 +83,12 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                 } else if text.string != "" {
                     Text.stringValue = text.string!
                 }
+                Text.wantsLayer = true
                 if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
-                    Text.wantsLayer = true
                     Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
                     Text.layer?.cornerRadius = 6
                 } else {
-                    Text.wantsLayer = false
+                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
                 }
                 break
             default:
