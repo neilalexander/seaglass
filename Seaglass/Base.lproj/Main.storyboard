@@ -3086,22 +3086,8 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="450" height="264"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button identifier="LoginCancelButton" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOF-DQ-8hY">
-                                <rect key="frame" x="332" y="13" width="104" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X1W-a1-130">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="CancelButtonClicked:" target="c2d-7t-jsh" id="ECf-DV-yQe"/>
-                                </connections>
-                            </button>
                             <button identifier="LoginOKButton" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UWf-w5-W2D">
-                                <rect key="frame" x="229" y="13" width="104" height="32"/>
+                                <rect key="frame" x="341" y="13" width="95" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" identifier="LoginOKButton" imageScaling="proportionallyDown" inset="2" id="KjX-nU-u0B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3115,7 +3101,7 @@ DQ
                                 </connections>
                             </button>
                             <progressIndicator identifier="LoginAnimation" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="PwI-PP-bxR">
-                                <rect key="frame" x="211" y="23" width="16" height="16"/>
+                                <rect key="frame" x="217" y="23" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klQ-fK-nwj">
@@ -3195,6 +3181,20 @@ DQ
                                 </buttonCell>
                                 <connections>
                                     <segue destination="OJS-MA-od8" kind="popover" popoverAnchorView="fER-D9-2bd" popoverBehavior="t" preferredEdge="maxY" id="qMQ-tO-rvZ"/>
+                                </connections>
+                            </button>
+                            <button identifier="LoginCancelButton" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOF-DQ-8hY">
+                                <rect key="frame" x="246" y="13" width="95" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X1W-a1-130">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="CancelButtonClicked:" target="c2d-7t-jsh" id="ECf-DV-yQe"/>
                                 </connections>
                             </button>
                         </subviews>

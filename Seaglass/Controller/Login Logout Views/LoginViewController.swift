@@ -59,7 +59,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     @IBOutlet weak var PasswordLabel: NSTextField!
     @IBOutlet weak var ProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var RememberCheckbox: NSButton!
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
         
