@@ -350,7 +350,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
         }
         
-        OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true) })
+        OperationQueue.main.addOperation({
+            self.RoomMessageTableView.scrollRowToVisible(row: self.getFilteredRoomCache(for: self.roomId).count-1, animated: true)
+            self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
+        })
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool = false) {
