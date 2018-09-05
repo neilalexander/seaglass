@@ -183,18 +183,18 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func updateAttentionRooms() {
         let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         var count = roomsCache.filter({ $0.isInvite() }).count
-        for room in roomsCache {
+       /* for room in roomsCache {
             count += room.highlights()
-        }
+        } */
         NSApp.dockTile.badgeLabel = count > 0 ? String(count) : ""
     }
     
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
-        updateAttentionRooms()
+       // updateAttentionRooms()
     }
     
     func tableView(_ tableView: NSTableView, didRemove rowView: NSTableRowView, forRow row: Int) {
-        updateAttentionRooms()
+       // updateAttentionRooms()
     }
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {

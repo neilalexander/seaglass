@@ -95,10 +95,10 @@ class RoomsCacheEntry: NSObject {
     
     func highlights() -> Int {
         var highlights: Int = 0
-        if !MatrixServices.inst.eventCache.keys.contains(self.roomId) {
+       /* if !MatrixServices.inst.eventCache.keys.contains(self.roomId) {
             return 0
         }
-       /* let eventCache = MatrixServices.inst.eventCache[self.roomId]!
+        let eventCache = MatrixServices.inst.eventCache[self.roomId]!
         let filtered = eventCache.filter({
             $0.type == "m.room.message" &&
             $0.content.keys.contains("msgtype") && ($0.content["msgtype"] as! String) == "m.text" &&
