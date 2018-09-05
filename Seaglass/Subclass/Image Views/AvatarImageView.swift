@@ -23,19 +23,22 @@ class AvatarImageView: ContextImageView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+
+        if layer == nil {
+            layer = CALayer()
+        }
         
         wantsLayer = true
         canDrawSubviewsIntoLayer = true
         
-        layer = CALayer()
         layer?.masksToBounds = true
         layer?.contentsGravity = kCAGravityResizeAspectFill
         layer?.cornerRadius = (frame.width)/2
     }
     
     override func layout() {
-        super.layout()
         layer?.cornerRadius = (frame.width)/2
+        super.layout()
     }
     
     override var image: NSImage? {

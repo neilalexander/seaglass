@@ -1200,7 +1200,7 @@ Copyright 2018 © Avery Pierce</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -3302,7 +3302,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
-                                <rect key="frame" x="75" y="12" width="90" height="5"/>
+                                <rect key="frame" x="75" y="12" width="90" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
