@@ -21,6 +21,9 @@ import SwiftMatrixSDK
 
 class AvatarImageView: ContextImageView {
     
+    var mxcUrl: String?
+    var url: String?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
@@ -53,12 +56,14 @@ class AvatarImageView: ContextImageView {
     
     func setAvatar(forMxcUrl: String?, defaultImage: NSImage, useCached: Bool = true) {
         image = defaultImage
-        guard let mxcURL = forMxcUrl else { return }
+        mxcUrl = forMxcUrl
+        guard mxcUrl != nil else { return }
         
-        if mxcURL.hasPrefix("mxc://") {
-            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale) else { return }
+        if mxcUrl!.hasPrefix("mxc://") {
+            url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale)
+            guard url != nil else { return }
             
-            if url.hasPrefix("http://") || url.hasPrefix("https://") {
+            if url!.hasPrefix("http://") || url!.hasPrefix("https://") {
                 guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: nil, inFolder: kMXMediaManagerAvatarThumbnailFolder) else { return }
                 
                 if FileManager.default.fileExists(atPath: path) && useCached {
@@ -70,7 +75,11 @@ class AvatarImageView: ContextImageView {
                     }()
                 } else {
                     DispatchQueue.main.async {
-                        MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
+                        let previousUrl = self.url!
+                        MXMediaManager.downloadMedia(fromURL: self.url!, andSaveAtFilePath: path, success: { [weak self] in
+                            if previousUrl != self?.url {
+                                return
+                            }
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
                                 self?.image = image
                                 self?.layout()
