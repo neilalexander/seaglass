@@ -97,6 +97,9 @@ class RoomMessageOutgoing: RoomMessage {
                     } else if text.string != "" {
                         Text.stringValue = text.string!
                     }
+                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
+                    Text.layer?.cornerRadius = 6
+                    Text.wantsLayer = true
                     break
                 default:
                     InlineImage.isHidden = true
