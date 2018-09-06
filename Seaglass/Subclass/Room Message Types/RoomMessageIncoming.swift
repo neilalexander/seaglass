@@ -108,7 +108,7 @@ class RoomMessageIncoming: RoomMessage {
                     if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
                         Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
                     } else {
-                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
+                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.withAlphaComponent(0).cgColor
                     }
                     Text.layer?.cornerRadius = 6
                     Text.wantsLayer = true
