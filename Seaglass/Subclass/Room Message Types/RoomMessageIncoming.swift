@@ -75,7 +75,9 @@ class RoomMessageIncoming: RoomMessage {
                     InlineImage.resetImage()
                 }
                 Text.isHidden = !InlineImage.isHidden
-            
+                Text.layer?.cornerRadius = 6
+                Text.wantsLayer = true
+                
                 switch msgtype {
                 case "m.image":
                     if let info = event!.content["info"] as? [String: Any] {
@@ -87,13 +89,6 @@ class RoomMessageIncoming: RoomMessage {
                     break
                 case "m.emote":
                     Text.attributedStringValue = super.emoteContent(align: .left)
-                    Text.wantsLayer = true
-                    if Text.attributedStringValue.string.contains(displayname!) {
-                        Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
-                        Text.layer?.cornerRadius = 6
-                    } else {
-                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.cgColor
-                    }
                     break
                 case "m.notice":
                     finalTextColor = NSColor.headerColor
@@ -105,13 +100,6 @@ class RoomMessageIncoming: RoomMessage {
                     } else if text.string != "" {
                         Text.stringValue = text.string!
                     }
-                    if text.string!.contains(displayname!) || text.attributedString!.string.contains(displayname!) {
-                        Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
-                    } else {
-                        Text.layer?.backgroundColor = NSColor.textBackgroundColor.withAlphaComponent(0).cgColor
-                    }
-                    Text.layer?.cornerRadius = 6
-                    Text.wantsLayer = true
                     break
                 default:
                     InlineImage.isHidden = true
@@ -133,6 +121,11 @@ class RoomMessageIncoming: RoomMessage {
                         Text.placeholderString = "Message type '\(msgtype!)' not supported"
                     }
                     break
+                }
+                if Text.stringValue.contains(displayname!) || Text.attributedStringValue.string.contains(displayname!) {
+                    Text.layer?.backgroundColor = NSColor.selectedTextBackgroundColor.withAlphaComponent(0.15).cgColor
+                } else {
+                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.withAlphaComponent(0).cgColor
                 }
             } else {
                 Text.stringValue = "No content type"

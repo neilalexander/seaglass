@@ -70,6 +70,8 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
                     InlineImage.resetImage()
                 }
                 Text.isHidden = !InlineImage.isHidden
+                Text.layer?.cornerRadius = 6
+                Text.wantsLayer = true
                 
                 switch msgtype {
                 case "m.image":
@@ -93,9 +95,6 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
                     } else if text.string != "" {
                         Text.stringValue = text.string!
                     }
-                    Text.layer?.backgroundColor = NSColor.textBackgroundColor.withAlphaComponent(0).cgColor
-                    Text.layer?.cornerRadius = 6
-                    Text.wantsLayer = true
                     break
                 default:
                     InlineImage.isHidden = true
