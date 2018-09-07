@@ -254,6 +254,14 @@ class MatrixServices: NSObject {
             return
         }
         
+        if room.state.isEncrypted {
+            session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
+                print("Successfully downloaded \(devicemap!.count) keys for \(roomId)")
+            }) { (error) in
+                print("Failed to download keys for \(roomId): \(error!.localizedDescription)")
+            }
+        }
+        
         eventListeners[roomId] = room.liveTimeline.listenToEvents() { (event, direction, roomState) in
             if event.roomId == nil {
                 return
