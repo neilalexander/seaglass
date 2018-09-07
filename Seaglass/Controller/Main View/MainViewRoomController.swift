@@ -99,9 +99,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             
             MatrixServices.inst.session.room(withRoomId: roomId).invite(invitee) { (response) in
                 if response.isFailure {
-                    if let error = response.error {
-                        print("Failed to invite: \(error.localizedDescription)")
-                    }
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to invite user"
+                    alert.informativeText = response.error!.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
             }
         } else if sender.stringValue.starts(with: "/me ") {
