@@ -89,9 +89,12 @@ class PopoverEncryptionDevice: NSViewController {
             MatrixServices.inst.session.crypto.setDeviceVerification(verificationState, forDevice: deviceInfo.deviceId, ofUser: deviceInfo.userId, success: {
                 self.DeviceVerified.isEnabled = true
                 self.DeviceBlacklisted.isEnabled = true
+                
+                MatrixServices.inst.mainController?.channelDelegate?.uiRoomNeedsReload()
             }) { (error) in
                 self.DeviceVerified.state = deviceInfo.verified == MXDeviceVerified ? .on : .off
                 self.DeviceBlacklisted.state = deviceInfo.verified == MXDeviceBlocked ? .on : .off
+                
                 self.DeviceVerified.isEnabled = true
                 self.DeviceBlacklisted.isEnabled = true
             }

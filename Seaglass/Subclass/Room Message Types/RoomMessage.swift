@@ -29,6 +29,10 @@ class RoomMessage: NSTableCellView {
     override func viewWillDraw() {
     }
     
+    func updateIcon() {
+        
+    }
+    
     func encryptionIsBlacklisted() -> Bool {
         guard event != nil && event!.isEncrypted else { return false }
         if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {

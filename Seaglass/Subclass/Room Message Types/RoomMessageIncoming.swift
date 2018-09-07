@@ -131,24 +131,42 @@ class RoomMessageIncoming: RoomMessage {
                 Text.stringValue = "No content type"
             }
         }
-
-        Icon.room = room
-        Icon.event = event!
+        
         switch event!.sentState {
         case MXEventSentStateSending:
             Text.textColor = NSColor.gridColor
             break
+        case MXEventSentStateFailed:
+            Text.textColor = NSColor.red
+            break
+        default:
+            Text.textColor = finalTextColor
+        }
+        
+        self.updateIcon()
+    }
+    
+    override func updateIcon() {
+        if event == nil {
+            return
+        }
+        
+        let roomId = event!.roomId
+        let room = MatrixServices.inst.session.room(withRoomId: roomId)
+        let icon = super.icon()
+        
+        Icon.room = room
+        Icon.event = event!
+        switch event!.sentState {
         case MXEventSentStateFailed:
             if !room!.state.isEncrypted {
                 Icon.isHidden = false
                 Icon.setFrameSize(NSMakeSize(icon.width, icon.height))
             }
             Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-            Text.textColor = NSColor.red
-            
             break
         default:
-            Text.textColor = finalTextColor
+            break
         }
         TextConstraint.constant = 48 + Icon.frame.size.width
         InlineImageConstraint.constant = 48 + Icon.frame.size.width

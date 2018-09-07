@@ -330,9 +330,9 @@
 		39E5AA772124C7A200BDA001 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				399E6FC520C806E700A2644A /* MainViewRoomController.swift */,
 				399E6FC320C806D900A2644A /* MainViewRoomsController.swift */,
-				3994B34720C6E02700DD1D8D /* MainViewController.swift */,
 				39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */,
 				39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */,
 				39640E37212E09130060F170 /* MainViewSendErrorController.swift */,

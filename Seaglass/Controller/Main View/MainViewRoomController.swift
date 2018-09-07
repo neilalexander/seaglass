@@ -308,6 +308,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         return 1
     }
     
+    func uiRoomNeedsReload() {
+        for view in RoomMessageTableView.subviews {
+            for cell in view.subviews {
+                if let message = cell as? RoomMessage {
+                    message.updateIcon()
+                }
+            }
+        }
+    }
+    
     func uiDidSelectRoom(entry: RoomListEntry) {
         guard let cacheEntry = entry.roomsCacheEntry else { return }
         
