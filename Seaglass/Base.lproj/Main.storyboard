@@ -3088,18 +3088,24 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nm5-fE-t3M">
                                 <rect key="frame" x="18" y="221" width="188" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Mark this device as verified" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wfT-8a-pC6">
+                                <buttonCell key="cell" type="check" title="Mark this device as verified" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wfT-8a-pC6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="deviceVerificationChanged:" target="Dwb-jp-heA" id="aFy-KS-hdn"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hst-tc-hG4">
                                 <rect key="frame" x="18" y="198" width="142" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Blacklist this device" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ZcG-Md-wDp">
+                                <buttonCell key="cell" type="check" title="Blacklist this device" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ZcG-Md-wDp">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="deviceVerificationChanged:" target="Dwb-jp-heA" id="5tA-KV-F4q"/>
+                                </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="276-3K-g6L">
                                 <rect key="frame" x="20" y="181" width="311" height="5"/>
@@ -3162,9 +3168,11 @@ DQ
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="DeviceBlacklisted" destination="Hst-tc-hG4" id="Zwo-Ec-bx7"/>
                         <outlet property="DeviceFingerprint" destination="Kkl-B1-PLe" id="VYT-gH-B0Z"/>
                         <outlet property="DeviceID" destination="mAT-Os-IAp" id="Ci0-Zc-1gl"/>
                         <outlet property="DeviceName" destination="oOO-VT-BjW" id="T5u-dA-HFw"/>
+                        <outlet property="DeviceVerified" destination="Nm5-fE-t3M" id="e6g-NL-Eii"/>
                         <outlet property="MessageAlgorithm" destination="Uxr-yq-xXQ" id="dPu-cI-ybx"/>
                         <outlet property="MessageFingerprint" destination="nlv-Lu-QGV" id="OkE-TK-gFv"/>
                         <outlet property="MessageIdentity" destination="67K-9N-Glf" id="oyh-rk-Qts"/>

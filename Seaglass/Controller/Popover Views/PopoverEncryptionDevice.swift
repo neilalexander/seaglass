@@ -29,6 +29,9 @@ class PopoverEncryptionDevice: NSViewController {
     @IBOutlet weak var MessageFingerprint: NSTextField!
     @IBOutlet weak var MessageAlgorithm: NSTextField!
     
+    @IBOutlet weak var DeviceVerified: NSButton!
+    @IBOutlet weak var DeviceBlacklisted: NSButton!
+    
     var event: MXEvent?
     
     override func viewDidLoad() {
@@ -40,6 +43,9 @@ class PopoverEncryptionDevice: NSViewController {
             DeviceName.stringValue = deviceInfo.displayName ?? ""
             DeviceID.stringValue = deviceInfo.deviceId ?? ""
             DeviceFingerprint.stringValue = deviceInfo.fingerprint ?? ""
+            
+            DeviceVerified.state = deviceInfo.verified == MXDeviceVerified ? .on : .off
+            DeviceBlacklisted.state = deviceInfo.verified == MXDeviceBlocked ? .on : .off
         }
         
         MessageIdentity.stringValue = event!.senderKey ?? ""
@@ -49,6 +55,42 @@ class PopoverEncryptionDevice: NSViewController {
         let fingerprintColor = MessageFingerprint.stringValue != DeviceFingerprint.stringValue ? NSColor.systemRed : NSColor.labelColor
         DeviceFingerprint.textColor = fingerprintColor
         MessageFingerprint.textColor = fingerprintColor
+    }
+    
+    @IBAction func deviceVerificationChanged(_ sender: NSButton) {
+        guard sender == DeviceVerified || sender == DeviceBlacklisted else { return }
+        guard event != nil else { return }
+        
+        if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
+            if sender == DeviceVerified {
+                if DeviceVerified.state == .on {
+                    DeviceBlacklisted.state = .off
+                }
+            }
+            
+            if sender == DeviceBlacklisted {
+                if DeviceBlacklisted.state == .on {
+                    DeviceVerified.state = .off
+                }
+            }
+            
+            let verificationState =
+                DeviceBlacklisted.state == .on ? MXDeviceBlocked :
+                DeviceVerified.state == .on ? MXDeviceVerified : MXDeviceUnverified
+            
+            DeviceVerified.isEnabled = false
+            DeviceBlacklisted.isEnabled = false
+        
+            MatrixServices.inst.session.crypto.setDeviceVerification(verificationState, forDevice: deviceInfo.deviceId, ofUser: deviceInfo.userId, success: {
+                self.DeviceVerified.isEnabled = true
+                self.DeviceBlacklisted.isEnabled = true
+            }) { (error) in
+                self.DeviceVerified.state = deviceInfo.verified == MXDeviceVerified ? .on : .off
+                self.DeviceBlacklisted.state = deviceInfo.verified == MXDeviceBlocked ? .on : .off
+                self.DeviceVerified.isEnabled = true
+                self.DeviceBlacklisted.isEnabled = true
+            }
+        }
     }
     
 }
