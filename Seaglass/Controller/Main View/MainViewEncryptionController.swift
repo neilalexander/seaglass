@@ -30,8 +30,9 @@ class MainViewEncryptionController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ConfirmButton.isHidden = false
-        ConfirmSpinner.isHidden = true
+        ConfirmButton.isEnabled = false
+        ConfirmButton.alphaValue = 1
+        ConfirmSpinner.alphaValue = 0
         
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
             EnableEncryptionCheckbox.state = room.state.isEncrypted ? .on : .off
@@ -63,18 +64,23 @@ class MainViewEncryptionController: NSViewController {
         guard EnableEncryptionCheckbox.isEnabled else { return }
         guard roomId != "" else { return }
         
-        ConfirmButton.isHidden = true
-        ConfirmSpinner.isHidden = false
+        ConfirmButton.isEnabled = false
         ConfirmSpinner.startAnimation(self)
         
-        MatrixServices.inst.session.room(withRoomId: roomId).enableEncryption(withAlgorithm: "m.megolm.v1.aes-sha2") { (response) in
-            if response.isSuccess {
+        NSAnimationContext.runAnimationGroup({ (context) in
+            context.duration = 0.5
+            ConfirmButton.animator().alphaValue = 0
+            ConfirmSpinner.animator().alphaValue = 1
+        }, completionHandler: {
+            MatrixServices.inst.session.room(withRoomId: self.roomId).enableEncryption(withAlgorithm: "m.megolm.v1.aes-sha2") { (response) in
+                if response.isSuccess {
+                    self.dismiss(self)
+                    return
+                }
+                
+                print("Failed to enable encryption: \(response.error?.localizedDescription)")
                 self.dismiss(self)
-                return
             }
-            
-            print("Failed to enable encryption: \(response.error?.localizedDescription)")
-            self.dismiss(self)
-        }
+        })
     }
 }
