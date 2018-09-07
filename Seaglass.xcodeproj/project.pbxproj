@@ -10,6 +10,8 @@
 		26BAE4D9927C6B79102C13DC /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */; };
 		390377962142CDE600873E97 /* MainViewEncryptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390377952142CDE600873E97 /* MainViewEncryptionController.swift */; };
 		390377992142DFFD00873E97 /* PopoverEncryptionDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */; };
+		3903779C21431BD800873E97 /* MainViewInviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903779B21431BD800873E97 /* MainViewInviteController.swift */; };
+		3903779E21431CF800873E97 /* PopoverRoomActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903779D21431CF800873E97 /* PopoverRoomActions.swift */; };
 		390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FE41020C7026A004A4B74 /* MatrixServices.swift */; };
 		391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */; };
 		391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2020C68AD100B4EFEC /* LoginViewController.swift */; };
@@ -79,6 +81,8 @@
 		0A1F3485F5B9E56D87DEC192 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
 		390377952142CDE600873E97 /* MainViewEncryptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewEncryptionController.swift; sourceTree = "<group>"; };
 		390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverEncryptionDevice.swift; sourceTree = "<group>"; };
+		3903779B21431BD800873E97 /* MainViewInviteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInviteController.swift; sourceTree = "<group>"; };
+		3903779D21431CF800873E97 /* PopoverRoomActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomActions.swift; sourceTree = "<group>"; };
 		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatrixServices.swift; path = Seaglass/Model/MatrixServices.swift; sourceTree = "<group>"; };
 		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */,
 				39640E37212E09130060F170 /* MainViewSendErrorController.swift */,
 				390377952142CDE600873E97 /* MainViewEncryptionController.swift */,
+				3903779B21431BD800873E97 /* MainViewInviteController.swift */,
 			);
 			path = "Main View";
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				39E5AA82212603A500BDA001 /* PopoverRoomList.swift */,
 				390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */,
 				39E5AA84212603F700BDA001 /* PopoverUserList.swift */,
+				3903779D21431CF800873E97 /* PopoverRoomActions.swift */,
 			);
 			path = "Popover Views";
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3903779C21431BD800873E97 /* MainViewInviteController.swift in Sources */,
 				391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */,
 				3943AC6021300A9900760967 /* RoomMessageIncoming.swift in Sources */,
 				395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */,
@@ -620,6 +627,7 @@
 				39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */,
 				3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */,
 				3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */,
+				3903779E21431CF800873E97 /* PopoverRoomActions.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
 				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,

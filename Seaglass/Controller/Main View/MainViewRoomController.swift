@@ -208,6 +208,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToRoomInvite":
+                if let dest = segue.destinationController as? MainViewInviteController {
+                    dest.roomId = roomId
+                }
+                break
             default:
                 return
             }
@@ -326,6 +331,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     message.updateIcon()
                 }
             }
+        }
+    }
+    
+    func uiRoomStartInvite() {
+        if let board = self.storyboard {
+            let identifier = NSStoryboard.SceneIdentifier("RoomInviteController")
+            let inviteController = board.instantiateController(withIdentifier: identifier) as! MainViewInviteController
+            inviteController.roomId = roomId
+            self.presentViewControllerAsSheet(inviteController)
         }
     }
     
