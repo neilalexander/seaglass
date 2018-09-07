@@ -64,7 +64,7 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                             QLPreviewPanel.shared().dataSource = self
                             QLPreviewPanel.shared().makeKeyAndOrderFront(self)
                         }
-                    } as (_: NSView, _: String?, _: String?, _: String?) -> ()
+                    } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
                 } else {
                     self.handler = nil
                 }

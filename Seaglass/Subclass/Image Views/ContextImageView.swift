@@ -17,16 +17,17 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class ContextImageView: NSImageView {
-    var handler: ((_: NSView, _: String?, _: String?, _: String?) -> ())?
+    var handler: ((_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ())?
     
-    var roomId: String?
-    var eventId: String?
+    var room: MXRoom?
+    var event: MXEvent?
     var userId: String?
     
-    init(handler: @escaping (_: NSView, _: String?, _: String?, _: String?) -> ()?) {
-        self.handler = handler as? ((NSView, String?, String?, String?) -> ()) ?? nil
+    init(handler: @escaping (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()?) {
+        self.handler = handler as? ((NSView, MXRoom?, _: MXEvent?, String?) -> ()) ?? nil
         super.init(frame: NSRect())
     }
     
@@ -38,11 +39,11 @@ class ContextImageView: NSImageView {
         super.draw(dirtyRect)
     }
     
-    override func mouseDown(with event: NSEvent) {
+    override func mouseDown(with nsevent: NSEvent) {
         if handler == nil {
             return
         }
         
-        self.handler!(self, roomId, eventId, userId)
+        self.handler!(self, room, event, userId)
     }
 }

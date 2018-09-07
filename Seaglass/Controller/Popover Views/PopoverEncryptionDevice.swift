@@ -17,10 +17,11 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class PopoverEncryptionDevice: NSViewController {
 
-    var eventId: String?
+    var event: MXEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()

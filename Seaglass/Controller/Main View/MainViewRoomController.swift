@@ -254,22 +254,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
-            let messageSendErrorHandler = { (sender, roomId, eventId, userId) in
-                guard roomId != nil && eventId != nil else { return }
+            let messageSendErrorHandler = { (sender, room, event, userId) in
+                guard room != nil && event != nil else { return }
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
-                sheet.roomId = roomId!
-                sheet.eventId = eventId!
+                sheet.roomId = room!.roomId
+                sheet.eventId = event!.eventId
                 self.presentViewControllerAsSheet(sheet)
-            } as (_: NSView, _: String?, _: String?, _: String?) -> ()
+            } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
             
-            let messageEncryptionDeviceInfoHandler = { (sender, roomId, eventId, userId) in
+            let messageEncryptionDeviceInfoHandler = { (sender, room, event, userId) in
                 print("requested device info")
-                guard eventId != nil else { return }
+                guard event != nil else { return }
                 print("show device info")
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("EncryptionDeviceInfo")) as! PopoverEncryptionDevice
-                sheet.eventId = eventId!
+                sheet.event = event
                 self.presentViewController(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
-            } as (_: NSView, _: String?, _: String?, _: String?) -> ()
+            } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
             
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                // if event.isMediaAttachment() {

@@ -132,8 +132,8 @@ class RoomMessageIncoming: RoomMessage {
             }
         }
 
-        Icon.roomId = roomId
-        Icon.eventId = event!.eventId
+        Icon.room = room
+        Icon.event = event!
         switch event!.sentState {
         case MXEventSentStateSending:
             Text.textColor = NSColor.gridColor
