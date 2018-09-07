@@ -43,16 +43,16 @@ class RoomMessage: NSTableCellView {
         }
     }
     
-    func encryptionIsSent() -> Bool {
+    func encryptionIsSending() -> Bool {
         guard event != nil else { return false }
-        return event!.sentState == MXEventSentStateSent && event!.sender == MatrixServices.inst.session.myUser.userId
+        return event!.sentState != MXEventSentStateSent && event!.sender == MatrixServices.inst.session.myUser.userId
     }
     
     func icon() -> (image: NSImage, width: CGFloat, height: CGFloat) {
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
         let padlockColor: NSColor =
-            !self.encryptionIsSent() ? NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
+            self.encryptionIsSending() ? NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
             (self.encryptionIsEncrypted() ?
                 (self.encryptionIsVerified() ?
                     NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
