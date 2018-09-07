@@ -43,6 +43,11 @@ class PopoverEncryptionDevice: NSViewController {
                 DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
             }
             
+            if deviceInfo.deviceId == nil {
+                DeviceVerified.isEnabled = false
+                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
+            }
+            
             DeviceName.stringValue = deviceInfo.displayName ?? ""
             DeviceID.stringValue = deviceInfo.deviceId ?? ""
             DeviceFingerprint.stringValue = deviceInfo.fingerprint ?? ""

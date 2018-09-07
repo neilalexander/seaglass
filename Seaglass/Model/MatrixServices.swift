@@ -245,6 +245,7 @@ class MatrixServices: NSObject {
     }
     
     func selectRoom(roomId: String) {
+        
     }
     
     func subscribeToRoom(roomId: String) {
