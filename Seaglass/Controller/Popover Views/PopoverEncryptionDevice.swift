@@ -37,14 +37,18 @@ class PopoverEncryptionDevice: NSViewController {
         guard event != nil else { return }
         
         if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
-            DeviceName.stringValue = deviceInfo.displayName
-            DeviceID.stringValue = deviceInfo.deviceId
-            DeviceFingerprint.stringValue = deviceInfo.fingerprint
+            DeviceName.stringValue = deviceInfo.displayName ?? ""
+            DeviceID.stringValue = deviceInfo.deviceId ?? ""
+            DeviceFingerprint.stringValue = deviceInfo.fingerprint ?? ""
         }
         
-        MessageIdentity.stringValue = event!.senderKey
-        MessageFingerprint.stringValue = event!.claimedEd25519Key
+        MessageIdentity.stringValue = event!.senderKey ?? ""
+        MessageFingerprint.stringValue = event!.claimedEd25519Key ?? ""
         MessageAlgorithm.stringValue = event!.wireContent["algorithm"] as? String ?? ""
+        
+        let fingerprintColor = MessageFingerprint.stringValue != DeviceFingerprint.stringValue ? NSColor.systemRed : NSColor.labelColor
+        DeviceFingerprint.textColor = fingerprintColor
+        MessageFingerprint.textColor = fingerprintColor
     }
     
 }
