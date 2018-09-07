@@ -43,14 +43,21 @@ class RoomMessage: NSTableCellView {
         }
     }
     
+    func isSent() -> Bool {
+        guard event != nil else { return false }
+        return event!.sentState == MXEventSentStateSent
+    }
+    
     func icon() -> (image: NSImage, width: CGFloat, height: CGFloat) {
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
-        let padlockColor: NSColor = self.encryptionIsEncrypted() ?
-            (self.encryptionIsVerified() ?
-                NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
-                NSColor(deviceRed: 0.89, green: 0.75, blue: 0.33, alpha: 0.75)
-            ) : NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
+        let padlockColor: NSColor =
+            !self.isSent() ? NSColor(deviceRed: 0.75, green: 0.75, blue: 0.75, alpha: 0.75) :
+            (self.encryptionIsEncrypted() ?
+                (self.encryptionIsVerified() ?
+                    NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
+                    NSColor(deviceRed: 0.89, green: 0.75, blue: 0.33, alpha: 0.75)
+                ) : NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75))
         let padlockImage: NSImage = self.encryptionIsEncrypted() ?
             NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
             NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
