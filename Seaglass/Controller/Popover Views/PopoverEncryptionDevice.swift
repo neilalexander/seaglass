@@ -25,8 +25,6 @@ class PopoverEncryptionDevice: NSViewController {
     @IBOutlet weak var DeviceID: NSTextField!
     @IBOutlet weak var DeviceFingerprint: NSTextField!
     
-    @IBOutlet weak var MessageIdentity: NSTextField!
-    @IBOutlet weak var MessageFingerprint: NSTextField!
     @IBOutlet weak var MessageAlgorithm: NSTextField!
     
     @IBOutlet weak var DeviceVerified: NSButton!
@@ -48,18 +46,12 @@ class PopoverEncryptionDevice: NSViewController {
             DeviceName.stringValue = deviceInfo.displayName ?? ""
             DeviceID.stringValue = deviceInfo.deviceId ?? ""
             DeviceFingerprint.stringValue = deviceInfo.fingerprint ?? ""
-            
+
             DeviceVerified.state = deviceInfo.verified == MXDeviceVerified ? .on : .off
             DeviceBlacklisted.state = deviceInfo.verified == MXDeviceBlocked ? .on : .off
         }
         
-        MessageIdentity.stringValue = event!.senderKey ?? ""
-        MessageFingerprint.stringValue = event!.claimedEd25519Key ?? ""
         MessageAlgorithm.stringValue = event!.wireContent["algorithm"] as? String ?? ""
-        
-        let fingerprintColor = MessageFingerprint.stringValue != DeviceFingerprint.stringValue ? NSColor.systemRed : NSColor.labelColor
-        DeviceFingerprint.textColor = fingerprintColor
-        MessageFingerprint.textColor = fingerprintColor
     }
     
     @IBAction func deviceVerificationChanged(_ sender: NSButton) {
