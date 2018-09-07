@@ -2920,6 +2920,9 @@ Gw
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="enableEncryptionCheckboxChanged:" target="pny-lE-NfQ" id="uo5-WA-7zL"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X76-22-Rqt">
                                 <rect key="frame" x="18" y="100" width="285" height="45"/>
@@ -2964,10 +2967,19 @@ unverified devices from this client</string>
 DQ
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="confirmButtonPressed:" target="pny-lE-NfQ" id="Clo-DP-WzY"/>
+                                </connections>
                             </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Td7-hx-3cj">
+                                <rect key="frame" x="152" y="22" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="ConfirmButton" destination="nLZ-3K-mFQ" id="kP3-ij-fqc"/>
+                        <outlet property="ConfirmSpinner" destination="Td7-hx-3cj" id="ivx-Js-iG3"/>
                         <outlet property="EnableEncryptionCheckbox" destination="lBC-tn-2C2" id="a8u-fn-oQR"/>
                         <outlet property="PreventUnverifiedCheckbox" destination="X76-22-Rqt" id="bHx-wP-ixr"/>
                     </connections>

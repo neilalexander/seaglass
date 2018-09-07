@@ -263,7 +263,7 @@ class MatrixServices: NSObject {
             if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
-            let cacheTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker" ]
+            let cacheTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker", "m.room.encryption" ]
             switch event.type {
             case "m.room.redaction":
                 for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {

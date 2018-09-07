@@ -100,6 +100,10 @@ class RoomMessageInline: RoomMessage {
             let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event!.content["creator"] as! String) ?? event!.content["creator"] as! String
             Text.stringValue = "Room created by \(displayName)"
             break
+        case "m.room.encryption":
+            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event!.sender) ?? event!.sender ?? "Room participant"
+            Text.stringValue = "\(displayName) enabled room encryption (\(event!.content["algorithm"] ?? "unknown") algorithm)"
+            break
         default:
             Text.stringValue = "Unknown event \(event!.type)"
         }

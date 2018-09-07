@@ -417,6 +417,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             break
         case "m.room.member":
             break
+        case "m.room.encryption":
+            if event.roomId == roomId {
+                if roomState.isEncrypted {
+                    RoomMessageInput.textField.placeholderString = "Encrypted message"
+                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+                } else {
+                    RoomMessageInput.textField.placeholderString = "Message"
+                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+                }
+                self.uiRoomNeedsReload()
+            }
+            break
         case "m.room.name":
             if event.roomId == roomId, let roomName = event.content["name"] as? String {
                 RoomName.stringValue = roomName

@@ -22,11 +22,16 @@ class MainViewEncryptionController: NSViewController {
 
     @IBOutlet weak var EnableEncryptionCheckbox: NSButton!
     @IBOutlet weak var PreventUnverifiedCheckbox: NSButton!
+    @IBOutlet weak var ConfirmButton: NSButton!
+    @IBOutlet weak var ConfirmSpinner: NSProgressIndicator!
     
     var roomId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ConfirmButton.isHidden = false
+        ConfirmSpinner.isHidden = true
         
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
             EnableEncryptionCheckbox.state = room.state.isEncrypted ? .on : .off
@@ -38,12 +43,38 @@ class MainViewEncryptionController: NSViewController {
     
     
     @IBAction func allowUnverifiedCheckboxChanged(_ sender: NSButton) {
-        if sender != PreventUnverifiedCheckbox {
-            return
-        }
+        guard sender == PreventUnverifiedCheckbox else { return }
         
         MatrixServices.inst.session.crypto.warnOnUnknowDevices = PreventUnverifiedCheckbox.state == .on
         UserDefaults.standard.set(MatrixServices.inst.session.crypto.warnOnUnknowDevices, forKey: "CryptoParanoid")
     }
     
+    @IBAction func enableEncryptionCheckboxChanged(_ sender: NSButton) {
+        guard sender == EnableEncryptionCheckbox else { return }
+        
+        ConfirmButton.isEnabled =
+            EnableEncryptionCheckbox.isEnabled &&
+            EnableEncryptionCheckbox.state == .on
+    }
+    
+    
+    @IBAction func confirmButtonPressed(_ sender: NSButton) {
+        guard sender == ConfirmButton else { return }
+        guard EnableEncryptionCheckbox.isEnabled else { return }
+        guard roomId != "" else { return }
+        
+        ConfirmButton.isHidden = true
+        ConfirmSpinner.isHidden = false
+        ConfirmSpinner.startAnimation(self)
+        
+        MatrixServices.inst.session.room(withRoomId: roomId).enableEncryption(withAlgorithm: "m.megolm.v1.aes-sha2") { (response) in
+            if response.isSuccess {
+                self.dismiss(self)
+                return
+            }
+            
+            print("Failed to enable encryption: \(response.error?.localizedDescription)")
+            self.dismiss(self)
+        }
+    }
 }
