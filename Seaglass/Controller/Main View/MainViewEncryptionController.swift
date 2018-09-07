@@ -21,7 +21,7 @@ import Cocoa
 class MainViewEncryptionController: NSViewController {
 
     @IBOutlet weak var EnableEncryptionCheckbox: NSButton!
-    @IBOutlet weak var AllowUnverifiedCheckbox: NSButton!
+    @IBOutlet weak var PreventUnverifiedCheckbox: NSButton!
     
     var roomId: String = ""
     
@@ -33,16 +33,16 @@ class MainViewEncryptionController: NSViewController {
             EnableEncryptionCheckbox.isEnabled = EnableEncryptionCheckbox.state == .off
         }
         
-        AllowUnverifiedCheckbox.state = MatrixServices.inst.session.crypto.warnOnUnknowDevices ? .off : .on
+        PreventUnverifiedCheckbox.state = MatrixServices.inst.session.crypto.warnOnUnknowDevices ? .on : .off
     }
     
     
     @IBAction func allowUnverifiedCheckboxChanged(_ sender: NSButton) {
-        if sender != AllowUnverifiedCheckbox {
+        if sender != PreventUnverifiedCheckbox {
             return
         }
         
-        MatrixServices.inst.session.crypto.warnOnUnknowDevices = AllowUnverifiedCheckbox.state == .off
+        MatrixServices.inst.session.crypto.warnOnUnknowDevices = PreventUnverifiedCheckbox.state == .on
         UserDefaults.standard.set(MatrixServices.inst.session.crypto.warnOnUnknowDevices, forKey: "CryptoParanoid")
     }
     

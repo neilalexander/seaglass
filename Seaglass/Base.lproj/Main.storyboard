@@ -2968,8 +2968,8 @@ DQ
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="AllowUnverifiedCheckbox" destination="X76-22-Rqt" id="X4a-JE-94S"/>
                         <outlet property="EnableEncryptionCheckbox" destination="lBC-tn-2C2" id="a8u-fn-oQR"/>
+                        <outlet property="PreventUnverifiedCheckbox" destination="X76-22-Rqt" id="bHx-wP-ixr"/>
                     </connections>
                 </viewController>
                 <customObject id="7D9-J3-usd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
