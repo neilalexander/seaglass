@@ -187,6 +187,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToRoomEncryption":
+                if let dest = segue.destinationController as? MainViewEncryptionController {
+                    dest.roomId = roomId
+                }
+                break
             case "SegueToPartRoom":
                 if let dest = segue.destinationController as? MainViewPartController {
                     dest.roomId = roomId

@@ -1785,7 +1785,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     </connections>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="pny-lE-NfQ" kind="popover" popoverAnchorView="EGm-dG-DZW" popoverBehavior="t" preferredEdge="maxY" id="Wab-EX-BXE"/>
+                                    <segue destination="pny-lE-NfQ" kind="popover" identifier="SegueToRoomEncryption" popoverAnchorView="EGm-dG-DZW" popoverBehavior="t" preferredEdge="maxY" id="Wab-EX-BXE"/>
                                 </connections>
                             </button>
                             <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" alphaValue="0.29999999999999999" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
@@ -2905,10 +2905,10 @@ Gw
             </objects>
             <point key="canvasLocation" x="415" y="1986"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Encryption Controller-->
         <scene sceneID="wgK-pz-Eof">
             <objects>
-                <viewController id="pny-lE-NfQ" sceneMemberID="viewController">
+                <viewController id="pny-lE-NfQ" customClass="MainViewEncryptionController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="w6m-Ih-Z0k" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="321" height="236"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2916,7 +2916,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBC-tn-2C2">
                                 <rect key="frame" x="18" y="200" width="206" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Enable encryption in this room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="v0b-4f-06b">
+                                <buttonCell key="cell" type="check" title="Enable encryption in this room" bezelStyle="regularSquare" imagePosition="left" inset="2" id="v0b-4f-06b">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -2924,7 +2924,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X76-22-Rqt">
                                 <rect key="frame" x="18" y="100" width="285" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="Cp4-4H-GaQ">
+                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Cp4-4H-GaQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <string key="title">Never send encrypted messages to
 unverified devices from this client</string>
@@ -2964,6 +2964,10 @@ DQ
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="AllowUnverifiedCheckbox" destination="X76-22-Rqt" id="X4a-JE-94S"/>
+                        <outlet property="EnableEncryptionCheckbox" destination="lBC-tn-2C2" id="a8u-fn-oQR"/>
+                    </connections>
                 </viewController>
                 <customObject id="7D9-J3-usd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
