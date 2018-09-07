@@ -255,6 +255,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
             
             let messageSendErrorHandler = { (roomId, eventId, userId) in
+                guard roomId != nil && eventId != nil else { return }
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
                 sheet.roomId = roomId!
                 sheet.eventId = eventId!
