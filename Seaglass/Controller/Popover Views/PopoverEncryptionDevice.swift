@@ -38,13 +38,11 @@ class PopoverEncryptionDevice: NSViewController {
         guard event != nil else { return }
         
         if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
-            if deviceInfo.userId == MatrixServices.inst.session.myUser.userId {
-                DeviceVerified.isEnabled = deviceInfo.deviceId != MatrixServices.inst.client.credentials.deviceId
-                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
-            }
-            
             if deviceInfo.deviceId == nil {
                 DeviceVerified.isEnabled = false
+                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
+            } else if deviceInfo.userId == MatrixServices.inst.session.myUser.userId {
+                DeviceVerified.isEnabled = deviceInfo.deviceId != MatrixServices.inst.client.credentials.deviceId
                 DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
             }
             
