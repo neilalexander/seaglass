@@ -45,7 +45,7 @@ class RoomMessage: NSTableCellView {
     
     func encryptionIsSending() -> Bool {
         guard event != nil else { return false }
-        return event!.sentState != MXEventSentStateSent && event!.sender == MatrixServices.inst.session.myUser.userId
+        return event!.sentState != MXEventSentStateSent && event!.isLocalEvent()
     }
     
     func icon() -> (image: NSImage, width: CGFloat, height: CGFloat) {
