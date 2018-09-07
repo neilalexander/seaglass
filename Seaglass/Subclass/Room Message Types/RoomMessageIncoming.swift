@@ -145,6 +145,7 @@ class RoomMessageIncoming: RoomMessage {
             }
             Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
             Text.textColor = NSColor.red
+            
             break
         default:
             Text.textColor = finalTextColor

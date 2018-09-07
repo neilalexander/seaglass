@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26BAE4D9927C6B79102C13DC /* Pods_Seaglass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */; };
 		390377962142CDE600873E97 /* MainViewEncryptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390377952142CDE600873E97 /* MainViewEncryptionController.swift */; };
+		390377992142DFFD00873E97 /* PopoverEncryptionDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */; };
 		390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FE41020C7026A004A4B74 /* MatrixServices.swift */; };
 		391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */; };
 		391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2020C68AD100B4EFEC /* LoginViewController.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		0A1F3485F5B9E56D87DEC192 /* Pods-Seaglass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.release.xcconfig"; sourceTree = "<group>"; };
 		390377952142CDE600873E97 /* MainViewEncryptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewEncryptionController.swift; sourceTree = "<group>"; };
+		390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverEncryptionDevice.swift; sourceTree = "<group>"; };
 		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatrixServices.swift; path = Seaglass/Model/MatrixServices.swift; sourceTree = "<group>"; };
 		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				39E5AA82212603A500BDA001 /* PopoverRoomList.swift */,
+				390377972142DFFD00873E97 /* PopoverEncryptionDevice.swift */,
 				39E5AA84212603F700BDA001 /* PopoverUserList.swift */,
 			);
 			path = "Popover Views";
@@ -620,6 +623,7 @@
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
 				39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */,
+				390377992142DFFD00873E97 /* PopoverEncryptionDevice.swift in Sources */,
 				39F3126121189F9200A75E16 /* NSImageView.swift in Sources */,
 				394679E721304B0500FF67C1 /* InlineImageView.swift in Sources */,
 				39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */,

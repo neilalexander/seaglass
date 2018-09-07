@@ -21,10 +21,30 @@ import SwiftMatrixSDK
 
 class PopoverEncryptionDevice: NSViewController {
 
+    @IBOutlet weak var DeviceName: NSTextField!
+    @IBOutlet weak var DeviceID: NSTextField!
+    @IBOutlet weak var DeviceFingerprint: NSTextField!
+    
+    @IBOutlet weak var MessageIdentity: NSTextField!
+    @IBOutlet weak var MessageFingerprint: NSTextField!
+    @IBOutlet weak var MessageAlgorithm: NSTextField!
+    
     var event: MXEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard event != nil else { return }
+        
+        if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
+            DeviceName.stringValue = deviceInfo.displayName
+            DeviceID.stringValue = deviceInfo.deviceId
+            DeviceFingerprint.stringValue = deviceInfo.fingerprint
+        }
+        
+        MessageIdentity.stringValue = event!.senderKey
+        MessageFingerprint.stringValue = event!.claimedEd25519Key
+        MessageAlgorithm.stringValue = event!.wireContent["algorithm"] as? String ?? ""
     }
     
 }

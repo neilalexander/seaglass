@@ -263,26 +263,20 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
             
             let messageEncryptionDeviceInfoHandler = { (sender, room, event, userId) in
-                print("requested device info")
                 guard event != nil else { return }
-                print("show device info")
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("EncryptionDeviceInfo")) as! PopoverEncryptionDevice
                 sheet.event = event
                 self.presentViewController(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
             } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
             
             if event.sender == MatrixServices.inst.client?.credentials.userId {
-               // if event.isMediaAttachment() {
-               //     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundMedia"), owner: self) as! RoomMessage
-               // } else {
-                    if isCoalesced {
-                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
-                        (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageSendErrorHandler
-                    } else {
-                        cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
-                        (cell as! RoomMessageOutgoing).Icon.handler = messageSendErrorHandler
-                    }
-               // }
+                if isCoalesced {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
+                    (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageEncryptionDeviceInfoHandler
+                } else {
+                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
+                    (cell as! RoomMessageOutgoing).Icon.handler = messageEncryptionDeviceInfoHandler
+                }
             } else {
                 if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
