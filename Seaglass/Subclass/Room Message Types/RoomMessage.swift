@@ -29,13 +29,29 @@ class RoomMessage: NSTableCellView {
     override func viewWillDraw() {
     }
     
+    func encryptionIsEncrypted() -> Bool {
+        guard event != nil else { return false }
+        return event!.sentState == MXEventSentStateEncrypting || event!.isEncrypted
+    }
+    
+    func encryptionIsVerified() -> Bool {
+        guard event != nil else { return false }
+        if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event!) {
+            return self.encryptionIsEncrypted() && deviceInfo.verified == MXDeviceVerified
+        } else {
+            return false
+        }
+    }
+    
     func icon() -> (image: NSImage, width: CGFloat, height: CGFloat) {
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
-        let padlockColor: NSColor = event!.sentState == MXEventSentStateEncrypting || event!.isEncrypted ?
-            NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
-            NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
-        let padlockImage: NSImage = event!.sentState == MXEventSentStateEncrypting || event!.isEncrypted ?
+        let padlockColor: NSColor = self.encryptionIsEncrypted() ?
+            (self.encryptionIsVerified() ?
+                NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
+                NSColor(deviceRed: 0.89, green: 0.75, blue: 0.33, alpha: 0.75)
+            ) : NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75)
+        let padlockImage: NSImage = self.encryptionIsEncrypted() ?
             NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
             NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
         return (padlockImage, padlockWidth, padlockHeight)
