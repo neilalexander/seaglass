@@ -29,6 +29,14 @@ class RoomMessage: NSTableCellView {
     override func viewWillDraw() {
     }
     
+    func encryptionIsBlacklisted() -> Bool {
+        guard event != nil && event!.isEncrypted else { return false }
+        if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
+            return deviceInfo.verified == MXDeviceBlocked
+        }
+        return false
+    }
+    
     func encryptionIsEncrypted() -> Bool {
         guard event != nil else { return false }
         return event!.sentState == MXEventSentStateEncrypting || event!.isEncrypted
@@ -53,6 +61,7 @@ class RoomMessage: NSTableCellView {
         let padlockHeight: CGFloat = 12
         let padlockColor: NSColor =
             self.encryptionIsSending() ? NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
+            self.encryptionIsBlacklisted() ? NSColor.systemRed :
             (self.encryptionIsEncrypted() ?
                 (self.encryptionIsVerified() ?
                     NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
