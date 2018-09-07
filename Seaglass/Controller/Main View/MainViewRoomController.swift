@@ -327,7 +327,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         return 1
     }
     
-    func uiRoomNeedsReload() {
+    func uiRoomNeedsCryptoReload() {
         for view in RoomMessageTableView.subviews {
             for cell in view.subviews {
                 if let message = cell as? RoomMessage {
@@ -454,7 +454,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     RoomMessageInput.textField.placeholderString = "Message"
                     RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
                 }
-                self.uiRoomNeedsReload()
+                self.uiRoomNeedsCryptoReload()
             }
             break
         case "m.room.name":

@@ -257,6 +257,7 @@ class MatrixServices: NSObject {
         if room.state.isEncrypted {
             session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
                 print("Successfully downloaded \(devicemap!.count) keys for \(roomId)")
+                self.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
             }) { (error) in
                 print("Failed to download keys for \(roomId): \(error!.localizedDescription)")
             }
