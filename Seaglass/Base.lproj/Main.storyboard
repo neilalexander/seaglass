@@ -1200,7 +1200,7 @@ Copyright 2018 © Avery Pierce</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="4"/>
+                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
@@ -2974,31 +2974,19 @@ DQ
             <objects>
                 <viewController id="jhm-nB-Mkx" sceneMemberID="viewController">
                     <view key="view" id="qDn-rk-HPj">
-                        <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="247" height="78"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Xg-Wh-R3s">
-                                <rect key="frame" x="13" y="12" width="56" height="58"/>
+                                <rect key="frame" x="13" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Invite" bezelStyle="shadowlessSquare" image="NSTouchBarUserAddTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="WBt-Oz-7mS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QzN-Wx-HL1">
-                                <rect key="frame" x="75" y="12" width="182" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vr9-1V-HWB">
-                                <rect key="frame" x="155" y="12" width="168" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-M9-wpJ">
-                                <rect key="frame" x="236" y="12" width="5" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-jV-joH">
-                                <rect key="frame" x="86" y="12" width="63" height="58"/>
+                                <rect key="frame" x="68" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Attach" bezelStyle="shadowlessSquare" image="NSTouchBarShareTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="iay-B0-h8t">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3006,7 +2994,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WrX-X2-X7x">
-                                <rect key="frame" x="166" y="12" width="63" height="58"/>
+                                <rect key="frame" x="123" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Call" bezelStyle="shadowlessSquare" image="NSTouchBarCommunicationAudioTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="kdf-FW-zQg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3014,7 +3002,7 @@ DQ
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgy-aa-dFi">
-                                <rect key="frame" x="246" y="12" width="63" height="58"/>
+                                <rect key="frame" x="178" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Video" bezelStyle="shadowlessSquare" image="NSTouchBarCommunicationVideoTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="F4S-Sp-wUj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3026,7 +3014,7 @@ DQ
                 </viewController>
                 <customObject id="7mF-ev-XWH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244.5" y="1482"/>
+            <point key="canvasLocation" x="1265.5" y="1471"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="0TR-Yv-Vi3">
@@ -3290,27 +3278,19 @@ Gw
             <objects>
                 <viewController showSeguePresentationStyle="single" id="XnJ-du-pMW" customClass="PopoverUserList" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="B6p-xd-Mnm" customClass="NSVisualEffectView">
-                        <rect key="frame" x="0.0" y="0.0" width="315" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="281" height="78"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvj-87-hZh">
-                                <rect key="frame" x="13" y="12" width="56" height="58"/>
+                                <rect key="frame" x="13" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="mIU-aN-xs1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YNC-oT-609">
-                                <rect key="frame" x="75" y="12" width="90" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="z1M-zX-QW5">
-                                <rect key="frame" x="235" y="12" width="5" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98V-GH-dyr">
-                                <rect key="frame" x="166" y="12" width="63" height="58"/>
+                                <rect key="frame" x="145" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Ignore" bezelStyle="shadowlessSquare" image="NSTouchBarAudioOutputMuteTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="u0F-IG-ECr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3318,7 +3298,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NT-ul-tOw">
-                                <rect key="frame" x="86" y="12" width="63" height="58"/>
+                                <rect key="frame" x="79" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Mention" bezelStyle="shadowlessSquare" image="NSTouchBarTagIconTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="ON5-c1-xwK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -3326,23 +3306,19 @@ Gw
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NL2-e6-jwQ">
-                                <rect key="frame" x="246" y="12" width="63" height="58"/>
+                                <rect key="frame" x="211" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="square" title="Chat" bezelStyle="shadowlessSquare" image="NSTouchBarNewMessageTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="NNd-lJ-HiW">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Qur-rS-aSh">
-                                <rect key="frame" x="155" y="12" width="149" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </box>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="UZH-uK-MGd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2245.5" y="902"/>
+            <point key="canvasLocation" x="2006.5" y="931"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="rhq-PB-W3q">

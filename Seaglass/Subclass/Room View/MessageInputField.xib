@@ -15,17 +15,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="561" height="24"/>
+            <rect key="frame" x="0.0" y="0.0" width="561" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <box boxType="custom" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="TL7-Go-HbO">
-                    <rect key="frame" x="0.0" y="0.0" width="561" height="24"/>
+                    <rect key="frame" x="0.0" y="0.0" width="561" height="25"/>
                     <view key="contentView" id="gxf-2d-YHg">
-                        <rect key="frame" x="1" y="1" width="559" height="22"/>
+                        <rect key="frame" x="1" y="1" width="559" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-cF-Lvc">
-                                <rect key="frame" x="8" y="0.0" width="527" height="19"/>
+                                <rect key="frame" x="8" y="0.0" width="527" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="85" id="YBy-LC-IIq"/>
                                 </constraints>
@@ -36,10 +36,10 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYx-px-XCW" userLabel="Emoji Picker Button">
-                                <rect key="frame" x="539" y="3" width="16" height="17"/>
+                                <rect key="frame" x="538" y="3" width="17" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="7y2-q6-oPM"/>
-                                    <constraint firstAttribute="width" constant="16" id="mow-im-ifl"/>
+                                    <constraint firstAttribute="width" constant="17" id="mow-im-ifl"/>
                                 </constraints>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="EmojiPicker" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyDown" inset="2" id="u41-bx-gW7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -51,9 +51,9 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="FYx-px-XCW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gxf-2d-YHg" secondAttribute="top" constant="2" id="3vc-ba-buR"/>
+                            <constraint firstItem="FYx-px-XCW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gxf-2d-YHg" secondAttribute="top" constant="3" id="3vc-ba-buR"/>
                             <constraint firstAttribute="bottom" secondItem="FYx-px-XCW" secondAttribute="bottom" constant="3" id="CFg-k6-Lhe"/>
-                            <constraint firstItem="FYx-px-XCW" firstAttribute="leading" secondItem="V7Y-cF-Lvc" secondAttribute="trailing" constant="6" id="D1D-sc-uCo"/>
+                            <constraint firstItem="FYx-px-XCW" firstAttribute="leading" secondItem="V7Y-cF-Lvc" secondAttribute="trailing" constant="5" id="D1D-sc-uCo"/>
                             <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" id="KEb-Kc-dH5"/>
                             <constraint firstAttribute="bottom" secondItem="V7Y-cF-Lvc" secondAttribute="bottom" id="ReP-mH-Hcf"/>
                             <constraint firstAttribute="trailing" secondItem="FYx-px-XCW" secondAttribute="trailing" constant="4" id="VZx-F7-836"/>

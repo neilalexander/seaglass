@@ -306,6 +306,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
         
         roomTyping = false
+        roomIsPaginating = false
+        roomIsOverscrolling = false
         
         let isInvite = cacheEntry.isInvite()
         RoomName.isEnabled = !isInvite
