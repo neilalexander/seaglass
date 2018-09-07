@@ -254,13 +254,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 )
             }
             
-            let messageSendErrorHandler = { (roomId, eventId, userId) in
+            let messageSendErrorHandler = { (sender, roomId, eventId, userId) in
                 guard roomId != nil && eventId != nil else { return }
                 let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
                 sheet.roomId = roomId!
                 sheet.eventId = eventId!
                 self.presentViewControllerAsSheet(sheet)
-            } as (_: String?, _: String?, _: String?) -> ()
+            } as (_: NSView, _: String?, _: String?, _: String?) -> ()
+            
+            let messageEncryptionDeviceInfoHandler = { (sender, roomId, eventId, userId) in
+                print("requested device info")
+                guard eventId != nil else { return }
+                print("show device info")
+                let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("EncryptionDeviceInfo")) as! PopoverEncryptionDevice
+                sheet.eventId = eventId!
+                self.presentViewController(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
+            } as (_: NSView, _: String?, _: String?, _: String?) -> ()
             
             if event.sender == MatrixServices.inst.client?.credentials.userId {
                // if event.isMediaAttachment() {
@@ -277,8 +286,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 if isCoalesced {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
+                    (cell as! RoomMessageIncomingCoalesced).Icon.handler = messageEncryptionDeviceInfoHandler
                 } else {
                     cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
+                    (cell as! RoomMessageIncoming).Icon.handler = messageEncryptionDeviceInfoHandler
                 }
             }
             break

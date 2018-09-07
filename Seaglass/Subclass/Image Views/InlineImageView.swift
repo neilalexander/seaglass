@@ -58,13 +58,13 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                 previewItemURL = URL(fileURLWithPath: path)
                 
                 if enableQuickLook {
-                    self.handler = { (roomId, eventId, userId) in
+                    self.handler = { (sender, roomId, eventId, userId) in
                         if self.previewItemURL.isFileURL {
                             QLPreviewPanel.shared().delegate = self
                             QLPreviewPanel.shared().dataSource = self
                             QLPreviewPanel.shared().makeKeyAndOrderFront(self)
                         }
-                    } as (_: String?, _: String?, _: String?) -> ()
+                    } as (_: NSView, _: String?, _: String?, _: String?) -> ()
                 } else {
                     self.handler = nil
                 }

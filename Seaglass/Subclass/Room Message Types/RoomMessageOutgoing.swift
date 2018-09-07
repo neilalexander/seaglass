@@ -129,6 +129,8 @@ class RoomMessageOutgoing: RoomMessage {
             }
         }
         
+        Icon.roomId = roomId
+        Icon.eventId = event!.eventId
         switch event!.sentState {
         case MXEventSentStateSending:
             Text.textColor = NSColor.gridColor
@@ -139,8 +141,6 @@ class RoomMessageOutgoing: RoomMessage {
                 Icon.setFrameSize(NSMakeSize(icon.width, icon.height))
             }
             Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
-            Icon.roomId = roomId
-            Icon.eventId = event!.eventId
             Text.textColor = NSColor.red
             break
         default:

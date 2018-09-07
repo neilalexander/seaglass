@@ -18,8 +18,10 @@
 
 import Cocoa
 
-class PopoverUserList: NSViewController {
+class PopoverEncryptionDevice: NSViewController {
 
+    var eventId: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

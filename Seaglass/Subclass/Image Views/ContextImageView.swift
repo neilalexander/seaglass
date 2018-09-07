@@ -19,14 +19,14 @@
 import Cocoa
 
 class ContextImageView: NSImageView {
-    var handler: ((_: String?, _: String?, _: String?) -> ())?
+    var handler: ((_: NSView, _: String?, _: String?, _: String?) -> ())?
     
     var roomId: String?
     var eventId: String?
     var userId: String?
     
-    init(handler: @escaping (_: String?, _: String?, _: String?) -> ()?) {
-        self.handler = handler as? ((String?, String?, String?) -> ()) ?? nil
+    init(handler: @escaping (_: NSView, _: String?, _: String?, _: String?) -> ()?) {
+        self.handler = handler as? ((NSView, String?, String?, String?) -> ()) ?? nil
         super.init(frame: NSRect())
     }
     
@@ -43,6 +43,6 @@ class ContextImageView: NSImageView {
             return
         }
         
-        self.handler!(roomId, eventId, userId)
+        self.handler!(self, roomId, eventId, userId)
     }
 }
