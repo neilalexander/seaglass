@@ -106,6 +106,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
                                 let httpUrl = MatrixServices.inst.client.url(ofContent: mxcUrl)
                                 let link: NSMutableAttributedString = NSMutableAttributedString(string: filename)
                                 link.addAttribute(NSAttributedStringKey.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
+                                link.setAlignment(NSTextAlignment.left, range: NSMakeRange(0, filename.count))
                                 Text.attributedStringValue = link
                             } else {
                                 Text.placeholderString = filename
