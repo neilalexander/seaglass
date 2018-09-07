@@ -2930,6 +2930,9 @@ Gw
 unverified devices from this client</string>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="allowUnverifiedCheckboxChanged:" target="pny-lE-NfQ" id="PaW-ae-0lc"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plu-cM-m1W">
                                 <rect key="frame" x="37" y="151" width="266" height="43"/>

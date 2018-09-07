@@ -32,6 +32,18 @@ class MainViewEncryptionController: NSViewController {
             EnableEncryptionCheckbox.state = room.state.isEncrypted ? .on : .off
             EnableEncryptionCheckbox.isEnabled = EnableEncryptionCheckbox.state == .off
         }
+        
+        AllowUnverifiedCheckbox.state = MatrixServices.inst.session.crypto.warnOnUnknowDevices ? .off : .on
+    }
+    
+    
+    @IBAction func allowUnverifiedCheckboxChanged(_ sender: NSButton) {
+        if sender != AllowUnverifiedCheckbox {
+            return
+        }
+        
+        MatrixServices.inst.session.crypto.warnOnUnknowDevices = AllowUnverifiedCheckbox.state == .off
+        UserDefaults.standard.set(MatrixServices.inst.session.crypto.warnOnUnknowDevices, forKey: "CryptoParanoid")
     }
     
 }

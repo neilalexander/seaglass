@@ -100,6 +100,10 @@ class MatrixServices: NSObject {
         }
         print("Opening session...")
         
+        if self.session.crypto != nil {
+            self.session.crypto.warnOnUnknowDevices = UserDefaults.standard.bool(forKey: "CryptoParanoid")
+        }
+        
         DispatchQueue.main.async {
             print("Handing off to services delegate")
             self.state = .started
@@ -202,10 +206,6 @@ class MatrixServices: NSObject {
                 print("Enabling cache")
                 fileStore = MXFileStore()
             }
-        }
-        
-        if self.session.crypto != nil {
-            self.session.crypto.warnOnUnknowDevices = false
         }
         
         session.setStore(fileStore) { response in
