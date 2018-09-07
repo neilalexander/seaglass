@@ -35,23 +35,27 @@ class PopoverEncryptionDevice: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard event != nil else { return }
+        guard event != nil else {
+            DeviceVerified.isEnabled = false
+            DeviceBlacklisted.isEnabled = false
+            return
+        }
         
         if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event) {
-            if deviceInfo.deviceId == nil {
-                DeviceVerified.isEnabled = false
-                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
-            } else if deviceInfo.userId == MatrixServices.inst.session.myUser.userId {
-                DeviceVerified.isEnabled = deviceInfo.deviceId != MatrixServices.inst.client.credentials.deviceId
-                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
-            }
-            
             DeviceName.stringValue = deviceInfo.displayName ?? ""
             DeviceID.stringValue = deviceInfo.deviceId ?? ""
             DeviceFingerprint.stringValue = deviceInfo.fingerprint ?? ""
+            
+            if deviceInfo.userId == MatrixServices.inst.session.myUser.userId {
+                DeviceVerified.isEnabled = deviceInfo.deviceId != MatrixServices.inst.client.credentials.deviceId
+                DeviceBlacklisted.isEnabled = DeviceVerified.isEnabled
+            }
 
             DeviceVerified.state = deviceInfo.verified == MXDeviceVerified ? .on : .off
             DeviceBlacklisted.state = deviceInfo.verified == MXDeviceBlocked ? .on : .off
+        } else {
+            DeviceVerified.isEnabled = false
+            DeviceBlacklisted.isEnabled = false
         }
         
         MessageAlgorithm.stringValue = event!.wireContent["algorithm"] as? String ?? ""
