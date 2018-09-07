@@ -93,7 +93,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomTyping = false
         
         var returnedEvent: MXEvent?
-        if sender.stringValue.starts(with: "/me ") {
+        if sender.stringValue.starts(with: "/invite ") {
+            let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 8)
+            let invitee = MXRoomInvitee.userId(String(unformattedText[startIndex...]).trimmingCharacters(in: .whitespacesAndNewlines))
+            
+            MatrixServices.inst.session.room(withRoomId: roomId).invite(invitee) { (response) in
+                if response.isFailure {
+                    if let error = response.error {
+                        print("Failed to invite: \(error.localizedDescription)")
+                    }
+                }
+            }
+        } else if sender.stringValue.starts(with: "/me ") {
             let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 4)
             var localReturnedEvent: String? = nil
             MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
