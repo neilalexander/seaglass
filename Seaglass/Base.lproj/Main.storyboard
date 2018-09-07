@@ -3028,20 +3028,20 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="EncryptionDeviceInfo" id="Dwb-jp-heA" customClass="PopoverEncryptionDevice" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="wee-KU-zGF">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="253"/>
+                        <rect key="frame" x="0.0" y="0.0" width="361" height="253"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOO-VT-BjW">
-                                <rect key="frame" x="18" y="216" width="315" height="17"/>
+                                <rect key="frame" x="119" y="216" width="227" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unnamed Device" id="2In-Xe-3YT">
-                                    <font key="font" metaFont="systemBold"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unnamed Device" id="2In-Xe-3YT">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d27-Mu-U5m">
-                                <rect key="frame" x="18" y="50" width="315" height="17"/>
+                                <rect key="frame" x="18" y="50" width="325" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Message Encryption" placeholderString="Unnamed Device" id="Jrv-c5-1Xr">
                                     <font key="font" metaFont="systemBold"/>
@@ -3058,17 +3058,17 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kkl-B1-PLe">
-                                <rect key="frame" x="109" y="142" width="224" height="42"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQh-uc-ZpL">
+                                <rect key="frame" x="18" y="216" width="88" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unknown fingerprint" id="jF3-KY-hfy">
-                                    <font key="font" size="12" name="Menlo-Regular"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Name:" id="sg8-sL-DE7">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mAT-Os-IAp">
-                                <rect key="frame" x="109" y="192" width="224" height="17"/>
+                                <rect key="frame" x="120" y="192" width="226" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unknown device ID" id="rYb-hX-eyV">
                                     <font key="font" size="12" name="Menlo-Regular"/>
@@ -3108,7 +3108,7 @@ DQ
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="276-3K-g6L">
-                                <rect key="frame" x="20" y="78" width="311" height="5"/>
+                                <rect key="frame" x="20" y="78" width="324" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U00-4F-JRz">
@@ -3121,9 +3121,18 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uxr-yq-xXQ">
-                                <rect key="frame" x="107" y="20" width="224" height="22"/>
+                                <rect key="frame" x="107" y="20" width="236" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unknown algorithm" id="MNM-bI-icB">
+                                    <font key="font" size="12" name="Menlo-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kkl-B1-PLe">
+                                <rect key="frame" x="120" y="142" width="226" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unknown fingerprint" id="jF3-KY-hfy">
                                     <font key="font" size="12" name="Menlo-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -3142,7 +3151,7 @@ DQ
                 </viewController>
                 <customObject id="jpj-o3-12d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849.5" y="556.5"/>
+            <point key="canvasLocation" x="1854.5" y="556.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="0TR-Yv-Vi3">
