@@ -365,6 +365,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
  
         RoomInsertButton.alphaValue = isInvite ? 0 : 1
         RoomMessageInput.alphaValue = isInvite ? 0 : 1
+        RoomMessageInput.emojiButton.isEnabled = !isInvite
         
         RoomInviteLabel.isHidden = !isInvite
         RoomInviteLabel.alphaValue = isInvite ? 1 : 0
