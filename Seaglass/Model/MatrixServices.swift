@@ -23,7 +23,8 @@ protocol MatrixServicesDelegate: AnyObject {
     func matrixDidLogin(_ session: MXSession)
     func matrixWillLogout()
     func matrixDidLogout()
-    func matrixDidReceiveKeyRequest(_ notification: Notification)
+    func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest)
+    func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation)
 }
 
 protocol MatrixRoomsDelegate: AnyObject {
@@ -132,14 +133,11 @@ class MatrixServices: NSObject {
         }
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-            print("Room key request")
-            print(notification)
-            self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification)
+            self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequest)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-            print("Room key request cancellation")
-            print(notification)
+            self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequestCancellation(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequestCancellation)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in

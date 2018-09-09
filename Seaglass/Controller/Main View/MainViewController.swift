@@ -69,9 +69,15 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
             NSApplication.shared.terminate(self)
         })
     }
-
-    func matrixDidReceiveKeyRequest(_ notification: Notification) {
+    
+    func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest) {
         print("RECEIVED A KEY REQUEST")
+        print(request)
+    }
+    
+    func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation) {
+        print("RECEIVED A KEY REQUEST CANCELLATION")
+        print(cancellation)
     }
     
 }
