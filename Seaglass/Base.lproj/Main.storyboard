@@ -11,8 +11,8 @@
         <scene sceneID="MTs-cc-1GA">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="aqV-Si-XFo" sceneMemberID="viewController">
-                    <window key="window" title="About Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="8Rg-uj-Dgd" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                    <window key="window" title="About Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="8Rg-uj-Dgd" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="917" y="437" width="212" height="97"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
                         <connections>
@@ -53,17 +53,6 @@ Copyright 2018 © Avery Pierce</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
-                                <rect key="frame" x="255" y="13" width="148" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="View source code" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MgY-YZ-hPJ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
-                                </connections>
-                            </button>
                             <box fixedFrame="YES" boxType="custom" borderType="line" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="qZ0-2F-wba">
                                 <rect key="frame" x="-1" y="-1" width="237" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
@@ -72,7 +61,7 @@ Copyright 2018 © Avery Pierce</string>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s2r-iU-gFW">
-                                            <rect key="frame" x="18" y="123" width="199" height="33"/>
+                                            <rect key="frame" x="18" y="113" width="199" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Seaglass" id="4XV-6I-EQn">
                                                 <font key="font" metaFont="systemLight" size="27"/>
@@ -81,7 +70,7 @@ Copyright 2018 © Avery Pierce</string>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwg-T9-Cbg">
-                                            <rect key="frame" x="-2" y="90" width="239" height="25"/>
+                                            <rect key="frame" x="-2" y="80" width="239" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Copyright © 2018 Neil Alexander" id="FD7-R8-2cL">
                                                 <font key="font" metaFont="systemLight" size="13"/>
@@ -90,21 +79,12 @@ Copyright 2018 © Avery Pierce</string>
                                             </textFieldCell>
                                         </textField>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gI5-nD-zQj">
-                                            <rect key="frame" x="53" y="175" width="128" height="128"/>
+                                            <rect key="frame" x="53" y="165" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="Bgo-pV-E1e"/>
                                         </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-BI-uBj">
-                                            <rect key="frame" x="-2" y="0.0" width="239" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Experimental Build" id="NaX-Gd-pAe">
-                                                <font key="font" metaFont="systemLight" size="13"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1y-bc-snR">
-                                            <rect key="frame" x="-2" y="32" width="239" height="50"/>
+                                            <rect key="frame" x="-2" y="0.0" width="239" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Version:" id="PFQ-kW-PRi">
                                                 <font key="font" metaFont="systemLight" size="13"/>
@@ -117,6 +97,26 @@ Copyright 2018 © Avery Pierce</string>
                                 <color key="borderColor" red="0.48506314766839376" green="0.48506314766839376" blue="0.48506314766839376" alpha="0.41999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-BI-uBj">
+                                <rect key="frame" x="259" y="20" width="210" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Experimental Build" id="NaX-Gd-pAe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
+                                <rect key="frame" x="469" y="13" width="148" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="View source code" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MgY-YZ-hPJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
