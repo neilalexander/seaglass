@@ -104,11 +104,18 @@ class MatrixServices: NSObject {
         }
     }
     
-    func didStart(_ response: MXResponse<Void>) -> Void {
+    func didStart(_ response: MXResponse<Void>, success: (() -> Void)?, failure: (() -> Void)?) -> Void {
         guard response.isSuccess else {
             print("Open session failed: \(response.error!.localizedDescription), trying again in 5 seconds...")
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                self.session.start(withMessagesLimit: nil, completion: self.didStart)
+                self.session.start(completion: { (response) in
+                    self.didStart(response, success: success, failure: failure)
+                    if response.isSuccess {
+                        success?()
+                    } else {
+                        failure?()
+                    }
+                })
             }
             return
         }
@@ -232,10 +239,9 @@ class MatrixServices: NSObject {
                 }
                 return
             }
-                
-           // self.session.start(withMessagesLimit: nil, completion: self.didStart)
+            
             self.session.start(completion: { (response) in
-                self.didStart(response)
+                self.didStart(response, success: success, failure: failure)
                 if response.isSuccess {
                     success?()
                 } else {
