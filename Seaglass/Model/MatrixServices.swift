@@ -19,15 +19,6 @@
 import Cocoa
 import SwiftMatrixSDK
 
-protocol ViewControllerWithDelegates {
-    var roomsController: MainViewRoomsController? { get }
-    var channelController: MainViewRoomController? { get }
-    
-    var servicesDelegate: MatrixServicesDelegate? { get }
-    var roomsDelegate: MatrixRoomsDelegate? { get }
-    var channelDelegate: MatrixRoomDelegate? { get }
-}
-
 protocol MatrixServicesDelegate: AnyObject {
     func matrixDidLogin(_ session: MXSession)
     func matrixWillLogout()
@@ -70,7 +61,7 @@ class MatrixServices: NSObject {
     var eventListeners: Dictionary<String, MXEventListener> = [:]
     var eventCache: Dictionary<String, [MXEvent]> = [:]
     
-    var mainController: ViewControllerWithDelegates?
+    var mainController: MainViewController?
     
     var credentials: MXCredentials? {
         didSet {

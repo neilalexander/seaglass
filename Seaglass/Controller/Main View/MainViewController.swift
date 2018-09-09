@@ -19,7 +19,7 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
+class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     
     let defaults = UserDefaults.standard
     
