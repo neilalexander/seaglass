@@ -25,8 +25,13 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
     
     func windowShouldClose(_ sender: NSWindow) -> Bool {
+        print("Main window should close?")
         NSApplication.shared.hide(nil)
         return false
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+        print("Main window will close")
     }
 
 }
