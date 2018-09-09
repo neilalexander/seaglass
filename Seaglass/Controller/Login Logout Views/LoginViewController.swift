@@ -33,7 +33,7 @@ class LoginSuccessfulSegue: NSStoryboardSegue {
     }
 }
 
-class LoginViewController: NSViewController, MatrixServicesDelegate {
+class LoginViewController: NSViewController {
 
     let defaults = UserDefaults.standard
     
@@ -234,22 +234,6 @@ class LoginViewController: NSViewController, MatrixServicesDelegate {
         } else if sender.title == "Quit" {
             NSApplication.shared.terminate(self)
         }
-    }
-    
-    func matrixDidLogin(_ session: MXSession) {
-        
-    }
-    
-    func matrixWillLogout() {
-        
-    }
-    
-    func matrixDidLogout() {
-        
-    }
-    
-    func matrixDidReceiveKeyRequest(_ notification: Notification) {
-        
     }
 }
 
