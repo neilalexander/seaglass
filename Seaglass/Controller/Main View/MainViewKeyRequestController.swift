@@ -33,7 +33,8 @@ class MainViewKeyRequestController: NSViewController {
     
     override func viewWillAppear() {
         guard request != nil else { return }
-        
+
+        // TODO: This is the wrong key
         if let senderkey = request!.requestBody["sender_key"] as? String {
             DeviceNameField.stringValue = String(senderkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
         } else {
@@ -67,13 +68,15 @@ class MainViewKeyRequestController: NSViewController {
         guard request != nil else { return }
         guard sender == DontShareButton else { return }
         
-        self.dismiss(sender)
+        MatrixServices.inst.session.crypto.ignore(request) {
+            self.dismiss(sender)
+        }
     }
     
     @IBAction func ignoreButtonPressed(_ sender: NSButton) {
         guard sender == IgnoreButton else { return }
         
-        MatrixServices.inst.session.crypto.ignore(request) {
+        MatrixServices.inst.session.crypto.ignoreAllPendingKeyRequests(fromUser: request!.userId, andDevice: request!.deviceId) {
             self.dismiss(sender)
         }
     }

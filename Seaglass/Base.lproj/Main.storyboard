@@ -3591,7 +3591,7 @@ Gw
             <objects>
                 <windowController showSeguePresentationStyle="single" id="E3s-rl-kqU" customClass="MainWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="MainWindowController" title="Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="MainWindow" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="eke-Xd-8nX">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="389" y="343" width="411" height="95"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
@@ -3750,6 +3750,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>
