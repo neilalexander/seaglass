@@ -37,25 +37,17 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     override func viewDidLoad() {
         MatrixServices.inst.mainController = self
         
-        super.viewDidLoad()
-    }
-
-    override func viewWillAppear() {
         roomsController = childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first
         channelController = childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first
         
         roomsController?.mainController = self
         channelController?.mainController = self
         
-        super.viewWillAppear()
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
         servicesDelegate = self
         roomsDelegate = roomsController
         channelDelegate = channelController
+        
+        super.viewDidLoad()
     }
     
     func matrixDidLogin(_ session: MXSession) {
