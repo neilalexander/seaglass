@@ -29,6 +29,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     weak var servicesDelegate: MatrixServicesDelegate?
     weak var roomsDelegate: MatrixRoomsDelegate?
     weak var channelDelegate: MatrixRoomDelegate?
+    
+    
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -71,13 +73,19 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     }
     
     func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest) {
-        print("RECEIVED A KEY REQUEST")
-        print(request)
+        print("Received a keysharing request: \(request)")
+        print("Request body: \(request.requestBody)")
+        
+        guard request.userId == MatrixServices.inst.session.myUser.userId else { return }
+        guard (request.requestBody["sender_key"] as? String) != nil else { return }
+        
+        let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
+        sheet.request = request
+        self.presentViewControllerAsSheet(sheet)
     }
     
     func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation) {
-        print("RECEIVED A KEY REQUEST CANCELLATION")
-        print(cancellation)
+        print("Received a keysharing cancellation: \(cancellation)")
     }
     
 }

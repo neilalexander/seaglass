@@ -134,10 +134,12 @@ class MatrixServices: NSObject {
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequest)
+            print(notification)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequestCancellation(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequestCancellation)
+            print(notification)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in

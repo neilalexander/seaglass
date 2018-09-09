@@ -47,6 +47,7 @@
 		399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC320C806D900A2644A /* MainViewRoomsController.swift */; };
 		399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399E6FC520C806E700A2644A /* MainViewRoomController.swift */; };
 		39A7D0A421459BE80019AF6C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7D0A321459BE80019AF6C /* MainWindowController.swift */; };
+		39A7D0AC2145D6810019AF6C /* MainViewKeyRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7D0AB2145D6810019AF6C /* MainViewKeyRequestController.swift */; };
 		39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BE2447211DBF25006B0A8B /* NSImage.swift */; };
 		39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */; };
 		39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */; };
@@ -126,6 +127,7 @@
 		399E6FC320C806D900A2644A /* MainViewRoomsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomsController.swift; sourceTree = "<group>"; };
 		399E6FC520C806E700A2644A /* MainViewRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRoomController.swift; sourceTree = "<group>"; };
 		39A7D0A321459BE80019AF6C /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		39A7D0AB2145D6810019AF6C /* MainViewKeyRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewKeyRequestController.swift; sourceTree = "<group>"; };
 		39BE2447211DBF25006B0A8B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewJoinController.swift; sourceTree = "<group>"; };
 		39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPartController.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				39640E37212E09130060F170 /* MainViewSendErrorController.swift */,
 				390377952142CDE600873E97 /* MainViewEncryptionController.swift */,
 				3903779B21431BD800873E97 /* MainViewInviteController.swift */,
+				39A7D0AB2145D6810019AF6C /* MainViewKeyRequestController.swift */,
 			);
 			path = "Main View";
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				39373485211CA475008AAB7D /* LoginWindowController.swift in Sources */,
+				39A7D0AC2145D6810019AF6C /* MainViewKeyRequestController.swift in Sources */,
 				39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */,
 				39640E38212E09130060F170 /* MainViewSendErrorController.swift in Sources */,
 				39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */,
