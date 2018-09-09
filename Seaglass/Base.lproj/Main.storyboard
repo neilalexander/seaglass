@@ -742,15 +742,15 @@ Copyright 2018 © Avery Pierce</string>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="ybo-8F-whA"/>
             </objects>
-            <point key="canvasLocation" x="205" y="-70"/>
+            <point key="canvasLocation" x="-139" y="-158"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="LoginWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="LoginWindowController" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
-                        <rect key="contentRect" x="0.0" y="0.0" width="450" height="200"/>
+                        <rect key="contentRect" x="0.0" y="0.0" width="450" height="96"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
                         <value key="minSize" type="size" width="450" height="200"/>
                         <connections>
@@ -763,7 +763,7 @@ Copyright 2018 © Avery Pierce</string>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-112" y="253"/>
+            <point key="canvasLocation" x="-423" y="131"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="pYk-Hi-Wui">
@@ -785,7 +785,7 @@ Copyright 2018 © Avery Pierce</string>
                 <customObject id="q1c-Q9-vWE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <dictionaryController objectClassName="_NSDictionaryControllerKeyValuePair" id="Wn8-5a-elx"/>
             </objects>
-            <point key="canvasLocation" x="780" y="452"/>
+            <point key="canvasLocation" x="211" y="478"/>
         </scene>
         <!--Member List Controller-->
         <scene sceneID="Tbh-Y1-Evn">
@@ -1949,7 +1949,7 @@ Gw
                 </viewController>
                 <customObject id="xPJ-9W-9xh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="260"/>
+            <point key="canvasLocation" x="762" y="158"/>
         </scene>
         <!--Main View Send Error Controller-->
         <scene sceneID="D1D-4d-iZF">
@@ -2033,7 +2033,7 @@ Gw
                 </viewController>
                 <customObject id="RP6-gI-CSw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="532"/>
+            <point key="canvasLocation" x="761" y="419"/>
         </scene>
         <!--Main View Part Controller-->
         <scene sceneID="Bcb-5U-On0">
@@ -3205,7 +3205,7 @@ DQ
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="276-3K-g6L">
-                                <rect key="frame" x="20" y="78" width="324" height="5"/>
+                                <rect key="frame" x="20" y="78" width="324" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U00-4F-JRz">
@@ -3248,7 +3248,7 @@ DQ
                 </viewController>
                 <customObject id="jpj-o3-12d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854.5" y="556.5"/>
+            <point key="canvasLocation" x="1224" y="455"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="0TR-Yv-Vi3">
@@ -3269,7 +3269,7 @@ DQ
                 </windowController>
                 <customObject id="PJm-sb-mRb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93" y="-427"/>
+            <point key="canvasLocation" x="-369" y="-460"/>
         </scene>
         <!--Logout View Controller-->
         <scene sceneID="a6h-OK-eNO">
@@ -3298,7 +3298,7 @@ DQ
                 </viewController>
                 <customObject id="ZjY-4u-aBz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-178" y="-132"/>
+            <point key="canvasLocation" x="58" y="-460"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="e7s-8z-WY8">
@@ -3420,23 +3420,6 @@ Gw
                                 </connections>
                             </button>
                         </subviews>
-                        <backgroundFilters>
-                            <ciFilter name="CIGlassLozenge">
-                                <configuration>
-                                    <null key="inputImage"/>
-                                    <ciVector key="inputPoint0">
-                                        <real value="150"/>
-                                        <real value="150"/>
-                                    </ciVector>
-                                    <ciVector key="inputPoint1">
-                                        <real value="350"/>
-                                        <real value="150"/>
-                                    </ciVector>
-                                    <real key="inputRadius" value="100"/>
-                                    <real key="inputRefraction" value="1.7"/>
-                                </configuration>
-                            </ciFilter>
-                        </backgroundFilters>
                     </view>
                     <connections>
                         <outlet property="AdvancedSettingsButton" destination="fER-D9-2bd" id="sqk-9o-pde"/>
@@ -3449,12 +3432,34 @@ Gw
                         <outlet property="RememberCheckbox" destination="p2r-aG-1rM" id="QVs-5n-b9E"/>
                         <outlet property="UsernameField" destination="kb5-hl-hdI" id="cqq-Xl-sq1"/>
                         <outlet property="UsernameLabel" destination="WBf-re-He3" id="dQv-0B-Djh"/>
-                        <segue destination="TwD-Wi-H8c" kind="custom" identifier="OpenMainView" customClass="ReplaceSheetSegue" customModule="Seaglass" customModuleProvider="target" id="yIL-OT-E9p"/>
+                        <segue destination="E3s-rl-kqU" kind="custom" identifier="OpenMainView" customClass="LoginSuccessfulSegue" customModule="Seaglass" customModuleProvider="target" id="A0O-ZR-gzr"/>
                     </connections>
                 </viewController>
                 <customObject id="Yc3-Ct-VMt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2" y="654"/>
+            <point key="canvasLocation" x="-423" y="460"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="u1A-V2-SbN">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="E3s-rl-kqU" customClass="MainWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="MainWindowController" title="Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="eke-Xd-8nX">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="389" y="343" width="411" height="95"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
+                        <connections>
+                            <outlet property="delegate" destination="E3s-rl-kqU" id="LgK-Qm-4zi"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="TwD-Wi-H8c" kind="relationship" relationship="window.shadowedContentViewController" id="Zu7-l3-TnW"/>
+                    </connections>
+                </windowController>
+                <customObject id="QNC-Fl-p1c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="131"/>
         </scene>
         <!--Login View Settings Controller-->
         <scene sceneID="IF4-CQ-Fou">
@@ -3505,7 +3510,7 @@ Gw
                 </viewController>
                 <customObject id="hRX-im-vpc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1020"/>
+            <point key="canvasLocation" x="-423" y="823"/>
         </scene>
         <!--Popover User List-->
         <scene sceneID="Xp7-LZ-gMb">

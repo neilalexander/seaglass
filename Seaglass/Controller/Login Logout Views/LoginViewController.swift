@@ -19,20 +19,15 @@
 import Cocoa
 import SwiftMatrixSDK
 
-class ReplaceSheetSegue: NSStoryboardSegue {
+class LoginSuccessfulSegue: NSStoryboardSegue {
     override func perform() {
-        if let src = self.sourceController as? NSViewController,
-            let dest = self.destinationController as? NSViewController,
-            let window = src.view.window {
+        if let src = self.sourceController as? NSViewController, let dest = self.destinationController as? NSWindowController {
             NSAnimationContext.runAnimationGroup({ (context) in
                 context.duration = 0.5
-                window.animator().alphaValue = 0
+                src.view.window!.animator().alphaValue = 0
             }, completionHandler: {
-                window.contentViewController = dest
-                NSAnimationContext.runAnimationGroup({ (context) in
-                    context.duration = 0.5
-                    window.animator().alphaValue = 1
-                })
+                src.view.window!.close()
+                dest.showWindow(src)
             })
         }
     }

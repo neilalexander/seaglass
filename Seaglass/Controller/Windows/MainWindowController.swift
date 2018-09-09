@@ -18,8 +18,8 @@
 
 import Cocoa
 
-class WindowController: NSWindowController, NSWindowDelegate {
-
+class MainWindowController: NSWindowController, NSWindowDelegate {
+    
     override func windowDidLoad() {
         super.windowDidLoad()
     }
@@ -28,5 +28,5 @@ class WindowController: NSWindowController, NSWindowDelegate {
         NSApplication.shared.hide(nil)
         return false
     }
-    
+
 }
