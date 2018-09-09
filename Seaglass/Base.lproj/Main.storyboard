@@ -698,6 +698,11 @@ Copyright 2018 © Avery Pierce</string>
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
+                                        <menuItem title="Close Window" keyEquivalent="w" id="Ks9-SY-rqc">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="lTS-il-kmu"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
