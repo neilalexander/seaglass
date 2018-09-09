@@ -33,14 +33,7 @@ class LoginSuccessfulSegue: NSStoryboardSegue {
     }
 }
 
-class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
-    
-    weak var roomsController: MainViewRoomsController?
-    weak var channelController: MainViewRoomController?
-    
-    weak var servicesDelegate: MatrixServicesDelegate?
-    weak var roomsDelegate: MatrixRoomsDelegate?
-    weak var channelDelegate: MatrixRoomDelegate?
+class LoginViewController: NSViewController, MatrixServicesDelegate {
 
     let defaults = UserDefaults.standard
     
@@ -59,8 +52,6 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         super.viewDidAppear()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshUsernamePlaceholder), name: UserDefaults.didChangeNotification, object: nil)
-        
-        servicesDelegate = self
         
         UsernameField.stringValue = defaults.string(forKey: "UserID") ?? ""
         if UsernameField.stringValue != "" {
@@ -234,18 +225,6 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
         }
     }
     
-    override func viewDidLoad() {
-        MatrixServices.inst.mainController = self
-        
-        super.viewDidLoad()
-    }
-    
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     func matrixDidLogin(_ session: MXSession) {
         self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
     }
@@ -255,6 +234,10 @@ class LoginViewController: NSViewController, MatrixServicesDelegate, ViewControl
     }
     
     func matrixDidLogout() {
+        
+    }
+    
+    func matrixDidReceiveKeyRequest(_ notification: Notification) {
         
     }
 }

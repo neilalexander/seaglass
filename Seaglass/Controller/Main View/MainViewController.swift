@@ -19,28 +19,6 @@
 import Cocoa
 import SwiftMatrixSDK
 
-protocol MatrixServicesDelegate: AnyObject {
-    func matrixDidLogin(_ session: MXSession)
-    func matrixWillLogout()
-    func matrixDidLogout()
-}
-
-protocol MatrixRoomsDelegate: AnyObject {
-    func matrixDidJoinRoom(_ room: MXRoom)
-    func matrixDidPartRoom(_ room: MXRoom)
-    func matrixDidUpdateRoom(_ room: MXRoom)
-    func matrixIsRoomKnown(_ room: MXRoom) -> Bool
-}
-
-protocol MatrixRoomDelegate: AnyObject {
-    func uiDidSelectRoom(entry: RoomListEntry)
-    func uiRoomNeedsCryptoReload()
-    func uiRoomStartInvite()
-    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool)
-    func matrixDidRoomUserJoin()
-    func matrixDidRoomUserPart()
-}
-
 class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewControllerWithDelegates {
     
     let defaults = UserDefaults.standard
@@ -78,19 +56,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
         servicesDelegate = self
         roomsDelegate = roomsController
         channelDelegate = channelController
-        
-        view.window?.title = "Seaglass"
-        view.window?.styleMask.update(with: .closable)
-        view.window?.styleMask.update(with: .miniaturizable)
-        view.window?.styleMask.update(with: .resizable)
     }
     
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
-    }
-
     func matrixDidLogin(_ session: MXSession) {
     }
     
@@ -102,7 +69,6 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
     }
     
     func matrixDidLogout() {
-        // self.view.window?.endSheet(self.view.window!.attachedSheet!)
         view.window?.close()
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
@@ -112,4 +78,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate, ViewCon
         })
     }
 
+    func matrixDidReceiveKeyRequest(_ notification: Notification) {
+        print("RECEIVED A KEY REQUEST")
+    }
+    
 }

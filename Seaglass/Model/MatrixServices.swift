@@ -28,6 +28,29 @@ protocol ViewControllerWithDelegates {
     var channelDelegate: MatrixRoomDelegate? { get }
 }
 
+protocol MatrixServicesDelegate: AnyObject {
+    func matrixDidLogin(_ session: MXSession)
+    func matrixWillLogout()
+    func matrixDidLogout()
+    func matrixDidReceiveKeyRequest(_ notification: Notification)
+}
+
+protocol MatrixRoomsDelegate: AnyObject {
+    func matrixDidJoinRoom(_ room: MXRoom)
+    func matrixDidPartRoom(_ room: MXRoom)
+    func matrixDidUpdateRoom(_ room: MXRoom)
+    func matrixIsRoomKnown(_ room: MXRoom) -> Bool
+}
+
+protocol MatrixRoomDelegate: AnyObject {
+    func uiDidSelectRoom(entry: RoomListEntry)
+    func uiRoomNeedsCryptoReload()
+    func uiRoomStartInvite()
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool)
+    func matrixDidRoomUserJoin()
+    func matrixDidRoomUserPart()
+}
+
 class MatrixServices: NSObject {
     static let inst = MatrixServices()
     static let credKey = "Matrix"
@@ -109,10 +132,11 @@ class MatrixServices: NSObject {
             self.state = .started
             self.mainController?.servicesDelegate?.matrixDidLogin(self.session);
         }
-        
+
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
             print("Room key request")
             print(notification)
+            self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
