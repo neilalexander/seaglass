@@ -428,7 +428,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 if !event.isRedactedEvent() && event.content.count > 0 {
                    // OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
                    // OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
-                    self.RoomMessageTableView.reloadData(forRowIndexes: IndexSet([index]), columnIndexes: IndexSet([0]))
+                    self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap)
+                    self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
                 } else if removeOnReplace {
                     self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp)
                 }
