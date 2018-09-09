@@ -250,9 +250,7 @@ class MatrixServices: NSObject {
     
     func subscribeToRoom(roomId: String) {
         guard let room = self.session.room(withRoomId: roomId) else { return }
-        if eventListeners[roomId] != nil {
-            return
-        }
+        guard eventListeners[roomId] == nil else { return }
         
         if room.state.isEncrypted {
             session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
@@ -263,12 +261,8 @@ class MatrixServices: NSObject {
         }
         
         eventListeners[roomId] = room.liveTimeline.listenToEvents() { (event, direction, roomState) in
-            if event.roomId == nil {
-                return
-            }
-            if event.roomId == "" {
-                return
-            }
+            guard event.roomId != nil && event.roomId != "" else { return }
+            
             if !self.eventCache.keys.contains(event.roomId) {
                 self.eventCache[event.roomId] = []
             }
@@ -277,15 +271,15 @@ class MatrixServices: NSObject {
             case "m.room.redaction":
                 for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {
                     if let index = self.eventCache[event.roomId]!.index(of: e) {
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: e.prune(), direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: false);
-                        self.eventCache[event.roomId]![index] = e.prune()
+                        let pruned = e.prune()!
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: true)
+                        self.eventCache[event.roomId]![index] = pruned
                     }
                 }
                 break
             default:
-                if !cacheTypes.contains(event.type) {
-                    return
-                }
+                guard cacheTypes.contains(event.type) else { break }
+                
                 if !self.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
                     if direction == .forwards {
                         self.eventCache[event.roomId]!.append(event)

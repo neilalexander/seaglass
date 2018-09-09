@@ -418,20 +418,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool = false) {
-        if event.roomId == nil {
-            return
-        }
-        if !MatrixServices.inst.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) {
-            return
-        }
+        guard event.roomId == roomId else { return }
+        guard MatrixServices.inst.eventCache[event.roomId]!.contains(where: { $0.eventId == event.eventId }) else { return }
+        
         let cache = getFilteredRoomCache(for: roomId)
         if replaces != nil {
             if let index = cache.index(where: { $0.eventId == event.eventId }) {
-                if !event.isRedactedEvent() && event.content.count > 0 {
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
+                if !event.isRedactedEvent() && event.content.count > 0 { // THIS shouldn't ever happen because of the event cache filtering
+                   // OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
+                   // OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
+                    self.RoomMessageTableView.reloadData(forRowIndexes: IndexSet([index]), columnIndexes: IndexSet([0]))
                 } else if removeOnReplace {
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp) })
+                    self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp)
                 }
                 return
             }
