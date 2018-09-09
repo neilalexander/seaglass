@@ -151,8 +151,6 @@ class RoomPowerLevelsController: NSViewController {
     
     @IBAction func saveButtonClicked(_ sender: NSButton) {
         let group = DispatchGroup()
-        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
-        guard let powerLevels = room.state.powerLevels else { return }
         
         if PowerLevelDefault.integerValue != initialPowerLevelDefault! {
             print("Default power level changed")

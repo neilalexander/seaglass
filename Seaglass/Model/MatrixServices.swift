@@ -206,7 +206,7 @@ class MatrixServices: NSObject {
         }
     }
     
-    func start(_ credentials: MXCredentials, disableCache: Bool) {
+    func start(_ credentials: MXCredentials, disableCache: Bool, success: (() -> Void)?, failure: (() -> Void)?) {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
         
@@ -237,12 +237,20 @@ class MatrixServices: NSObject {
             if case .failure(let error) = response {
                 print("Set store failed: \(error.localizedDescription), trying again in 5 seconds...")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.start(credentials, disableCache: disableCache)
+                    self.start(credentials, disableCache: disableCache, success: success, failure: failure)
                 }
                 return
             }
                 
-            self.session.start(withMessagesLimit: nil, completion: self.didStart)
+           // self.session.start(withMessagesLimit: nil, completion: self.didStart)
+            self.session.start(completion: { (response) in
+                self.didStart(response)
+                if response.isSuccess {
+                    success?()
+                } else {
+                    failure?()
+                }
+            })
         }
     }
     

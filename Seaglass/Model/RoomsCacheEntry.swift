@@ -94,7 +94,7 @@ class RoomsCacheEntry: NSObject {
     }
     
     func highlights() -> Int {
-        var highlights: Int = 0
+        let highlights: Int = 0
        /* if !MatrixServices.inst.eventCache.keys.contains(self.roomId) {
             return 0
         }

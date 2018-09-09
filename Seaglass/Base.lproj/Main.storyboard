@@ -3205,7 +3205,7 @@ DQ
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="276-3K-g6L">
-                                <rect key="frame" x="20" y="78" width="324" height="4"/>
+                                <rect key="frame" x="20" y="78" width="324" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U00-4F-JRz">

@@ -50,7 +50,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        
+    
         NotificationCenter.default.addObserver(self, selector: #selector(refreshUsernamePlaceholder), name: UserDefaults.didChangeNotification, object: nil)
         
         UsernameField.stringValue = defaults.string(forKey: "UserID") ?? ""
@@ -84,7 +84,13 @@ class LoginViewController: NSViewController, MatrixServicesDelegate {
             ProgressIndicator.isIndeterminate = true
             ProgressIndicator.startAnimation(self)
             
-            MatrixServices.inst.start(credentials!, disableCache: defaults.bool(forKey: "DisableCache"))
+            print("Starting Matrix")
+            MatrixServices.inst.start(credentials!, disableCache: defaults.bool(forKey: "DisableCache"), success: {
+                print("Started successfully - handing over to main view")
+                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
+            }) {
+                print("Failed to start")
+            }
         }
     }
     
@@ -162,7 +168,12 @@ class LoginViewController: NSViewController, MatrixServicesDelegate {
                 }
                 
                 print("Starting Matrix")
-                MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"))
+                MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"), success: {
+                    print("Started successfully - handing over to main view")
+                    self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
+                }) {
+                    print("Failed to start")
+                }
                 self.CancelButton.isEnabled = false
                 break
                 
@@ -226,7 +237,7 @@ class LoginViewController: NSViewController, MatrixServicesDelegate {
     }
     
     func matrixDidLogin(_ session: MXSession) {
-        self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
+        
     }
     
     func matrixWillLogout() {

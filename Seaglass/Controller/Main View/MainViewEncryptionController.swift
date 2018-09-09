@@ -78,7 +78,7 @@ class MainViewEncryptionController: NSViewController {
                     return
                 }
                 
-                print("Failed to enable encryption: \(response.error?.localizedDescription)")
+                print("Failed to enable encryption: \(response.error!.localizedDescription)")
                 self.dismiss(self)
             }
         })
