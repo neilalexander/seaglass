@@ -77,10 +77,8 @@ class AvatarImageView: ContextImageView {
                     DispatchQueue.main.async {
                         let previousUrl = self.url!
                         MXMediaManager.downloadMedia(fromURL: self.url!, andSaveAtFilePath: path, success: { [weak self] in
-                            if previousUrl != self?.url {
-                                return
-                            }
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                                guard previousUrl == self?.url else { return }
                                 self?.image = image
                                 self?.layout()
                             }
