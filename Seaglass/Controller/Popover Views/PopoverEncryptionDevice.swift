@@ -21,6 +21,8 @@ import SwiftMatrixSDK
 
 class PopoverEncryptionDevice: NSViewController {
 
+    @IBOutlet weak var DownloadSpinner: NSProgressIndicator!
+    
     @IBOutlet weak var DeviceName: NSTextField!
     @IBOutlet weak var DeviceID: NSTextField!
     @IBOutlet weak var DeviceFingerprint: NSTextField!
@@ -34,6 +36,8 @@ class PopoverEncryptionDevice: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DownloadSpinner.isHidden = true
         
         guard event != nil else {
             DeviceVerified.isEnabled = false
@@ -56,6 +60,26 @@ class PopoverEncryptionDevice: NSViewController {
         } else {
             DeviceVerified.isEnabled = false
             DeviceBlacklisted.isEnabled = false
+            
+            DownloadSpinner.isHidden = false
+            DownloadSpinner.startAnimation(self)
+            
+            MatrixServices.inst.session.crypto.deviceList.downloadKeys([event!.sender], forceDownload: true, success: { (devicemap) in
+                OperationQueue.main.addOperation {
+                    self.DownloadSpinner.stopAnimation(self)
+                    self.DownloadSpinner.isHidden = true
+                }
+                if MatrixServices.inst.session.crypto.eventSenderDevice(of: self.event) != nil {
+                    OperationQueue.main.addOperation {
+                        self.viewDidLoad()
+                    }
+                }
+            }) { (error) in
+                OperationQueue.main.addOperation {
+                    self.DownloadSpinner.stopAnimation(self)
+                    self.DownloadSpinner.isHidden = true
+                }
+            }
         }
         
         MessageAlgorithm.stringValue = event!.wireContent["algorithm"] as? String ?? ""

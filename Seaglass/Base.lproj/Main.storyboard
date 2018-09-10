@@ -997,7 +997,7 @@ Copyright 2018 © Avery Pierce</string>
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oea-9K-mEE">
-                                <rect key="frame" x="0.0" y="166" width="352" height="5"/>
+                                <rect key="frame" x="0.0" y="166" width="352" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2K3-se-GSi">
@@ -3355,10 +3355,6 @@ DQ
                                     <action selector="deviceVerificationChanged:" target="Dwb-jp-heA" id="5tA-KV-F4q"/>
                                 </connections>
                             </button>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="276-3K-g6L">
-                                <rect key="frame" x="20" y="78" width="324" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U00-4F-JRz">
                                 <rect key="frame" x="18" y="16" width="87" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -3386,6 +3382,14 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="5A5-Jr-dtu">
+                                <rect key="frame" x="328" y="217" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="E97-Lw-67o">
+                                <rect key="frame" x="20" y="77" width="324" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -3394,12 +3398,13 @@ DQ
                         <outlet property="DeviceID" destination="mAT-Os-IAp" id="Ci0-Zc-1gl"/>
                         <outlet property="DeviceName" destination="oOO-VT-BjW" id="T5u-dA-HFw"/>
                         <outlet property="DeviceVerified" destination="Nm5-fE-t3M" id="e6g-NL-Eii"/>
+                        <outlet property="DownloadSpinner" destination="5A5-Jr-dtu" id="kgN-Vm-Chk"/>
                         <outlet property="MessageAlgorithm" destination="Uxr-yq-xXQ" id="dPu-cI-ybx"/>
                     </connections>
                 </viewController>
                 <customObject id="jpj-o3-12d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1224" y="455"/>
+            <point key="canvasLocation" x="1223.5" y="454.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="0TR-Yv-Vi3">
