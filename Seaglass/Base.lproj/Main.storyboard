@@ -1736,7 +1736,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="Zef-Z1-kJl"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
+                                        <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="8LH-jH-SfS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -1749,7 +1749,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="ZCH-GV-MX7"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" alternateTitle="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="1Qb-3o-Mxb">
+                                        <buttonCell key="cell" type="square" alternateTitle="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="1Qb-3o-Mxb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <string key="keyEquivalent">i</string>

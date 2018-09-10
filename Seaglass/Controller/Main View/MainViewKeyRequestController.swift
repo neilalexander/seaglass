@@ -33,20 +33,28 @@ class MainViewKeyRequestController: NSViewController {
     
     override func viewWillAppear() {
         guard request != nil else { return }
-        let storedDevice = MatrixServices.inst.session.crypto.deviceList.storedDevice(request!.userId, deviceId: request!.deviceId)
+        
+        if let storedDevice = MatrixServices.inst.session.crypto.deviceList.storedDevice(request!.userId, deviceId: request!.deviceId) {
 
-        if let edkey = storedDevice?.fingerprint {
-            DeviceKeyField.stringValue = String(edkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
+            if let edkey = storedDevice.fingerprint {
+                DeviceKeyField.stringValue = String(edkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
+            }
+            
+            DeviceNameField.stringValue = storedDevice.displayName ?? ""
+            
+            UserIDField.stringValue = request!.userId
+            DeviceIDField.stringValue = request!.deviceId
+            
+            ConfirmationCheckbox.state = .off
         } else {
-            print("No fingerprint found")
+            let alert = NSAlert()
+            alert.messageText = "Incoming keyshare request failed"
+            alert.informativeText = "The device information was not available."
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            self.dismiss(self)
         }
-        
-        DeviceNameField.stringValue = storedDevice!.displayName ?? ""
-        
-        UserIDField.stringValue = request!.userId
-        DeviceIDField.stringValue = request!.deviceId
-        
-        ConfirmationCheckbox.state = .off
     }
 
     @IBAction func shareButtonPressed(_ sender: NSButton) {
