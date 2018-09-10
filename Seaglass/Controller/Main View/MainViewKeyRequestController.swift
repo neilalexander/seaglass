@@ -55,6 +55,16 @@ class MainViewKeyRequestController: NSViewController {
         guard ConfirmationCheckbox.state == .on else { return }
         
         MatrixServices.inst.session.crypto.acceptAllPendingKeyRequests(fromUser: request!.userId, andDevice: request!.deviceId) {
+            MatrixServices.inst.session.crypto.setDeviceVerification(MXDeviceVerified, forDevice: self.self.request!.deviceId, ofUser: self.request!.userId, success: {
+                MatrixServices.inst.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
+            }, failure: { (error) in
+                let alert = NSAlert()
+                alert.messageText = "Failed to verify device"
+                alert.informativeText = error!.localizedDescription
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+            })
             self.dismiss(sender)
             MatrixServices.inst.mainController?.matrixDidCompleteKeyRequest(self.request!)
         }
