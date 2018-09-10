@@ -24,6 +24,7 @@ class MainViewKeyRequestController: NSViewController {
     @IBOutlet weak var UserIDField: NSTextField!
     @IBOutlet weak var DeviceNameField: NSTextField!
     @IBOutlet weak var DeviceIDField: NSTextField!
+    @IBOutlet weak var DeviceKeyField: NSTextField!
     @IBOutlet weak var ConfirmationCheckbox: NSButton!
     @IBOutlet weak var ShareButton: NSButton!
     @IBOutlet weak var DontShareButton: NSButton!
@@ -36,10 +37,12 @@ class MainViewKeyRequestController: NSViewController {
 
         // TODO: This is the wrong key
         if let senderkey = request!.requestBody["sender_key"] as? String {
-            DeviceNameField.stringValue = String(senderkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
+            DeviceKeyField.stringValue = String(senderkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
         } else {
-            DeviceNameField.stringValue = ""
+            DeviceKeyField.stringValue = ""
         }
+        
+        DeviceNameField.stringValue = MatrixServices.inst.session.crypto.deviceList.storedDevice(request!.userId, deviceId: request!.deviceId).displayName
         
         UserIDField.stringValue = request!.userId
         DeviceIDField.stringValue = request!.deviceId

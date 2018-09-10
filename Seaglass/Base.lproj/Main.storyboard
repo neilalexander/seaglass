@@ -2040,11 +2040,11 @@ Gw
             <objects>
                 <viewController storyboardIdentifier="KeyRequest" id="mDG-tG-5ti" customClass="MainViewKeyRequestController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0K6-RV-5nY">
-                        <rect key="frame" x="0.0" y="0.0" width="565" height="277"/>
+                        <rect key="frame" x="0.0" y="0.0" width="565" height="306"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Om-LR-bsg">
-                                <rect key="frame" x="18" y="240" width="529" height="17"/>
+                                <rect key="frame" x="18" y="269" width="529" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="A device is requesting access to your encryption keys" id="mEX-oG-w1N">
                                     <font key="font" metaFont="systemBold"/>
@@ -2053,7 +2053,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-cf-d5C">
-                                <rect key="frame" x="18" y="164" width="529" height="68"/>
+                                <rect key="frame" x="18" y="193" width="529" height="68"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="MHe-oc-KRg">
                                     <font key="font" metaFont="system"/>
@@ -2063,7 +2063,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4a-kM-HBO">
-                                <rect key="frame" x="119" y="84" width="428" height="18"/>
+                                <rect key="frame" x="119" y="86" width="428" height="18"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Device Key not available" id="bEV-zj-syZ">
                                     <font key="font" size="12" name="Menlo-Regular"/>
@@ -2072,7 +2072,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GPz-g4-SH9">
-                                <rect key="frame" x="18" y="109" width="87" height="17"/>
+                                <rect key="frame" x="18" y="112" width="87" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device ID:" id="M8k-Gv-a8I">
                                     <font key="font" metaFont="system"/>
@@ -2081,7 +2081,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c0P-Zk-WLa">
-                                <rect key="frame" x="18" y="84" width="75" height="17"/>
+                                <rect key="frame" x="18" y="86" width="75" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Key:" id="8dQ-La-PNB">
                                     <font key="font" metaFont="system"/>
@@ -2090,7 +2090,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tSA-25-iAL">
-                                <rect key="frame" x="119" y="109" width="427" height="18"/>
+                                <rect key="frame" x="119" y="112" width="427" height="18"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Device ID not available" id="tWS-ZH-MpG">
                                     <font key="font" size="12" name="Menlo-Regular"/>
@@ -2098,17 +2098,24 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="day-Bm-N8w">
-                                <rect key="frame" x="18" y="53" width="465" height="18"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="I confirm that the shown Device Key matches the requesting device's key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="r2T-AL-b1S">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Whc-X6-McC">
+                                <rect key="frame" x="18" y="138" width="88" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Name:" id="rw2-qV-MUi">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="confirmationCheckboxPressed:" target="mDG-tG-5ti" id="xLt-Mr-Rjj"/>
-                                </connections>
-                            </button>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnM-am-TR8">
+                                <rect key="frame" x="119" y="137" width="427" height="18"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unnamed Device" id="eKP-Z4-T7G">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lUw-q1-p41">
                                 <rect key="frame" x="476" y="13" width="75" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -2137,24 +2144,6 @@ Gw
                                     <action selector="dontShareButtonPressed:" target="mDG-tG-5ti" id="XZx-Nw-tSH"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-X1-lx3">
-                                <rect key="frame" x="119" y="135" width="428" height="17"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="@someuser:matrix.org" id="LHB-9z-6kB">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xev-eP-vHY">
-                                <rect key="frame" x="18" y="135" width="53" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User ID:" id="c9T-q2-N7X">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEs-Z5-D8l">
                                 <rect key="frame" x="241" y="13" width="124" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -2166,12 +2155,42 @@ Gw
                                     <action selector="ignoreButtonPressed:" target="mDG-tG-5ti" id="VMW-i9-woj"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-X1-lx3">
+                                <rect key="frame" x="119" y="164" width="428" height="17"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="@someuser:matrix.org" id="LHB-9z-6kB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xev-eP-vHY">
+                                <rect key="frame" x="18" y="164" width="53" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User ID:" id="c9T-q2-N7X">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="day-Bm-N8w">
+                                <rect key="frame" x="18" y="54" width="465" height="18"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="I confirm that the shown Device Key matches the requesting device's key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="r2T-AL-b1S">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="confirmationCheckboxPressed:" target="mDG-tG-5ti" id="xLt-Mr-Rjj"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="ConfirmationCheckbox" destination="day-Bm-N8w" id="f6T-xp-ysa"/>
                         <outlet property="DeviceIDField" destination="tSA-25-iAL" id="6bE-la-Fcc"/>
-                        <outlet property="DeviceNameField" destination="i4a-kM-HBO" id="pp0-n3-dgf"/>
+                        <outlet property="DeviceKeyField" destination="i4a-kM-HBO" id="vlq-bu-IEn"/>
+                        <outlet property="DeviceNameField" destination="OnM-am-TR8" id="FQ6-lh-qzT"/>
                         <outlet property="DontShareButton" destination="fUG-cg-SaD" id="wsI-lu-oy0"/>
                         <outlet property="IgnoreButton" destination="fEs-Z5-D8l" id="La1-3u-Mlc"/>
                         <outlet property="ShareButton" destination="lUw-q1-p41" id="F8M-AW-htH"/>
@@ -2180,7 +2199,7 @@ Gw
                 </viewController>
                 <customObject id="0FS-gh-N8W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.5" y="612.5"/>
+            <point key="canvasLocation" x="1797.5" y="627"/>
         </scene>
         <!--Main View Part Controller-->
         <scene sceneID="Bcb-5U-On0">
