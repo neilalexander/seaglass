@@ -1731,10 +1731,9 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                             <customView identifier="TopVibrancyArea" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-GU-jfi" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="414" width="580" height="56"/>
                                 <subviews>
-                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
                                         <rect key="frame" x="522" y="8" width="23" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="ZKf-S3-SEA"/>
                                             <constraint firstAttribute="width" constant="23" id="Zef-Z1-kJl"/>
                                         </constraints>
                                         <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
@@ -1745,11 +1744,10 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                             <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
                                         </connections>
                                     </button>
-                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
                                         <rect key="frame" x="547" y="8" width="23" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="ZCH-GV-MX7"/>
-                                            <constraint firstAttribute="height" constant="24" id="vph-Zb-gAD"/>
                                         </constraints>
                                         <buttonCell key="cell" type="square" alternateTitle="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="1Qb-3o-Mxb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1769,13 +1767,12 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                             <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
                                         </tokenFieldCell>
                                     </tokenField>
-                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
-                                        <rect key="frame" x="497" y="12" width="22" height="15"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
+                                        <rect key="frame" x="497" y="8" width="22" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="2JR-JD-7UM"/>
                                             <constraint firstAttribute="width" constant="22" id="Byp-9c-qQV"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" alternateTitle="Encryption" bezelStyle="shadowlessSquare" image="NSLockUnlockedTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0ah-WX-WMW">
+                                        <buttonCell key="cell" type="square" alternateTitle="Encryption" bezelStyle="shadowlessSquare" image="NSLockUnlockedTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="0ah-WX-WMW">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <connections>
@@ -1796,65 +1793,41 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="EGm-dG-DZW" secondAttribute="bottom" constant="12" id="4z5-vX-ygY"/>
-                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="5eV-Ai-l9R"/>
-                                    <constraint firstItem="EGm-dG-DZW" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="29" id="8sm-2u-53K"/>
-                                    <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="7" id="9e1-Jk-fXh"/>
-                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="4" id="BQs-x2-FqO"/>
+                                    <constraint firstAttribute="bottom" secondItem="EGm-dG-DZW" secondAttribute="bottom" constant="8" id="4z5-vX-ygY"/>
+                                    <constraint firstItem="EGm-dG-DZW" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="8sm-2u-53K"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="3" id="BQs-x2-FqO"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="D4z-1Y-PWf"/>
                                     <constraint firstAttribute="bottom" secondItem="vGs-sY-dgv" secondAttribute="bottom" constant="11" id="GlL-kC-FPR"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="14" id="K8W-63-DCH"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="centerY" secondItem="EGm-dG-DZW" secondAttribute="centerY" id="MzN-Fw-ReJ"/>
                                     <constraint firstItem="EGm-dG-DZW" firstAttribute="leading" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="18" id="XPa-fI-Wss"/>
-                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="515" id="XkM-yh-sQT"/>
+                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="Z0a-Xc-NTX"/>
                                     <constraint firstAttribute="bottom" secondItem="GO9-mJ-qzs" secondAttribute="bottom" constant="10" id="bu1-KG-NGc"/>
                                     <constraint firstItem="vGs-sY-dgv" firstAttribute="leading" secondItem="GO9-mJ-qzs" secondAttribute="trailing" constant="8" id="d1w-vv-VGn"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="jeN-jG-7Gn"/>
-                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="leading" secondItem="nBR-QP-fLS" secondAttribute="trailing" constant="5" id="m7M-qO-sgJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="8" id="l09-g8-onL"/>
+                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="leading" secondItem="nBR-QP-fLS" secondAttribute="trailing" constant="2" id="m7M-qO-sgJ"/>
                                     <constraint firstItem="vGs-sY-dgv" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="okw-aM-9x4"/>
-                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="14" id="p8J-cA-dVx"/>
-                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="14" id="toU-Of-MMf"/>
+                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="10" id="p8J-cA-dVx"/>
+                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="10" id="toU-Of-MMf"/>
                                     <constraint firstAttribute="height" constant="56" id="vE7-he-5Sd"/>
                                 </constraints>
                             </customView>
-                            <customView identifier="BottomVibrancyArea" translatesAutoresizingMaskIntoConstraints="NO" id="uRT-BH-5Ak" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
+                            <customView identifier="BottomVibrancyArea" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="uRT-BH-5Ak" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="580" height="42"/>
                                 <subviews>
-                                    <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="4Ed-eJ-aDl" customClass="MessageInputField" customModule="Seaglass" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="9" width="533" height="24"/>
-                                        <subviews>
-                                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9lw-iO-KBm">
-                                                <rect key="frame" x="392" y="-5" width="86" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Decline" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hac-l3-61d">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="declineInviteButtonClicked:" target="WXz-Io-9JK" id="ASr-Xe-Hsw"/>
-                                                </connections>
-                                            </button>
-                                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SNq-sO-aV7">
-                                                <rect key="frame" x="0.0" y="4" width="213" height="17"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="7lr-1N-gCq"/>
-                                                    <constraint firstAttribute="width" constant="209" id="cYl-jm-dLe"/>
-                                                </constraints>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="You have been invited to this room" id="Ax3-Ic-aG0">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                        </subviews>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SNq-sO-aV7">
+                                        <rect key="frame" x="12" y="13" width="213" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="7BR-iL-1Xr"/>
-                                            <constraint firstItem="SNq-sO-aV7" firstAttribute="leading" secondItem="4Ed-eJ-aDl" secondAttribute="leading" constant="2" id="GbJ-VW-Dfg"/>
-                                            <constraint firstItem="9lw-iO-KBm" firstAttribute="top" secondItem="4Ed-eJ-aDl" secondAttribute="top" constant="1" id="Neh-UE-cZl"/>
-                                            <constraint firstItem="SNq-sO-aV7" firstAttribute="top" secondItem="4Ed-eJ-aDl" secondAttribute="top" constant="3" id="UbH-Qp-dDg"/>
-                                            <constraint firstAttribute="bottom" secondItem="SNq-sO-aV7" secondAttribute="bottom" constant="4" id="f3p-G9-MyV"/>
-                                            <constraint firstAttribute="bottom" secondItem="9lw-iO-KBm" secondAttribute="bottom" constant="2" id="xbS-2p-alK"/>
+                                            <constraint firstAttribute="height" constant="17" id="7lr-1N-gCq"/>
+                                            <constraint firstAttribute="width" constant="209" id="cYl-jm-dLe"/>
                                         </constraints>
-                                    </customView>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="You have been invited to this room" id="Ax3-Ic-aG0">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                     <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MLd-dR-ivF">
                                         <rect key="frame" x="488" y="4" width="86" height="32"/>
                                         <constraints>
@@ -1872,6 +1845,19 @@ DQ
                                             <action selector="acceptInviteButtonClicked:" target="WXz-Io-9JK" id="z0R-hj-R69"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9lw-iO-KBm">
+                                        <rect key="frame" x="402" y="4" width="86" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Decline" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hac-l3-61d">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="declineInviteButtonClicked:" target="WXz-Io-9JK" id="ASr-Xe-Hsw"/>
+                                        </connections>
+                                    </button>
+                                    <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="4Ed-eJ-aDl" customClass="MessageInputField" customModule="Seaglass" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="9" width="533" height="24"/>
+                                    </customView>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="Pix-y5-gjY">
                                         <rect key="frame" x="549" y="11" width="22" height="20"/>
                                         <constraints>
@@ -1889,17 +1875,21 @@ DQ
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4Ed-eJ-aDl" firstAttribute="leading" secondItem="uRT-BH-5Ak" secondAttribute="leading" constant="12" id="70b-OY-aoV"/>
+                                    <constraint firstAttribute="bottom" secondItem="SNq-sO-aV7" secondAttribute="bottom" constant="13" id="8GS-Ih-C4v"/>
                                     <constraint firstItem="4Ed-eJ-aDl" firstAttribute="top" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="9" id="E3l-q6-r67"/>
                                     <constraint firstAttribute="trailing" secondItem="MLd-dR-ivF" secondAttribute="trailing" constant="12" id="GEh-9J-dPY"/>
-                                    <constraint firstAttribute="height" constant="42" id="GSA-ae-KEw"/>
+                                    <constraint firstAttribute="bottom" secondItem="9lw-iO-KBm" secondAttribute="bottom" constant="11" id="Hd3-zB-NzT"/>
                                     <constraint firstAttribute="bottom" secondItem="MLd-dR-ivF" secondAttribute="bottom" constant="11" id="Jbx-iF-0Mg"/>
                                     <constraint firstAttribute="bottom" secondItem="4Ed-eJ-aDl" secondAttribute="bottom" constant="9" id="M8b-4R-CCe"/>
-                                    <constraint firstItem="MLd-dR-ivF" firstAttribute="leading" secondItem="9lw-iO-KBm" secondAttribute="trailing" constant="10" id="NBb-oq-KKi"/>
                                     <constraint firstItem="Pix-y5-gjY" firstAttribute="leading" secondItem="4Ed-eJ-aDl" secondAttribute="trailing" constant="4" id="VL0-yU-2FG"/>
-                                    <constraint firstItem="Pix-y5-gjY" firstAttribute="top" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="11" id="YBl-U7-srl"/>
+                                    <constraint firstItem="9lw-iO-KBm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="10" id="VZd-D9-GcX"/>
+                                    <constraint firstItem="Pix-y5-gjY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="11" id="YBl-U7-srl"/>
+                                    <constraint firstItem="SNq-sO-aV7" firstAttribute="leading" secondItem="uRT-BH-5Ak" secondAttribute="leading" constant="14" id="dKG-PA-74N"/>
+                                    <constraint firstItem="SNq-sO-aV7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="12" id="drv-Py-ZQF"/>
                                     <constraint firstAttribute="trailing" secondItem="Pix-y5-gjY" secondAttribute="trailing" constant="9" id="oA2-uS-jpf"/>
+                                    <constraint firstItem="MLd-dR-ivF" firstAttribute="leading" secondItem="9lw-iO-KBm" secondAttribute="trailing" constant="12" id="qWZ-sn-W3B"/>
                                     <constraint firstAttribute="bottom" secondItem="Pix-y5-gjY" secondAttribute="bottom" constant="11" id="rpZ-GA-DOK"/>
-                                    <constraint firstItem="MLd-dR-ivF" firstAttribute="top" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="10" id="yPe-jT-toA"/>
+                                    <constraint firstItem="MLd-dR-ivF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uRT-BH-5Ak" secondAttribute="top" constant="10" id="yPe-jT-toA"/>
                                 </constraints>
                             </customView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
