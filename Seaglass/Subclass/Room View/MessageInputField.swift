@@ -62,4 +62,8 @@ import Cocoa
             }
         }
     }
+    
+    public override func controlTextDidEndEditing(_ obj: Notification) {
+        self.controlTextDidChange(obj)
+    }
 }
