@@ -45,7 +45,7 @@ class RoomsCacheEntry: NSObject {
             return 70
         }
         if room.summary.isEncrypted || room.state.isEncrypted {
-            return 10
+            return 60
         }
         if room.state.name == "" {
             if room.state.topic == "" {

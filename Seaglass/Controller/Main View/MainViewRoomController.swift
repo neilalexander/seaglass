@@ -224,17 +224,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func getFilteredRoomCache(for roomId: String) -> [MXEvent] {
         return MatrixServices.inst.eventCache[roomId]?.filter {
-            !$0.isRedactedEvent() && $0.content.count > 0
+            !$0.isRedactedEvent()
         } ?? []
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        if !MatrixServices.inst.eventCache.keys.contains(roomId) {
-            return 0
-        }
-        if roomId == "" {
-            return 0
-        }
+        guard roomId != "" else { return 0 }
+        guard MatrixServices.inst.eventCache.keys.contains(roomId) else { return 0 }
+
         return getFilteredRoomCache(for: roomId).count
     }
     
@@ -260,6 +257,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             cell.Text.stringValue = "Missing event - this shouldn't happen"
             return cell
         }
+        
         let event = filteredRoomCache[row]
         var cell: RoomMessage
         
