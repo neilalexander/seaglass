@@ -27,22 +27,21 @@ class MainViewKeyRequestController: NSViewController {
     @IBOutlet weak var DeviceKeyField: NSTextField!
     @IBOutlet weak var ConfirmationCheckbox: NSButton!
     @IBOutlet weak var ShareButton: NSButton!
-    @IBOutlet weak var DontShareButton: NSButton!
     @IBOutlet weak var IgnoreButton: NSButton!
     
     var request: MXIncomingRoomKeyRequest?
     
     override func viewWillAppear() {
         guard request != nil else { return }
+        let storedDevice = MatrixServices.inst.session.crypto.deviceList.storedDevice(request!.userId, deviceId: request!.deviceId)
 
-        // TODO: This is the wrong key
-        if let senderkey = request!.requestBody["sender_key"] as? String {
-            DeviceKeyField.stringValue = String(senderkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
+        if let edkey = storedDevice?.fingerprint {
+            DeviceKeyField.stringValue = String(edkey.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
         } else {
-            DeviceKeyField.stringValue = ""
+            print("No fingerprint found")
         }
         
-        DeviceNameField.stringValue = MatrixServices.inst.session.crypto.deviceList.storedDevice(request!.userId, deviceId: request!.deviceId).displayName
+        DeviceNameField.stringValue = storedDevice!.displayName ?? ""
         
         UserIDField.stringValue = request!.userId
         DeviceIDField.stringValue = request!.deviceId
@@ -55,24 +54,9 @@ class MainViewKeyRequestController: NSViewController {
         guard sender == ShareButton else { return }
         guard ConfirmationCheckbox.state == .on else { return }
         
-        MatrixServices.inst.session.crypto.accept(request, success: {
+        MatrixServices.inst.session.crypto.acceptAllPendingKeyRequests(fromUser: request!.userId, andDevice: request!.deviceId) {
             self.dismiss(sender)
-        }) { (response) in
-            let alert = NSAlert()
-            alert.messageText = "Failed to share encryption keys"
-            alert.informativeText = response?.localizedDescription ?? "No error detail was provided"
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        }
-    }
-    
-    @IBAction func dontShareButtonPressed(_ sender: NSButton) {
-        guard request != nil else { return }
-        guard sender == DontShareButton else { return }
-        
-        MatrixServices.inst.session.crypto.ignore(request) {
-            self.dismiss(sender)
+            MatrixServices.inst.mainController?.matrixDidCompleteKeyRequest(self.request!)
         }
     }
     
@@ -81,6 +65,7 @@ class MainViewKeyRequestController: NSViewController {
         
         MatrixServices.inst.session.crypto.ignoreAllPendingKeyRequests(fromUser: request!.userId, andDevice: request!.deviceId) {
             self.dismiss(sender)
+            MatrixServices.inst.mainController?.matrixDidCompleteKeyRequest(self.request!)
         }
     }
     

@@ -2130,31 +2130,6 @@ DQ
                                     <action selector="shareButtonPressed:" target="mDG-tG-5ti" id="Yyr-HO-pP8"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUG-cg-SaD">
-                                <rect key="frame" x="365" y="13" width="111" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Don't Share" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rnS-N8-hIq">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dontShareButtonPressed:" target="mDG-tG-5ti" id="XZx-Nw-tSH"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEs-Z5-D8l">
-                                <rect key="frame" x="241" y="13" width="124" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="push" title="Ignore Device" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SBw-0i-8cg">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="ignoreButtonPressed:" target="mDG-tG-5ti" id="VMW-i9-woj"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-X1-lx3">
                                 <rect key="frame" x="119" y="164" width="428" height="17"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -2184,6 +2159,17 @@ Gw
                                     <action selector="confirmationCheckboxPressed:" target="mDG-tG-5ti" id="xLt-Mr-Rjj"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEs-Z5-D8l">
+                                <rect key="frame" x="365" y="13" width="111" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Don't Share" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SBw-0i-8cg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ignoreButtonPressed:" target="mDG-tG-5ti" id="VMW-i9-woj"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -2191,7 +2177,6 @@ Gw
                         <outlet property="DeviceIDField" destination="tSA-25-iAL" id="6bE-la-Fcc"/>
                         <outlet property="DeviceKeyField" destination="i4a-kM-HBO" id="vlq-bu-IEn"/>
                         <outlet property="DeviceNameField" destination="OnM-am-TR8" id="FQ6-lh-qzT"/>
-                        <outlet property="DontShareButton" destination="fUG-cg-SaD" id="wsI-lu-oy0"/>
                         <outlet property="IgnoreButton" destination="fEs-Z5-D8l" id="La1-3u-Mlc"/>
                         <outlet property="ShareButton" destination="lUw-q1-p41" id="F8M-AW-htH"/>
                         <outlet property="UserIDField" destination="kOD-X1-lx3" id="iW8-ZZ-HTL"/>

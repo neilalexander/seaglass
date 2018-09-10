@@ -30,7 +30,7 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     weak var roomsDelegate: MatrixRoomsDelegate?
     weak var channelDelegate: MatrixRoomDelegate?
     
-    
+    var keyRequests: [MainViewKeyRequestController] = []
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -73,19 +73,38 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     }
     
     func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest) {
-        print("Received a keysharing request: \(request)")
-        print("Request body: \(request.requestBody)")
-        
         guard request.userId == MatrixServices.inst.session.myUser.userId else { return }
         guard (request.requestBody["sender_key"] as? String) != nil else { return }
+        guard !keyRequests.contains(where: { $0.request!.deviceId == request.deviceId }) else { return }
         
-        let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
-        sheet.request = request
-        self.presentViewControllerAsSheet(sheet)
+        MatrixServices.inst.session.crypto.deviceList.downloadKeys([request.userId], forceDownload: false, success: { (devicemap) in
+            let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
+            sheet.request = request
+            self.presentViewControllerAsSheet(sheet)
+            self.keyRequests.append(sheet)
+        }) { (error) in
+        }
     }
     
     func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation) {
-        print("Received a keysharing cancellation: \(cancellation)")
+        for (index, controller) in keyRequests.enumerated() {
+            guard cancellation.deviceId == controller.request!.deviceId else { continue }
+            guard cancellation.userId == controller.request!.userId else { continue }
+            if controller.request!.requestId == cancellation.requestId {
+                controller.dismiss(self)
+                keyRequests.remove(at: index)
+            }
+        }
+    }
+    
+    func matrixDidCompleteKeyRequest(_ request: MXIncomingRoomKeyRequest) {
+        for (index, controller) in keyRequests.enumerated() {
+            guard request.deviceId == controller.request!.deviceId else { continue }
+            guard request.userId == controller.request!.userId else { continue }
+            if controller.request!.requestId == request.requestId {
+                keyRequests.remove(at: index)
+            }
+        }
     }
     
 }

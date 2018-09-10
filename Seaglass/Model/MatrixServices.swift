@@ -25,6 +25,7 @@ protocol MatrixServicesDelegate: AnyObject {
     func matrixDidLogout()
     func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest)
     func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation)
+    func matrixDidCompleteKeyRequest(_ request: MXIncomingRoomKeyRequest)
 }
 
 protocol MatrixRoomsDelegate: AnyObject {
