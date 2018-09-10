@@ -770,7 +770,7 @@ Copyright 2018 © Avery Pierce</string>
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="TwD-Wi-H8c" customClass="MainViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="m85-ez-ukM"/>
+                        <splitViewItem holdingPriority="255" behavior="contentList" id="m85-ez-ukM"/>
                         <splitViewItem id="m1l-Z1-58v"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="1yi-u1-mEz">
@@ -3816,6 +3816,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfp-e2-cpe"/>
+        <segue reference="ggZ-vC-hmq"/>
     </inferredMetricsTieBreakers>
 </document>
