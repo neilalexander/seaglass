@@ -1731,8 +1731,8 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                             <customView identifier="TopVibrancyArea" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-GU-jfi" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="414" width="580" height="56"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
-                                        <rect key="frame" x="515" y="8" width="23" height="24"/>
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
+                                        <rect key="frame" x="522" y="8" width="23" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="ZKf-S3-SEA"/>
                                             <constraint firstAttribute="width" constant="23" id="Zef-Z1-kJl"/>
@@ -1745,8 +1745,8 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                             <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
-                                        <rect key="frame" x="543" y="8" width="23" height="24"/>
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
+                                        <rect key="frame" x="547" y="8" width="23" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="ZCH-GV-MX7"/>
                                             <constraint firstAttribute="height" constant="24" id="vph-Zb-gAD"/>
@@ -1769,8 +1769,8 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                             <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
                                         </tokenFieldCell>
                                     </tokenField>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
-                                        <rect key="frame" x="487" y="12" width="22" height="15"/>
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
+                                        <rect key="frame" x="497" y="12" width="22" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="2JR-JD-7UM"/>
                                             <constraint firstAttribute="width" constant="22" id="Byp-9c-qQV"/>
@@ -1799,13 +1799,13 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <constraint firstAttribute="bottom" secondItem="EGm-dG-DZW" secondAttribute="bottom" constant="12" id="4z5-vX-ygY"/>
                                     <constraint firstItem="gmZ-EC-5H5" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="5eV-Ai-l9R"/>
                                     <constraint firstItem="EGm-dG-DZW" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="29" id="8sm-2u-53K"/>
-                                    <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="8" id="9e1-Jk-fXh"/>
-                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="6" id="BQs-x2-FqO"/>
+                                    <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="7" id="9e1-Jk-fXh"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="3" id="BQs-x2-FqO"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="D4z-1Y-PWf"/>
                                     <constraint firstAttribute="bottom" secondItem="vGs-sY-dgv" secondAttribute="bottom" constant="11" id="GlL-kC-FPR"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="14" id="K8W-63-DCH"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="centerY" secondItem="EGm-dG-DZW" secondAttribute="centerY" id="MzN-Fw-ReJ"/>
-                                    <constraint firstItem="EGm-dG-DZW" firstAttribute="leading" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="4" id="XPa-fI-Wss"/>
+                                    <constraint firstItem="EGm-dG-DZW" firstAttribute="leading" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="18" id="XPa-fI-Wss"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="515" id="XkM-yh-sQT"/>
                                     <constraint firstAttribute="bottom" secondItem="GO9-mJ-qzs" secondAttribute="bottom" constant="10" id="bu1-KG-NGc"/>
                                     <constraint firstItem="vGs-sY-dgv" firstAttribute="leading" secondItem="GO9-mJ-qzs" secondAttribute="trailing" constant="8" id="d1w-vv-VGn"/>
