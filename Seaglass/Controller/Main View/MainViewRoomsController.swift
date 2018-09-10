@@ -158,6 +158,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         }
         cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: unreadColor))!
         
+        cell?.identifier = nil
         return cell
     }
     

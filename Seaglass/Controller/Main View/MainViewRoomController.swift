@@ -232,7 +232,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if !MatrixServices.inst.eventCache.keys.contains(roomId) {
             return 0
         }
-        if roomId == "" || MatrixServices.inst.eventCache[roomId] == nil {
+        if roomId == "" {
             return 0
         }
         return getFilteredRoomCache(for: roomId).count
@@ -245,6 +245,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let filteredRoomCache = getFilteredRoomCache(for: roomId)
+        guard roomId != "" else {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.Text.stringValue = "Room ID not known - this shouldn't happen"
+            return cell
+        }
+        guard MatrixServices.inst.eventCache.keys.contains(roomId) else {
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
+            cell.Text.stringValue = "Cache failure - this shouldn't happen"
+            return cell
+        }
         guard filteredRoomCache.count > row else {
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
             cell.Text.stringValue = "Missing event - this shouldn't happen"
