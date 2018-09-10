@@ -13,6 +13,7 @@
 		3903779C21431BD800873E97 /* MainViewInviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903779B21431BD800873E97 /* MainViewInviteController.swift */; };
 		3903779E21431CF800873E97 /* PopoverRoomActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3903779D21431CF800873E97 /* PopoverRoomActions.swift */; };
 		390FE41120C7026A004A4B74 /* MatrixServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390FE41020C7026A004A4B74 /* MatrixServices.swift */; };
+		3915BA9A2146D1F7006B973C /* VibrancyArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3915BA992146D1F7006B973C /* VibrancyArea.swift */; };
 		391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */; };
 		391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2020C68AD100B4EFEC /* LoginViewController.swift */; };
 		391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */; };
@@ -86,6 +87,7 @@
 		3903779B21431BD800873E97 /* MainViewInviteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewInviteController.swift; sourceTree = "<group>"; };
 		3903779D21431CF800873E97 /* PopoverRoomActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomActions.swift; sourceTree = "<group>"; };
 		390FE41020C7026A004A4B74 /* MatrixServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatrixServices.swift; path = Seaglass/Model/MatrixServices.swift; sourceTree = "<group>"; };
+		3915BA992146D1F7006B973C /* VibrancyArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrancyArea.swift; sourceTree = "<group>"; };
 		391BFE1B20C68AD100B4EFEC /* Seaglass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seaglass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		391BFE2020C68AD100B4EFEC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				39432C96211872F600FF3E5A /* RoomMessageEntry.swift */,
 				3931F29921398189001F91DC /* MessageInputField.xib */,
 				3931F29B213981A4001F91DC /* MessageInputField.swift */,
+				3915BA992146D1F7006B973C /* VibrancyArea.swift */,
 			);
 			path = "Room View";
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */,
 				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
 				3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */,
+				3915BA9A2146D1F7006B973C /* VibrancyArea.swift in Sources */,
 				39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */,
 				39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,

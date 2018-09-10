@@ -997,7 +997,7 @@ Copyright 2018 © Avery Pierce</string>
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oea-9K-mEE">
-                                <rect key="frame" x="0.0" y="166" width="352" height="4"/>
+                                <rect key="frame" x="0.0" y="166" width="352" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.0" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2K3-se-GSi">
@@ -1200,28 +1200,10 @@ Copyright 2018 © Avery Pierce</string>
             <objects>
                 <customObject id="O2i-hq-qI7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="WXz-Io-9JK" customClass="MainViewRoomController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" identifier="RoomView" id="chW-xk-j9x" customClass="NSVisualEffectView">
+                    <view key="view" identifier="RoomView" id="chW-xk-j9x" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="580" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
-                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </box>
-                            <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
-                                <rect key="frame" x="18" y="425" width="101" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="rm2-dd-1VU"/>
-                                </constraints>
-                                <tokenFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" enabled="NO" alignment="left" placeholderString="Unnamed Room" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
-                                </tokenFieldCell>
-                            </tokenField>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
-                                <rect key="frame" x="0.0" y="39" width="580" height="5"/>
-                            </box>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-y5-gjY">
                                 <rect key="frame" x="550" y="11" width="22" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -1233,38 +1215,14 @@ Copyright 2018 © Avery Pierce</string>
                                     <segue destination="jhm-nB-Mkx" kind="popover" popoverAnchorView="Pix-y5-gjY" popoverBehavior="t" preferredEdge="maxY" id="8ct-Tb-vrJ"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
-                                <rect key="frame" x="549" y="421" width="23" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" alternateTitle="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="1Qb-3o-Mxb">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">i</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="vrm-yE-FSO" kind="sheet" identifier="SegueToRoomSettings" id="Tfp-e2-cpe"/>
-                                </connections>
-                            </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
-                                <rect key="frame" x="521" y="421" width="23" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
-                                </connections>
-                            </button>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="GvZ-sd-DTW">
+                            <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="GvZ-sd-DTW">
                                 <rect key="frame" x="0.0" y="42" width="580" height="371"/>
                                 <clipView key="contentView" wantsLayer="YES" id="yGf-GP-99e">
                                     <rect key="frame" x="0.0" y="0.0" width="580" height="371"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="580" height="359"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="580" height="302"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1561,7 +1519,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
                                                                 </imageView>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
+                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
                                                                     <rect key="frame" x="513" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
@@ -1612,6 +1570,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstAttribute="bottom" secondItem="yfS-z5-daf" secondAttribute="bottom" constant="-1" id="FNa-vx-Pfi"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Ldz-hR-14M" secondAttribute="trailing" constant="48" id="Nmj-iz-PLy"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" constant="1" id="Qbb-0E-GCU"/>
+                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="leading" secondItem="eNx-7M-A4V" secondAttribute="trailing" id="SUc-gQ-DZw"/>
                                                                 <constraint firstItem="G9y-EX-0dL" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="-2" id="Xok-lu-DW8"/>
                                                                 <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
@@ -1769,7 +1728,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="12"/>
+                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="57" bottom="12"/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="oEW-hF-5c8">
                                     <rect key="frame" x="-100" y="-100" width="514" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1779,22 +1738,82 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
-                                <rect key="frame" x="494" y="425" width="22" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" alternateTitle="Encryption" bezelStyle="shadowlessSquare" image="NSLockUnlockedTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0ah-WX-WMW">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <connections>
-                                        <binding destination="WXz-Io-9JK" name="argument" keyPath="self.RoomEncryptionButton" id="Hxn-v9-YBz"/>
-                                    </connections>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="pny-lE-NfQ" kind="popover" identifier="SegueToRoomEncryption" popoverAnchorView="EGm-dG-DZW" popoverBehavior="t" preferredEdge="maxY" id="Wab-EX-BXE"/>
-                                </connections>
-                            </button>
-                            <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" alphaValue="0.29999999999999999" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
-                                <rect key="frame" x="123" y="425" width="365" height="17"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Awn-GU-jfi" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="414" width="580" height="56"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="nBR-QP-fLS">
+                                        <rect key="frame" x="515" y="8" width="23" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="23" id="Zef-Z1-kJl"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" alternateTitle="Leave Room" bezelStyle="shadowlessSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8LH-jH-SfS">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="GNV-Xu-rSV" kind="popover" identifier="SegueToPartRoom" popoverAnchorView="nBR-QP-fLS" popoverBehavior="t" preferredEdge="maxY" id="EYb-xq-mXd"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-EC-5H5">
+                                        <rect key="frame" x="543" y="8" width="23" height="24"/>
+                                        <buttonCell key="cell" type="square" alternateTitle="Get Info" bezelStyle="shadowlessSquare" image="NSTouchBarGetInfoTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="1Qb-3o-Mxb">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent">i</string>
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="vrm-yE-FSO" kind="sheet" identifier="SegueToRoomSettings" id="Tfp-e2-cpe"/>
+                                        </connections>
+                                    </button>
+                                    <tokenField identifier="RoomName" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO9-mJ-qzs">
+                                        <rect key="frame" x="18" y="11" width="148" height="17"/>
+                                        <tokenFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" enabled="NO" alignment="left" placeholderString="Unnamed Room" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="Amu-kz-V1t">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
+                                        </tokenFieldCell>
+                                    </tokenField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="EGm-dG-DZW">
+                                        <rect key="frame" x="487" y="12" width="22" height="15"/>
+                                        <buttonCell key="cell" type="square" alternateTitle="Encryption" bezelStyle="shadowlessSquare" image="NSLockUnlockedTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0ah-WX-WMW">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <connections>
+                                                <binding destination="WXz-Io-9JK" name="argument" keyPath="self.RoomEncryptionButton" id="Hxn-v9-YBz"/>
+                                            </connections>
+                                        </buttonCell>
+                                        <connections>
+                                            <segue destination="pny-lE-NfQ" kind="popover" identifier="SegueToRoomEncryption" popoverAnchorView="EGm-dG-DZW" popoverBehavior="t" preferredEdge="maxY" id="Wab-EX-BXE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EGm-dG-DZW" secondAttribute="bottom" constant="12" id="4z5-vX-ygY"/>
+                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="5eV-Ai-l9R"/>
+                                    <constraint firstItem="EGm-dG-DZW" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="29" id="8sm-2u-53K"/>
+                                    <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="8" id="9e1-Jk-fXh"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="6" id="BQs-x2-FqO"/>
+                                    <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="D4z-1Y-PWf"/>
+                                    <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="20" id="K8W-63-DCH"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="centerY" secondItem="EGm-dG-DZW" secondAttribute="centerY" id="MzN-Fw-ReJ"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="515" id="XkM-yh-sQT"/>
+                                    <constraint firstAttribute="bottom" secondItem="GO9-mJ-qzs" secondAttribute="bottom" constant="12" id="bu1-KG-NGc"/>
+                                    <constraint firstItem="nBR-QP-fLS" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="jeN-jG-7Gn"/>
+                                    <constraint firstItem="gmZ-EC-5H5" firstAttribute="leading" secondItem="nBR-QP-fLS" secondAttribute="trailing" constant="5" id="m7M-qO-sgJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="14" id="p8J-cA-dVx"/>
+                                    <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="14" id="toU-Of-MMf"/>
+                                    <constraint firstAttribute="height" constant="56" id="vE7-he-5Sd"/>
+                                </constraints>
+                            </customView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="qCl-hr-gTJ">
+                                <rect key="frame" x="0.0" y="411" width="580" height="5"/>
+                            </box>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
+                                <rect key="frame" x="0.0" y="39" width="580" height="5"/>
+                            </box>
+                            <textField identifier="RoomTopic" horizontalHuggingPriority="50" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" alphaValue="0.29999999999999999" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vGs-sY-dgv">
+                                <rect key="frame" x="162" y="425" width="326" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="U0L-Aj-cwK"/>
                                 </constraints>
@@ -1843,22 +1862,27 @@ DQ
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" constant="20" id="3W4-A8-xcX"/>
                             <constraint firstItem="4Ed-eJ-aDl" firstAttribute="top" secondItem="yGf-GP-99e" secondAttribute="bottom" constant="9" id="4iV-qc-HZa"/>
+                            <constraint firstItem="vGs-sY-dgv" firstAttribute="leading" secondItem="GO9-mJ-qzs" secondAttribute="trailing" constant="4" id="7al-2V-moQ"/>
                             <constraint firstItem="GvZ-sd-DTW" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="8HZ-s4-lsO"/>
-                            <constraint firstItem="vGs-sY-dgv" firstAttribute="leading" secondItem="GO9-mJ-qzs" secondAttribute="trailing" constant="8" id="8re-Fn-l4U"/>
                             <constraint firstItem="YrB-MB-1om" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="9GE-JA-RHf"/>
                             <constraint firstItem="4Ed-eJ-aDl" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" constant="9" id="CHS-dl-dsL"/>
                             <constraint firstItem="vGs-sY-dgv" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" constant="28" id="JM4-B9-ssj"/>
-                            <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" constant="28" id="JhP-FP-0lp"/>
                             <constraint firstAttribute="trailing" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="94" id="Mhq-bu-3Bo"/>
+                            <constraint firstItem="Awn-GU-jfi" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" id="OBh-ok-ZJS"/>
+                            <constraint firstAttribute="trailing" secondItem="qCl-hr-gTJ" secondAttribute="trailing" id="ReS-82-Zfo"/>
+                            <constraint firstAttribute="trailing" secondItem="Awn-GU-jfi" secondAttribute="trailing" id="UaS-0H-D37"/>
+                            <constraint firstItem="qCl-hr-gTJ" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="bottom" id="Ula-ta-51Y"/>
                             <constraint firstAttribute="trailing" secondItem="YrB-MB-1om" secondAttribute="trailing" id="VN7-q4-b4S"/>
+                            <constraint firstItem="Awn-GU-jfi" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="W2N-cf-Clp"/>
                             <constraint firstAttribute="bottom" secondItem="4Ed-eJ-aDl" secondAttribute="bottom" constant="9" id="YJq-tw-Ake"/>
                             <constraint firstItem="YrB-MB-1om" firstAttribute="top" secondItem="GvZ-sd-DTW" secondAttribute="bottom" id="cXU-bj-yUt"/>
                             <constraint firstAttribute="trailing" secondItem="GvZ-sd-DTW" secondAttribute="trailing" id="dd8-Cz-LNi"/>
                             <constraint firstAttribute="trailing" secondItem="4Ed-eJ-aDl" secondAttribute="trailing" constant="36" id="f9f-Sd-7fX"/>
-                            <constraint firstItem="GvZ-sd-DTW" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" constant="57" id="jy2-0l-XNn"/>
+                            <constraint firstItem="qCl-hr-gTJ" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="jZd-Ku-ayY"/>
+                            <constraint firstItem="GvZ-sd-DTW" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" id="jy2-0l-XNn"/>
                             <constraint firstItem="4Ed-eJ-aDl" firstAttribute="top" secondItem="YrB-MB-1om" secondAttribute="bottom" constant="8" id="rpP-yo-Bev"/>
+                            <constraint firstItem="EGm-dG-DZW" firstAttribute="leading" secondItem="vGs-sY-dgv" secondAttribute="trailing" constant="1" id="s9H-i6-vza"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2459,7 +2483,7 @@ DQ
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="SPx-Fb-dog"/>
                             </imageView>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ZSM-1o-sYo">
-                                <rect key="frame" x="383" y="53" width="5" height="451"/>
+                                <rect key="frame" x="383" y="53" width="71" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                         </subviews>
