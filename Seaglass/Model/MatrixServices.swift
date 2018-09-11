@@ -302,9 +302,8 @@ class MatrixServices: NSObject {
                 for e in self.eventCache[event.roomId]!.filter({ $0.eventId == event.redacts }) {
                     guard !e.isRedactedEvent() else { break }
                     if let index = self.eventCache[event.roomId]!.index(of: e) {
-                        let pruned = e.prune()!
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: true)
-                        self.eventCache[event.roomId]![index] = pruned
+                        self.eventCache[event.roomId]![index] = e.prune()!
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: self.eventCache[event.roomId]![index], direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: true)
                     }
                 }
                 break

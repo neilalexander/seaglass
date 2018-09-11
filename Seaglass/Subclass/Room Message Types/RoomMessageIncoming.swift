@@ -119,7 +119,7 @@ class RoomMessageIncoming: RoomMessage {
                             Text.placeholderString = "Unnamed attachment"
                         }
                     } else {
-                        Text.placeholderString = "Message type '\(msgtype!)' not supported"
+                        Text.placeholderString = "Message type '\(msgtype ?? "(none)")' not supported"
                     }
                     break
                 }

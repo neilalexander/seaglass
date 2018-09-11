@@ -224,7 +224,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func getFilteredRoomCache(for roomId: String) -> [MXEvent] {
         return MatrixServices.inst.eventCache[roomId]?.filter {
-            !$0.isRedactedEvent()
+            !$0.isRedactedEvent() && $0.content.count > 0
         } ?? []
     }
     
@@ -434,10 +434,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if replaces != nil {
             if let index = cache.index(where: { $0.eventId == event.eventId }) {
                 if !event.isRedactedEvent() && event.content.count > 0 {
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
+                    OperationQueue.main.addOperation({
+                        self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap)
+                        self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
+                    })
                 } else if removeOnReplace {
-                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp) })
+                    if !cache[index].isRedactedEvent() {
+                        OperationQueue.main.addOperation({
+                            self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp)
+                        })
+                    }
                 }
                 return
             }
@@ -501,10 +507,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
                 actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
                     let event = self.getFilteredRoomCache(for: room.roomId)[row]
-                   // tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
+                    tableView.removeRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
                     room.redactEvent(event.eventId, reason: nil, completion: { (response) in
                         if response.isFailure, let error = response.error {
-                           // tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
+                            tableView.insertRows(at: IndexSet(integer: row), withAnimation: [.slideDown, .effectFade])
                             let alert = NSAlert()
                             alert.messageText = "Failed to redact message"
                             alert.informativeText = error.localizedDescription
