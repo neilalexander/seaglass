@@ -93,8 +93,10 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                     }()
                 } else {
                     DispatchQueue.main.async {
+                        let previousPath = path
                         MXMediaManager.downloadMedia(fromURL: url, andSaveAtFilePath: path, success: { [weak self] in
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
+                                guard previousPath == path else { return }
                                 self?.image = image
                                 var width = self?.image?.size.width
                                 var height = self?.image?.size.height
@@ -114,6 +116,7 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                                 self?.setNeedsDisplay()
                             }
                         }) { [weak self] (error) in
+                            guard previousPath == path else { return }
                             self?.image = NSImage(named: NSImage.Name.invalidDataFreestandingTemplate)
                             self?.sizeToFit()
                         }

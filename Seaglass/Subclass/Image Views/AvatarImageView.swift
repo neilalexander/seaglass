@@ -75,17 +75,15 @@ class AvatarImageView: ContextImageView {
                     }()
                 } else {
                     DispatchQueue.main.async {
-                        let previousUrl = self.url!
+                        let previousPath = path
                         MXMediaManager.downloadMedia(fromURL: self.url!, andSaveAtFilePath: path, success: { [weak self] in
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
-                                guard previousUrl == self?.url else { return }
+                                guard previousPath == path else { return }
                                 self?.image = image
                                 self?.layout()
                             }
                         }) { [weak self] (error) in
-                            if previousUrl != self?.url {
-                                return
-                            }
+                            guard previousPath == path else { return }
                             self?.image = defaultImage
                             self?.layout()
                         }

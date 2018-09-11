@@ -434,12 +434,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if replaces != nil {
             if let index = cache.index(where: { $0.eventId == event.eventId }) {
                 if !event.isRedactedEvent() && event.content.count > 0 {
-                   // OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
-                   // OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
-                    self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap)
-                    self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .effectGap) })
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.insertRows(at: IndexSet([index]), withAnimation: .effectFade) })
                 } else if removeOnReplace {
-                    self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp)
+                    OperationQueue.main.addOperation({ self.RoomMessageTableView.removeRows(at: IndexSet([index]), withAnimation: .slideUp) })
                 }
                 return
             }
