@@ -74,7 +74,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: [.slideDown, .effectFade])
+                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectGap])
                 }
             }
         }
@@ -93,7 +93,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
+                    table.insertRows(at: IndexSet([index]), withAnimation: .effectGap)
                 }
             }
         }

@@ -142,7 +142,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        self.RoomMessageTableView.beginUpdates()
                         MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+                        self.RoomMessageTableView.endUpdates()
                     }
                 }
                 self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
@@ -155,7 +157,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        self.RoomMessageTableView.beginUpdates()
                         MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+                        self.RoomMessageTableView.endUpdates()
                     }
                 }
                 self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
@@ -190,18 +194,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
             if room.liveTimeline.canPaginate(direction) {
                 roomIsPaginating = true
-                let eventCacheCountBeforePagination = MatrixServices.inst.roomCaches[roomId]!.filteredContent.count
                 room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
                     if response.isFailure {
                         print("Failed to paginate: \(response.error!.localizedDescription)")
                         return
                     }
-                    let numberPaginatedEvents = min(15, MatrixServices.inst.roomCaches[self.roomId]!.filteredContent.count - eventCacheCountBeforePagination)
-                    if numberPaginatedEvents > 0 {
-                        self.RoomMessageTableView.insertRows(at: IndexSet(0..<numberPaginatedEvents), withAnimation: NSTableView.AnimationOptions.slideUp)
-                        self.RoomMessageTableView.noteNumberOfRowsChanged()
-                        self.roomIsPaginating = false
-                    }
+                    self.roomIsPaginating = false
                 }
             }
         }
@@ -383,6 +381,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
                     room.liveTimeline.resetPagination()
+                    RoomMessageTableView.beginUpdates()
                     let group = DispatchGroup()
                     while cache.filteredContent.count < 50 {
                         group.enter()
@@ -394,6 +393,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         }
                         group.wait()
                     }
+                    RoomMessageTableView.endUpdates()
                 }
             }
         }
