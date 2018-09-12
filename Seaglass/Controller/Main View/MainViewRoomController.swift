@@ -191,7 +191,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if room.liveTimeline.canPaginate(direction) {
                 roomIsPaginating = true
                 let eventCacheCountBeforePagination = MatrixServices.inst.roomCaches[roomId]!.filteredContent.count
-                room.liveTimeline.paginate(15, direction: direction, onlyFromStore: false) { (response) in
+                room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
                     if response.isFailure {
                         print("Failed to paginate: \(response.error!.localizedDescription)")
                         return
@@ -379,11 +379,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
             
             if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
-                room.liveTimeline.resetPagination()
                 if cache.filteredContent.count < 50 {
-                    room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                        roomDidPaginate()
+                    room.liveTimeline.resetPagination()
+                }
+                let group = DispatchGroup()
+                while cache.filteredContent.count == 0 {
+                    group.enter()
+                    room.liveTimeline.paginate(25, direction: .backwards, onlyFromStore: false) { _ in
+                        if cache.filteredContent.count >= 50 {
+                            roomDidPaginate()
+                        }
+                        group.leave()
                     }
+                    group.wait()
                 }
             }
         }
@@ -480,7 +488,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                                 alert.runModal()
                             }
                         })
-                }
+                    }
                 }))
             }
         } else {
