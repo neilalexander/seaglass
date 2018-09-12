@@ -65,14 +65,19 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                         if !FileManager.default.fileExists(atPath: realpath) || !useCached {
                             MXMediaManager.downloadMedia(fromURL: realurl, andSaveAtFilePath: realpath, success: { [weak self] in
                                 self?.previewItemURL = URL(fileURLWithPath: realpath)
+                                if self?.previewItemURL.isFileURL ?? false {
+                                    QLPreviewPanel.shared().delegate = self
+                                    QLPreviewPanel.shared().dataSource = self
+                                    QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                                }
                             }, failure: {[weak self] (error) in
                                 self?.previewItemURL = URL(fileURLWithPath: path)
+                                if self?.previewItemURL.isFileURL ?? false {
+                                    QLPreviewPanel.shared().delegate = self
+                                    QLPreviewPanel.shared().dataSource = self
+                                    QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                                }
                             })
-                            if self.previewItemURL.isFileURL {
-                                QLPreviewPanel.shared().delegate = self
-                                QLPreviewPanel.shared().dataSource = self
-                                QLPreviewPanel.shared().makeKeyAndOrderFront(self)
-                            }
                         } else {
                             self.previewItemURL = URL(fileURLWithPath: realpath)
                             if self.previewItemURL.isFileURL {
