@@ -53,7 +53,7 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
         guard let mxcURL = forMxcUrl else { return }
         
         if mxcURL.hasPrefix("mxc://") {
-            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale) else { return }
+            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 256, height: 256), with: MXThumbnailingMethodScale) else { return }
             guard let realurl = MatrixServices.inst.client.url(ofContent: forMxcUrl) else { return }
             
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
