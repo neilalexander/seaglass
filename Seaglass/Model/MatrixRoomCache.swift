@@ -74,7 +74,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectGap])
+                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
                 }
             }
         }
@@ -85,7 +85,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {
-                    table.removeRows(at: IndexSet([index]), withAnimation: [.effectFade])
+                    table.removeRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
                 }
             }
         }
@@ -93,7 +93,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: .effectGap)
+                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
                 }
             }
         }
@@ -104,7 +104,7 @@ import SwiftMatrixSDK
         self.unfilteredContent.remove(at: at)
         if let table = _managedTable {
             if rowindex != nil {
-                table.removeRows(at: IndexSet([rowindex!]), withAnimation: .effectFade)
+                table.removeRows(at: IndexSet([rowindex!]), withAnimation: [.effectFade, .effectGap])
             }
         }
     }
