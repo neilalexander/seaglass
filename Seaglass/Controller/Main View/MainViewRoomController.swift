@@ -73,6 +73,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageInput.textField.target = self
         RoomMessageInput.delegate = self
         
+        let isRoomSelected = roomId != ""
+        RoomName.isEnabled = isRoomSelected
+        RoomInfoButton.isEnabled = isRoomSelected
+        RoomPartButton.isEnabled = isRoomSelected
+        RoomEncryptionButton.isEnabled = isRoomSelected
+        RoomInsertButton.isEnabled = isRoomSelected
+        RoomMessageInput.textField.isEnabled = isRoomSelected
+        RoomMessageInput.emojiButton.isEnabled = isRoomSelected
+        
         RoomMessageScrollView.postsBoundsChangedNotifications = true
         RoomMessageScrollView.postsFrameChangedNotifications = true
         NotificationCenter.default.addObserver(self, selector: #selector(scrollViewDidScroll), name: NSScrollView.didLiveScrollNotification, object: RoomMessageScrollView)
@@ -346,14 +355,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomIsOverscrolling = false
         
         let isInvite = cacheEntry.isInvite()
-        RoomName.isEnabled = !isInvite
-        RoomInfoButton.isEnabled = true
-        RoomPartButton.isEnabled = !isInvite
-        RoomEncryptionButton.isEnabled = !isInvite
+        RoomName.isEnabled = roomId != ""
+        RoomInfoButton.isEnabled = roomId != ""
+        RoomPartButton.isEnabled = roomId != "" && !isInvite
+        RoomEncryptionButton.isEnabled = roomId != "" && !isInvite
+        RoomInsertButton.isEnabled = roomId != "" && !isInvite
+        RoomMessageInput.textField.isEnabled = roomId != "" && !isInvite
+        RoomMessageInput.emojiButton.isEnabled = roomId != "" && !isInvite
  
         RoomInsertButton.alphaValue = isInvite ? 0 : 1
         RoomMessageInput.alphaValue = isInvite ? 0 : 1
-        RoomMessageInput.emojiButton.isEnabled = !isInvite
         
         RoomInviteLabel.isHidden = !isInvite
         RoomInviteLabel.alphaValue = isInvite ? 1 : 0
@@ -361,9 +372,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInviteAcceptButton.alphaValue = isInvite ? 1 : 0
         RoomInviteDeclineButton.isHidden = !isInvite
         RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
-        
-        RoomInsertButton.isEnabled = !isInvite
-        RoomMessageInput.textField.isEnabled = !isInvite
 
         RoomName.stringValue = cacheEntry.roomDisplayName
         RoomTopic.stringValue = cacheEntry.roomTopic

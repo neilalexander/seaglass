@@ -50,6 +50,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func matrixDidJoinRoom(_ room: MXRoom) {
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
+        let isFirst = rooms.count == 0
         if !matrixIsRoomKnown(room) {
             roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
             roomsCacheController.rearrangeObjects()
@@ -58,6 +59,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         RoomSearch.placeholderString = "Search \(rooms.count) room"
         if rooms.count != 1 {
             RoomSearch.placeholderString?.append(contentsOf: "s")
+        }
+        if isFirst {
+            RoomList.selectRowIndexes(IndexSet([0]), byExtendingSelection: false)
         }
     }
     
