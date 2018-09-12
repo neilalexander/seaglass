@@ -23,6 +23,8 @@ import Quartz
 class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, QLPreviewPanelDataSource {
     var previewItemURL: URL!
     
+    var realurl: String?
+    
     var maxDimensionWidth: CGFloat = 256
     var maxDimensionHeight: CGFloat = 256
     
@@ -51,18 +53,33 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
         guard let mxcURL = forMxcUrl else { return }
         
         if mxcURL.hasPrefix("mxc://") {
-            guard let url = MatrixServices.inst.client.url(ofContent: forMxcUrl) else { return }
+            guard let url = MatrixServices.inst.client.url(ofContentThumbnail: forMxcUrl, toFitViewSize: CGSize(width: 96, height: 96), with: MXThumbnailingMethodScale) else { return }
+            guard let realurl = MatrixServices.inst.client.url(ofContent: forMxcUrl) else { return }
             
             if url.hasPrefix("http://") || url.hasPrefix("https://") {
                 guard let path = MXMediaManager.cachePathForMedia(withURL: url, andType: withMimeType, inFolder: kMXMediaManagerDefaultCacheFolder) else { return }
-                previewItemURL = URL(fileURLWithPath: path)
-                
+      
                 if enableQuickLook {
                     self.handler = { (sender, roomId, eventId, userId) in
-                        if self.previewItemURL.isFileURL {
-                            QLPreviewPanel.shared().delegate = self
-                            QLPreviewPanel.shared().dataSource = self
-                            QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                        guard let realpath = MXMediaManager.cachePathForMedia(withURL: realurl, andType: withMimeType, inFolder: kMXMediaManagerDefaultCacheFolder) else { return }
+                        if !FileManager.default.fileExists(atPath: realpath) || !useCached {
+                            MXMediaManager.downloadMedia(fromURL: realurl, andSaveAtFilePath: realpath, success: { [weak self] in
+                                self?.previewItemURL = URL(fileURLWithPath: realpath)
+                            }, failure: {[weak self] (error) in
+                                self?.previewItemURL = URL(fileURLWithPath: path)
+                            })
+                            if self.previewItemURL.isFileURL {
+                                QLPreviewPanel.shared().delegate = self
+                                QLPreviewPanel.shared().dataSource = self
+                                QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                            }
+                        } else {
+                            self.previewItemURL = URL(fileURLWithPath: realpath)
+                            if self.previewItemURL.isFileURL {
+                                QLPreviewPanel.shared().delegate = self
+                                QLPreviewPanel.shared().dataSource = self
+                                QLPreviewPanel.shared().makeKeyAndOrderFront(self)
+                            }
                         }
                     } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
                 } else {

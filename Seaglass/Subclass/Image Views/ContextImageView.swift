@@ -42,7 +42,7 @@ class ContextImageView: NSImageView {
     override func mouseDown(with nsevent: NSEvent) {
         guard handler != nil else { return }
         guard !self.isHidden else { return }
-
-        self.handler!(self, room, event, userId)
+        
+        self.handler!(self, self.room, self.event, self.userId)
     }
 }
