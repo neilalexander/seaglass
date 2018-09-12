@@ -20,54 +20,90 @@ import Cocoa
 import SwiftMatrixSDK
 
 @objcMembers class MatrixRoomCache: NSObject {
-/*
-    override func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) {
-        print("New observer for \(keyPath)")
-        super.addObserver(observer, forKeyPath: keyPath, options: options, context: context)
+
+    private var _managedTable: MainViewTableView?
+    private var _filteredContent: [MXEvent] = []
+    private var _unfilteredContent: [MXEvent] = []
+    
+    var managedTable: MainViewTableView? {
+        get { return _managedTable }
+        set {
+            _managedTable = newValue
+            if let table = _managedTable {
+                table.reloadData()
+            }
+        }
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print("Observe value for \(keyPath ?? "no path")")
-        super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-    }
-  */
-    @objc dynamic var unfilteredContent: [MXEvent] = [] {
-        willSet {
-            self.willChangeValue(forKey: "unfilteredContent")
-            self.willChangeValue(forKey: "filteredContent")
-        }
-        didSet {
-            self.didChangeValue(forKey: "unfilteredContent")
-            self.didChangeValue(forKey: "filteredContent")
+    @objc dynamic var unfilteredContent: [MXEvent] {
+        get { return _unfilteredContent }
+        set {
+            _unfilteredContent = newValue
+            _filteredContent = _unfilteredContent.filter(filter)
         }
     }
     
     dynamic var filteredContent: [MXEvent] {
-        get { return self.unfilteredContent.filter(filter) }
+        get { return _filteredContent }
     }
     
     var filter = { (event: MXEvent) -> Bool in
-        return !event.isRedactedEvent() && event.content.count > 0
+        return !event.isRedactedEvent() && event.content.count > 0 && [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker", "m.room.encryption" ].contains(event.type)
     }
     
-    func reset() {
-        self.unfilteredContent = []
+    func reset(_ content: [MXEvent] = []) {
+        self.unfilteredContent = content
+        if let table = _managedTable {
+            table.reloadData()
+        }
     }
     
     func append(_ newElement: MXEvent) {
         self.unfilteredContent.append(newElement)
+        if let table = _managedTable {
+            if self.filter(newElement) {
+                table.noteNumberOfRowsChanged()
+            }
+        }
     }
     
     func insert(_ newElement: MXEvent, at: Int) {
         self.unfilteredContent.insert(newElement, at: at)
+        if let table = _managedTable {
+            if self.filter(newElement) {
+                if let index = filteredContent.index(of: newElement) {
+                    table.insertRows(at: IndexSet([index]), withAnimation: [.slideDown, .effectFade])
+                }
+            }
+        }
     }
     
     func replace(_ newElement: MXEvent, at: Int) {
+        if let table = _managedTable {
+            if filter(self.unfilteredContent[at]) {
+                if let index = filteredContent.index(of: self.unfilteredContent[at]) {
+                    table.removeRows(at: IndexSet([index]), withAnimation: [.slideUp, .effectFade])
+                }
+            }
+        }
         self.unfilteredContent[at] = newElement
+        if let table = _managedTable {
+            if self.filter(newElement) {
+                if let index = filteredContent.index(of: newElement) {
+                    table.insertRows(at: IndexSet([index]), withAnimation: .effectFade)
+                }
+            }
+        }
     }
     
     func remove(at: Int) {
+        let rowindex = filteredContent.index(of: unfilteredContent[at])
         self.unfilteredContent.remove(at: at)
+        if let table = _managedTable {
+            if rowindex != nil {
+                table.removeRows(at: IndexSet([rowindex!]), withAnimation: .effectFade)
+            }
+        }
     }
     
 }

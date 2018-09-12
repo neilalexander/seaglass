@@ -26,14 +26,10 @@ class RoomMessageInline: RoomMessage {
     }
     
     override func viewWillDraw() {
-        if event == nil {
-            return
-        }
+        guard event != nil else { return }
         let roomId = event!.roomId
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
-        if room == nil {
-            return
-        }
+        guard room != nil else { return }
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
         case "m.room.member":
@@ -106,6 +102,9 @@ class RoomMessageInline: RoomMessage {
             break
         default:
             Text.stringValue = "Unknown event \(event!.type)"
+        }
+        if Text.stringValue == "" {
+            Text.stringValue = "(no message)"
         }
     }
 }

@@ -168,7 +168,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if row.selectedRow < 0 || row.selectedRow >= (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).count {
             return
         }
-        guard let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: true) as? RoomListEntry else { return }
+        guard let entry = row.view(atColumn: 0, row: row.selectedRow, makeIfNecessary: false) as? RoomListEntry else { return }
         if entry.roomsCacheEntry == nil {
             return
         }

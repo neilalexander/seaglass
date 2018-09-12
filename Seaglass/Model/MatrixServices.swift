@@ -40,7 +40,7 @@ protocol MatrixRoomDelegate: AnyObject {
     func uiDidSelectRoom(entry: RoomListEntry)
     func uiRoomNeedsCryptoReload()
     func uiRoomStartInvite()
-    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState, replaces: String?, removeOnReplace: Bool)
+    func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
     func matrixDidRoomUserJoin()
     func matrixDidRoomUserPart()
 }
@@ -287,11 +287,9 @@ class MatrixServices: NSObject {
             roomCaches[roomId] = MatrixRoomCache()
         }
     
-        let enumerator = MatrixServices.inst.session.room(withRoomId: roomId).enumeratorForStoredMessages
-        roomCaches[roomId]!.unfilteredContent = enumerator!.nextEventsBatch(enumerator!.remaining)
+       // let enumerator = MatrixServices.inst.session.room(withRoomId: roomId).enumeratorForStoredMessages
+       // roomCaches[roomId]!.unfilteredContent = enumerator!.nextEventsBatch(enumerator!.remaining)
         
-        print("Room cache for \(roomId) has \(roomCaches[roomId]!.unfilteredContent.count) events")
-
         if room.state.isEncrypted {
             session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
                 self.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
@@ -307,11 +305,11 @@ class MatrixServices: NSObject {
             switch event.type {
             case "m.room.redaction":
                 for e in self.roomCaches[roomId]!.unfilteredContent.filter({ $0.eventId == event.redacts }) {
-                    guard !e.isRedactedEvent() else { break }
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(of: e) {
+                    guard !e.isRedactedEvent() else { continue }
+                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(where: { $0.eventId == event.redacts }) {
                         let pruned = e.prune()!
                         self.roomCaches[roomId]!.replace(pruned, at: index)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState, replaces: event.redacts!, removeOnReplace: true)
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState)
                     }
                 }
                 break
@@ -319,18 +317,17 @@ class MatrixServices: NSObject {
                 if !self.roomCaches[roomId]!.unfilteredContent.contains(where: { $0.eventId == event.eventId }) {
                     if direction == .forwards {
                         self.roomCaches[roomId]!.append(event)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil, removeOnReplace: false);
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
                         self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     } else {
                         self.roomCaches[roomId]!.insert(event, at: 0)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: nil, removeOnReplace: false);
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
                         self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 } else {
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(of: event) {
-                        let original = self.roomCaches[roomId]!.unfilteredContent[index].eventId
+                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(where: { $0.eventId == event.eventId }) {
                         self.roomCaches[roomId]!.replace(event, at: index)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState, replaces: original, removeOnReplace: false);
+                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
                         self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 }
