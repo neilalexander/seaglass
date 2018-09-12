@@ -40,12 +40,12 @@ class MainViewSendErrorController: NSViewController {
     
     @IBAction func deleteButtonClicked(_ sender: NSButton) {
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
-            if ApplyAllCheckbox.state == .off {
-                if let index = MatrixServices.inst.eventCache[roomId!]!.index(where: { $0.eventId == eventId }) {
-                    let event = MatrixServices.inst.eventCache[roomId!]![index]
-                    MatrixServices.inst.mainController?.channelDelegate?.matrixDidRoomMessage(event: event.prune(), direction: .forwards, roomState: room.state, replaces: eventId, removeOnReplace: true)
-                    MatrixServices.inst.eventCache[roomId!]![index] = event.prune()
+            // TODO: FIX THIS
+          /*  if ApplyAllCheckbox.state == .off {
+                if let index = (self.mainController?.channelDelegate?.roomCache.content as! [MXEvent]).index(where: { $0.eventId == eventId }) {
+                    self.mainController?.channelDelegate?.roomCache.remove(atArrangedObjectIndex: index)
                 }
+
             } else {
                 for (index, event) in MatrixServices.inst.eventCache[roomId!]!.enumerated() {
                     if event.sentState == MXEventSentStateFailed {
@@ -54,7 +54,7 @@ class MainViewSendErrorController: NSViewController {
                         MatrixServices.inst.eventCache[roomId!]![index] = event.prune()
                     }
                 }
-            }
+            } */
         }
         self.dismiss(sender)
     }

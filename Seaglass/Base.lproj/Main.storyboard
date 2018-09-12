@@ -934,7 +934,7 @@ Copyright 2018 © Avery Pierce</string>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-uT-QHE">
                                 <rect key="frame" x="20" y="56" width="312" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org, #channel:matrix.org, ..." drawsBackground="YES" id="mOa-Z0-Ny3">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="@user:matrix.org, #room:matrix.org, ..." drawsBackground="YES" id="mOa-Z0-Ny3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1711,7 +1711,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <outlet property="dataSource" destination="WXz-Io-9JK" id="u2V-Ap-Dfk"/>
+                                                <outlet property="dataSource" destination="WXz-Io-9JK" id="Udq-Nk-qI4"/>
                                                 <outlet property="delegate" destination="WXz-Io-9JK" id="ZaB-W8-76s"/>
                                             </connections>
                                         </tableView>
@@ -1928,12 +1928,14 @@ DQ
                         <outlet property="RoomMessageClipView" destination="yGf-GP-99e" id="ikp-6Q-WdD"/>
                         <outlet property="RoomMessageInput" destination="4Ed-eJ-aDl" id="JkG-Xd-2D7"/>
                         <outlet property="RoomMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
+                        <outlet property="RoomMessageTableColumn" destination="HHh-xz-b6k" id="gjm-dO-095"/>
                         <outlet property="RoomMessageTableView" destination="qXT-6y-pht" id="3MU-Zz-XWf"/>
                         <outlet property="RoomName" destination="GO9-mJ-qzs" id="AJv-5P-bcy"/>
                         <outlet property="RoomPartButton" destination="nBR-QP-fLS" id="glA-c2-BR4"/>
                         <outlet property="RoomTopic" destination="vGs-sY-dgv" id="pxH-h5-4F8"/>
                     </connections>
                 </viewController>
+                <userDefaultsController id="VeQ-HT-d5t"/>
             </objects>
             <point key="canvasLocation" x="1029" y="1028"/>
         </scene>
@@ -3816,6 +3818,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>

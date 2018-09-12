@@ -50,6 +50,7 @@
 		39A7D0A421459BE80019AF6C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7D0A321459BE80019AF6C /* MainWindowController.swift */; };
 		39A7D0AC2145D6810019AF6C /* MainViewKeyRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A7D0AB2145D6810019AF6C /* MainViewKeyRequestController.swift */; };
 		39BE2448211DBF25006B0A8B /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BE2447211DBF25006B0A8B /* NSImage.swift */; };
+		39E06C5D21486A6D00C24A59 /* MatrixRoomCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E06C5C21486A6D00C24A59 /* MatrixRoomCache.swift */; };
 		39E5AA7E2124C85E00BDA001 /* MainViewJoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */; };
 		39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */; };
 		39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA82212603A500BDA001 /* PopoverRoomList.swift */; };
@@ -131,6 +132,7 @@
 		39A7D0A321459BE80019AF6C /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		39A7D0AB2145D6810019AF6C /* MainViewKeyRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewKeyRequestController.swift; sourceTree = "<group>"; };
 		39BE2447211DBF25006B0A8B /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
+		39E06C5C21486A6D00C24A59 /* MatrixRoomCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MatrixRoomCache.swift; path = Seaglass/Model/MatrixRoomCache.swift; sourceTree = "<group>"; };
 		39E5AA7D2124C85E00BDA001 /* MainViewJoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewJoinController.swift; sourceTree = "<group>"; };
 		39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPartController.swift; sourceTree = "<group>"; };
 		39E5AA82212603A500BDA001 /* PopoverRoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomList.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				390FE41020C7026A004A4B74 /* MatrixServices.swift */,
+				39E06C5C21486A6D00C24A59 /* MatrixRoomCache.swift */,
 				39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */,
 				395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */,
 			);
@@ -655,6 +658,7 @@
 				394679E721304B0500FF67C1 /* InlineImageView.swift in Sources */,
 				39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */,
 				3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */,
+				39E06C5D21486A6D00C24A59 /* MatrixRoomCache.swift in Sources */,
 				3D502D80212E012F00C8D06E /* ContextImageView.swift in Sources */,
 				3943AC6A21301B9300760967 /* RoomMessageOutgoingCoalesced.swift in Sources */,
 				3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */,
