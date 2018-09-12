@@ -78,10 +78,12 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
         guard !keyRequests.contains(where: { $0.request!.deviceId == request.deviceId }) else { return }
         
         MatrixServices.inst.session.crypto.deviceList.downloadKeys([request.userId], forceDownload: false, success: { (devicemap) in
-            let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
-            sheet.request = request
-            self.presentViewControllerAsSheet(sheet)
-            self.keyRequests.append(sheet)
+            if MatrixServices.inst.session.crypto.deviceList.storedDevice(request.userId, deviceId: request.deviceId) != nil {
+                let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
+                sheet.request = request
+                self.presentViewControllerAsSheet(sheet)
+                self.keyRequests.append(sheet)
+            }
         }) { (error) in
         }
     }
