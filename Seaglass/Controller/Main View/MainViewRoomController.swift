@@ -326,7 +326,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 1
+        return 20
     }
     
     func uiRoomNeedsCryptoReload() {
