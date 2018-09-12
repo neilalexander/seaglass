@@ -59,6 +59,7 @@ import SwiftMatrixSDK
     }
     
     func append(_ newElement: MXEvent) {
+        guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
         self.unfilteredContent.append(newElement)
         if let table = _managedTable {
             if self.filter(newElement) {
@@ -68,6 +69,7 @@ import SwiftMatrixSDK
     }
     
     func insert(_ newElement: MXEvent, at: Int) {
+        guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
         self.unfilteredContent.insert(newElement, at: at)
         if let table = _managedTable {
             if self.filter(newElement) {
@@ -79,6 +81,7 @@ import SwiftMatrixSDK
     }
     
     func replace(_ newElement: MXEvent, at: Int) {
+        guard self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
         if let table = _managedTable {
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {
