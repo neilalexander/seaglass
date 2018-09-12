@@ -122,7 +122,7 @@
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
 		394679E621304B0500FF67C1 /* InlineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageView.swift; sourceTree = "<group>"; };
-		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoomsCacheEntry.swift; path = Seaglass/Model/RoomsCacheEntry.swift; sourceTree = "<group>"; };
+		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCacheEntry.swift; sourceTree = "<group>"; };
 		39640E37212E09130060F170 /* MainViewSendErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSendErrorController.swift; sourceTree = "<group>"; };
 		39850C502118F51D00D20974 /* RoomListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListEntry.swift; sourceTree = "<group>"; };
 		39850C522118F55200D20974 /* RoomAliasEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasEntry.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		39E5AA84212603F700BDA001 /* PopoverUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUserList.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
-		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MembersCacheEntry.swift; path = Seaglass/Model/MembersCacheEntry.swift; sourceTree = "<group>"; };
+		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCacheEntry.swift; sourceTree = "<group>"; };
 		39F3126021189F9200A75E16 /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
 		39F312622118F21C00A75E16 /* RoomAliasesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasesController.swift; sourceTree = "<group>"; };
 		3D502D7F212E012F00C8D06E /* ContextImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextImageView.swift; sourceTree = "<group>"; };
@@ -276,6 +276,7 @@
 		3943AC6C21302F0000760967 /* Member Lists */ = {
 			isa = PBXGroup;
 			children = (
+				39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */,
 				39432C912118716700FF3E5A /* MemberListTableView.swift */,
 				39F3125A2118745100A75E16 /* MemberListEntry.swift */,
 			);
@@ -285,6 +286,7 @@
 		3943AC6D21302F1300760967 /* Room Lists */ = {
 			isa = PBXGroup;
 			children = (
+				395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */,
 				39850C522118F55200D20974 /* RoomAliasEntry.swift */,
 				39850C502118F51D00D20974 /* RoomListEntry.swift */,
 			);
@@ -334,8 +336,6 @@
 			children = (
 				390FE41020C7026A004A4B74 /* MatrixServices.swift */,
 				39E06C5C21486A6D00C24A59 /* MatrixRoomCache.swift */,
-				39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */,
-				395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */,
 			);
 			name = Model;
 			path = ..;

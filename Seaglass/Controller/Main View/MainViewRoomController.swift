@@ -81,6 +81,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInsertButton.isEnabled = isRoomSelected
         RoomMessageInput.textField.isEnabled = isRoomSelected
         RoomMessageInput.emojiButton.isEnabled = isRoomSelected
+        RoomName.isHidden = !isRoomSelected
+        RoomTopic.isHidden = !isRoomSelected
         
         RoomMessageScrollView.postsBoundsChangedNotifications = true
         RoomMessageScrollView.postsFrameChangedNotifications = true
@@ -354,28 +356,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomIsPaginating = false
         roomIsOverscrolling = false
         
-        let isInvite = cacheEntry.isInvite()
-        RoomName.isEnabled = roomId != ""
-        RoomInfoButton.isEnabled = roomId != ""
-        RoomPartButton.isEnabled = roomId != "" && !isInvite
-        RoomEncryptionButton.isEnabled = roomId != "" && !isInvite
-        RoomInsertButton.isEnabled = roomId != "" && !isInvite
-        RoomMessageInput.textField.isEnabled = roomId != "" && !isInvite
-        RoomMessageInput.emojiButton.isEnabled = roomId != "" && !isInvite
- 
-        RoomInsertButton.alphaValue = isInvite ? 0 : 1
-        RoomMessageInput.alphaValue = isInvite ? 0 : 1
-        
-        RoomInviteLabel.isHidden = !isInvite
-        RoomInviteLabel.alphaValue = isInvite ? 1 : 0
-        RoomInviteAcceptButton.isHidden = !isInvite
-        RoomInviteAcceptButton.alphaValue = isInvite ? 1 : 0
-        RoomInviteDeclineButton.isHidden = !isInvite
-        RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
-
-        RoomName.stringValue = cacheEntry.roomDisplayName
-        RoomTopic.stringValue = cacheEntry.roomTopic
-        
         if let cache = MatrixServices.inst.roomCaches[roomId] {
             cache.managedTable = nil
         }
@@ -407,6 +387,32 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 }
             }
         }
+        
+        let isInvite = cacheEntry.isInvite()
+        RoomInviteAcceptButton.isEnabled = isInvite
+        RoomInviteDeclineButton.isEnabled = isInvite
+        RoomName.isEnabled = roomId != ""
+        RoomInfoButton.isEnabled = roomId != ""
+        RoomPartButton.isEnabled = roomId != "" && !isInvite
+        RoomEncryptionButton.isEnabled = roomId != "" && !isInvite
+        RoomInsertButton.isEnabled = roomId != "" && !isInvite
+        RoomMessageInput.textField.isEnabled = roomId != "" && !isInvite
+        RoomMessageInput.emojiButton.isEnabled = roomId != "" && !isInvite
+        
+        RoomInsertButton.alphaValue = isInvite ? 0 : 1
+        RoomMessageInput.alphaValue = isInvite ? 0 : 1
+        
+        RoomInviteLabel.isHidden = !isInvite
+        RoomInviteLabel.alphaValue = isInvite ? 1 : 0
+        RoomInviteAcceptButton.isHidden = !isInvite
+        RoomInviteAcceptButton.alphaValue = isInvite ? 1 : 0
+        RoomInviteDeclineButton.isHidden = !isInvite
+        RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
+        
+        RoomName.isHidden = roomId == ""
+        RoomName.stringValue = cacheEntry.roomDisplayName
+        RoomTopic.isHidden = roomId == ""
+        RoomTopic.stringValue = cacheEntry.roomTopic
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
