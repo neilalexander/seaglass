@@ -82,7 +82,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {
-                    table.removeRows(at: IndexSet([index]), withAnimation: [.slideUp, .effectFade])
+                    table.removeRows(at: IndexSet([index]), withAnimation: [.effectFade])
                 }
             }
         }
