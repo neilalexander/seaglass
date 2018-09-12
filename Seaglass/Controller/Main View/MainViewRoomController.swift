@@ -142,9 +142,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
-                        self.RoomMessageTableView.beginUpdates()
                         MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
-                        self.RoomMessageTableView.endUpdates()
                     }
                 }
                 self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
@@ -157,9 +155,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                 if case .success( _) = response {
                     if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
-                        self.RoomMessageTableView.beginUpdates()
                         MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
-                        self.RoomMessageTableView.endUpdates()
                     }
                 }
                 self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
@@ -381,7 +377,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
                     room.liveTimeline.resetPagination()
-                    RoomMessageTableView.beginUpdates()
                     let group = DispatchGroup()
                     while cache.filteredContent.count < 50 {
                         group.enter()
@@ -393,7 +388,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                         }
                         group.wait()
                     }
-                    RoomMessageTableView.endUpdates()
                 }
             }
         }
