@@ -467,17 +467,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         guard event.roomId == roomId else { return }
         guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
 
-        if let new = event.content["membership"] as? String {
-            if let old = event.prevContent["membership"] as? String {
-                if new == "leave" && old == "join" {
-                    RoomInfoButton.isEnabled = false
-                    RoomPartButton.isEnabled = false
-                    RoomEncryptionButton.isEnabled = false
-                    RoomInsertButton.isEnabled = false
-                    RoomMessageInput.textField.isEnabled = false
-                    RoomMessageInput.emojiButton.isEnabled = false
-                }
-            }
+        let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+        let old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as? String : "leave"
+        
+        if new == "leave" && old == "join" {
+            RoomInfoButton.isEnabled = false
+            RoomPartButton.isEnabled = false
+            RoomEncryptionButton.isEnabled = false
+            RoomInsertButton.isEnabled = false
+            RoomMessageInput.textField.isEnabled = false
+            RoomMessageInput.emojiButton.isEnabled = false
         }
     }
     

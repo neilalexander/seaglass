@@ -312,13 +312,13 @@ class MatrixServices: NSObject {
                 break
             case "m.room.member":
                 if direction == .forwards {
-                    if let new = event.content["membership"] as? String {
-                        if let old = event.prevContent["membership"] as? String {
-                            if new == "leave" && old == "join" {
-                                self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
-                            } else if new == "join" && old == "leave" {
-                                self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
-                            }
+                    if event.content.keys.contains("membership") {
+                        let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+                        let old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as? String : "leave"
+                        if new == "leave" && old == "join" {
+                            self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
+                        } else if new == "join" && old == "leave" {
+                            self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
                         }
                     }
                 }
