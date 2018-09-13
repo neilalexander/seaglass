@@ -403,8 +403,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     func updateRoomControls(withEvent event: MXEvent? = nil, withCacheEntry entry: RoomListEntry? = nil) {
         if event != nil {
             guard roomId == event!.roomId else { return }
-        } else if entry != nil {
-            guard roomId == entry!.roomsCacheEntry?.roomId else { return }
         }
         
         var isInvite = false
@@ -434,15 +432,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 if new == "leave" && old != "leave" {
                     if event!.stateKey == event!.sender {
                         isParted = true
-                        isKicked = false
                     } else {
-                        isParted = false
                         isKicked = true
                     }
-                } else {
-                    isInvite = false
-                    isParted = false
-                    isKicked = false
                 }
             }
         }
