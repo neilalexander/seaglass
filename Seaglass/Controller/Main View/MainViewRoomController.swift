@@ -375,18 +375,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if cache.filteredContent.count >= 50 {
                 roomDidPaginate()
             } else {
-                if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
-                    room.liveTimeline.resetPagination()
-                    let group = DispatchGroup()
-                    while cache.filteredContent.count < 50 {
-                        group.enter()
-                        room.liveTimeline.paginate(25, direction: .backwards, onlyFromStore: false) { _ in
-                            if cache.filteredContent.count >= 50 {
+                if cache.filteredContent.count == 0 {
+                    if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
+                        room.liveTimeline.resetPagination()
+                        if room.liveTimeline.canPaginate(.backwards) {
+                            room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
                                 roomDidPaginate()
                             }
-                            group.leave()
                         }
-                        group.wait()
                     }
                 }
             }

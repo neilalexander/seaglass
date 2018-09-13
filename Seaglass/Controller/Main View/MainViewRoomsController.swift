@@ -180,9 +180,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             return
         }
         entry.RoomListEntryUnread.isHidden = !entry.roomsCacheEntry!.isInvite()
-        DispatchQueue.main.async {
-            self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
-        }
+        self.mainController?.channelDelegate?.uiDidSelectRoom(entry: entry)
     }
     
     func updateAttentionRooms() {
