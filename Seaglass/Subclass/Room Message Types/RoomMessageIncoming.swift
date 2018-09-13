@@ -38,6 +38,8 @@ class RoomMessageIncoming: RoomMessage {
         guard let roomId = event!.roomId else { return }
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
         
+        
+        
         From.stringValue = super.from()
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)

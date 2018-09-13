@@ -556,7 +556,20 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                 }))
             }
         } else {
-            
+            if NSEvent.modifierFlags.contains(NSEvent.ModifierFlags.option) {
+                actions.append(NSTableViewRowAction(style: .regular, title: "Info", handler: { (action, row) in
+                    if let event = MatrixServices.inst.roomCaches[self.roomId]?.filteredContent[row] {
+                        if let view = self.RoomMessageTableView {
+                            if let board = self.storyboard {
+                                let identifier = NSStoryboard.SceneIdentifier("MessageInfo")
+                                let infoController = board.instantiateController(withIdentifier: identifier) as! MainViewMessageInfoController
+                                infoController.event = event
+                                self.presentViewController(infoController, asPopoverRelativeTo: view.visibleRect, of: view, preferredEdge: .minX, behavior: .transient)
+                            }
+                        }
+                    }
+                }))
+            }
         }
         return actions
     }
