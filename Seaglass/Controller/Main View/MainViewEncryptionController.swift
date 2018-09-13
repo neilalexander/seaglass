@@ -72,14 +72,16 @@ class MainViewEncryptionController: NSViewController {
             ConfirmButton.animator().alphaValue = 0
             ConfirmSpinner.animator().alphaValue = 1
         }, completionHandler: {
-            MatrixServices.inst.session.room(withRoomId: self.roomId).enableEncryption(withAlgorithm: "m.megolm.v1.aes-sha2") { (response) in
-                if response.isSuccess {
+            if let room = MatrixServices.inst.session.room(withRoomId: self.roomId) {
+                room.enableEncryption(withAlgorithm: "m.megolm.v1.aes-sha2") { (response) in
+                    if response.isSuccess {
+                        self.dismiss(self)
+                        return
+                    }
+                    
+                    print("Failed to enable encryption: \(response.error!.localizedDescription)")
                     self.dismiss(self)
-                    return
                 }
-                
-                print("Failed to enable encryption: \(response.error!.localizedDescription)")
-                self.dismiss(self)
             }
         })
     }

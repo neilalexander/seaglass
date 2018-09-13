@@ -49,9 +49,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if (newValue && !roomIsTyping) || (!newValue && roomIsTyping) {
                 roomIsTyping = newValue
                 if roomId != "" {
-                    MatrixServices.inst.session.room(withRoomId: roomId).sendTypingNotification(typing: roomIsTyping, timeout: 30) { (response) in
-                        if response.isFailure {
-                            print("Failed to send typing notification for room \(self.roomId)")
+                    if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
+                        room.sendTypingNotification(typing: roomIsTyping, timeout: 30) { (response) in
+                            if response.isFailure {
+                                print("Failed to send typing notification for room \(self.roomId)")
+                            }
                         }
                     }
                 }
@@ -139,30 +141,34 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         } else if sender.stringValue.starts(with: "/me ") {
             let startIndex = unformattedText.index(unformattedText.startIndex, offsetBy: 4)
             var localReturnedEvent: String? = nil
-            MatrixServices.inst.session.room(withRoomId: roomId).sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
-                if case .success( _) = response {
-                    if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
-                        MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+            if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
+                room.sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
+                    if case .success( _) = response {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                            MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+                        }
                     }
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
                 }
-                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
+                localReturnedEvent = returnedEvent?.eventId ?? nil
+                matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
             }
-            MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
-            localReturnedEvent = returnedEvent?.eventId ?? nil
-            matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
         } else {
             var localReturnedEvent: String? = nil
-            MatrixServices.inst.session.room(withRoomId: roomId).sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
-                if case .success( _) = response {
-                    if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
-                        MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+            if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
+                room.sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
+                    if case .success( _) = response {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                            MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
+                        }
                     }
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
                 }
-                self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
+                localReturnedEvent = returnedEvent?.eventId ?? nil
+                matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
             }
-            MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
-            localReturnedEvent = returnedEvent?.eventId ?? nil
-            matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
         }
         sender.stringValue = ""
         sender.isEnabled = true
