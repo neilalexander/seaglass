@@ -41,8 +41,8 @@ protocol MatrixRoomDelegate: AnyObject {
     func uiRoomNeedsCryptoReload()
     func uiRoomStartInvite()
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
-    func matrixDidRoomUserJoin()
-    func matrixDidRoomUserPart()
+    func matrixDidRoomUserJoin(event: MXEvent)
+    func matrixDidRoomUserPart(event: MXEvent)
 }
 
 class MatrixServices: NSObject {
@@ -286,10 +286,7 @@ class MatrixServices: NSObject {
         if !roomCaches.keys.contains(roomId) {
             roomCaches[roomId] = MatrixRoomCache()
         }
-    
-       // let enumerator = MatrixServices.inst.session.room(withRoomId: roomId).enumeratorForStoredMessages
-       // roomCaches[roomId]!.unfilteredContent = enumerator!.nextEventsBatch(enumerator!.remaining)
-        
+
         if room.state.isEncrypted {
             session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
                 self.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
@@ -313,6 +310,19 @@ class MatrixServices: NSObject {
                     }
                 }
                 break
+            case "m.room.member":
+                if direction == .forwards {
+                    if let new = event.content["membership"] as? String {
+                        if let old = event.prevContent["membership"] as? String {
+                            if new == "leave" && old == "join" {
+                                self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
+                            } else if new == "join" && old == "leave" {
+                                self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
+                            }
+                        }
+                    }
+                }
+                fallthrough
             default:
                 if !self.roomCaches[roomId]!.unfilteredContent.contains(where: { $0.eventId == event.eventId }) {
                     if direction == .forwards {

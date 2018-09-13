@@ -460,8 +460,26 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             return
         }
     }
-    func matrixDidRoomUserJoin() {}
-    func matrixDidRoomUserPart() {}
+    
+    func matrixDidRoomUserJoin(event: MXEvent) {}
+    
+    func matrixDidRoomUserPart(event: MXEvent) {
+        guard event.roomId == roomId else { return }
+        guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
+
+        if let new = event.content["membership"] as? String {
+            if let old = event.prevContent["membership"] as? String {
+                if new == "leave" && old == "join" {
+                    RoomInfoButton.isEnabled = false
+                    RoomPartButton.isEnabled = false
+                    RoomEncryptionButton.isEnabled = false
+                    RoomInsertButton.isEnabled = false
+                    RoomMessageInput.textField.isEnabled = false
+                    RoomMessageInput.emojiButton.isEnabled = false
+                }
+            }
+        }
+    }
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return [] }
