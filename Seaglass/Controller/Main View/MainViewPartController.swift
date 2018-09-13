@@ -27,7 +27,7 @@ class MainViewPartController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LeaveButton.isEnabled = roomId != ""
+        LeaveButton.isEnabled = MatrixServices.inst.session.room(withRoomId: roomId) != nil
     }
     
     @IBAction func leaveButtonClicked(_ sender: NSButton) {
