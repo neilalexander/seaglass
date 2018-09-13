@@ -63,6 +63,7 @@ import SwiftMatrixSDK
         self.unfilteredContent.append(newElement)
         if let table = _managedTable {
             if self.filter(newElement) {
+                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [.effectFade, .effectGap])
                 table.noteNumberOfRowsChanged()
             }
         }
@@ -81,7 +82,7 @@ import SwiftMatrixSDK
     }
     
     func replace(_ newElement: MXEvent, at: Int) {
-        guard self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
+        guard self.unfilteredContent[at].eventId == newElement.eventId else { return }
         if let table = _managedTable {
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {

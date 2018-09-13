@@ -153,13 +153,18 @@ class MatrixServices: NSObject {
             self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
                 switch event.type {
                 case "m.room.member":
-                    if event.stateKey != MatrixServices.inst.session.myUser.userId {
-                        return
+                    guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
+                    guard direction == .forwards else { return }
+                    
+                    let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+                    var old = "leave"
+                    if event.prevContent != nil {
+                        old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : "leave"
                     }
-                    if direction != .forwards {
-                        return
-                    }
-                    switch event.content["membership"] as? String {
+                    
+                    guard new != old else { return }
+                    
+                    switch new {
                     case "join":
                         if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
                             if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
@@ -169,18 +174,18 @@ class MatrixServices: NSObject {
                         return
                     case "invite":
                         if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                            MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
-                                if response.isFailure {
-                                    return
-                                }
-                                if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
-                                    self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                                self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                                
+                                MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
+                                    guard !response.isFailure else { return }
+                                    
                                     room.liveTimeline.resetPagination()
                                     room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
                                         // complete?
                                     }
-                                }
-                            })
+                                })
+                            }
                         }
                         return
                     case "leave":
@@ -312,14 +317,16 @@ class MatrixServices: NSObject {
                 break
             case "m.room.member":
                 if direction == .forwards {
-                    if event.content.keys.contains("membership") {
-                        let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
-                        let old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as? String : "leave"
-                        if new == "leave" && old == "join" {
-                            self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
-                        } else if new == "join" && old == "leave" {
-                            self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
-                        }
+                    let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+                    var old = new == "join" ? "leave" : "join"
+                    if event.prevContent != nil {
+                        old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : new == "join" ? "leave" : "join"
+                    }
+                    
+                    if new == "leave" && old != "leave" {
+                        self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
+                    } else if new == "join" && old != "join" {
+                        self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
                     }
                 }
                 fallthrough
@@ -327,20 +334,16 @@ class MatrixServices: NSObject {
                 if !self.roomCaches[roomId]!.unfilteredContent.contains(where: { $0.eventId == event.eventId }) {
                     if direction == .forwards {
                         self.roomCaches[roomId]!.append(event)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
-                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     } else {
                         self.roomCaches[roomId]!.insert(event, at: 0)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
-                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 } else {
                     if let index = self.roomCaches[roomId]!.unfilteredContent.index(where: { $0.eventId == event.eventId }) {
                         self.roomCaches[roomId]!.replace(event, at: index)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
-                        self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                     }
                 }
+                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
+                self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
                 break
             }
         } as? MXEventListener

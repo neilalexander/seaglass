@@ -53,8 +53,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let isFirst = rooms.count == 0
         if !matrixIsRoomKnown(room) {
             roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
-            roomsCacheController.rearrangeObjects()
         }
+        roomsCacheController.rearrangeObjects()
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)
         RoomSearch.placeholderString = "Search \(rooms.count) room"
         if rooms.count != 1 {
@@ -77,6 +77,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if MatrixServices.inst.eventListeners[room.roomId] != nil {
             MatrixServices.inst.eventListeners[room.roomId] = nil
         }
+        roomsCacheController.rearrangeObjects()
         let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
         if index != nil {
             RoomList.beginUpdates()

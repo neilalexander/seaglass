@@ -350,7 +350,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func uiDidSelectRoom(entry: RoomListEntry) {
         guard let cacheEntry = entry.roomsCacheEntry else { return }
-        guard cacheEntry.roomId != roomId else { return }
+        guard cacheEntry.roomId != roomId else {
+            updateRoomControls(withCacheEntry: entry)
+            return
+        }
     
         roomTyping = false
         roomIsPaginating = false
@@ -394,31 +397,90 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         }
         
-        let isInvite = cacheEntry.isInvite()
-        RoomInviteAcceptButton.isEnabled = isInvite
-        RoomInviteDeclineButton.isEnabled = isInvite
-        RoomName.isEnabled = roomId != ""
-        RoomInfoButton.isEnabled = roomId != ""
-        RoomPartButton.isEnabled = roomId != "" && !isInvite
-        RoomEncryptionButton.isEnabled = roomId != "" && !isInvite
-        RoomInsertButton.isEnabled = roomId != "" && !isInvite
-        RoomMessageInput.textField.isEnabled = roomId != "" && !isInvite
-        RoomMessageInput.emojiButton.isEnabled = roomId != "" && !isInvite
+        updateRoomControls(withCacheEntry: entry)
+    }
+    
+    func updateRoomControls(withEvent event: MXEvent? = nil, withCacheEntry entry: RoomListEntry? = nil) {
+        if event != nil {
+            guard roomId == event!.roomId else { return }
+        } else if entry != nil {
+            guard roomId == entry!.roomsCacheEntry?.roomId else { return }
+        }
         
-        RoomInsertButton.alphaValue = isInvite ? 0 : 1
-        RoomMessageInput.alphaValue = isInvite ? 0 : 1
+        var isInvite = false
+        var isParted = false
+        var isKicked = false
         
-        RoomInviteLabel.isHidden = !isInvite
-        RoomInviteLabel.alphaValue = isInvite ? 1 : 0
+        if entry != nil {
+            if let cacheEntry = entry!.roomsCacheEntry {
+                isInvite = cacheEntry.isInvite()
+                
+                RoomName.stringValue = cacheEntry.roomDisplayName
+                RoomTopic.stringValue = cacheEntry.roomTopic
+            }
+        }
+        
+        if event != nil {
+            if event!.type == "m.room.member" {
+                guard event!.roomId == roomId else { return }
+                guard event!.stateKey == MatrixServices.inst.session.myUser.userId else { return }
+                
+                let new = event!.content.keys.contains("membership") ? event!.content["membership"] as! String : "join"
+                var old = new == "join" ? "leave" : "join"
+                if event!.prevContent != nil {
+                    old = event!.prevContent.keys.contains("membership") ? event!.prevContent["membership"] as! String : new == "join" ? "leave" : "join"
+                }
+                
+                if new == "leave" && old != "leave" {
+                    if event!.stateKey == event!.sender {
+                        isParted = true
+                        isKicked = false
+                    } else {
+                        isParted = false
+                        isKicked = true
+                    }
+                } else {
+                    isInvite = false
+                    isParted = false
+                    isKicked = false
+                }
+            }
+        }
+        
+        RoomName.isEnabled = true
+        RoomName.isHidden = false
+        RoomTopic.isEnabled = true
+        RoomTopic.isHidden = false
+        
+        RoomInviteLabel.isHidden = !isParted && !isKicked && !isInvite
+        if isParted {
+            RoomInviteLabel.stringValue = "You left this room"
+        } else if isKicked {
+            RoomInviteLabel.stringValue = "You were kicked from this room"
+        } else if isInvite {
+            RoomInviteLabel.stringValue = "You are invited to this room"
+        } else {
+            RoomInviteLabel.stringValue = "You are not joined to this room"
+        }
+        
         RoomInviteAcceptButton.isHidden = !isInvite
-        RoomInviteAcceptButton.alphaValue = isInvite ? 1 : 0
-        RoomInviteDeclineButton.isHidden = !isInvite
-        RoomInviteDeclineButton.alphaValue = isInvite ? 1 : 0
+        RoomInviteAcceptButton.isEnabled = isInvite
         
-        RoomName.isHidden = roomId == ""
-        RoomName.stringValue = cacheEntry.roomDisplayName
-        RoomTopic.isHidden = roomId == ""
-        RoomTopic.stringValue = cacheEntry.roomTopic
+        RoomInviteDeclineButton.isHidden = !isInvite
+        RoomInviteDeclineButton.isEnabled = isInvite
+        
+        RoomMessageInput.isHidden = isInvite || isParted || isKicked
+        RoomMessageInput.textField.isEnabled = !isParted && !isKicked && !isInvite
+        RoomMessageInput.emojiButton.isEnabled = !isParted && !isKicked && !isInvite
+        
+        RoomInsertButton.isHidden = isInvite || isParted || isKicked
+        RoomInsertButton.isEnabled = !isParted && !isKicked && !isInvite
+        
+        RoomInfoButton.isEnabled = !isParted && !isKicked
+        RoomPartButton.isEnabled = !isParted && !isKicked && !isInvite
+        RoomEncryptionButton.isEnabled = !isParted && !isKicked && !isInvite
+        
+        print("Invite: \(isInvite), parted: \(isParted), kicked: \(isKicked)")
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {
@@ -461,23 +523,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
     }
     
-    func matrixDidRoomUserJoin(event: MXEvent) {}
+    func matrixDidRoomUserJoin(event: MXEvent) {
+        guard event.roomId == roomId else { return }
+        guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
+        
+        updateRoomControls(withEvent: event)
+    }
     
     func matrixDidRoomUserPart(event: MXEvent) {
         guard event.roomId == roomId else { return }
         guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
 
-        let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
-        let old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as? String : "leave"
-        
-        if new == "leave" && old == "join" {
-            RoomInfoButton.isEnabled = false
-            RoomPartButton.isEnabled = false
-            RoomEncryptionButton.isEnabled = false
-            RoomInsertButton.isEnabled = false
-            RoomMessageInput.textField.isEnabled = false
-            RoomMessageInput.emojiButton.isEnabled = false
-        }
+        updateRoomControls(withEvent: event)
     }
     
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
