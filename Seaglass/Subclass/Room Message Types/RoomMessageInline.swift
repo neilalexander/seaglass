@@ -27,14 +27,14 @@ class RoomMessageInline: RoomMessage {
     
     override func viewWillDraw() {
         guard event != nil else { return }
-        let roomId = event!.roomId
-        let room = MatrixServices.inst.session.room(withRoomId: roomId)
-        guard room != nil else { return }
+        guard let roomId = event!.roomId else { return }
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
         case "m.room.member":
-            let senderDisplayName = room!.state.memberName(event!.sender) ?? event!.sender as String
-            let stateKeyDisplayName = room!.state.memberName(event!.stateKey) ?? event!.stateKey as String
+            let senderDisplayName = room.state.memberName(event!.sender) ?? event!.sender as String
+            let stateKeyDisplayName = room.state.memberName(event!.stateKey) ?? event!.stateKey as String
             let prevDisplayName = event!.prevContent != nil && event!.prevContent.keys.contains("displayname") ? event!.prevContent["displayname"] as! String? : stateKeyDisplayName
             let newDisplayName = event!.content != nil && event!.content.keys.contains("displayname") ? event!.content["displayname"] as! String? : stateKeyDisplayName
             switch event!.content["membership"] as! String {

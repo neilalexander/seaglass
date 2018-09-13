@@ -32,20 +32,17 @@ class RoomMessageIncomingCoalesced: RoomMessage {
     }
     
     override func viewWillDraw() {
-        if event == nil {
-            return
-        }
-        
-        let roomId = event!.roomId
-        let room = MatrixServices.inst.session.room(withRoomId: roomId)
+        guard event != nil else { return }
+        guard let roomId = event!.roomId else { return }
+        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
         
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)
         
         let icon = super.icon()
-        Icon.isHidden = !room!.state.isEncrypted
+        Icon.isHidden = !room.state.isEncrypted
         Icon.image = icon.image
-        Icon.setFrameSize(room!.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
+        Icon.setFrameSize(room.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
         
         var finalTextColor = NSColor.textColor
         let displayname = MatrixServices.inst.session.myUser.displayname ?? MatrixServices.inst.session.myUser.userId
