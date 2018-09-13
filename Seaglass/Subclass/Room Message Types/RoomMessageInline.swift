@@ -33,35 +33,55 @@ class RoomMessageInline: RoomMessage {
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
         case "m.room.member":
-            let senderDisplayName = room.state.memberName(event!.sender) ?? event!.sender as String
-            let stateKeyDisplayName = room.state.memberName(event!.stateKey) ?? event!.stateKey as String
-            let prevDisplayName = event!.prevContent != nil && event!.prevContent.keys.contains("displayname") ? event!.prevContent["displayname"] as! String? : stateKeyDisplayName
-            let newDisplayName = event!.content != nil && event!.content.keys.contains("displayname") ? event!.content["displayname"] as! String? : stateKeyDisplayName
-            switch event!.content["membership"] as! String {
-            case "join":
-                let prevMembership = event!.prevContent != nil && event!.prevContent.keys.contains("membership") ? event!.prevContent["membership"] as! String : "leave"
-                if prevMembership == "leave" {
-                    Text.stringValue = "\(newDisplayName!) joined the room"
-                    break
-                }
-                if newDisplayName != nil && prevDisplayName != nil && newDisplayName != prevDisplayName {
-                    Text.stringValue = "\(prevDisplayName!) is now \(newDisplayName!)"
-                } else if newDisplayName != nil {
-                    Text.stringValue = "\(event!.stateKey!) is now \(newDisplayName!)"
-                } else {
-                    let prevAvatarUrl: String? = event!.prevContent.keys.contains("avatar_url") ? event!.prevContent["avatar_url"] as! String? : nil
-                    let newAvatarUrl: String? = event!.content.keys.contains("avatar_url") ? event!.content["avatar_url"] as! String? : nil
-                    if prevAvatarUrl != newAvatarUrl {
-                        Text.stringValue = "\(newDisplayName!) changed their avatar"
-                    } else {
-                        Text.stringValue = "\(newDisplayName!) unknown state change event"
+            let current = event!.content ?? [:]
+            let previous = event!.prevContent ?? [:]
+            var changes: [String] = []
+            
+            for key in current.keys {
+                if previous.keys.contains(key) {
+                    if previous[key] as! String != current[key] as! String {
+                        changes.append(key)
                     }
+                } else {
+                    changes.append(key)
                 }
-                break
-            case "leave":   Text.stringValue = "\(prevDisplayName!) left the room"; break
-            case "invite":  Text.stringValue = "\(senderDisplayName) invited \(newDisplayName!)"; break
-            case "ban":     Text.stringValue = "\(senderDisplayName) banned \(newDisplayName!)"; break
-            default:        Text.stringValue = "\(newDisplayName!) unknown event: \(event!.stateKey)"; break
+            }
+            
+            if changes.contains("membership") {
+                if changes[0] != "membership" {
+                    changes.swapAt(0, changes.index(of: "membership")!)
+                }
+            }
+
+            let senderDisplayName = room.state.memberName(event!.sender) ?? event!.sender as String
+            let prevDisplayName =
+                event!.prevContent != nil && event!.prevContent.keys.contains("displayname") ?
+                    event!.prevContent["displayname"] as! String? :
+                    event!.stateKey as String
+            let newDisplayName =
+                event!.content != nil && event!.content.keys.contains("displayname") ?
+                    event!.content["displayname"] as! String? :
+                    event!.stateKey as String
+            
+            Text.stringValue = ""
+            for change in changes {
+                if Text.stringValue != "" {
+                    Text.stringValue.append("\n")
+                }
+                switch change {
+                case "membership":
+                    switch current["membership"] as! String {
+                        case "join":        Text.stringValue.append(contentsOf: "\(newDisplayName!) joined the room"); break
+                        case "invite":      Text.stringValue.append(contentsOf: "\(senderDisplayName) invited \(newDisplayName!)"); break
+                        case "leave":       Text.stringValue.append(contentsOf: "\(prevDisplayName!) left the room"); break
+                        case "ban":         Text.stringValue.append(contentsOf: "\(senderDisplayName) banned \(newDisplayName!)"); break
+                        default:            Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown membership state: \(current["membership"] as! String)"); break
+                    }
+                    break
+                case "displayname":       Text.stringValue.append(contentsOf: "\(prevDisplayName!) is now \(newDisplayName!)"); break
+                case "avatar_url":        Text.stringValue.append(contentsOf: "\(newDisplayName!) changed their avatar"); break
+                default:                  Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown change: \(change)"); break
+                }
             }
             break
         case "m.room.name":
