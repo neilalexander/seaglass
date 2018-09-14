@@ -135,8 +135,16 @@ class AvatarImageView: ContextImageView {
     }
     
     func setAvatar(forText: String) {
-        image = NSImage.create(withLetterString: forText)
-        MatrixServices.inst.avatarCache[forText] = image
+        let letter = forText.first { (character) -> Bool in
+            return CharacterSet.alphanumerics.contains(String(character).unicodeScalars.first!)
+        }
+        
+        if MatrixServices.inst.avatarCache.keys.contains(String(letter ?? "?")) {
+            image = MatrixServices.inst.avatarCache[String(letter ?? "?")]
+        } else {
+            image = NSImage.create(withLetterString: forText)
+            MatrixServices.inst.avatarCache[String(letter ?? "?")] = image
+        }
     }
     
 }

@@ -37,7 +37,10 @@ class RoomMessageIncoming: RoomMessage {
         guard event != nil else { return }
         guard let roomId = event!.roomId else { return }
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
-        guard event != drawnEvent else { return }
+        guard event != drawnEvent else {
+            Avatar.setAvatar(forUserId: event!.sender)
+            return
+        }
      
         From.stringValue = super.from()
         Time.stringValue = super.timestamp()
