@@ -32,9 +32,7 @@ import SwiftMatrixSDK
         set {
             _managedTable = newValue
             if let table = _managedTable {
-                table.beginUpdates()
                 table.reloadData()
-                table.endUpdates()
             }
         }
     }
@@ -65,9 +63,7 @@ import SwiftMatrixSDK
     func reset(_ content: [MXEvent] = []) {
         self.unfilteredContent = content
         if let table = _managedTable {
-            table.beginUpdates()
             table.reloadData()
-            table.endUpdates()
         }
     }
     
@@ -77,7 +73,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 table.beginUpdates()
-                table.noteNumberOfRowsChanged()
+                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [.effectFade, .effectGap])
                 table.endUpdates()
             }
         }
@@ -89,7 +85,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 table.beginUpdates()
-                table.noteNumberOfRowsChanged()
+                table.insertRows(at: IndexSet([at]), withAnimation: [.effectFade, .effectGap])
                 table.endUpdates()
             }
         }
