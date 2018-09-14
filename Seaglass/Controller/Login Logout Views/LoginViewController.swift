@@ -47,6 +47,13 @@ class LoginViewController: NSViewController {
     @IBOutlet weak var PasswordLabel: NSTextField!
     @IBOutlet weak var ProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var RememberCheckbox: NSButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        (self.view as! NSVisualEffectView).material = .menu
+        (self.view as! NSVisualEffectView).isEmphasized = true
+    }
 
     override func viewDidAppear() {
         super.viewDidAppear()

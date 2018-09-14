@@ -31,7 +31,7 @@
         <scene sceneID="YdZ-bc-Rgq">
             <objects>
                 <viewController title="About Seaglass" showSeguePresentationStyle="single" id="mAy-xi-EWG" customClass="AboutViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" id="10O-uP-oCs">
+                    <view key="view" autoresizesSubviews="NO" id="10O-uP-oCs" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="631" height="323"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -3586,7 +3586,7 @@ DQ
         <scene sceneID="e7s-8z-WY8">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="c2d-7t-jsh" customClass="LoginViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="BBu-tV-gvF" customClass="NSVisualEffectView" customModule="Seaglass" customModuleProvider="target">
+                    <view key="view" wantsLayer="YES" id="BBu-tV-gvF" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="264"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

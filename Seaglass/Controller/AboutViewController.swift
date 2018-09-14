@@ -30,6 +30,9 @@ class AboutViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        (self.view as! NSVisualEffectView).material = .menu
+        (self.view as! NSVisualEffectView).isEmphasized = true
+        
         let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
         versionTextField.stringValue = "Version " + appVersionString
