@@ -25,12 +25,16 @@ import SwiftMatrixSDK
     private var _filteredContent: [MXEvent] = []
     private var _unfilteredContent: [MXEvent] = []
     
+    private let lock = DispatchSemaphore(value: 1)
+    
     var managedTable: MainViewTableView? {
         get { return _managedTable }
         set {
             _managedTable = newValue
             if let table = _managedTable {
+                table.beginUpdates()
                 table.reloadData()
+                table.endUpdates()
             }
         }
     }
@@ -39,12 +43,19 @@ import SwiftMatrixSDK
         get { return _unfilteredContent }
         set {
             _unfilteredContent = newValue
+            
+            lock.wait()
             _filteredContent = _unfilteredContent.filter(filter)
+            lock.signal()
         }
     }
     
     dynamic var filteredContent: [MXEvent] {
-        get { return _filteredContent }
+        get {
+            lock.wait()
+            defer { lock.signal() }
+            return _filteredContent
+        }
     }
     
     var filter = { (event: MXEvent) -> Bool in
@@ -54,7 +65,9 @@ import SwiftMatrixSDK
     func reset(_ content: [MXEvent] = []) {
         self.unfilteredContent = content
         if let table = _managedTable {
+            table.beginUpdates()
             table.reloadData()
+            table.endUpdates()
         }
     }
     
@@ -63,8 +76,9 @@ import SwiftMatrixSDK
         self.unfilteredContent.append(newElement)
         if let table = _managedTable {
             if self.filter(newElement) {
-                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [.effectFade, .effectGap])
+                table.beginUpdates()
                 table.noteNumberOfRowsChanged()
+                table.endUpdates()
             }
         }
     }
@@ -74,9 +88,9 @@ import SwiftMatrixSDK
         self.unfilteredContent.insert(newElement, at: at)
         if let table = _managedTable {
             if self.filter(newElement) {
-                if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
-                }
+                table.beginUpdates()
+                table.noteNumberOfRowsChanged()
+                table.endUpdates()
             }
         }
     }
@@ -84,6 +98,7 @@ import SwiftMatrixSDK
     func replace(_ newElement: MXEvent, at: Int) {
         guard self.unfilteredContent[at].eventId == newElement.eventId else { return }
         if let table = _managedTable {
+            table.beginUpdates()
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {
                     table.removeRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
@@ -97,6 +112,7 @@ import SwiftMatrixSDK
                     table.insertRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
                 }
             }
+            table.endUpdates()
         }
     }
     
@@ -105,7 +121,9 @@ import SwiftMatrixSDK
         self.unfilteredContent.remove(at: at)
         if let table = _managedTable {
             if rowindex != nil {
+                table.beginUpdates()
                 table.removeRows(at: IndexSet([rowindex!]), withAnimation: [.effectFade, .effectGap])
+                table.endUpdates()
             }
         }
     }

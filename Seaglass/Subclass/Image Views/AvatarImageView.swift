@@ -23,7 +23,7 @@ class AvatarImageView: ContextImageView {
     
     var mxcUrl: String?
     var url: String?
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 
@@ -55,6 +55,15 @@ class AvatarImageView: ContextImageView {
     }
     
     func setAvatar(forMxcUrl: String?, defaultImage: NSImage, useCached: Bool = true) {
+        guard mxcUrl != forMxcUrl else { return }
+        if let cacheUrl = forMxcUrl {
+            if useCached && MatrixServices.inst.avatarCache.keys.contains(cacheUrl) {
+                if image != MatrixServices.inst.avatarCache[cacheUrl] {
+                    image = MatrixServices.inst.avatarCache[cacheUrl]
+                }
+                return
+            }
+        }
         image = defaultImage
         mxcUrl = forMxcUrl
         guard mxcUrl != nil else { return }
@@ -71,6 +80,9 @@ class AvatarImageView: ContextImageView {
                         if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
                             self?.image = image
                             self?.layout()
+                            if let cacheUrl = forMxcUrl {
+                                MatrixServices.inst.avatarCache[cacheUrl] = image
+                            }
                         }
                     }()
                 } else {
@@ -80,6 +92,9 @@ class AvatarImageView: ContextImageView {
                             if let image = MXMediaManager.loadThroughCache(withFilePath: path) {
                                 guard previousPath == path else { return }
                                 self?.image = image
+                                if let cacheUrl = forMxcUrl {
+                                    MatrixServices.inst.avatarCache[cacheUrl] = image
+                                }
                                 self?.layout()
                             }
                         }) { [weak self] (error) in
@@ -121,6 +136,7 @@ class AvatarImageView: ContextImageView {
     
     func setAvatar(forText: String) {
         image = NSImage.create(withLetterString: forText)
+        MatrixServices.inst.avatarCache[forText] = image
     }
     
 }

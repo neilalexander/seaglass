@@ -63,6 +63,7 @@ class MatrixServices: NSObject {
     var sessionListener: MXSessionEventListener?
     var eventListeners: Dictionary<String, MXEventListener> = [:]
     var roomCaches: Dictionary<String, MatrixRoomCache> = [:]
+    var avatarCache: Dictionary<String, NSImage> = [:]
     
     var mainController: MainViewController?
     

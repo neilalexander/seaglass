@@ -243,13 +243,13 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard roomId != "" && MatrixServices.inst.roomCaches.keys.contains(roomId) else {
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-            cell.Text.stringValue = "Room ID not known - this shouldn't happen"
+            cell.Text.stringValue = "(Room ID not known - this shouldn't happen)"
             return cell
         }
         
         guard MatrixServices.inst.roomCaches[roomId]!.filteredContent.count > row else {
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-            cell.Text.stringValue = "Invalid row \(row) - this shouldn't happen"
+            cell.Text.stringValue = "(Invalid row \(row) - this shouldn't happen)"
             return cell
         }
         
@@ -323,10 +323,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if abs(y1 - y2) < 64 {
             OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: MatrixServices.inst.roomCaches[self.roomId]!.filteredContent.count-1, animated: true) })
         }
-    }
-    
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 20
     }
     
     func uiRoomNeedsCryptoReload() {
@@ -471,8 +467,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomInfoButton.isEnabled = !isParted && !isKicked
         RoomPartButton.isEnabled = !isParted && !isKicked && !isInvite
         RoomEncryptionButton.isEnabled = !isParted && !isKicked && !isInvite
-        
-        print("Invite: \(isInvite), parted: \(isParted), kicked: \(isKicked)")
     }
     
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState) {

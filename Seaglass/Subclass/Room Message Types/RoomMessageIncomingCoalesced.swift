@@ -35,6 +35,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
         guard event != nil else { return }
         guard let roomId = event!.roomId else { return }
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        guard event != drawnEvent else { return }
         
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)
@@ -138,6 +139,7 @@ class RoomMessageIncomingCoalesced: RoomMessage {
         }
         
         self.updateIcon()
+        drawnEvent = event
     }
     
     override func updateIcon() {

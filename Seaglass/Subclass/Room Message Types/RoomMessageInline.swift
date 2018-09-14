@@ -29,6 +29,7 @@ class RoomMessageInline: RoomMessage {
         guard event != nil else { return }
         guard let roomId = event!.roomId else { return }
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
+        guard event != drawnEvent else { return }
         
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
@@ -121,10 +122,12 @@ class RoomMessageInline: RoomMessage {
             Text.stringValue = "\(displayName) enabled room encryption (\(event!.content["algorithm"] ?? "unknown") algorithm)"
             break
         default:
-            Text.stringValue = "Unknown event \(event!.type)"
+            Text.stringValue = "(unknown event \(event!.type))"
         }
         if Text.stringValue == "" {
             Text.stringValue = "(no message)"
         }
+        
+        drawnEvent = event
     }
 }
