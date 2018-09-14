@@ -73,7 +73,8 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 table.beginUpdates()
-                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
+                table.noteNumberOfRowsChanged()
+                //table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
                 table.endUpdates()
             }
         }

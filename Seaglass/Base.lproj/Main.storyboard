@@ -1288,7 +1288,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </userDefinedRuntimeAttributes>
                                                                 </textField>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="48" y="1" width="10" height="12"/>
+                                                                    <rect key="frame" x="48" y="1" width="16" height="12"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
                                                                     </constraints>
@@ -1349,6 +1349,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
                                                                 <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
                                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ucJ-c5-qi7" secondAttribute="bottom" id="wxy-lK-cVa"/>
+                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="dcR-Ti-wrs" secondAttribute="trailing" id="xei-CD-h3R"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="Avatar" destination="ru8-q8-hdY" id="obS-Jc-nPJ"/>
