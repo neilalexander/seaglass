@@ -73,7 +73,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 table.beginUpdates()
-                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [.effectFade, .effectGap])
+                table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
                 table.endUpdates()
             }
         }
@@ -85,7 +85,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 table.beginUpdates()
-                table.insertRows(at: IndexSet([at]), withAnimation: [.effectFade, .effectGap])
+                table.insertRows(at: IndexSet([at]), withAnimation: [])
                 table.endUpdates()
             }
         }
@@ -97,7 +97,7 @@ import SwiftMatrixSDK
             table.beginUpdates()
             if filter(self.unfilteredContent[at]) {
                 if let index = filteredContent.index(of: self.unfilteredContent[at]) {
-                    table.removeRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
+                    table.removeRows(at: IndexSet([index]), withAnimation: [])
                 }
             }
         }
@@ -105,7 +105,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if self.filter(newElement) {
                 if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: [.effectFade, .effectGap])
+                    table.insertRows(at: IndexSet([index]), withAnimation: [])
                 }
             }
             table.endUpdates()
@@ -118,7 +118,7 @@ import SwiftMatrixSDK
         if let table = _managedTable {
             if rowindex != nil {
                 table.beginUpdates()
-                table.removeRows(at: IndexSet([rowindex!]), withAnimation: [.effectFade, .effectGap])
+                table.removeRows(at: IndexSet([rowindex!]), withAnimation: [])
                 table.endUpdates()
             }
         }
