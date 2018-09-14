@@ -75,6 +75,7 @@ extension String {
                 }
             })
             
+            str.addAttribute(.foregroundColor, value: NSColor.textColor, range: range)
             str.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
             str.endEditing()
             

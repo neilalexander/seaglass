@@ -110,12 +110,12 @@ class RoomMessage: NSTableCellView {
         var cellAttributedStringValue: NSAttributedString? = nil
         var cellStringValue: String? = nil
         
-         if event!.content["formatted_body"] != nil {
-             let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-             cellAttributedStringValue = (event!.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
-             cellStringValue = (event!.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
-         } else if event!.content["body"] != nil {
-             cellStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+        if event!.content["formatted_body"] != nil {
+            let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+            cellAttributedStringValue = (event!.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
+            cellStringValue = (event!.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+        } else if event!.content["body"] != nil {
+            cellStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             cellAttributedStringValue = NSAttributedString(string: cellStringValue!)
         }
         
