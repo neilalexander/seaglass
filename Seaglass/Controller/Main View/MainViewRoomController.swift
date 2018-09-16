@@ -261,12 +261,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let event = MatrixServices.inst.roomCaches[roomId]!.filteredContent[row]
         var cell: RoomMessage
         
-        guard event.decryptionError == nil else {
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-            cell.event = event
-            return cell
-        }
-        
         switch event.type {
         case "m.sticker":
             fallthrough

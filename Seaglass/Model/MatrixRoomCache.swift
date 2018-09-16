@@ -20,6 +20,8 @@ import Cocoa
 import SwiftMatrixSDK
 
 @objcMembers class MatrixRoomCache: NSObject {
+    
+    static let allowedTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker", "m.room.encryption" ]
 
     private var _managedTable: MainViewTableView?
     private var _filteredContent: [MXEvent] = []
@@ -57,7 +59,9 @@ import SwiftMatrixSDK
     }
     
     var filter = { (event: MXEvent) -> Bool in
-        return !event.isRedactedEvent() && event.content.count > 0 && [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker", "m.room.encryption" ].contains(event.type)
+        return MatrixRoomCache.allowedTypes.contains(event.type) &&
+            ((event.isState() && !NSDictionary(dictionary: event.content).isEqual(to: event.prevContent)) || !event.isState()) &&
+            ((event.isEncrypted && event.decryptionError != nil) || (!event.isRedactedEvent() && event.content.count > 0))
     }
     
     func reset(_ content: [MXEvent] = []) {
