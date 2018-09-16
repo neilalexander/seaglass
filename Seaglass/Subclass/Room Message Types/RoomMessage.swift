@@ -48,6 +48,11 @@ class RoomMessage: NSTableCellView {
         return event!.sentState == MXEventSentStateEncrypting || event!.isEncrypted
     }
     
+    func encryptionIsPending() -> Bool {
+        guard event != nil else { return false }
+        return event!.type == "m.room.encrypted" || event!.decryptionError != nil
+    }
+    
     func encryptionIsVerified() -> Bool {
         guard event != nil else { return false }
         if let deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event!) {
@@ -66,6 +71,7 @@ class RoomMessage: NSTableCellView {
         let padlockWidth: CGFloat = 16
         let padlockHeight: CGFloat = 12
         let padlockColor: NSColor =
+            self.encryptionIsPending() ? NSColor.systemGray.withAlphaComponent(0.5) :
             self.encryptionIsSending() ? NSColor(deviceRed: 0.38, green: 0.65, blue: 0.53, alpha: 0.75) :
             self.encryptionIsBlacklisted() ? NSColor.systemRed :
             (self.encryptionIsEncrypted() ?

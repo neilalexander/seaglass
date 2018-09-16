@@ -57,11 +57,7 @@ class RoomMessageOutgoing: RoomMessage {
         switch event!.type {
         case "m.room.encrypted":
             Text.stringValue = ""
-            if event!.decryptionError != nil {
-                Text.placeholderString = "Unable to decrypt (\(event!.decryptionError.localizedDescription))"
-            } else {
-                Text.placeholderString = "Unable to decrypt"
-            }
+            Text.placeholderString = "Unable to decrypt (waiting for keys)"
             break
         case "m.sticker":
             if let info = event!.content["info"] as? [String: Any] {

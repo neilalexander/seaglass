@@ -308,13 +308,6 @@ class MatrixServices: NSObject {
             
             if event.decryptionError != nil {
                 NotificationCenter.default.addObserver(MatrixServices.inst, selector: #selector(self.eventDidDecrypt), name: NSNotification.Name.mxEventDidDecrypt, object: event)
-               /* NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: event, queue: OperationQueue.main, using: { (notification) in
-                    if event.roomId != nil {
-                        if let cache = MatrixServices.inst.roomCaches[event.roomId] {
-                            cache.update(event)
-                        }
-                    }
-                }) */
             }
 
             switch event.type {
