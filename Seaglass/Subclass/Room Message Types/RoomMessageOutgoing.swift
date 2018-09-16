@@ -55,6 +55,14 @@ class RoomMessageOutgoing: RoomMessage {
         var finalTextColor = NSColor.textColor
         
         switch event!.type {
+        case "m.room.encrypted":
+            Text.stringValue = ""
+            if event!.decryptionError != nil {
+                Text.placeholderString = event!.decryptionError.localizedDescription
+            } else {
+                Text.placeholderString = "Encrypted event"
+            }
+            break
         case "m.sticker":
             if let info = event!.content["info"] as? [String: Any] {
                 if let thumbnailUrl = info["thumbnail_url"] as? String {
