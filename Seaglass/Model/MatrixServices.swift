@@ -150,66 +150,64 @@ class MatrixServices: NSObject {
             print(notification)
         })
         
-        DispatchQueue.main.async {
-            self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
-                switch event.type {
-                case "m.room.member":
-                    guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
-                    guard direction == .forwards else { return }
-                    
-                    let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
-                    var old = "leave"
-                    if event.prevContent != nil {
-                        old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : "leave"
-                    }
-                    
-                    guard new != old else { return }
-                    
-                    switch new {
-                    case "join":
-                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
-                                self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
-                            }
+        self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
+            switch event.type {
+            case "m.room.member":
+                guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
+                guard direction == .forwards else { return }
+                
+                let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+                var old = "leave"
+                if event.prevContent != nil {
+                    old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : "leave"
+                }
+                
+                guard new != old else { return }
+                
+                switch new {
+                case "join":
+                    if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                        if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                            self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
                         }
-                        return
-                    case "invite":
-                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
-                                self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                    }
+                    return
+                case "invite":
+                    if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                        if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == false {
+                            self.mainController?.roomsDelegate?.matrixDidJoinRoom(room)
+                            
+                            MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
+                                guard !response.isFailure else { return }
                                 
-                                MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
-                                    guard !response.isFailure else { return }
-                                    
-                                    room.liveTimeline.resetPagination()
-                                    room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
-                                        // complete?
-                                    }
-                                })
-                            }
+                                room.liveTimeline.resetPagination()
+                                room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+                                    // complete?
+                                }
+                            })
                         }
-                        return
-                    case "leave":
-                        if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
-                            if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == true {
-                                self.mainController?.roomsDelegate?.matrixDidPartRoom(room)
-                            }
-                        }
-                        return
-                    default:
-                        print(event)
-                        print(direction)
-                        print("")
-                        return
                     }
+                    return
+                case "leave":
+                    if let room = MatrixServices.inst.session.room(withRoomId: event.roomId) {
+                        if self.mainController?.roomsDelegate?.matrixIsRoomKnown(room) == true {
+                            self.mainController?.roomsDelegate?.matrixDidPartRoom(room)
+                        }
+                    }
+                    return
                 default:
                     print(event)
                     print(direction)
                     print("")
                     return
                 }
-            }) as? MXSessionEventListener
-        }
+            default:
+                print(event)
+                print(direction)
+                print("")
+                return
+            }
+        }) as? MXSessionEventListener
     }
     
     func start(_ credentials: MXCredentials, disableCache: Bool, success: (() -> Void)?, failure: (() -> Void)?) {

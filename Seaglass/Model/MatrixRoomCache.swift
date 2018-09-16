@@ -69,58 +69,66 @@ import SwiftMatrixSDK
     
     func append(_ newElement: MXEvent) {
         guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
-        self.unfilteredContent.append(newElement)
-        if let table = _managedTable {
-            if self.filter(newElement) {
-                table.beginUpdates()
-                table.noteNumberOfRowsChanged()
-                //table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
-                table.endUpdates()
+        DispatchQueue.main.async {
+            self.unfilteredContent.append(newElement)
+            if let table = self._managedTable {
+                if self.filter(newElement) {
+                    table.beginUpdates()
+                    table.noteNumberOfRowsChanged()
+                    //table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
+                    table.endUpdates()
+                }
             }
         }
     }
     
     func insert(_ newElement: MXEvent, at: Int) {
         guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
-        self.unfilteredContent.insert(newElement, at: at)
-        if let table = _managedTable {
-            if self.filter(newElement) {
-                table.beginUpdates()
-                table.insertRows(at: IndexSet([at]), withAnimation: [])
-                table.endUpdates()
+        DispatchQueue.main.async {
+            self.unfilteredContent.insert(newElement, at: at)
+            if let table = self._managedTable {
+                if self.filter(newElement) {
+                    table.beginUpdates()
+                    table.insertRows(at: IndexSet([at]), withAnimation: [])
+                    table.endUpdates()
+                }
             }
         }
     }
     
     func replace(_ newElement: MXEvent, at: Int) {
         guard self.unfilteredContent[at].eventId == newElement.eventId else { return }
-        if let table = _managedTable {
-            table.beginUpdates()
-            if filter(self.unfilteredContent[at]) {
-                if let index = filteredContent.index(of: self.unfilteredContent[at]) {
-                    table.removeRows(at: IndexSet([index]), withAnimation: [])
+        DispatchQueue.main.async {
+            if let table = self._managedTable {
+                table.beginUpdates()
+                if self.filter(self.unfilteredContent[at]) {
+                    if let index = self.filteredContent.index(of: self.unfilteredContent[at]) {
+                        table.removeRows(at: IndexSet([index]), withAnimation: [])
+                    }
                 }
             }
-        }
-        self.unfilteredContent[at] = newElement
-        if let table = _managedTable {
-            if self.filter(newElement) {
-                if let index = filteredContent.index(of: newElement) {
-                    table.insertRows(at: IndexSet([index]), withAnimation: [])
+            self.unfilteredContent[at] = newElement
+            if let table = self._managedTable {
+                if self.filter(newElement) {
+                    if let index = self.filteredContent.index(of: newElement) {
+                        table.insertRows(at: IndexSet([index]), withAnimation: [])
+                    }
                 }
+                table.endUpdates()
             }
-            table.endUpdates()
         }
     }
     
     func remove(at: Int) {
         let rowindex = filteredContent.index(of: unfilteredContent[at])
-        self.unfilteredContent.remove(at: at)
-        if let table = _managedTable {
-            if rowindex != nil {
-                table.beginUpdates()
-                table.removeRows(at: IndexSet([rowindex!]), withAnimation: [])
-                table.endUpdates()
+        DispatchQueue.main.async {
+            self.unfilteredContent.remove(at: at)
+            if let table = self._managedTable {
+                if rowindex != nil {
+                    table.beginUpdates()
+                    table.removeRows(at: IndexSet([rowindex!]), withAnimation: [])
+                    table.endUpdates()
+                }
             }
         }
     }

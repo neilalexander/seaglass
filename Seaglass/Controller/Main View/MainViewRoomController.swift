@@ -196,14 +196,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
             if room.liveTimeline.canPaginate(direction) {
                 roomIsPaginating = true
-                DispatchQueue.main.async {
-                    room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
-                        if response.isFailure {
-                            print("Failed to paginate: \(response.error!.localizedDescription)")
-                            return
-                        }
-                        self.roomIsPaginating = false
+                room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
+                    if response.isFailure {
+                        print("Failed to paginate: \(response.error!.localizedDescription)")
+                        return
                     }
+                    self.roomIsPaginating = false
                 }
             }
         }
@@ -386,10 +384,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
                         room.liveTimeline.resetPagination()
                         if room.liveTimeline.canPaginate(.backwards) {
-                            DispatchQueue.main.async {
-                                room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                                    roomDidPaginate()
-                                }
+                            room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                                roomDidPaginate()
                             }
                         }
                     }

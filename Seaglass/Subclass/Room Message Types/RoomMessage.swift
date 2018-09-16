@@ -109,7 +109,8 @@ class RoomMessage: NSTableCellView {
         
         var cellAttributedStringValue: NSAttributedString? = nil
         var cellStringValue: String? = nil
-        
+      
+        /*
         if event!.content["formatted_body"] != nil {
             let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
             cellAttributedStringValue = (event!.content["formatted_body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromHTML(justify: justification)
@@ -118,12 +119,13 @@ class RoomMessage: NSTableCellView {
             cellStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
             cellAttributedStringValue = NSAttributedString(string: cellStringValue!)
         }
+        */
         
-        //if event!.content["body"] != nil {
-        //    let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
-        //    cellStringValue = (event!.content["body"] as! String)
-        //    cellAttributedStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
-        //}
+        if event!.content["body"] != nil {
+            let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+            cellStringValue = (event!.content["body"] as! String)
+            cellAttributedStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
+        }
         
         return (cellStringValue, cellAttributedStringValue)
     }
