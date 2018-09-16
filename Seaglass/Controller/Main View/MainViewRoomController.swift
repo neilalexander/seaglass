@@ -230,6 +230,11 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     dest.roomId = roomId
                 }
                 break
+            case "SegueToRoomActions":
+                if let dest = segue.destinationController as? PopoverRoomActions {
+                    dest.roomId = roomId
+                }
+                break
             default:
                 return
             }

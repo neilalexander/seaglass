@@ -1873,7 +1873,7 @@ DQ
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <segue destination="jhm-nB-Mkx" kind="popover" popoverAnchorView="Pix-y5-gjY" popoverBehavior="t" preferredEdge="maxY" id="8ct-Tb-vrJ"/>
+                                            <segue destination="jhm-nB-Mkx" kind="popover" identifier="SegueToRoomActions" popoverAnchorView="Pix-y5-gjY" popoverBehavior="t" preferredEdge="maxY" id="8ct-Tb-vrJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3300,10 +3300,13 @@ DQ
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-jV-joH">
                                 <rect key="frame" x="68" y="8" width="56" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="square" title="Attach" bezelStyle="shadowlessSquare" image="NSTouchBarShareTemplate" imagePosition="above" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="iay-B0-h8t">
+                                <buttonCell key="cell" type="square" title="Attach" bezelStyle="shadowlessSquare" image="NSTouchBarShareTemplate" imagePosition="above" alignment="center" imageScaling="proportionallyDown" inset="2" id="iay-B0-h8t">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="attachButtonClicked:" target="jhm-nB-Mkx" id="4q8-Ha-GQJ"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WrX-X2-X7x">
                                 <rect key="frame" x="123" y="8" width="56" height="58"/>
