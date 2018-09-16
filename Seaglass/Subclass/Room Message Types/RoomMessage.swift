@@ -22,6 +22,7 @@ import SwiftMatrixSDK
 class RoomMessage: NSTableCellView {
     var event: MXEvent?
     var drawnEvent: MXEvent?
+    var drawnEventHash: Int = 0
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

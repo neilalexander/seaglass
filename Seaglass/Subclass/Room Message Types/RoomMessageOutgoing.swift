@@ -37,7 +37,7 @@ class RoomMessageOutgoing: RoomMessage {
         guard event != nil else { return }
         guard let roomId = event!.roomId else { return }
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
-        guard event != drawnEvent else {
+        guard event != drawnEvent || event!.hash != drawnEventHash else {
             Avatar.setAvatar(forUserId: event!.sender)
             return
         }
@@ -152,6 +152,7 @@ class RoomMessageOutgoing: RoomMessage {
         
         self.updateIcon()
         drawnEvent = event
+        drawnEventHash = event!.content.count
     }
     
     override func updateIcon() {
