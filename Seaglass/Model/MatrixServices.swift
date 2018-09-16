@@ -137,17 +137,10 @@ class MatrixServices: NSObject {
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequest)
-            print(notification)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequestCancellation(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequestCancellation)
-            print(notification)
-        })
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
-            print("Did decrypt event")
-            print(notification)
         })
         
         self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in
@@ -302,6 +295,16 @@ class MatrixServices: NSObject {
         eventListeners[roomId] = room.liveTimeline.listenToEvents() { (event, direction, roomState) in
             guard event.roomId != nil && event.roomId != "" else { return }
             guard self.mainController?.channelDelegate?.roomId == event.roomId else { return }
+            
+            if event.decryptionError != nil {
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: event, queue: OperationQueue.main, using: { (notification) in
+                    if event.roomId != nil {
+                        if let cache = MatrixServices.inst.roomCaches[event.roomId] {
+                            cache.update(event)
+                        }
+                    }
+                })
+            }
 
             switch event.type {
             case "m.room.redaction":

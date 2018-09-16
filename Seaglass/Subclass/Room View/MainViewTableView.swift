@@ -19,6 +19,8 @@
 import Cocoa
 
 class MainViewTableView: NSTableView {
+    
+    var roomId: String! = ""
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

@@ -17,6 +17,7 @@
 //
 
 import Cocoa
+import SwiftMatrixSDK
 
 class RoomMessageInline: RoomMessage {
     @IBOutlet var Text: NSTextField!
@@ -33,6 +34,14 @@ class RoomMessageInline: RoomMessage {
         
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
+        case "m.room.encrypted":
+            Text.stringValue = ""
+            if event!.decryptionError != nil {
+                Text.placeholderString = "Unable to decrypt (\(event!.decryptionError.localizedDescription))"
+            } else {
+                Text.placeholderString = "Unable to decrypt"
+            }
+            break
         case "m.room.member":
             let current = event!.content ?? [:]
             let previous = event!.prevContent ?? [:]

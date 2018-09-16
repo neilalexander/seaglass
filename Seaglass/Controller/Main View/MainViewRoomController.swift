@@ -362,6 +362,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomId = cacheEntry.roomId
         if let cache = MatrixServices.inst.roomCaches[roomId] {
             cache.managedTable = RoomMessageTableView
+            cache.managedTable!.roomId = roomId
  
             if cacheEntry.encrypted() {
                 RoomMessageInput.textField.placeholderString = "Encrypted message"

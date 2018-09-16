@@ -52,9 +52,9 @@ class RoomMessageIncomingCoalesced: RoomMessage {
         case "m.room.encrypted":
             Text.stringValue = ""
             if event!.decryptionError != nil {
-                Text.placeholderString = event!.decryptionError.localizedDescription
+                Text.placeholderString = "Unable to decrypt (\(event!.decryptionError.localizedDescription))"
             } else {
-                Text.placeholderString = "Encrypted event"
+                Text.placeholderString = "Unable to decrypt"
             }
             break
         case "m.sticker":
