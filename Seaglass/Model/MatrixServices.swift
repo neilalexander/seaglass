@@ -276,6 +276,16 @@ class MatrixServices: NSObject {
         
     }
     
+    @objc func eventDidDecrypt(_ notification: NSNotification) {
+        if let event = notification.object as? MXEvent {
+            if event.roomId != nil {
+                if let cache = MatrixServices.inst.roomCaches[event.roomId] {
+                    cache.update(event)
+                }
+            }
+        }
+    }
+    
     func subscribeToRoom(roomId: String) {
         guard let room = self.session.room(withRoomId: roomId) else { return }
         guard eventListeners[roomId] == nil else { return }
@@ -297,13 +307,14 @@ class MatrixServices: NSObject {
             guard self.mainController?.channelDelegate?.roomId == event.roomId else { return }
             
             if event.decryptionError != nil {
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: event, queue: OperationQueue.main, using: { (notification) in
+                NotificationCenter.default.addObserver(MatrixServices.inst, selector: #selector(self.eventDidDecrypt), name: NSNotification.Name.mxEventDidDecrypt, object: event)
+               /* NotificationCenter.default.addObserver(forName: NSNotification.Name.mxEventDidDecrypt, object: event, queue: OperationQueue.main, using: { (notification) in
                     if event.roomId != nil {
                         if let cache = MatrixServices.inst.roomCaches[event.roomId] {
                             cache.update(event)
                         }
                     }
-                })
+                }) */
             }
 
             switch event.type {
