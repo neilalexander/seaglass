@@ -32,6 +32,8 @@ class RoomMessageInline: RoomMessage {
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
         guard event != drawnEvent || event!.hash != drawnEventHash else { return }
         
+        Text.allowsEditingTextAttributes = true
+        
         Text.toolTip = super.timestamp(.medium, andDate: .medium)
         switch event!.type {
         case "m.room.encrypted":

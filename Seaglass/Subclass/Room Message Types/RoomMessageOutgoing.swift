@@ -42,6 +42,8 @@ class RoomMessageOutgoing: RoomMessage {
             return
         }
         
+        Text.allowsEditingTextAttributes = true
+        
         From.stringValue = super.from()
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)

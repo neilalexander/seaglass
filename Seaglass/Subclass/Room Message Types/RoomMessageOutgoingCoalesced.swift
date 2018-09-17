@@ -37,6 +37,8 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
         guard event != drawnEvent || event!.hash != drawnEventHash else { return }
 
+        Text.allowsEditingTextAttributes = true
+        
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)
         

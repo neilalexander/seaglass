@@ -130,8 +130,9 @@ class RoomMessage: NSTableCellView {
         
         if event!.content["body"] != nil {
             let justification = event!.sender == MatrixServices.inst.client?.credentials.userId ? NSTextAlignment.right : NSTextAlignment.left
+            let color = event!.content["msgtype"] as? String ?? "m.text" == "m.notice" ? NSColor.headerColor : NSColor.textColor
             cellStringValue = (event!.content["body"] as! String)
-            cellAttributedStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification)
+            cellAttributedStringValue = (event!.content["body"] as! String).trimmingCharacters(in: .whitespacesAndNewlines).toAttributedStringFromMarkdown(justify: justification, color: color)
         }
         
         return (cellStringValue, cellAttributedStringValue)

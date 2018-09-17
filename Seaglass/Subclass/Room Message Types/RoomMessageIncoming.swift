@@ -41,6 +41,8 @@ class RoomMessageIncoming: RoomMessage {
             Avatar.setAvatar(forUserId: event!.sender)
             return
         }
+        
+        Text.allowsEditingTextAttributes = true
      
         From.stringValue = super.from()
         Time.stringValue = super.timestamp()
