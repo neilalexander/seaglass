@@ -57,6 +57,8 @@
 		39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA82212603A500BDA001 /* PopoverRoomList.swift */; };
 		39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA84212603F700BDA001 /* PopoverUserList.swift */; };
 		39EED1B3214FB4D100E8603B /* LoginSuccessfulSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */; };
+		39EED1B8214FDDF200E8603B /* UserSettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EED1B7214FDDF200E8603B /* UserSettingsTabViewController.swift */; };
+		39EED1BA214FDEDB00E8603B /* UserSettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EED1B9214FDEDB00E8603B /* UserSettingsWindowController.swift */; };
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
@@ -141,6 +143,8 @@
 		39E5AA82212603A500BDA001 /* PopoverRoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomList.swift; sourceTree = "<group>"; };
 		39E5AA84212603F700BDA001 /* PopoverUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUserList.swift; sourceTree = "<group>"; };
 		39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessfulSegue.swift; sourceTree = "<group>"; };
+		39EED1B7214FDDF200E8603B /* UserSettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTabViewController.swift; sourceTree = "<group>"; };
+		39EED1B9214FDEDB00E8603B /* UserSettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsWindowController.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCacheEntry.swift; sourceTree = "<group>"; };
@@ -318,7 +322,8 @@
 				39E5AA812126037B00BDA001 /* Popover Views */,
 				39E5AA7A2124C7DC00BDA001 /* Login Logout Views */,
 				39E5AA792124C7C900BDA001 /* Embedded Views */,
-				39E5AA782124C7B500BDA001 /* Settings Views */,
+				39E5AA782124C7B500BDA001 /* Room Settings Views */,
+				39EED1B4214FD7EB00E8603B /* User Settings Views */,
 				39E5AA772124C7A200BDA001 /* Main View */,
 			);
 			path = Controller;
@@ -372,14 +377,14 @@
 			path = "Main View";
 			sourceTree = "<group>";
 		};
-		39E5AA782124C7B500BDA001 /* Settings Views */ = {
+		39E5AA782124C7B500BDA001 /* Room Settings Views */ = {
 			isa = PBXGroup;
 			children = (
 				39F312622118F21C00A75E16 /* RoomAliasesController.swift */,
 				3924444521184ED2001BAEE5 /* RoomSettingsController.swift */,
 				39373481211C91D7008AAB7D /* RoomPowerLevelsController.swift */,
 			);
-			path = "Settings Views";
+			path = "Room Settings Views";
 			sourceTree = "<group>";
 		};
 		39E5AA792124C7C900BDA001 /* Embedded Views */ = {
@@ -417,6 +422,15 @@
 				39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */,
 			);
 			path = Segues;
+			sourceTree = "<group>";
+		};
+		39EED1B4214FD7EB00E8603B /* User Settings Views */ = {
+			isa = PBXGroup;
+			children = (
+				39EED1B7214FDDF200E8603B /* UserSettingsTabViewController.swift */,
+				39EED1B9214FDEDB00E8603B /* UserSettingsWindowController.swift */,
+			);
+			path = "User Settings Views";
 			sourceTree = "<group>";
 		};
 		600042570E1B4E8E38C9BC0D /* Frameworks */ = {
@@ -664,6 +678,7 @@
 				39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */,
 				3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */,
 				3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */,
+				39EED1B8214FDDF200E8603B /* UserSettingsTabViewController.swift in Sources */,
 				3903779E21431CF800873E97 /* PopoverRoomActions.swift in Sources */,
 				391BFE2420C68AD100B4EFEC /* Seaglass.xcdatamodeld in Sources */,
 				39F3125D2118764100A75E16 /* MemberListController.swift in Sources */,
@@ -691,6 +706,7 @@
 				39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */,
 				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
 				3943AC6221300AA400760967 /* RoomMessageIncomingCoalesced.swift in Sources */,
+				39EED1BA214FDEDB00E8603B /* UserSettingsWindowController.swift in Sources */,
 				3943AC6421300C5800760967 /* RoomMessage.swift in Sources */,
 				A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */,
 			);

@@ -3077,124 +3077,6 @@ Gw
             </objects>
             <point key="canvasLocation" x="1458" y="1921"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="YiF-zV-5aG">
-            <objects>
-                <viewController showSeguePresentationStyle="single" id="xjQ-w5-K3A" sceneMemberID="viewController">
-                    <view key="view" id="WDd-9k-mJ3">
-                        <rect key="frame" x="0.0" y="0.0" width="539" height="351"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIG-Hd-73B">
-                                <rect key="frame" x="18" y="158" width="148" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enable notifications for:" id="tda-pn-sla">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-Vb-cKl">
-                                <rect key="frame" x="18" y="128" width="303" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="When my display name is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="zMk-W8-qL0">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ot0-AK-kdB">
-                                <rect key="frame" x="18" y="102" width="278" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="When my Matrix ID is mentioned in a room" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="3Og-hM-jac">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMa-aB-gt9">
-                                <rect key="frame" x="18" y="51" width="207" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Messages in one-to-one chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="j6Y-07-fkG">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFM-Hf-UQ9">
-                                <rect key="frame" x="18" y="26" width="174" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Messages in group chats" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="5Fo-Do-TMs">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iZx-r4-UhS">
-                                <rect key="frame" x="18" y="77" width="168" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="The following keywords:" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="OAx-r8-jNQ">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <tokenField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Luy-fi-416">
-                                <rect key="frame" x="192" y="75" width="327" height="22"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <tokenFieldCell key="cell" selectable="YES" editable="YES" enabled="NO" borderStyle="bezel" alignment="left" placeholderString="one, two, three, ..." drawsBackground="YES" allowsEditingTextAttributes="YES" id="xgm-II-fuL">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </tokenFieldCell>
-                            </tokenField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kue-mD-bWd">
-                                <rect key="frame" x="18" y="214" width="173" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Enable message bubbles" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="YT3-a1-e5F">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdW-Wd-8Vi">
-                                <rect key="frame" x="18" y="188" width="304" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Show user Matrix IDs instead of display names" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="YSd-io-rEg">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-JP-1pE">
-                                <rect key="frame" x="93" y="284" width="428" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Click to edit your name" id="2By-BQ-qh2">
-                                    <font key="font" metaFont="systemLight" size="26"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7t0-fZ-Hs9" customClass="UserAvatar" customModule="Seaglass" customModuleProvider="target">
-                                <rect key="frame" x="20" y="267" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserAddTemplate" id="HLa-dP-CMY"/>
-                            </imageView>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="1qe-2v-KA6">
-                                <rect key="frame" x="20" y="256" width="499" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </box>
-                        </subviews>
-                    </view>
-                </viewController>
-                <customObject id="qZt-zx-FlX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <toolbar implicitIdentifier="09D11707-F4A3-4FD5-970E-AC5832E91C2B" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="0ys-f4-XSn">
-                    <allowedToolbarItems>
-                        <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="IfS-Pz-YCy"/>
-                        <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Jmd-9c-iX0"/>
-                        <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="CbK-O5-j4i"/>
-                    </allowedToolbarItems>
-                    <defaultToolbarItems>
-                        <toolbarItem reference="CbK-O5-j4i"/>
-                        <toolbarItem reference="IfS-Pz-YCy"/>
-                    </defaultToolbarItems>
-                </toolbar>
-            </objects>
-            <point key="canvasLocation" x="415" y="1986"/>
-        </scene>
         <!--Main View Encryption Controller-->
         <scene sceneID="wgK-pz-Eof">
             <objects>
@@ -3277,6 +3159,80 @@ DQ
                 <customObject id="7D9-J3-usd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="899.5" y="1559"/>
+        </scene>
+        <!--User Settings Tab View Controller-->
+        <scene sceneID="3NF-qc-Whl">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="usJ-hv-KFK" customClass="UserSettingsTabViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="Ip2-A6-r30"/>
+                        <tabViewItem identifier="" id="H4t-fF-8UR"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="tDu-qv-5QE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="usJ-hv-KFK" id="caC-PL-oMD"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="tDu-qv-5QE" id="Xky-8Z-KU0"/>
+                        <segue destination="NNd-me-UhZ" kind="relationship" relationship="tabItems" id="GZH-Yj-18A"/>
+                        <segue destination="3PT-sf-Q3V" kind="relationship" relationship="tabItems" id="Rax-TL-MYr"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="OiT-5Y-Ujj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="1974"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7mz-vv-idA">
+            <objects>
+                <viewController id="NNd-me-UhZ" sceneMemberID="viewController">
+                    <view key="view" id="68S-9K-vsn">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQI-hC-MuU">
+                                <rect key="frame" x="18" y="263" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="4v5-7d-uUo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="aUP-A2-iJd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192" y="2437"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zdV-vn-Ha5">
+            <objects>
+                <customObject id="qPR-RH-VCh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController id="3PT-sf-Q3V" sceneMemberID="viewController">
+                    <view key="view" id="Ega-qR-lmp">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0CF-0D-0PU">
+                                <rect key="frame" x="18" y="152" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="FEN-QD-SXP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="740" y="2437"/>
         </scene>
         <!--Popover Room Actions-->
         <scene sceneID="qJA-ta-oKM">
@@ -3847,23 +3803,55 @@ Gw
         <!--Window Controller-->
         <scene sceneID="rhq-PB-W3q">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="bia-fQ-Qtp" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="T1J-mp-AQt">
+                <windowController showSeguePresentationStyle="single" id="bia-fQ-Qtp" customClass="UserSettingsWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="T1J-mp-AQt">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="320" y="352" width="212" height="97"/>
+                        <rect key="contentRect" x="320" y="352" width="461" height="144"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
+                        <toolbar key="toolbar" implicitIdentifier="FE283537-88A4-4EAB-BD97-551123DBEB05" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="small" id="Bet-jG-mQd">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="71C5D505-A8FD-4686-A4CD-E606C19FDD75" label="Custom View" paletteLabel="Custom View" id="h50-4L-hag">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="150" height="22"/>
+                                    <size key="maxSize" width="376" height="25"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="uyF-xg-s9Z">
+                                        <rect key="frame" x="0.0" y="14" width="207" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="9QD-U4-QI0">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Profile" width="100" selected="YES"/>
+                                                <segment label="Encryption" width="100" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="didChangeTabs:" target="bia-fQ-Qtp" id="SDg-Y1-evk"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Q4l-1O-tU3"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="Q4l-1O-tU3"/>
+                                <toolbarItem reference="h50-4L-hag"/>
+                            </defaultToolbarItems>
+                            <connections>
+                                <outlet property="delegate" destination="bia-fQ-Qtp" id="ClU-qj-3Ed"/>
+                            </connections>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="bia-fQ-Qtp" id="yyj-Hs-IHB"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="xjQ-w5-K3A" kind="relationship" relationship="window.shadowedContentViewController" id="d4I-fh-O9u"/>
+                        <outlet property="toolbar" destination="Bet-jG-mQd" id="res-Yw-iEG"/>
+                        <segue destination="usJ-hv-KFK" kind="relationship" relationship="window.shadowedContentViewController" id="PDy-LH-ZRr"/>
                     </connections>
                 </windowController>
                 <customObject id="CCg-xY-kAg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="1579"/>
+            <point key="canvasLocation" x="454" y="1572"/>
         </scene>
     </scenes>
     <resources>
@@ -3889,6 +3877,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ggZ-vC-hmq"/>
+        <segue reference="Tfp-e2-cpe"/>
     </inferredMetricsTieBreakers>
 </document>
