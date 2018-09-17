@@ -214,6 +214,7 @@ class LoginViewController: NSViewController {
             UsernameField.isEnabled = true
             PasswordField.isEnabled = true
             RememberCheckbox.isEnabled = true
+            AdvancedSettingsButton.isEnabled = true
             
             ProgressIndicator.stopAnimation(self)
             
