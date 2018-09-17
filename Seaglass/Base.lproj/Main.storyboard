@@ -1191,7 +1191,7 @@ Copyright 2018 © Avery Pierce</string>
                     </connections>
                 </viewController>
                 <customObject id="ga9-y4-jfM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="RoomsCacheEntry" selectsInsertedObjects="NO" automaticallyRearrangesObjects="YES" id="El7-IA-8gq"/>
+                <arrayController objectClassName="RoomsCacheEntry" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" automaticallyRearrangesObjects="YES" id="El7-IA-8gq"/>
             </objects>
             <point key="canvasLocation" x="555.5" y="1028"/>
         </scene>
@@ -2522,7 +2522,7 @@ DQ
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarNewMessageTemplate" id="SPx-Fb-dog"/>
                             </imageView>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ZSM-1o-sYo">
-                                <rect key="frame" x="383" y="53" width="5" height="451"/>
+                                <rect key="frame" x="383" y="53" width="85" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                             </box>
                         </subviews>
@@ -3728,9 +3728,9 @@ Gw
         <!--Window Controller-->
         <scene sceneID="u1A-V2-SbN">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="E3s-rl-kqU" customClass="MainWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="MainWindow" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="eke-Xd-8nX">
-                        <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                <windowController storyboardIdentifier="MainWindowController" showSeguePresentationStyle="single" id="E3s-rl-kqU" customClass="MainWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="MainWindowController" title="Seaglass" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="eke-Xd-8nX">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="389" y="343" width="411" height="95"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1130"/>
@@ -3889,6 +3889,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfp-e2-cpe"/>
+        <segue reference="ggZ-vC-hmq"/>
     </inferredMetricsTieBreakers>
 </document>
