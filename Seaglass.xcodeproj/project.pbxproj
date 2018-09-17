@@ -56,6 +56,7 @@
 		39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */; };
 		39E5AA83212603A500BDA001 /* PopoverRoomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA82212603A500BDA001 /* PopoverRoomList.swift */; };
 		39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5AA84212603F700BDA001 /* PopoverUserList.swift */; };
+		39EED1B3214FB4D100E8603B /* LoginSuccessfulSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */; };
 		39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125A2118745100A75E16 /* MemberListEntry.swift */; };
 		39F3125D2118764100A75E16 /* MemberListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125C2118764100A75E16 /* MemberListController.swift */; };
 		39F3125F21188E6D00A75E16 /* MembersCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */; };
@@ -139,6 +140,7 @@
 		39E5AA7F2124C86D00BDA001 /* MainViewPartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPartController.swift; sourceTree = "<group>"; };
 		39E5AA82212603A500BDA001 /* PopoverRoomList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverRoomList.swift; sourceTree = "<group>"; };
 		39E5AA84212603F700BDA001 /* PopoverUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUserList.swift; sourceTree = "<group>"; };
+		39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSuccessfulSegue.swift; sourceTree = "<group>"; };
 		39F3125A2118745100A75E16 /* MemberListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListEntry.swift; sourceTree = "<group>"; };
 		39F3125C2118764100A75E16 /* MemberListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListController.swift; sourceTree = "<group>"; };
 		39F3125E21188E6D00A75E16 /* MembersCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCacheEntry.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				3943E0E820CC21590061D51D /* AboutViewController.swift */,
+				39EED1B1214FB4C200E8603B /* Segues */,
 				39A7D0A521459D6D0019AF6C /* Windows */,
 				39E5AA812126037B00BDA001 /* Popover Views */,
 				39E5AA7A2124C7DC00BDA001 /* Login Logout Views */,
@@ -406,6 +409,14 @@
 				3903779D21431CF800873E97 /* PopoverRoomActions.swift */,
 			);
 			path = "Popover Views";
+			sourceTree = "<group>";
+		};
+		39EED1B1214FB4C200E8603B /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				39EED1B2214FB4D100E8603B /* LoginSuccessfulSegue.swift */,
+			);
+			path = Segues;
 			sourceTree = "<group>";
 		};
 		600042570E1B4E8E38C9BC0D /* Frameworks */ = {
@@ -639,6 +650,7 @@
 				39BF9592214B162B0054611A /* MainViewMessageInfoController.swift in Sources */,
 				399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */,
 				39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */,
+				39EED1B3214FB4D100E8603B /* LoginSuccessfulSegue.swift in Sources */,
 				391BFE1F20C68AD100B4EFEC /* AppDelegate.swift in Sources */,
 				399E6FC420C806D900A2644A /* MainViewRoomsController.swift in Sources */,
 				39373485211CA475008AAB7D /* LoginWindowController.swift in Sources */,
