@@ -41,7 +41,7 @@ class RoomsCacheEntry: NSObject {
         if isInvite() {
             return 0
         }
-        if room.isDirect || room.looksLikeDirect {
+        if room.isDirect {
             return 70
         }
         if room.summary.isEncrypted || room.state.isEncrypted {

@@ -25,21 +25,30 @@ class UserSettingsEncryptionController: UserSettingsTabController {
     @IBOutlet weak var DeviceID: NSTextField!
     @IBOutlet weak var DeviceKey: NSTextField!
     
+    @IBOutlet weak var DeviceNameSpinner: NSProgressIndicator!
+    
     @IBOutlet weak var ParanoidMode: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         resizeToSize = NSSize(width: 450, height: 265)
+        
+        DeviceNameSpinner.isHidden = false
+        DeviceNameSpinner.startAnimation(self)
    
-        if let crypto = MatrixServices.inst.session.crypto {
-            
-            if let device = crypto.deviceList.device(withIdentityKey: crypto.deviceCurve25519Key, forUser: MatrixServices.inst.session.myUser.userId, andAlgorithm: "m.megolm.v1.aes-sha2") {
-                DeviceName.stringValue = device.displayName ?? ""
-                DeviceID.stringValue = device.deviceId ?? ""
-                DeviceKey.stringValue = String(device.fingerprint.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
+        MatrixServices.inst.client.device(withId: MatrixServices.inst.client.credentials.deviceId, completion: { (response) in
+            if response.isSuccess {
+                if let device = response.value {
+                    self.DeviceName.stringValue = device.displayName ?? ""
+                }
+                
+                self.DeviceNameSpinner.stopAnimation(self)
+                self.DeviceNameSpinner.isHidden = true
             }
-        }
+        })
+        self.DeviceID.stringValue = MatrixServices.inst.client.credentials.deviceId
+        self.DeviceKey.stringValue = String(MatrixServices.inst.session.crypto.deviceEd25519Key.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
         
         ParanoidMode.state = MatrixServices.inst.session.crypto.warnOnUnknowDevices ? .on : .off
     }

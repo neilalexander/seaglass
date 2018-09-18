@@ -13,25 +13,25 @@ PODS:
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
   - Down (0.5.2)
-  - GZIP (1.2.1)
+  - GZIP (1.2.2)
   - OLMKit (2.2.2):
     - OLMKit/olmc (= 2.2.2)
     - OLMKit/olmcpp (= 2.2.2)
   - OLMKit/olmc (2.2.2)
   - OLMKit/olmcpp (2.2.2)
-  - Realm (3.3.2):
-    - Realm/Headers (= 3.3.2)
-  - Realm/Headers (3.3.2)
-  - SwiftMatrixSDK (0.10.11):
+  - Realm (3.6.0):
+    - Realm/Headers (= 3.6.0)
+  - Realm/Headers (3.6.0)
+  - SwiftMatrixSDK (0.10.12):
     - AFNetworking (~> 3.2.0)
     - GZIP (~> 1.2.1)
     - OLMKit (~> 2.2.2)
-    - Realm (~> 3.3.2)
+    - Realm (~> 3.6.0)
   - TSMarkdownParser (2.1.5)
 
 DEPENDENCIES:
   - Down
-  - SwiftMatrixSDK (= 0.10.11)
+  - SwiftMatrixSDK (= 0.10.12)
   - TSMarkdownParser
 
 SPEC REPOS:
@@ -47,12 +47,12 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Down: 587371ad58002b06023d9c602519216862c3acbc
-  GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
+  GZIP: 12374d285e3b5d46cfcd480700fcfc7e16caf4f1
   OLMKit: b9d8c0ffee9ea8c45bc0aaa9afb47f93fba7efbd
-  Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
-  SwiftMatrixSDK: 30c9120a0312e2d9f4781ee3fb85052fdc9a26d2
+  Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
+  SwiftMatrixSDK: 793d7505afe6cb8aa563c2c4c94613ef279bca87
   TSMarkdownParser: 3224ea196ecc7148fa7e03bc438f9390d4edfb6d
 
-PODFILE CHECKSUM: c6cc078e6a88905942f0744448f811bcb4134426
+PODFILE CHECKSUM: dc40b72e766133403770363a8237d902c3a691ca
 
 COCOAPODS: 1.5.3

@@ -3306,12 +3306,17 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="bAE-qW-AxF">
+                                <rect key="frame" x="414" y="176" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="DeviceID" destination="pcB-JJ-rbq" id="WfZ-ff-mWB"/>
                         <outlet property="DeviceKey" destination="KjE-aZ-uiG" id="G3B-AB-Bhf"/>
                         <outlet property="DeviceName" destination="NcW-W0-edK" id="F8R-F6-y5I"/>
+                        <outlet property="DeviceNameSpinner" destination="bAE-qW-AxF" id="lG6-mn-ZVJ"/>
                         <outlet property="ParanoidMode" destination="2Lk-7Z-yzA" id="TF6-fS-QkT"/>
                     </connections>
                 </viewController>
