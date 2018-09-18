@@ -18,22 +18,8 @@
 
 import Cocoa
 
-class UserSettingsWindowController: NSWindowController, NSToolbarDelegate {
+class UserSettingsTabController: NSViewController {
 
-    @IBOutlet weak var toolbar: NSToolbar!
+    var resizeToSize: NSSize? = NSSize(width: 450, height: 450)
     
-    var defaultSize: NSRect?
-    
-    override func windowDidLoad() {
-        self.window!.toolbar = toolbar
-        defaultSize = self.window!.frame
-        
-        super.windowDidLoad()
-    }
-
-    @IBAction func didChangeTabs(_ sender: NSSegmentedControl) {
-        if let controller = self.window!.contentViewController as? UserSettingsTabViewController {
-            controller.tabView.selectTabViewItem(at: sender.selectedSegment)
-        }
-    }
 }
