@@ -6,7 +6,7 @@ install:
 - git fetch --unshallow --tags
 before_script:
 - set -o pipefail
-- pod install
+- pod install --repo-update
 script:
 - xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath
   $PWD/build/Seaglass.xcarchive | xcpretty
@@ -26,7 +26,7 @@ deploy:
 notifications:
     webhooks:
         urls:
-            - $MATRIX_WEBHOOK_URL
-        on_success: change  # always|never|change
+            - "$MATRIX_WEBHOOK_URL"
+        on_success: change
         on_failure: always
         on_start: never
