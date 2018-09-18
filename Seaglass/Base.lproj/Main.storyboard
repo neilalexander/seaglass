@@ -3316,7 +3316,7 @@ DQ
                         <outlet property="DeviceID" destination="pcB-JJ-rbq" id="WfZ-ff-mWB"/>
                         <outlet property="DeviceKey" destination="KjE-aZ-uiG" id="G3B-AB-Bhf"/>
                         <outlet property="DeviceName" destination="NcW-W0-edK" id="F8R-F6-y5I"/>
-                        <outlet property="DeviceNameSpinner" destination="bAE-qW-AxF" id="lG6-mn-ZVJ"/>
+                        <outlet property="DeviceNameSpinner" destination="bAE-qW-AxF" id="k1M-79-vr9"/>
                         <outlet property="ParanoidMode" destination="2Lk-7Z-yzA" id="TF6-fS-QkT"/>
                     </connections>
                 </viewController>
@@ -3898,16 +3898,18 @@ Gw
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
                         <toolbar key="toolbar" implicitIdentifier="FE283537-88A4-4EAB-BD97-551123DBEB05" centeredItem="h50-4L-hag" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="small" id="Bet-jG-mQd">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="71C5D505-A8FD-4686-A4CD-E606C19FDD75" label="Custom View" paletteLabel="Custom View" visibilityPriority="1" sizingBehavior="auto" id="h50-4L-hag">
+                                <toolbarItem implicitItemIdentifier="71C5D505-A8FD-4686-A4CD-E606C19FDD75" label="Custom View" paletteLabel="Custom View" visibilityPriority="1" id="h50-4L-hag">
                                     <nil key="toolTip"/>
+                                    <size key="minSize" width="159" height="23"/>
+                                    <size key="maxSize" width="159" height="24"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="uyF-xg-s9Z">
-                                        <rect key="frame" x="0.0" y="14" width="207" height="24"/>
+                                        <rect key="frame" x="0.0" y="14" width="159" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="9QD-U4-QI0">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment label="Profile" width="100" selected="YES"/>
-                                                <segment label="Encryption" width="100" tag="1"/>
+                                                <segment label="Profile" selected="YES"/>
+                                                <segment label="Encryption" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
