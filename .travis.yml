@@ -6,8 +6,8 @@ install:
 - git fetch --unshallow --tags
 before_script:
 - set -o pipefail
-script:
 - pod install
+script:
 - xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath
   $PWD/build/Seaglass.xcarchive | xcpretty
 - xcodebuild -exportArchive -archivePath $PWD/build/Seaglass.xcarchive -exportOptionsPlist
