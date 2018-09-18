@@ -3282,7 +3282,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="2tv-56-qtZ">
-                                <rect key="frame" x="20" y="92" width="410" height="5"/>
+                                <rect key="frame" x="20" y="89" width="410" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Lk-7Z-yzA">
