@@ -3892,13 +3892,13 @@ Gw
         <scene sceneID="rhq-PB-W3q">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="bia-fQ-Qtp" customClass="UserSettingsWindowController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" titleVisibility="hidden" id="T1J-mp-AQt">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" titleVisibility="hidden" id="T1J-mp-AQt">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="639" y="866" width="461" height="144"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
                         <toolbar key="toolbar" implicitIdentifier="FE283537-88A4-4EAB-BD97-551123DBEB05" centeredItem="h50-4L-hag" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="small" id="Bet-jG-mQd">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="71C5D505-A8FD-4686-A4CD-E606C19FDD75" label="Custom View" paletteLabel="Custom View" visibilityPriority="1" id="h50-4L-hag">
+                                <toolbarItem implicitItemIdentifier="71C5D505-A8FD-4686-A4CD-E606C19FDD75" explicitItemIdentifier="SeaglassPreferences" label="Preference Panes" paletteLabel="Preference Panes" visibilityPriority="10" autovalidates="NO" id="h50-4L-hag">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="159" height="23"/>
                                     <size key="maxSize" width="159" height="24"/>
