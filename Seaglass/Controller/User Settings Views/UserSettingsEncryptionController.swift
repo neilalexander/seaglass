@@ -32,7 +32,7 @@ class UserSettingsEncryptionController: UserSettingsTabController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        resizeToSize = NSSize(width: 450, height: 265)
+        resizeToSize = NSSize(width: 450, height: 359)
         
         DeviceNameSpinner.isHidden = false
         DeviceNameSpinner.startAnimation(self)
@@ -58,8 +58,66 @@ class UserSettingsEncryptionController: UserSettingsTabController {
         
         MatrixServices.inst.session.crypto.warnOnUnknowDevices = ParanoidMode.state == .on
         UserDefaults.standard.set(MatrixServices.inst.session.crypto.warnOnUnknowDevices, forKey: "CryptoParanoid")
+    }
+    
+    @IBAction func importKeysPressed(_ sender: NSButton) {
         
-       // MatrixServices.inst.session.crypto.export
+    }
+    
+    @IBAction func exportKeysPressed(_ sender: NSButton) {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.messageText = "Enter export password"
+        alert.informativeText = "This password will protect your encryption keys. You will need to use the same password to import the keys later."
+        
+        let password = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
+        password.placeholderString = "Password"
+        
+        alert.accessoryView = password
+        var response: NSApplication.ModalResponse = .cancel
+        while password.stringValue == "" {
+            response = alert.runModal()
+            if response == .alertSecondButtonReturn {
+                break
+            }
+        }
+        
+        switch response {
+        case NSApplication.ModalResponse.alertFirstButtonReturn:
+            let panel = NSSavePanel()
+            panel.title = "Export Keys"
+            panel.allowedFileTypes = ["txt"]
+            panel.allowsOtherFileTypes = true
+            panel.nameFieldStringValue = "keys.txt"
+            
+            let saveresponse = panel.runModal()
+            guard saveresponse != .cancel else { return }
+            
+            MatrixServices.inst.session.crypto.exportRoomKeys(withPassword: password.stringValue, success: { (data) in
+                do {
+                    try data!.write(to: panel.url!)
+                } catch {
+                    let alert = NSAlert()
+                    alert.messageText = "Failed to export room keys"
+                    alert.informativeText = error.localizedDescription
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
+                }
+            }) { (error) in
+                let alert = NSAlert()
+                alert.messageText = "Failed to export room keys"
+                alert.informativeText = error!.localizedDescription
+                alert.alertStyle = .warning
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
+            }
+            
+            break
+        default:
+            print("Cancel")
+        }
     }
     
 }

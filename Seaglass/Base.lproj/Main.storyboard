@@ -85,7 +85,7 @@ Copyright 2017 © Avery Pierce</string>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="Bgo-pV-E1e"/>
                                         </imageView>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q42-ep-Pzt">
-                                            <rect key="frame" x="72" y="20" width="91" height="36"/>
+                                            <rect key="frame" x="72" y="24" width="91" height="36"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="MadeForMatrix" id="yrz-9M-98a"/>
                                         </imageView>
@@ -3313,11 +3313,11 @@ DQ
                 <customObject id="qPR-RH-VCh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Encryption Settings" id="3PT-sf-Q3V" customClass="UserSettingsEncryptionController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Ega-qR-lmp">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="265"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="359"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0CF-0D-0PU">
-                                <rect key="frame" x="18" y="211" width="414" height="34"/>
+                                <rect key="frame" x="18" y="305" width="414" height="34"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The following details can be used when verifying and sharing encryption keys with another Matrix client:" id="FEN-QD-SXP">
                                     <font key="font" metaFont="system"/>
@@ -3325,8 +3325,17 @@ DQ
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s7c-by-7Em">
+                                <rect key="frame" x="18" y="64" width="192" height="23"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Back up or restore your keys:" id="XGh-WW-svA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KjE-aZ-uiG">
-                                <rect key="frame" x="119" y="103" width="313" height="39"/>
+                                <rect key="frame" x="119" y="197" width="313" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Device Key not available" id="1u3-d2-psH">
                                     <font key="font" size="12" name="Menlo-Regular"/>
@@ -3335,7 +3344,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzC-3q-cPL">
-                                <rect key="frame" x="18" y="150" width="87" height="17"/>
+                                <rect key="frame" x="18" y="244" width="87" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device ID:" id="Slt-bn-K6q">
                                     <font key="font" metaFont="system"/>
@@ -3344,7 +3353,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LJN-N9-U2S">
-                                <rect key="frame" x="18" y="124" width="75" height="17"/>
+                                <rect key="frame" x="18" y="218" width="75" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Key:" id="lEO-CM-sKC">
                                     <font key="font" metaFont="system"/>
@@ -3353,7 +3362,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pcB-JJ-rbq">
-                                <rect key="frame" x="119" y="150" width="313" height="18"/>
+                                <rect key="frame" x="119" y="244" width="313" height="18"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Device ID not available" id="7yh-yW-6Hs">
                                     <font key="font" size="12" name="Menlo-Regular"/>
@@ -3362,7 +3371,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="42C-cJ-hMT">
-                                <rect key="frame" x="18" y="176" width="88" height="17"/>
+                                <rect key="frame" x="18" y="270" width="88" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Device Name:" id="JKi-Mt-45P">
                                     <font key="font" metaFont="system"/>
@@ -3371,7 +3380,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NcW-W0-edK">
-                                <rect key="frame" x="119" y="175" width="313" height="18"/>
+                                <rect key="frame" x="119" y="269" width="313" height="18"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" placeholderString="Unnamed Device" id="rpu-gB-d6G">
                                     <font key="font" metaFont="system"/>
@@ -3380,11 +3389,15 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="2tv-56-qtZ">
-                                <rect key="frame" x="20" y="89" width="410" height="5"/>
+                                <rect key="frame" x="20" y="183" width="410" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </box>
+                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ojz-cu-OLz">
+                                <rect key="frame" x="20" y="103" width="410" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Lk-7Z-yzA">
-                                <rect key="frame" x="18" y="52" width="414" height="29"/>
+                                <rect key="frame" x="18" y="146" width="414" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Never send encrypted messages to unverified devices" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UNz-QO-z89">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3395,7 +3408,7 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-Yl-OQw">
-                                <rect key="frame" x="37" y="20" width="395" height="32"/>
+                                <rect key="frame" x="37" y="114" width="395" height="32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eJ7-xZ-gRh">
                                     <font key="font" metaFont="system" size="10"/>
@@ -3405,9 +3418,41 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="bAE-qW-AxF">
-                                <rect key="frame" x="414" y="176" width="16" height="16"/>
+                                <rect key="frame" x="414" y="270" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hwE-M5-yks">
+                                <rect key="frame" x="323" y="60" width="113" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Export Keys" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ccH-SA-JdV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportKeysPressed:" target="3PT-sf-Q3V" id="up7-OY-NfC"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IjL-DI-CwC">
+                                <rect key="frame" x="210" y="60" width="113" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Import Keys" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cqs-fg-etG">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="importKeysPressed:" target="3PT-sf-Q3V" id="wC9-TE-eNQ"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGA-bX-6H5">
+                                <rect key="frame" x="18" y="20" width="414" height="39"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="HP5-k2-loz">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <string key="title">Exporting a copy of your encryption keys ensures that you will be able to recover encrypted messages in the future after logging out of Seaglass. Treat your encryption keys as extremely sensitive and make sure to store them securely.</string>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -3419,7 +3464,7 @@ DQ
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="729" y="2198.5"/>
+            <point key="canvasLocation" x="729" y="2245.5"/>
         </scene>
         <!--Popover Room Actions-->
         <scene sceneID="qJA-ta-oKM">
@@ -3700,10 +3745,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="-369" y="-460"/>
         </scene>
-        <!--Logout View Controller-->
+        <!-- -->
         <scene sceneID="a6h-OK-eNO">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="Nr1-lW-dRd" customClass="LogoutViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title=" " showSeguePresentationStyle="single" id="Nr1-lW-dRd" customClass="LogoutViewController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="6Mm-nd-1o1">
                         <rect key="frame" x="0.0" y="0.0" width="306" height="132"/>
                         <autoresizingMask key="autoresizingMask"/>
