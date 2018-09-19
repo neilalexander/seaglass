@@ -1325,6 +1325,17 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="SYi-UB-Wbd"/>
                                                                 </imageView>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDD-zq-Cis">
+                                                                    <rect key="frame" x="441" y="-1" width="88" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="Ukk-Wc-Dnd">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="requestKeysPressed:" target="nAg-O9-2gK" id="D9O-Ky-CrH"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="C9D-k5-z63" secondAttribute="trailing" constant="3" id="2E1-5X-4yL"/>
@@ -1356,6 +1367,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="Icon" destination="dcR-Ti-wrs" id="pC1-Nb-mzP"/>
                                                                 <outlet property="InlineImage" destination="peh-nc-iMY" id="2Fe-EB-mGx"/>
                                                                 <outlet property="InlineImageConstraint" destination="aT7-ev-rNz" id="VCE-Bm-gsm"/>
+                                                                <outlet property="RequestKeys" destination="pDD-zq-Cis" id="jJH-tr-t9e"/>
                                                                 <outlet property="Text" destination="ucJ-c5-qi7" id="2wQ-Vn-p12"/>
                                                                 <outlet property="TextConstraint" destination="Adj-Cj-u0h" id="LuE-wL-mCb"/>
                                                                 <outlet property="Time" destination="0Cu-49-RxG" id="fl5-a5-wzY"/>
@@ -1428,6 +1440,17 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gui-og-tP2"/>
                                                                 </imageView>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Exx-Oi-BBK">
+                                                                    <rect key="frame" x="441" y="-1" width="88" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="aUb-Hg-pJs">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="requestKeysPressed:" target="iEZ-b3-CBD" id="cRV-Cd-jbi"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="MD2-t4-IyO" secondAttribute="bottom" id="5bW-b2-0hb"/>
@@ -1446,6 +1469,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="Icon" destination="Bkn-PY-xBl" id="6lY-z6-kyv"/>
                                                                 <outlet property="InlineImage" destination="MD2-t4-IyO" id="zzD-4M-rRt"/>
                                                                 <outlet property="InlineImageConstraint" destination="N5p-xj-QFb" id="fpS-vI-0Ad"/>
+                                                                <outlet property="RequestKeys" destination="Exx-Oi-BBK" id="wdh-KK-aJP"/>
                                                                 <outlet property="Text" destination="cZX-Kd-FHZ" id="c5M-Gu-PXg"/>
                                                                 <outlet property="TextConstraint" destination="CD5-7w-Hvc" id="aOF-q1-h9M"/>
                                                                 <outlet property="Time" destination="ffP-7Z-LJb" id="Uly-ig-xn1"/>
@@ -1547,6 +1571,17 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gnG-qw-1Mg"/>
                                                                 </imageView>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNH-v6-5Jl">
+                                                                    <rect key="frame" x="48" y="-1" width="88" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="2yE-77-Tat">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="requestKeysPressed:" target="Jn7-pz-WXp" id="GgX-Ms-ZQS"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="yfS-z5-daf" secondAttribute="trailing" constant="64" id="12I-5U-SKX"/>
@@ -1576,6 +1611,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="Icon" destination="Ldz-hR-14M" id="Dgr-ku-7kE"/>
                                                                 <outlet property="InlineImage" destination="yfS-z5-daf" id="7CM-zC-91m"/>
                                                                 <outlet property="InlineImageConstraint" destination="12I-5U-SKX" id="g80-cl-BT2"/>
+                                                                <outlet property="RequestKeys" destination="LNH-v6-5Jl" id="FT7-Nr-dZe"/>
                                                                 <outlet property="Text" destination="eNx-7M-A4V" id="4Xc-wE-3XO"/>
                                                                 <outlet property="TextConstraint" destination="8CY-bg-Cb6" id="y8m-dR-lWj"/>
                                                                 <outlet property="Time" destination="G9y-EX-0dL" id="WbL-vT-PNy"/>
@@ -1648,6 +1684,17 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gRh-GG-jHO"/>
                                                                 </imageView>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFv-Kj-NB0">
+                                                                    <rect key="frame" x="48" y="-1" width="88" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="qoQ-Db-fFp">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="smallSystemBold"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="requestKeysPressed:" target="uiY-zu-QBZ" id="6Dn-CP-f1g"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="3" id="7EA-uw-nti"/>
@@ -1666,6 +1713,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                                                 <outlet property="Icon" destination="01c-6I-5AB" id="K5w-CG-zgZ"/>
                                                                 <outlet property="InlineImage" destination="1b2-Bt-Ecc" id="POk-a6-2mR"/>
                                                                 <outlet property="InlineImageConstraint" destination="KUv-dc-Ujs" id="Id4-39-y7k"/>
+                                                                <outlet property="RequestKeys" destination="pFv-Kj-NB0" id="4jl-Pk-9eM"/>
                                                                 <outlet property="Text" destination="KDC-BP-DZa" id="ful-Ej-d4L"/>
                                                                 <outlet property="TextConstraint" destination="zTv-ub-UnY" id="i4B-lr-4ds"/>
                                                                 <outlet property="Time" destination="r3u-xl-T0k" id="ruC-yr-3z5"/>

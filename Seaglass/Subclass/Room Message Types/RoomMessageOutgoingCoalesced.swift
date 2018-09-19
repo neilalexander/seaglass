@@ -26,6 +26,7 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
     @IBOutlet var InlineImage: InlineImageView!
     @IBOutlet var InlineImageConstraint: NSLayoutConstraint!
     @IBOutlet var Time: NSTextField!
+    @IBOutlet var RequestKeys: NSButton!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -37,6 +38,8 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
         guard event != drawnEvent || event!.hash != drawnEventHash else { return }
 
+        RequestKeys.isHidden = !super.encryptionIsPending()
+        
         Text.allowsEditingTextAttributes = true
         
         Time.stringValue = super.timestamp()
@@ -167,5 +170,19 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         }
         TextConstraint.constant = 48 + Icon.frame.size.width
         InlineImageConstraint.constant = 48 + Icon.frame.size.width
+    }
+    
+    @IBAction func requestKeysPressed(_ sender: NSButton) {
+        guard sender == RequestKeys && RequestKeys.isHidden == false else { return }
+        
+        MatrixServices.inst.session.crypto.reRequestRoomKey(for: super.event)
+        
+        let alert = NSAlert()
+        alert.messageText = "Encryption keys requested"
+        alert.informativeText = "Encryption keys have been requested from your other Matrix clients. If your device is not verified, you may see a key sharing request."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.beginSheetModal(for: super.window!) { (response) in
+        }
     }
 }
