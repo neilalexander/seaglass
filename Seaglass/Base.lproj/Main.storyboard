@@ -3264,6 +3264,7 @@ DQ
                         <tabViewItem identifier="" id="Ip2-A6-r30"/>
                         <tabViewItem identifier="" id="H4t-fF-8UR"/>
                     </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" autoresizesSubviews="NO" type="noTabsNoBorder" id="tDu-qv-5QE">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="74"/>
                         <autoresizingMask key="autoresizingMask"/>
