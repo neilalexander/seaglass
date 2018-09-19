@@ -24,8 +24,8 @@
 
 ## Specifications
 
-  - Seaglass Version:
-  - macOS Version:
+  - Seaglass Version: 
+  - macOS Version: 
 
 ## Expected Behavior
 
