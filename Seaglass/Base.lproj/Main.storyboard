@@ -128,7 +128,7 @@ Copyright 2017 © Avery Pierce</string>
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MenuController" customModule="Seaglass" customModuleProvider="target">
                         <items>
                             <menuItem title="Seaglass" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -251,7 +251,12 @@ Copyright 2017 © Avery Pierce</string>
                                                 <items>
                                                     <menuItem title="Find…" tag="1" keyEquivalent="f" id="ALf-94-IyB">
                                                         <connections>
-                                                            <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="qJD-90-83l"/>
+                                                            <action selector="focusOnRoomSearchField:" target="AYu-sK-qS6" id="NsY-l5-oFE"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Find... (Alternate)" hidden="YES" keyEquivalent="k" allowsKeyEquivalentWhenHidden="YES" id="1Mw-8Y-EJM">
+                                                        <connections>
+                                                            <action selector="focusOnRoomSearchField:" target="AYu-sK-qS6" id="WLt-Za-QOZ"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Find and Replace…" tag="12" keyEquivalent="f" id="nM9-Hn-43z">
@@ -4087,7 +4092,7 @@ Gw
     </scenes>
     <resources>
         <image name="AppIcon" width="128" height="128"/>
-        <image name="MadeForMatrix" width="631.79998779296875" height="270"/>
+        <image name="MadeForMatrix" width="630" height="270"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
@@ -4109,6 +4114,6 @@ Gw
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tfp-e2-cpe"/>
+        <segue reference="ggZ-vC-hmq"/>
     </inferredMetricsTieBreakers>
 </document>
