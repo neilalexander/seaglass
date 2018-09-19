@@ -20,9 +20,10 @@ import Cocoa
 import SwiftMatrixSDK
 
 class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableViewDelegate, NSTableViewDataSource {
+
     @IBOutlet var RoomList: NSTableView!
     @IBOutlet var RoomSearch: NSSearchField!
-
+    
     var mainController: MainViewController?
 
     @IBOutlet var roomsCacheController: NSArrayController!
@@ -46,6 +47,10 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         for room in MatrixServices.inst.session.rooms {
             matrixDidJoinRoom(room)
         }
+    }
+    
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool) {
+
     }
     
     func matrixDidJoinRoom(_ room: MXRoom) {

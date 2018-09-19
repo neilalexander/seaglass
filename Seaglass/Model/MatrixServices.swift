@@ -18,6 +18,7 @@
 
 import Cocoa
 import SwiftMatrixSDK
+import AFNetworking
 
 protocol MatrixServicesDelegate: AnyObject {
     func matrixDidLogin(_ session: MXSession)
@@ -26,6 +27,7 @@ protocol MatrixServicesDelegate: AnyObject {
     func matrixDidReceiveKeyRequest(_ request: MXIncomingRoomKeyRequest)
     func matrixDidReceiveKeyRequestCancellation(_ cancellation: MXIncomingRoomKeyRequestCancellation)
     func matrixDidCompleteKeyRequest(_ request: MXIncomingRoomKeyRequest)
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool)
 }
 
 protocol MatrixRoomsDelegate: AnyObject {
@@ -33,6 +35,7 @@ protocol MatrixRoomsDelegate: AnyObject {
     func matrixDidPartRoom(_ room: MXRoom)
     func matrixDidUpdateRoom(_ room: MXRoom)
     func matrixIsRoomKnown(_ room: MXRoom) -> Bool
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool)
 }
 
 protocol MatrixRoomDelegate: AnyObject {
@@ -43,6 +46,7 @@ protocol MatrixRoomDelegate: AnyObject {
     func matrixDidRoomMessage(event: MXEvent, direction: MXTimelineDirection, roomState: MXRoomState)
     func matrixDidRoomUserJoin(event: MXEvent)
     func matrixDidRoomUserPart(event: MXEvent)
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool)
 }
 
 class MatrixServices: NSObject {
@@ -64,6 +68,15 @@ class MatrixServices: NSObject {
     var eventListeners: Dictionary<String, MXEventListener> = [:]
     var roomCaches: Dictionary<String, MatrixRoomCache> = [:]
     var avatarCache: Dictionary<String, NSImage> = [:]
+    
+    // Network reachability
+    var reachable: Bool {
+        get {
+            return reachableViaWifi || reachableViaWwan
+        }
+    }
+    var reachableViaWifi: Bool = true
+    var reachableViaWwan: Bool = true
     
     var mainController: MainViewController?
     
@@ -136,11 +149,36 @@ class MatrixServices: NSObject {
         }
 
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequest, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+            guard self.state == .started else { return }
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequest(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequest)
         })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.mxCryptoRoomKeyRequestCancellation, object: self.session.crypto, queue: OperationQueue.main, using: { (notification) in
+            guard self.state == .started else { return }
             self.mainController?.servicesDelegate?.matrixDidReceiveKeyRequestCancellation(notification.userInfo?.first?.value as! MXIncomingRoomKeyRequestCancellation)
+        })
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AFNetworkingReachabilityDidChange, object: nil, queue: OperationQueue.main, using: { (notification) in
+            guard self.state == .started else { return }
+            
+            if let reachability = notification.userInfo?[AFNetworkingReachabilityNotificationStatusItem] as? AFNetworkReachabilityStatus.RawValue {
+                self.reachableViaWifi = reachability == AFNetworkReachabilityStatus.reachableViaWiFi.rawValue
+                self.reachableViaWwan = reachability == AFNetworkReachabilityStatus.reachableViaWWAN.rawValue
+            
+                print("Network connectivity changed (Wi-Fi: \(self.reachableViaWifi), WWAN: \(self.reachableViaWwan))")
+                
+                self.mainController?.servicesDelegate?.matrixNetworkConnectivityChanged(wifi: self.reachableViaWifi, wwan: self.reachableViaWwan)
+                self.mainController?.roomsDelegate?.matrixNetworkConnectivityChanged(wifi: self.reachableViaWifi, wwan: self.reachableViaWwan)
+                self.mainController?.channelDelegate?.matrixNetworkConnectivityChanged(wifi: self.reachableViaWifi, wwan: self.reachableViaWwan)
+                
+                if self.reachable {
+                    self.client.sync(fromToken: nil, serverTimeout: 5000, clientTimeout: 5000, setPresence: nil, completion: { (response) in
+                        if response.isFailure {
+                            print("Sync error: \(response.error!.localizedDescription)")
+                        }
+                    })
+                }
+            }
         })
         
         self.sessionListener = self.session.listenToEvents([.roomMember, .roomThirdPartyInvite], { (event, direction, roomState) in

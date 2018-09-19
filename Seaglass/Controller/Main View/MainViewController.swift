@@ -52,6 +52,10 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
         super.viewDidLoad()
     }
     
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool) {
+        
+    }
+    
     func matrixDidLogin(_ session: MXSession) {
     }
     

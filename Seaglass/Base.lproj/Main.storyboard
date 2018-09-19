@@ -1038,7 +1038,7 @@ Copyright 2018 © Avery Pierce</string>
         <scene sceneID="Gq1-CI-Ahz">
             <objects>
                 <viewController id="KsD-aF-a0Q" customClass="MainViewRoomsController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="IwP-4A-58S" customClass="NSVisualEffectView">
+                    <view key="view" wantsLayer="YES" id="IwP-4A-58S" customClass="NSVisualEffectView">
                         <rect key="frame" x="0.0" y="0.0" width="257" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -1794,12 +1794,37 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="LRa-9M-r8D">
+                                        <rect key="frame" x="374" y="33" width="202" height="19"/>
+                                        <view key="contentView" id="6uZ-yr-gYl">
+                                            <rect key="frame" x="0.0" y="0.0" width="202" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-CB-Pau">
+                                                    <rect key="frame" x="-2" y="2" width="206" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Connection to server interrupted" id="AdY-lp-V3y">
+                                                        <font key="font" metaFont="systemSemibold" size="12"/>
+                                                        <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="202" id="NTS-Km-v0D"/>
+                                            <constraint firstAttribute="height" constant="19" id="OIv-X4-EGR"/>
+                                        </constraints>
+                                        <color key="fillColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="0.14813490316901409" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </box>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LRa-9M-r8D" secondAttribute="trailing" constant="4" id="0Df-sf-4xf"/>
                                     <constraint firstAttribute="bottom" secondItem="EGm-dG-DZW" secondAttribute="bottom" constant="8" id="4z5-vX-ygY"/>
                                     <constraint firstItem="EGm-dG-DZW" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="8sm-2u-53K"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="leading" secondItem="EGm-dG-DZW" secondAttribute="trailing" constant="3" id="BQs-x2-FqO"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="D4z-1Y-PWf"/>
+                                    <constraint firstItem="LRa-9M-r8D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="189" id="FhM-mw-6kg"/>
                                     <constraint firstAttribute="bottom" secondItem="vGs-sY-dgv" secondAttribute="bottom" constant="11" id="GlL-kC-FPR"/>
                                     <constraint firstItem="GO9-mJ-qzs" firstAttribute="leading" secondItem="Awn-GU-jfi" secondAttribute="leading" constant="14" id="K8W-63-DCH"/>
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="centerY" secondItem="EGm-dG-DZW" secondAttribute="centerY" id="MzN-Fw-ReJ"/>
@@ -1810,6 +1835,7 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <constraint firstItem="nBR-QP-fLS" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="24" id="jeN-jG-7Gn"/>
                                     <constraint firstAttribute="bottom" secondItem="gmZ-EC-5H5" secondAttribute="bottom" constant="8" id="l09-g8-onL"/>
                                     <constraint firstItem="gmZ-EC-5H5" firstAttribute="leading" secondItem="nBR-QP-fLS" secondAttribute="trailing" constant="2" id="m7M-qO-sgJ"/>
+                                    <constraint firstItem="LRa-9M-r8D" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="4" id="nt4-N9-emL"/>
                                     <constraint firstItem="vGs-sY-dgv" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="top" constant="28" id="okw-aM-9x4"/>
                                     <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="10" id="p8J-cA-dVx"/>
                                     <constraint firstAttribute="trailing" secondItem="gmZ-EC-5H5" secondAttribute="trailing" constant="10" id="toU-Of-MMf"/>
@@ -1922,6 +1948,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ConnectivityBar" destination="LRa-9M-r8D" id="fhi-eH-WCm"/>
                         <outlet property="RoomEncryptionButton" destination="EGm-dG-DZW" id="aLC-Ru-ioY"/>
                         <outlet property="RoomInfoButton" destination="gmZ-EC-5H5" id="ENX-DV-Ilq"/>
                         <outlet property="RoomInsertButton" destination="Pix-y5-gjY" id="D9T-Bc-1nk"/>

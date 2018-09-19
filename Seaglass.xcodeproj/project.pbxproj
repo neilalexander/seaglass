@@ -362,6 +362,7 @@
 			children = (
 				39A7D0A321459BE80019AF6C /* MainWindowController.swift */,
 				39373483211CA475008AAB7D /* LoginWindowController.swift */,
+				39EED1B9214FDEDB00E8603B /* UserSettingsWindowController.swift */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -435,7 +436,6 @@
 			children = (
 				390E46F821519E430017AA2C /* UserSettingsTabController.swift */,
 				39EED1B7214FDDF200E8603B /* UserSettingsTabViewController.swift */,
-				39EED1B9214FDEDB00E8603B /* UserSettingsWindowController.swift */,
 				390E46F621518FD70017AA2C /* UserSettingsEncryptionController.swift */,
 				390E46FA2151A28C0017AA2C /* UserSettingsProfileController.swift */,
 			);

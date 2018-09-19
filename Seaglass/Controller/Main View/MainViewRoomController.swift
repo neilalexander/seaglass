@@ -36,6 +36,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var RoomInviteLabel: NSTextField!
     @IBOutlet var RoomInviteAcceptButton: NSButton!
     @IBOutlet var RoomInviteDeclineButton: NSButton!
+    @IBOutlet var ConnectivityBar: NSBox!
     
     weak public var mainController: MainViewController?
  
@@ -89,6 +90,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageScrollView.postsBoundsChangedNotifications = true
         RoomMessageScrollView.postsFrameChangedNotifications = true
         NotificationCenter.default.addObserver(self, selector: #selector(scrollViewDidScroll), name: NSScrollView.didLiveScrollNotification, object: RoomMessageScrollView)
+        
+        ConnectivityBar.alphaValue = 0
+        
+        matrixNetworkConnectivityChanged(wifi: MatrixServices.inst.reachableViaWifi, wwan: MatrixServices.inst.reachableViaWwan)
+    }
+    
+    func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool) {
+        NSAnimationContext.runAnimationGroup({ (context) in
+            context.duration = 0.5
+            ConnectivityBar.animator().alphaValue = wifi || wwan ? 0 : 1
+        }, completionHandler: {
+            
+        })
     }
 
     @IBAction func messageEntryFieldSubmit(_ sender: NSTextField) {
@@ -628,4 +642,5 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         }
     }
+
 }
