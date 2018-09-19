@@ -245,15 +245,11 @@ class MatrixServices: NSObject {
         let options = MXSDKOptions.sharedInstance()
         options.enableCryptoWhenStartingMXSession = true
         
-        if client == nil {
-            print("Creating REST client")
-            client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
-        }
+        print("Creating REST client")
+        client = MXRestClient(credentials: credentials, unrecognizedCertificateHandler: nil)
         
-        if session == nil {
-            print("Creating session")
-            session = MXSession(matrixRestClient: client)
-        }
+        print("Creating session")
+        session = MXSession(matrixRestClient: client)
         
         state = .starting
         

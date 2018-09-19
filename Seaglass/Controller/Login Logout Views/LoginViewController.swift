@@ -121,12 +121,15 @@ class LoginViewController: NSViewController {
         print("Username: \(username)")
         print("Homeserver: \(homeserver)")
         
-        let client = MXRestClient(homeServer: URL(string: homeserver)!, unrecognizedCertificateHandler: nil)
+        MatrixServices.inst.client = MXRestClient(homeServer: URL(string: homeserver)!, unrecognizedCertificateHandler: nil)
         print("Logging in")
-        client.login(username: username, password: password) { response in
+        MatrixServices.inst.client.login(username: username, password: password) { response in
             switch response {
             case .success(let credentials):
                 print("Login success")
+                
+                MatrixServices.inst.credentials = credentials
+                
                 showObjects.append(self.ProgressIndicator)
                 hideObjects.append(self.InfoLabel)
                 hideObjects.append(self.UsernameField)

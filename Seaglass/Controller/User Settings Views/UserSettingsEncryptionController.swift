@@ -58,6 +58,8 @@ class UserSettingsEncryptionController: UserSettingsTabController {
         
         MatrixServices.inst.session.crypto.warnOnUnknowDevices = ParanoidMode.state == .on
         UserDefaults.standard.set(MatrixServices.inst.session.crypto.warnOnUnknowDevices, forKey: "CryptoParanoid")
+        
+       // MatrixServices.inst.session.crypto.export
     }
     
 }
