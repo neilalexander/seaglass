@@ -15,6 +15,7 @@ script:
 before_deploy:
   - cd build && tar -zcf Seaglass-$(cd $TRAVIS_BUILD_DIR && sh scripts/version.sh).tar.gz Seaglass.app && cd ..
   - sed -i -e "s/VERSION_NAME_VALUE/$(cd $TRAVIS_BUILD_DIR && sh scripts/version.sh)/g" .ci/bintray-release.json
+  - sed -i -e "s/BINTRAY_USER/$BINTRAY_USER/g" .ci/bintray-release.json
 deploy:
   - provider: bintray
     file: .ci/bintray-release.json
