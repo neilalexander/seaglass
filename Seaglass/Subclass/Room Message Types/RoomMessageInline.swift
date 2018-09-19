@@ -56,9 +56,7 @@ class RoomMessageInline: RoomMessage {
             }
             
             if changes.contains("membership") {
-                if changes[0] != "membership" {
-                    changes.swapAt(0, changes.index(of: "membership")!)
-                }
+                changes = ["membership"]
             }
 
             let senderDisplayName = room.state.memberName(event!.sender) ?? event!.sender as String
