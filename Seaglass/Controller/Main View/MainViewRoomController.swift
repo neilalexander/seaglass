@@ -344,7 +344,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         for view in RoomMessageTableView.subviews {
             for cell in view.subviews {
                 if let message = cell as? RoomMessage {
+                    message.drawnEventHash = 0
                     message.updateIcon()
+                    message.needsLayout = true
                 }
             }
         }
