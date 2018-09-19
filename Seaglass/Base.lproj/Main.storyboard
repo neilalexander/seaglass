@@ -44,10 +44,12 @@
 This software also makes use of the following libraries:
 
 matrix-ios-sdk (Apache Licence 2.0)
-Copyright 2014 © OpenMarket Ltd
+Copyright 2014-2017 © OpenMarket Ltd
+Copyright 2017 © Vector Creations Ltd
+Copyright 2017-2018 © New Vector Ltd
 
 matrix-ios-sdk Swift bindings (Apache Licence 2.0)
-Copyright 2018 © Avery Pierce</string>
+Copyright 2017 © Avery Pierce</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -60,10 +62,10 @@ Copyright 2018 © Avery Pierce</string>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s2r-iU-gFW">
-                                            <rect key="frame" x="18" y="113" width="199" height="33"/>
+                                            <rect key="frame" x="18" y="113" width="199" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Seaglass" id="4XV-6I-EQn">
-                                                <font key="font" metaFont="systemLight" size="27"/>
+                                                <font key="font" metaFont="systemLight" size="31"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -82,29 +84,16 @@ Copyright 2018 © Avery Pierce</string>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="Bgo-pV-E1e"/>
                                         </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1y-bc-snR">
-                                            <rect key="frame" x="-2" y="0.0" width="239" height="40"/>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q42-ep-Pzt">
+                                            <rect key="frame" x="72" y="20" width="91" height="36"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="center" title="Version:" id="PFQ-kW-PRi">
-                                                <font key="font" metaFont="systemLight" size="13"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="MadeForMatrix" id="yrz-9M-98a"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" red="0.48506314766839376" green="0.48506314766839376" blue="0.48506314766839376" alpha="0.41999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzv-BI-uBj">
-                                <rect key="frame" x="259" y="20" width="210" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Alpha Build" id="NaX-Gd-pAe">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uED-FG-pbJ">
                                 <rect key="frame" x="469" y="13" width="148" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -116,6 +105,15 @@ Copyright 2018 © Avery Pierce</string>
                                     <action selector="viewSourceCodeButtonPressed:" target="mAy-xi-EWG" id="iP1-Wa-6Po"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1y-bc-snR">
+                                <rect key="frame" x="259" y="19" width="210" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Version:" id="PFQ-kW-PRi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -4043,6 +4041,7 @@ Gw
     </scenes>
     <resources>
         <image name="AppIcon" width="128" height="128"/>
+        <image name="MadeForMatrix" width="631.79998779296875" height="270"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>

@@ -472,8 +472,8 @@
 				391BFE1820C68AD100B4EFEC /* Frameworks */,
 				391BFE1920C68AD100B4EFEC /* Resources */,
 				396F71E520CAB8C500F4F5E0 /* Headers */,
-				EC5C2F878741B0668D390541 /* [CP] Embed Pods Frameworks */,
 				3D51AF9B212264DB005B9ED5 /* Set build number */,
+				EC5C2F878741B0668D390541 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -608,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = $SRCROOT/scripts/set_build_number.sh;
+			shellScript = "$SRCROOT/scripts/set_build_number.sh\n";
 		};
 		7BA55CBFDF827B6882DF9FC5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
