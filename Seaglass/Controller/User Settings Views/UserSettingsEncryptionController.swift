@@ -61,7 +61,60 @@ class UserSettingsEncryptionController: UserSettingsTabController {
     }
     
     @IBAction func importKeysPressed(_ sender: NSButton) {
+        let panel = NSOpenPanel()
+        panel.title = "Export Keys"
+        panel.allowedFileTypes = ["txt"]
+        panel.allowsOtherFileTypes = true
         
+        let openresponse = panel.runModal()
+        guard openresponse != .cancel else { return }
+        
+        var data: Data?
+        do {
+            data = try Data(contentsOf: panel.url!)
+        } catch {
+            let alert = NSAlert()
+            alert.messageText = "Failed to import room keys"
+            alert.informativeText = error.localizedDescription
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+            
+            return
+        }
+        
+        let alert = NSAlert()
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Cancel")
+        alert.messageText = "Enter import password"
+        alert.informativeText = "Enter the password that you used when exporting your encryption keys."
+        
+        let password = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
+        password.placeholderString = "Password"
+        
+        alert.accessoryView = password
+        var response: NSApplication.ModalResponse = .cancel
+        while password.stringValue == "" {
+            response = alert.runModal()
+            if response == .alertSecondButtonReturn {
+                break
+            }
+        }
+        
+        MatrixServices.inst.session.crypto.importRoomKeys(data!, withPassword: password.stringValue, success: {
+            let alert = NSAlert()
+            alert.messageText = "Room keys imported"
+            alert.informativeText = "Your encryption keys have been imported."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }) { (error) in
+            let alert = NSAlert()
+            alert.messageText = "Failed to import room keys"
+            alert.informativeText = error!.localizedDescription
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
     }
     
     @IBAction func exportKeysPressed(_ sender: NSButton) {
@@ -104,7 +157,15 @@ class UserSettingsEncryptionController: UserSettingsTabController {
                     alert.alertStyle = .warning
                     alert.addButton(withTitle: "OK")
                     alert.runModal()
+                    
+                    return
                 }
+                
+                let alert = NSAlert()
+                alert.messageText = "Room keys exported"
+                alert.informativeText = "Your encryption keys have been exported."
+                alert.addButton(withTitle: "OK")
+                alert.runModal()
             }) { (error) in
                 let alert = NSAlert()
                 alert.messageText = "Failed to export room keys"
@@ -112,6 +173,8 @@ class UserSettingsEncryptionController: UserSettingsTabController {
                 alert.alertStyle = .warning
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
+                
+                return
             }
             
             break
