@@ -45,17 +45,21 @@ class PopoverEncryptionDevice: NSViewController {
             return
         }
         
-        let deviceInfo: MXDeviceInfo? = MatrixServices.inst.session.crypto.eventDeviceInfo(self.event)
-        
-       // if MatrixServices.inst.session.myUser.userId == event!.sender {
-       //     deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: event)
-       // } else {
-       //     deviceInfo = MatrixServices.inst.session.crypto.eventDeviceInfo(event)
-       // }
-
-        if let deviceInfo = deviceInfo {
-            DeviceName.stringValue = deviceInfo.displayName ?? ""
-            DeviceID.stringValue = deviceInfo.deviceId ?? ""
+        if let deviceInfo = MatrixServices.inst.session.crypto.eventDeviceInfo(self.event) {
+            if MatrixServices.inst.client.credentials.deviceId == deviceInfo.deviceId {
+                MatrixServices.inst.client.device(withId: MatrixServices.inst.client.credentials.deviceId, completion: { (response) in
+                    if response.isSuccess {
+                        if let device = response.value {
+                            self.DeviceName.stringValue = device.displayName ?? ""
+                            self.DeviceID.stringValue = device.deviceId ?? ""
+                        }
+                    }
+                })
+            } else {
+                DeviceName.stringValue = deviceInfo.displayName ?? ""
+                DeviceID.stringValue = deviceInfo.deviceId ?? ""
+            }
+    
             DeviceFingerprint.stringValue = String(deviceInfo.fingerprint.enumerated().map { $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1]}.joined())
             
             if deviceInfo.userId == MatrixServices.inst.session.myUser.userId {
@@ -76,19 +80,8 @@ class PopoverEncryptionDevice: NSViewController {
                 self.DownloadSpinner.stopAnimation(self)
                 self.DownloadSpinner.isHidden = true
 
-                let deviceInfo: MXDeviceInfo? = MatrixServices.inst.session.crypto.eventDeviceInfo(self.event)
-                
-               // if MatrixServices.inst.session.myUser.userId == self.event!.sender {
-               //     deviceInfo = MatrixServices.inst.session.crypto.eventSenderDevice(of: self.event)
-               // } else {
-               //     deviceInfo = MatrixServices.inst.session.crypto.eventDeviceInfo(self.event)
-               // }
-                
-                if deviceInfo != nil {
-                    print("Got device info")
+                if MatrixServices.inst.session.crypto.eventDeviceInfo(self.event) != nil {
                     self.viewDidLoad()
-                } else {
-                    print("No device info")
                 }
             }) { (error) in
                 OperationQueue.main.addOperation {
