@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "10.0.0"
+    working_directory: ~/seaglass
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run:
+          name: Create Upload Directory
+          command: mkdir -p /tmp/upload
+      - run:
+          name: Fetch CocoaPods Specs
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Install CocoaPods
+          command: pod install --verbose
+      - run:
+          name: Build Seaglass
+          command: |
+            xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath ~/seaglass/build/Seaglass.xcarchive | xcpretty
+            xcodebuild -exportArchive -archivePath ~/seaglass/build/Seaglass.xcarchive -exportOptionsPlist .ci/ExportOptions.plist -exportPath ~/seaglass/build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - run:
+          name: Package Seaglass
+          working_directory: ~/seaglass/build/
+          command: |
+            tar -zcf /tmp/upload/Seaglass-$(cd ~/seaglass && sh scripts/version.sh).tar.gz Seaglass.app
+      - store_artifacts:
+          path: /tmp/upload
+          destination: /
