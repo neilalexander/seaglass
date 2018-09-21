@@ -25,6 +25,7 @@ fi
 
 # Get the current checked out branch
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
+BRANCHTAG=$(echo $BRANCH | tr -cd [:alnum:])
 
 # Add the build tag on non-master branches
 if [ $BRANCH != "master" ] && [ $BRANCH != "HEAD" ]; then
@@ -33,9 +34,9 @@ if [ $BRANCH != "master" ] && [ $BRANCH != "HEAD" ]; then
 
   # Append builds since last branch, if appropriate
   if [ $BUILD != 0 ]; then
-    printf -- "-$BRANCH-%04d" "$BUILD"
+    printf -- "-$BRANCHTAG-%04d" "$BUILD"
   else
-    printf -- "-$BRANCH"
+    printf -- "-$BRANCHTAG"
   fi
 fi
 

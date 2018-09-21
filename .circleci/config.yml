@@ -5,18 +5,28 @@ jobs:
       xcode: "10.0.0"
     working_directory: ~/seaglass
     shell: /bin/bash --login -o pipefail
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
     steps:
       - checkout
       - run:
           name: Create Upload Directory
-          command: mkdir -p /tmp/upload
+          command: mkdir -p /tmp/seaglass/upload
+      - run:
+          name: Install AWS CLI
+          command: |
+            pip install awscli --upgrade --user
+            ~/Library/Python/2.7/bin/aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}
+            ~/Library/Python/2.7/bin/aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+            ~/Library/Python/2.7/bin/aws configure set region eu-west-2
       - run:
           name: Fetch CocoaPods Specs
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Install CocoaPods
-          command: pod install --verbose
+          command: |
+            pod install --verbose
       - run:
           name: Build Seaglass
           command: |
@@ -26,7 +36,8 @@ jobs:
           name: Package Seaglass
           working_directory: ~/seaglass/build/
           command: |
-            tar -zcf /tmp/upload/Seaglass-$(cd ~/seaglass && sh scripts/version.sh).tar.gz Seaglass.app
+            tar -zcf /tmp/seaglass/upload/Seaglass-$(cd ~/seaglass && sh scripts/version.sh).tar.gz Seaglass.app
+            ~/Library/Python/2.7/bin/aws s3 cp /tmp/seaglass/upload/* s3://seaglass-ci/ --acl public-read
       - store_artifacts:
-          path: /tmp/upload
+          path: /tmp/seaglass/upload
           destination: /
