@@ -1,0 +1,12 @@
+<?xml version='1.0' standalone='yes'?>
+<rss xmlns:sparkle='http://www.andymatuschak.org/xml-namespaces/sparkle' version='2.0'>
+  <channel>
+    <title>Seaglass</title>
+    <item>
+      <title>0.0.477-automated-sparkle-f02ae61</title>
+      <pubDate>Thu, 20 Sep 2018 21:25:15 -0500</pubDate>
+      <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+      <enclosure url='Seaglass-0.0.477-automated-sparkle-f02ae61.zip' sparkle:version='477' sparkle:shortVersionString='0.0.477-automated-sparkle-f02ae61' length='22068974' type='application/octet-stream'/>
+    </item>
+  </channel>
+</rss>

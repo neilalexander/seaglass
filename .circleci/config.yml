@@ -20,13 +20,7 @@ jobs:
       - run:
           name: Build Seaglass
           command: |
-            xcodebuild -workspace Seaglass.xcworkspace -scheme Seaglass archive -archivePath ~/seaglass/build/Seaglass.xcarchive | xcpretty
-            xcodebuild -exportArchive -archivePath ~/seaglass/build/Seaglass.xcarchive -exportOptionsPlist .ci/ExportOptions.plist -exportPath ~/seaglass/build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-      - run:
-          name: Package Seaglass
-          working_directory: ~/seaglass/build/
-          command: |
-            tar -zcf /tmp/upload/Seaglass-$(cd ~/seaglass && sh scripts/version.sh).tar.gz Seaglass.app
+            fastlane build_and_release
       - store_artifacts:
-          path: /tmp/upload
+          path: /tmp/seaglass/upload
           destination: /

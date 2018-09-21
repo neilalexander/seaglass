@@ -26,3 +26,5 @@ xcuserdata/
 # End of https://www.gitignore.io/api/xcode,cocoapods
 
 build/
+
+fastlane/report.xml

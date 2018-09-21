@@ -7,4 +7,6 @@ target 'Seaglass' do
   pod 'SwiftMatrixSDK', '0.10.12'
   pod 'Down'
   pod 'TSMarkdownParser'
+  pod 'Sparkle'
+  pod 'LetsMove'
 end
