@@ -5,11 +5,11 @@ TAG=$(git describe --abbrev=0 --tags --match="v[0-9]*\.[0-9]*" 2>/dev/null)
 # Is there a tag?
 if [ $? != 0 ]; then
   # No tag was found, go from initial commit
-  PATCH=$(git rev-list master --count 2>/dev/null)
+  PATCH=$(git rev-list HEAD --count 2>/dev/null)
   TAG=v0.0
 else
   # Tag was found, go from there
-  PATCH=$(git rev-list $TAG..master --count 2>/dev/null)
+  PATCH=$(git rev-list $TAG..HEAD --count 2>/dev/null)
 fi
 
 # Split out tag into major, minor and patch numbers
@@ -27,8 +27,8 @@ fi
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 BRANCHTAG=$(echo $BRANCH | tr -cd [:alnum:])
 
-# Add the build tag on non-master branches
-if [ $BRANCH != "master" ] && [ $BRANCH != "HEAD" ]; then
+# Add the build tag on non-release branches
+if [ $BRANCH != "release" ] && [ $BRANCH != "HEAD" ]; then
   # Get the number of merges on the current branch since that tag
   BUILD=$(git rev-list master...$BRANCH --count)
 
