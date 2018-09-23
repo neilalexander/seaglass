@@ -39,7 +39,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     @IBOutlet var ConnectivityBar: NSBox!
     
     weak public var mainController: MainViewController?
- 
+    
     var roomId: String = ""
     
     var roomIsTyping: Bool = false
@@ -196,18 +196,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     }
     
     @objc func scrollViewDidScroll(_ notification: NSNotification) {
-        let overscrollHeight = RoomMessageTableView.frame.height + RoomMessageClipView.contentInsets.top + RoomMessageClipView.contentInsets.bottom
-        if RoomMessageClipView.bounds.minY >= 0  &&
-           RoomMessageClipView.bounds.maxY <= overscrollHeight {
+       // let overscrollHeight = RoomMessageTableView.frame.height + RoomMessageClipView.contentInsets.top + RoomMessageClipView.contentInsets.bottom
+        if RoomMessageClipView.bounds.minY >= 0 /* &&
+           RoomMessageClipView.bounds.maxY <= overscrollHeight */ {
             roomIsOverscrolling = false
             return
         }
         if roomIsPaginating || roomIsOverscrolling {
             return
         }
-        roomIsOverscrolling = true
+        roomIsOverscrolling = RoomMessageClipView.bounds.minY < 0
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
             let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
+            guard direction == .backwards else { return }
             if room.liveTimeline.canPaginate(direction) {
                 roomIsPaginating = true
                 room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
@@ -336,8 +337,12 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
         let y2 = scrollview.documentVisibleRect.origin.y
         if abs(y1 - y2) < 64 {
-            OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: MatrixServices.inst.roomCaches[self.roomId]!.filteredContent.count-1, animated: true) })
+            OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: MatrixServices.inst.roomCaches[self.roomId]!.filteredContent.count-1, animated: false) })
         }
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 1
     }
     
     func uiRoomNeedsCryptoReload() {
@@ -390,7 +395,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             
             let roomDidPaginate = {
                 OperationQueue.main.addOperation({
-                    self.RoomMessageTableView.scrollRowToVisible(row: cache.filteredContent.count-1, animated: true)
+                    self.RoomMessageTableView.scrollRowToVisible(row: cache.filteredContent.count-1, animated: false)
                     self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
                 })
             }
