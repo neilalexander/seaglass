@@ -1,6 +1,6 @@
 # Seaglass
-[![Build Status](https://travis-ci.org/neilalexander/seaglass.svg?branch=master)](https://travis-ci.org/neilalexander/seaglass)
-[![Download Latest Build](https://api.bintray.com/packages/neilalexander/Seaglass/Seaglass/images/download.svg)](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files)
+[![CircleCI Build Status](https://circleci.com/gh/neilalexander/seaglass.svg?style=shield)](https://circleci.com/gh/neilalexander/seaglass)
+[![Stable Version](https://img.shields.io/badge/download-stable-green.svg)](https://github.com/neilalexander/seaglass/releases/latest)
 
 Seaglass is a truly native macOS client for Matrix. It is written in Swift and
 uses the Cocoa user interface framework.
@@ -9,7 +9,7 @@ uses the Cocoa user interface framework.
 
 ## Pre-built binaries
 
-Travis CI is used to build binaries from the GitHub repository. You can [find the latest build here](https://bintray.com/neilalexander/Seaglass/Seaglass/_latestVersion#files).
+CircleCI is used to build binaries from the GitHub repository. You can [find the latest build here](https://circleci.com/api/v1.1/project/github/neilalexander/seaglass/latest/artifacts?branch=master&filter=successful).
 
 ## Building from source
 
