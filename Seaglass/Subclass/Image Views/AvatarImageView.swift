@@ -60,8 +60,8 @@ class AvatarImageView: ContextImageView {
             if useCached && MatrixServices.inst.avatarCache.keys.contains(cacheUrl) {
                 if image != MatrixServices.inst.avatarCache[cacheUrl] {
                     image = MatrixServices.inst.avatarCache[cacheUrl]
+                    return
                 }
-                return
             }
         }
         image = defaultImage
