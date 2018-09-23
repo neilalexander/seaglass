@@ -111,6 +111,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         return .terminateNow
     }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        print("Seaglass version: " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String))
+        
+        // if you checked the box that said "Do not show this message again" but want see the Move to Applications dialog box again, run:
+        // defaults write eu.neilalexander.seaglass moveToApplicationsFolderAlertSuppress NO
+        #if RELEASE
+        PFMoveToApplicationsFolderIfNecessary();
+        #endif
+    }
 
 }
 

@@ -141,6 +141,12 @@ Copyright 2017 © Avery Pierce</string>
                                                 <segue destination="aqV-Si-XFo" kind="show" id="IGX-BI-8df"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for Updates..." id="dy5-S4-hQj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="MHl-Dn-83Q" id="hdE-O0-KYo"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" tag="1" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
@@ -740,6 +746,7 @@ Copyright 2017 © Avery Pierce</string>
                         <outlet property="MenuSeaglass" destination="uQy-DD-JDr" id="apX-OF-CcS"/>
                     </connections>
                 </customObject>
+                <customObject id="MHl-Dn-83Q" customClass="SUUpdater"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="ybo-8F-whA"/>

@@ -1,0 +1,7 @@
+clean(false)
+silent(true)
+
+workspace("Seaglass.xcworkspace")
+scheme("Seaglass")
+#configuration("release")
+archive_path("/tmp/seaglass/build/Seaglass.xcarchive")

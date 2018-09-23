@@ -45,6 +45,7 @@
 		394679E721304B0500FF67C1 /* InlineImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394679E621304B0500FF67C1 /* InlineImageView.swift */; };
 		395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */; };
 		39640E38212E09130060F170 /* MainViewSendErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39640E37212E09130060F170 /* MainViewSendErrorController.swift */; };
+		3982A6B92157B74D00303E84 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3982A6B82157B74D00303E84 /* dsa_pub.pem */; };
 		39850C512118F51D00D20974 /* RoomListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C502118F51D00D20974 /* RoomListEntry.swift */; };
 		39850C532118F55200D20974 /* RoomAliasEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39850C522118F55200D20974 /* RoomAliasEntry.swift */; };
 		3994B34820C6E02700DD1D8D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3994B34720C6E02700DD1D8D /* MainViewController.swift */; };
@@ -135,6 +136,7 @@
 		394679E621304B0500FF67C1 /* InlineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageView.swift; sourceTree = "<group>"; };
 		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCacheEntry.swift; sourceTree = "<group>"; };
 		39640E37212E09130060F170 /* MainViewSendErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSendErrorController.swift; sourceTree = "<group>"; };
+		3982A6B82157B74D00303E84 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		39850C502118F51D00D20974 /* RoomListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListEntry.swift; sourceTree = "<group>"; };
 		39850C522118F55200D20974 /* RoomAliasEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAliasEntry.swift; sourceTree = "<group>"; };
 		3994B34720C6E02700DD1D8D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				391BFE2B20C68AD200B4EFEC /* Seaglass.entitlements */,
 				391BFE2220C68AD100B4EFEC /* Seaglass.xcdatamodeld */,
 				391BFE1E20C68AD100B4EFEC /* AppDelegate.swift */,
+				3982A6B82157B74D00303E84 /* dsa_pub.pem */,
 			);
 			path = Seaglass;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3931F29A21398189001F91DC /* MessageInputField.xib in Resources */,
+				3982A6B92157B74D00303E84 /* dsa_pub.pem in Resources */,
 				391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */,
 				391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */,
 			);
@@ -637,12 +641,14 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
+				"${BUILT_PRODUCTS_DIR}/LetsMove/LetsMove.framework",
 				"${BUILT_PRODUCTS_DIR}/OLMKit/OLMKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMatrixSDK/SwiftMatrixSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/TSMarkdownParser/TSMarkdownParser.framework",
 			);
@@ -651,14 +657,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LetsMove.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OLMKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMatrixSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TSMarkdownParser.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -895,6 +903,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -904,6 +913,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -916,6 +926,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Seaglass/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -925,6 +936,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

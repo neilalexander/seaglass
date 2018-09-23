@@ -1,0 +1,67 @@
+default_platform(:mac)
+
+platform :mac do
+	GITHUB_REMOTE = "origin"
+	RELEASE_BRANCH = "release"
+	GITHUB_REPOSITORY = "neilalexander/seaglass"
+
+	VERSION = sh "bash ../scripts/version.sh"
+	ZIP_PATH = "/tmp/seaglass/upload/Seaglass-#{VERSION}.zip"
+
+	desc "Build and release Seaglass, this is the lane you probably want to use"
+	lane :build_and_release do
+		build
+                release
+	end
+
+	desc "Build Seaglass"
+	lane :build do
+		# builds Seaglass and creates a .xcarchive
+		gym
+
+		# exports Seaglass.app from the .xcarchive
+		xcexport(
+			archivePath: "/tmp/seaglass/build/Seaglass.xcarchive",
+			export_options_plist: ".ci/ExportOptions.plist",
+			export_xcargs: "CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO",
+			export_path: "/tmp/seaglass/",
+			output_name: "Seaglass.app"
+		)
+
+		zip(
+			path: "/tmp/seaglass/Seaglass.app",
+			output_path: ZIP_PATH
+		)
+	end
+
+	desc "Release Seaglass on GitHub"
+	lane :release do
+		set_github_release(
+			repository_name: GITHUB_REPOSITORY,
+			name: VERSION,
+			tag_name: VERSION,
+			description: "",
+			upload_assets: [ZIP_PATH],
+			"is_prerelease": true,
+			api_token: ENV["GITHUB_API_TOKEN"]
+		)
+
+		sparkle_add_version
+	end
+
+	desc "Updates Sparkle RSS file"
+	lane :sparkle_add_version do
+		app_download_url = "https://github.com/neilalexander/seaglass/releases/download/#{VERSION}/Seaglass-#{VERSION}.zip"
+
+		sparkle_add_update(
+			feed_file: "appcast.xml",
+			app_download_url: app_download_url,
+			app_size: "#{File.size(ZIP_PATH)}",
+			machine_version: get_info_plist_value(path: "/tmp/seaglass/Seaglass.app/Contents/Info.plist", key: "CFBundleVersion"),
+			human_version: VERSION,
+			title: VERSION,
+			release_notes_link: "https://s3.eu-west-2.amazonaws.com/seaglass-ci/releasenotes.html",
+			eddsa_signature: sh("../Pods/Sparkle/bin/sign_update", ZIP_PATH, "/tmp/dsa_priv.pem")
+		)
+	end
+end
