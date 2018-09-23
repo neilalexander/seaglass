@@ -17,6 +17,7 @@ module Fastlane
         # UI.message "#{params[:title]}"
         # UI.message "#{params[:release_notes_link]}"
         # UI.message "#{params[:deployment_target]}"
+        # UI.message "#{params[:eddsa_signature]}"
 
         xml_file = params[:feed_file]
 
@@ -40,6 +41,7 @@ module Fastlane
         enclosure.attributes["type"] = "application/octet-stream"
         enclosure.attributes["sparkle:version"] = params[:machine_version]
         enclosure.attributes["sparkle:shortVersionString"] = params[:human_version]
+        enclosure.attributes["sparkle:dsaSignature"] = params[:eddsa_signature].tr("\n", "") if params[:eddsa_signature]
         enclosure.attributes["length"] = params[:app_size]
         enclosure.attributes["url"] = params[:app_download_url]
         
@@ -109,6 +111,10 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :deployment_target,
                                        env_name: "FL_SPARKLE_ADD_UPDATE_DEPLOYMENT_TARGET",
                                        description: "Update's deployment target",
+                                       optional: true),
+          FastlaneCore::ConfigItem.new(key: :eddsa_signature,
+                                       env_name: "FL_SPARKLE_ADD_EDDSA_SIGNATURE",
+                                       description: "Adds an EdDSA signature to the enclosure",
                                        optional: true)
         ]
       end

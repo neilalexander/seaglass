@@ -35,7 +35,7 @@ Release Seaglass on GitHub
 ```
 fastlane mac sparkle_add_version
 ```
-Updates sparkle RSS file
+Updates Sparkle RSS file
 
 ----
 

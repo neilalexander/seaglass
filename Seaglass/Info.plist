@@ -32,5 +32,11 @@
 	<string>NSApplication</string>
 	<key>NSRequiresAquaSystemAppearance</key>
 	<false/>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
+	<key>SUFeedURL</key>
+	<string>https://s3.eu-west-2.amazonaws.com/seaglass-ci/appcast.xml</string>
+	<key>SUShowReleaseNotes</key>
+	<false/>
 </dict>
 </plist>

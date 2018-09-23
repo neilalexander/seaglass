@@ -5,22 +5,56 @@ jobs:
       xcode: "10.0.0"
     working_directory: ~/seaglass
     shell: /bin/bash --login -o pipefail
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
     steps:
       - checkout
       - run:
           name: Create Upload Directory
-          command: mkdir -p /tmp/upload
+          command: mkdir -p /tmp/seaglass/upload
+      - run:
+          name: Decrypt signing key
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              openssl aes-256-cbc -d -in .circleci/signing.key -k $SPARKLE_EDDSA_SECRET >> /tmp/dsa_priv.pem || true
+            fi
+      - run:
+          name: Install AWS CLI
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              pip install awscli --upgrade --user
+              ~/Library/Python/2.7/bin/aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}
+              ~/Library/Python/2.7/bin/aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+              ~/Library/Python/2.7/bin/aws configure set region eu-west-2
+            fi
+      - run:
+          name: Retrieve appcast.xml
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              ~/Library/Python/2.7/bin/aws s3 cp s3://seaglass-ci/appcast.xml ~/seaglass/ --acl public-read || true;
+            fi
       - run:
           name: Fetch CocoaPods Specs
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Install CocoaPods
-          command: pod install --verbose
+          command: |
+            pod install --verbose
       - run:
           name: Build Seaglass
           command: |
-            fastlane build_and_release
+            if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              fastlane build_and_release;
+            else
+              fastlane build;
+            fi
+      - run:
+          name: Upload appcast.xml to S3
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "release" ]; then
+              ~/Library/Python/2.7/bin/aws s3 cp ~/seaglass/appcast.xml s3://seaglass-ci/ --acl public-read;
+            fi
       - store_artifacts:
           path: /tmp/seaglass/upload
           destination: /
