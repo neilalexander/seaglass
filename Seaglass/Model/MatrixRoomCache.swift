@@ -23,21 +23,10 @@ import SwiftMatrixSDK
     
     static let allowedTypes = [ "m.room.create", "m.room.message", "m.room.name", "m.room.member", "m.room.topic", "m.room.avatar", "m.room.canonical_alias", "m.sticker", "m.room.encryption", "m.room.encrypted" ]
 
-    private var _managedTable: MainViewTableView?
     private var _filteredContent: [MXEvent] = []
     private var _unfilteredContent: [MXEvent] = []
     
     private let lock = DispatchSemaphore(value: 1)
-    
-    var managedTable: MainViewTableView? {
-        get { return _managedTable }
-        set {
-            _managedTable = newValue
-            if let table = _managedTable {
-                table.reloadData()
-            }
-        }
-    }
     
     @objc dynamic var unfilteredContent: [MXEvent] {
         get { return _unfilteredContent }
@@ -66,23 +55,15 @@ import SwiftMatrixSDK
     
     func reset(_ content: [MXEvent] = []) {
         self.unfilteredContent = content
-        if let table = _managedTable {
-            table.reloadData()
-        }
+        // TODO: call room delegate
     }
     
     func append(_ newElement: MXEvent) {
         guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
         DispatchQueue.main.async {
             self.unfilteredContent.append(newElement)
-            if let table = self._managedTable {
-                guard table.roomId == newElement.roomId else { return }
-                if self.filter(newElement) {
-                    table.beginUpdates()
-                    table.noteNumberOfRowsChanged()
-                    //table.insertRows(at: IndexSet([self.filteredContent.count-1]), withAnimation: [])
-                    table.endUpdates()
-                }
+            if self.filter(newElement) {
+                // TODO: call room delegate
             }
         }
     }
@@ -91,13 +72,8 @@ import SwiftMatrixSDK
         guard !self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
         DispatchQueue.main.async {
             self.unfilteredContent.insert(newElement, at: at)
-            if let table = self._managedTable {
-                guard table.roomId == newElement.roomId else { return }
-                if self.filter(newElement) {
-                    table.beginUpdates()
-                    table.insertRows(at: IndexSet([at]), withAnimation: [])
-                    table.endUpdates()
-                }
+            if self.filter(newElement) {
+                // TODO: call room delegate
             }
         }
     }
@@ -105,25 +81,15 @@ import SwiftMatrixSDK
     func replace(_ newElement: MXEvent, at: Int) {
         guard self.unfilteredContent[at].eventId == newElement.eventId else { return }
         DispatchQueue.main.async {
-            if let table = self._managedTable {
-                if table.roomId == newElement.roomId {
-                    table.beginUpdates()
-                    if self.filter(self.unfilteredContent[at]) {
-                        if let index = self.filteredContent.index(of: self.unfilteredContent[at]) {
-                            table.removeRows(at: IndexSet([index]), withAnimation: [])
-                        }
-                    }
+            if self.filter(self.unfilteredContent[at]) {
+                if let index = self.filteredContent.index(of: self.unfilteredContent[at]) {
+                    // TODO: call room delegate
                 }
             }
             self.unfilteredContent[at] = newElement
-            if let table = self._managedTable {
-                if table.roomId == newElement.roomId {
-                    if self.filter(newElement) {
-                        if let index = self.filteredContent.index(of: newElement) {
-                            table.insertRows(at: IndexSet([index]), withAnimation: [])
-                        }
-                    }
-                    table.endUpdates()
+            if self.filter(newElement) {
+                if let index = self.filteredContent.index(of: newElement) {
+                    // TODO: call room delegate
                 }
             }
         }
@@ -140,14 +106,7 @@ import SwiftMatrixSDK
         let rowindex = filteredContent.index(of: unfilteredContent[at])
         DispatchQueue.main.async {
             self.unfilteredContent.remove(at: at)
-            if let table = self._managedTable {
-                guard table.roomId == self.unfilteredContent[at].roomId else { return }
-                if rowindex != nil {
-                    table.beginUpdates()
-                    table.removeRows(at: IndexSet([rowindex!]), withAnimation: [])
-                    table.endUpdates()
-                }
-            }
+            // TODO: call room delegate
         }
     }
     

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1213,603 +1214,6 @@ Copyright 2017 © Avery Pierce</string>
                         <rect key="frame" x="0.0" y="0.0" width="580" height="470"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="GvZ-sd-DTW">
-                                <rect key="frame" x="0.0" y="43" width="580" height="370"/>
-                                <clipView key="contentView" wantsLayer="YES" id="yGf-GP-99e">
-                                    <rect key="frame" x="0.0" y="0.0" width="580" height="370"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <tableView wantsLayer="YES" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" floatsGroupRows="NO" id="qXT-6y-pht" customClass="MainViewTableView" customModule="Seaglass" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="580" height="259"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                            <tableColumns>
-                                                <tableColumn editable="NO" width="577" minWidth="48" maxWidth="30000" id="HHh-xz-b6k">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Messages">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" selectable="YES" editable="YES" title="Text Cell" id="Gpq-61-UOe">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView identifier="RoomMessageEntryInbound" autoresizesSubviews="NO" wantsLayer="YES" id="nAg-O9-2gK" userLabel="Incoming Room Message Entry" customClass="RoomMessageIncoming" customModule="Seaglass" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="577" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <imageView identifier="RoomMessageEntryInboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ru8-q8-hdY" customClass="AvatarImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="10" y="1" width="30" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="CLm-sj-s8q"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="xDE-mL-W4d"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="dFF-P4-bpm"/>
-                                                                </imageView>
-                                                                <textField identifier="RoomMessageEntryInboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-k5-z63">
-                                                                    <rect key="frame" x="46" y="18" width="530" height="13"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="left" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="piy-Lm-IbK">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <textField identifier="RoomMessageEntryInboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucJ-c5-qi7">
-                                                                    <rect key="frame" x="62" y="0.0" width="469" height="16"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="left" placeholderString="No event body" allowsEditingTextAttributes="YES" id="8D5-dO-cdd">
-                                                                        <font key="font" metaFont="cellTitle"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dcR-Ti-wrs" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="48" y="1" width="16" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="12" id="H6T-NC-o4I"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="NoE-XR-hKX"/>
-                                                                </imageView>
-                                                                <textField identifier="RoomMessageEntryInboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cu-49-RxG">
-                                                                    <rect key="frame" x="524" y="1" width="58" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="54" id="XeA-Wb-mFH"/>
-                                                                    </constraints>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Vpo-1U-rCt">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="peh-nc-iMY" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="64" y="0.0" width="256" height="16"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="256" identifier="width" id="0j6-Xh-9HQ"/>
-                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="U7o-6W-PGV"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="SYi-UB-Wbd"/>
-                                                                </imageView>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pDD-zq-Cis">
-                                                                    <rect key="frame" x="441" y="-1" width="88" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" id="D9Z-q5-oNM"/>
-                                                                        <constraint firstAttribute="width" constant="88" id="u79-lG-T68"/>
-                                                                    </constraints>
-                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="Ukk-Wc-Dnd">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="requestKeysPressed:" target="nAg-O9-2gK" id="D9O-Ky-CrH"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="C9D-k5-z63" secondAttribute="trailing" constant="3" id="2E1-5X-4yL"/>
-                                                                <constraint firstAttribute="bottom" secondItem="peh-nc-iMY" secondAttribute="bottom" id="6UY-OZ-bc3"/>
-                                                                <constraint firstItem="0Cu-49-RxG" firstAttribute="top" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="4" id="6ex-TF-MWC"/>
-                                                                <constraint firstItem="C9D-k5-z63" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="6m0-ef-Shk"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="72B-Rv-dBp"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="64" id="Adj-Cj-u0h"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dcR-Ti-wrs" secondAttribute="bottom" constant="1" id="D3m-oy-8rQ"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pDD-zq-Cis" secondAttribute="bottom" id="GBh-2v-q9J"/>
-                                                                <constraint firstAttribute="trailing" secondItem="ucJ-c5-qi7" secondAttribute="trailing" constant="48" id="M9I-a1-b01"/>
-                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="SEv-1m-Zjw"/>
-                                                                <constraint firstItem="dcR-Ti-wrs" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="31" id="TKs-nR-jdd"/>
-                                                                <constraint firstAttribute="trailing" secondItem="0Cu-49-RxG" secondAttribute="trailing" constant="-3" id="USZ-AI-vOv"/>
-                                                                <constraint firstItem="ru8-q8-hdY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="13" id="WZ2-ZC-KYv"/>
-                                                                <constraint firstItem="0Cu-49-RxG" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="30" id="YrF-Ig-g15"/>
-                                                                <constraint firstItem="C9D-k5-z63" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="48" id="ZcO-dR-pWR"/>
-                                                                <constraint firstItem="peh-nc-iMY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="64" id="aT7-ev-rNz"/>
-                                                                <constraint firstItem="pDD-zq-Cis" firstAttribute="top" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="2" id="dJZ-Pd-1f8"/>
-                                                                <constraint firstAttribute="trailing" secondItem="pDD-zq-Cis" secondAttribute="trailing" constant="48" id="evC-cO-YC6"/>
-                                                                <constraint firstAttribute="trailing" secondItem="0Cu-49-RxG" secondAttribute="trailing" constant="-3" id="flg-Az-Uv8"/>
-                                                                <constraint firstItem="peh-nc-iMY" firstAttribute="top" secondItem="nAg-O9-2gK" secondAttribute="top" constant="28" id="fwi-Up-TTa"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ru8-q8-hdY" secondAttribute="bottom" constant="1" id="gDZ-RZ-bo0"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C9D-k5-z63" secondAttribute="bottom" constant="18" id="k7E-X9-o80"/>
-                                                                <constraint firstItem="ru8-q8-hdY" firstAttribute="leading" secondItem="nAg-O9-2gK" secondAttribute="leading" constant="10" id="tRp-6o-4Io"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ucJ-c5-qi7" secondAttribute="bottom" id="wxy-lK-cVa"/>
-                                                                <constraint firstItem="ucJ-c5-qi7" firstAttribute="leading" secondItem="dcR-Ti-wrs" secondAttribute="trailing" id="xei-CD-h3R"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="Avatar" destination="ru8-q8-hdY" id="obS-Jc-nPJ"/>
-                                                                <outlet property="From" destination="C9D-k5-z63" id="mqW-rx-noq"/>
-                                                                <outlet property="Icon" destination="dcR-Ti-wrs" id="pC1-Nb-mzP"/>
-                                                                <outlet property="InlineImage" destination="peh-nc-iMY" id="2Fe-EB-mGx"/>
-                                                                <outlet property="InlineImageConstraint" destination="aT7-ev-rNz" id="VCE-Bm-gsm"/>
-                                                                <outlet property="RequestKeys" destination="pDD-zq-Cis" id="jJH-tr-t9e"/>
-                                                                <outlet property="Text" destination="ucJ-c5-qi7" id="2wQ-Vn-p12"/>
-                                                                <outlet property="TextConstraint" destination="Adj-Cj-u0h" id="LuE-wL-mCb"/>
-                                                                <outlet property="Time" destination="0Cu-49-RxG" id="fl5-a5-wzY"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryInboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="iEZ-b3-CBD" userLabel="Incoming Room Message Entry Coalesced" customClass="RoomMessageIncomingCoalesced" customModule="Seaglass" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="47" width="577" height="16"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField identifier="RoomMessageEntryInboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZX-Kd-FHZ">
-                                                                    <rect key="frame" x="62" y="0.0" width="469" height="16"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="left" placeholderString="No event body" allowsEditingTextAttributes="YES" id="DyH-Tn-JEG">
-                                                                        <font key="font" metaFont="cellTitle"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bkn-PY-xBl" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="48" y="1" width="10" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="12" id="ZDC-ek-eU9"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="5MO-Kk-EAT"/>
-                                                                </imageView>
-                                                                <textField identifier="RoomMessageEntryInboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-7Z-LJb">
-                                                                    <rect key="frame" x="524" y="1" width="58" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="54" id="sQz-fc-p8M"/>
-                                                                    </constraints>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="wU8-Wq-zNT">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-t4-IyO" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="64" y="0.0" width="256" height="16"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="g2e-Xb-CXe"/>
-                                                                        <constraint firstAttribute="width" constant="256" identifier="width" id="wZ9-a3-npp"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyUpOrDown" id="gui-og-tP2"/>
-                                                                </imageView>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Exx-Oi-BBK">
-                                                                    <rect key="frame" x="441" y="-1" width="88" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="88" id="Cti-46-74l"/>
-                                                                        <constraint firstAttribute="height" constant="16" id="Hfh-Zs-iLi"/>
-                                                                    </constraints>
-                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="aUb-Hg-pJs">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="requestKeysPressed:" target="iEZ-b3-CBD" id="cRV-Cd-jbi"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="Exx-Oi-BBK" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="0wf-Md-MwR"/>
-                                                                <constraint firstAttribute="bottom" secondItem="MD2-t4-IyO" secondAttribute="bottom" id="5bW-b2-0hb"/>
-                                                                <constraint firstAttribute="trailing" secondItem="cZX-Kd-FHZ" secondAttribute="trailing" constant="48" id="7X5-N9-zvw"/>
-                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="CD5-7w-Hvc"/>
-                                                                <constraint firstItem="ffP-7Z-LJb" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="2" id="HLJ-rJ-JMH"/>
-                                                                <constraint firstItem="MD2-t4-IyO" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="64" id="N5p-xj-QFb"/>
-                                                                <constraint firstItem="MD2-t4-IyO" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="Np7-Dr-PwN"/>
-                                                                <constraint firstItem="cZX-Kd-FHZ" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" id="Oac-M0-egY"/>
-                                                                <constraint firstAttribute="trailing" secondItem="ffP-7Z-LJb" secondAttribute="trailing" constant="-3" id="ULX-Cb-qdo"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Exx-Oi-BBK" secondAttribute="trailing" constant="48" id="XgP-xc-mXA"/>
-                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="top" secondItem="iEZ-b3-CBD" secondAttribute="top" constant="3" id="Ylh-Yr-1bJ"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZX-Kd-FHZ" secondAttribute="bottom" id="b0O-hi-QlL"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Exx-Oi-BBK" secondAttribute="bottom" id="p0M-o6-Edh"/>
-                                                                <constraint firstItem="Bkn-PY-xBl" firstAttribute="leading" secondItem="iEZ-b3-CBD" secondAttribute="leading" constant="48" id="yIo-8E-Hei"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="Icon" destination="Bkn-PY-xBl" id="6lY-z6-kyv"/>
-                                                                <outlet property="InlineImage" destination="MD2-t4-IyO" id="zzD-4M-rRt"/>
-                                                                <outlet property="InlineImageConstraint" destination="N5p-xj-QFb" id="fpS-vI-0Ad"/>
-                                                                <outlet property="RequestKeys" destination="Exx-Oi-BBK" id="wdh-KK-aJP"/>
-                                                                <outlet property="Text" destination="cZX-Kd-FHZ" id="c5M-Gu-PXg"/>
-                                                                <outlet property="TextConstraint" destination="CD5-7w-Hvc" id="aOF-q1-h9M"/>
-                                                                <outlet property="Time" destination="ffP-7Z-LJb" id="Uly-ig-xn1"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryOutbound" autoresizesSubviews="NO" wantsLayer="YES" id="Jn7-pz-WXp" userLabel="Outgoing Room Message Entry" customClass="RoomMessageOutgoing" customModule="Seaglass" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="65" width="577" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField identifier="RoomMessageEntryOutboundText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNx-7M-A4V">
-                                                                    <rect key="frame" x="46" y="0.0" width="469" height="16"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="right" placeholderString="No event body" allowsEditingTextAttributes="YES" id="XId-xL-Q9U">
-                                                                        <font key="font" metaFont="cellTitle"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="0.0" colorSpace="deviceRGB"/>
-                                                                    </textFieldCell>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </textField>
-                                                                <textField identifier="RoomMessageEntryOutboundFrom" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIe-8Q-fxc">
-                                                                    <rect key="frame" x="1" y="18" width="530" height="13"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="right" placeholderString="Unknown sender" allowsEditingTextAttributes="YES" id="u2S-04-hyo">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <imageView identifier="RoomMessageEntryOutboundIcon" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-pa-dQN" customClass="AvatarImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="537" y="1" width="30" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="vOo-nb-W9j"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="vqH-BF-cSh"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSTouchBarUserTemplate" id="ZGo-C5-v2I"/>
-                                                                </imageView>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ldz-hR-14M" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="513" y="1" width="16" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="12" id="v6f-eo-Hm7"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="uoZ-8q-ZtV"/>
-                                                                </imageView>
-                                                                <textField identifier="RoomMessageEntryOutboundTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9y-EX-0dL">
-                                                                    <rect key="frame" x="-4" y="1" width="58" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="54" id="FOv-3g-NyB"/>
-                                                                    </constraints>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="giU-YN-Tp8">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfS-z5-daf" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="257" y="-1" width="256" height="16"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="c9R-hg-8hS"/>
-                                                                        <constraint firstAttribute="width" constant="256" identifier="width" id="yOW-h1-Cue"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gnG-qw-1Mg"/>
-                                                                </imageView>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNH-v6-5Jl">
-                                                                    <rect key="frame" x="48" y="-1" width="88" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="88" id="1Gp-qi-gpd"/>
-                                                                        <constraint firstAttribute="height" constant="16" id="hHj-ME-NDx"/>
-                                                                    </constraints>
-                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="2yE-77-Tat">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="requestKeysPressed:" target="Jn7-pz-WXp" id="GgX-Ms-ZQS"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="yfS-z5-daf" secondAttribute="trailing" constant="64" id="12I-5U-SKX"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="18" id="1iV-BG-2ev"/>
-                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="48" id="33d-Yw-gnS"/>
-                                                                <constraint firstAttribute="trailing" secondItem="eNx-7M-A4V" secondAttribute="trailing" constant="64" id="8CY-bg-Cb6"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eNx-7M-A4V" secondAttribute="bottom" id="AKp-6T-uZC"/>
-                                                                <constraint firstItem="uIe-8Q-fxc" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="3" id="EFm-Cq-H9m"/>
-                                                                <constraint firstItem="LNH-v6-5Jl" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="48" id="EfG-x0-uqc"/>
-                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="31" id="FCg-n9-Lom"/>
-                                                                <constraint firstAttribute="bottom" secondItem="yfS-z5-daf" secondAttribute="bottom" constant="-1" id="FNa-vx-Pfi"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Ldz-hR-14M" secondAttribute="trailing" constant="48" id="Nmj-iz-PLy"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ldz-hR-14M" secondAttribute="bottom" constant="1" id="Qbb-0E-GCU"/>
-                                                                <constraint firstItem="Ldz-hR-14M" firstAttribute="leading" secondItem="eNx-7M-A4V" secondAttribute="trailing" id="SUc-gQ-DZw"/>
-                                                                <constraint firstItem="G9y-EX-0dL" firstAttribute="leading" secondItem="Jn7-pz-WXp" secondAttribute="leading" constant="-2" id="Xok-lu-DW8"/>
-                                                                <constraint firstItem="uIe-8Q-fxc" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="Y9w-qz-369"/>
-                                                                <constraint firstAttribute="trailing" secondItem="uIe-8Q-fxc" secondAttribute="trailing" constant="48" id="YQW-Of-jxP"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cp3-pa-dQN" secondAttribute="bottom" constant="1" id="bhq-HZ-qmp"/>
-                                                                <constraint firstItem="LNH-v6-5Jl" firstAttribute="top" secondItem="uIe-8Q-fxc" secondAttribute="bottom" constant="2" id="hMa-cl-9eE"/>
-                                                                <constraint firstItem="G9y-EX-0dL" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="30" id="hd6-fV-x16"/>
-                                                                <constraint firstItem="yfS-z5-daf" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="29" id="l2l-gM-Mhi"/>
-                                                                <constraint firstItem="eNx-7M-A4V" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="28" id="lWD-EK-69e"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Cp3-pa-dQN" secondAttribute="trailing" constant="10" id="sNH-yL-ftf"/>
-                                                                <constraint firstItem="Cp3-pa-dQN" firstAttribute="top" secondItem="Jn7-pz-WXp" secondAttribute="top" constant="13" id="u4T-8g-nOu"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LNH-v6-5Jl" secondAttribute="bottom" id="xlh-CP-dzZ"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="Avatar" destination="Cp3-pa-dQN" id="BED-EC-2xb"/>
-                                                                <outlet property="From" destination="uIe-8Q-fxc" id="a1l-FI-Hku"/>
-                                                                <outlet property="Icon" destination="Ldz-hR-14M" id="Dgr-ku-7kE"/>
-                                                                <outlet property="InlineImage" destination="yfS-z5-daf" id="7CM-zC-91m"/>
-                                                                <outlet property="InlineImageConstraint" destination="12I-5U-SKX" id="g80-cl-BT2"/>
-                                                                <outlet property="RequestKeys" destination="LNH-v6-5Jl" id="FT7-Nr-dZe"/>
-                                                                <outlet property="Text" destination="eNx-7M-A4V" id="4Xc-wE-3XO"/>
-                                                                <outlet property="TextConstraint" destination="8CY-bg-Cb6" id="y8m-dR-lWj"/>
-                                                                <outlet property="Time" destination="G9y-EX-0dL" id="WbL-vT-PNy"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryOutboundCoalesced" autoresizesSubviews="NO" wantsLayer="YES" id="uiY-zu-QBZ" userLabel="Outgoing Room Message Entry Coalesced" customClass="RoomMessageOutgoingCoalesced" customModule="Seaglass" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="111" width="577" height="16"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField identifier="RoomMessageEntryOutboundCoalescedText" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDC-BP-DZa">
-                                                                    <rect key="frame" x="46" y="0.0" width="469" height="16"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" baseWritingDirection="leftToRight" alignment="right" placeholderString="No event body" allowsEditingTextAttributes="YES" id="us7-cW-73r">
-                                                                        <font key="font" metaFont="cellTitle"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </textField>
-                                                                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="01c-6I-5AB" customClass="ContextImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="519" y="1" width="10" height="12"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="12" id="afV-jr-MaQ"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" alignment="left" imageAlignment="topRight" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="r3I-a6-sMj"/>
-                                                                </imageView>
-                                                                <textField identifier="RoomMessageEntryOutboundCoalescedTime" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3u-xl-T0k">
-                                                                    <rect key="frame" x="-4" y="1" width="58" height="13"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="54" id="gwH-Zn-a1H"/>
-                                                                    </constraints>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" title="00:00" placeholderString="00:00" allowsEditingTextAttributes="YES" id="Nsz-od-H5c">
-                                                                        <font key="font" metaFont="system" size="10"/>
-                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1b2-Bt-Ecc" customClass="InlineImageView" customModule="Seaglass" customModuleProvider="target">
-                                                                    <rect key="frame" x="257" y="0.0" width="256" height="16"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="256" identifier="width" id="dtP-WJ-kwD"/>
-                                                                        <constraint firstAttribute="height" priority="750" constant="16" identifier="height" id="htj-x3-gkZ"/>
-                                                                    </constraints>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="right" imageScaling="proportionallyUpOrDown" id="gRh-GG-jHO"/>
-                                                                </imageView>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pFv-Kj-NB0">
-                                                                    <rect key="frame" x="48" y="-1" width="88" height="17"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="16" id="gN4-7h-qCY"/>
-                                                                        <constraint firstAttribute="width" constant="88" id="uJr-0O-HmL"/>
-                                                                    </constraints>
-                                                                    <buttonCell key="cell" type="inline" title="Request Keys" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="qoQ-Db-fFp">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="smallSystemBold"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="requestKeysPressed:" target="uiY-zu-QBZ" id="6Dn-CP-f1g"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="01c-6I-5AB" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="3" id="7EA-uw-nti"/>
-                                                                <constraint firstItem="1b2-Bt-Ecc" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="A9F-bD-Cue"/>
-                                                                <constraint firstItem="r3u-xl-T0k" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" constant="2" id="G1k-pe-Qcn"/>
-                                                                <constraint firstAttribute="trailing" secondItem="1b2-Bt-Ecc" secondAttribute="trailing" constant="64" id="KUv-dc-Ujs"/>
-                                                                <constraint firstItem="pFv-Kj-NB0" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="Ksk-v7-NKg"/>
-                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="top" secondItem="uiY-zu-QBZ" secondAttribute="top" id="ae4-Zd-qfK"/>
-                                                                <constraint firstItem="pFv-Kj-NB0" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="48" id="d3a-Mu-oVN"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KDC-BP-DZa" secondAttribute="bottom" id="eMa-5H-0j4"/>
-                                                                <constraint firstItem="KDC-BP-DZa" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="48" id="j1q-ql-cEU"/>
-                                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pFv-Kj-NB0" secondAttribute="bottom" id="mRO-mk-JKA"/>
-                                                                <constraint firstItem="r3u-xl-T0k" firstAttribute="leading" secondItem="uiY-zu-QBZ" secondAttribute="leading" constant="-2" id="tPz-UK-9iQ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="1b2-Bt-Ecc" secondAttribute="bottom" id="tVT-Ku-awm"/>
-                                                                <constraint firstAttribute="trailing" secondItem="01c-6I-5AB" secondAttribute="trailing" constant="48" id="yUb-pr-FUh"/>
-                                                                <constraint firstAttribute="trailing" secondItem="KDC-BP-DZa" secondAttribute="trailing" constant="64" id="zTv-ub-UnY"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="Icon" destination="01c-6I-5AB" id="K5w-CG-zgZ"/>
-                                                                <outlet property="InlineImage" destination="1b2-Bt-Ecc" id="POk-a6-2mR"/>
-                                                                <outlet property="InlineImageConstraint" destination="KUv-dc-Ujs" id="Id4-39-y7k"/>
-                                                                <outlet property="RequestKeys" destination="pFv-Kj-NB0" id="4jl-Pk-9eM"/>
-                                                                <outlet property="Text" destination="KDC-BP-DZa" id="ful-Ej-d4L"/>
-                                                                <outlet property="TextConstraint" destination="zTv-ub-UnY" id="i4B-lr-4ds"/>
-                                                                <outlet property="Time" destination="r3u-xl-T0k" id="ruC-yr-3z5"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                        <tableCellView identifier="RoomMessageEntryInline" wantsLayer="YES" id="juW-Tf-Uai" userLabel="Status Room Message Entry" customClass="RoomMessageInline" customModule="Seaglass" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="129" width="577" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <textField identifier="RoomMessageEntryInlineText" autoresizesSubviews="NO" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-2v-jWb">
-                                                                    <rect key="frame" x="1" y="3" width="575" height="14"/>
-                                                                    <animations>
-                                                                        <caTransition key="subviews">
-                                                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKkHCBES
-EwsKGR9VJG51bGzUCQoLDA0ODxBWJGNsYXNzVHR5cGVXc3VidHlwZV8QEl9fQ0FDb2RpbmdDb250ZW50
-c4AIgAOAAoAEV2Zyb21Ub3BWbW92ZUlu0hQJFRhaTlMub2JqZWN0c6IWF4AFgAaAB9IaGxwdWiRjbGFz
-c25hbWVYJGNsYXNzZXNXTlNBcnJheaIcHlhOU09iamVjdNIaGyAhXENBVHJhbnNpdGlvbqMiIx5cQ0FU
-cmFuc2l0aW9uW0NBQW5pbWF0aW9uXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0A
-MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
-+QEFARcBGgEfAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAASE
-</mutableData>
-                                                                        </caTransition>
-                                                                    </animations>
-                                                                    <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" alignment="center" placeholderString="Inline information text" allowsEditingTextAttributes="YES" id="1js-hn-01a">
-                                                                        <font key="font" metaFont="systemSemibold" size="11"/>
-                                                                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="Usl-2v-jWb" secondAttribute="bottom" constant="3" id="BED-8a-wpc"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Usl-2v-jWb" secondAttribute="trailing" constant="3" id="Emy-JO-peo"/>
-                                                                <constraint firstItem="Usl-2v-jWb" firstAttribute="top" secondItem="juW-Tf-Uai" secondAttribute="top" constant="3" id="K2s-sG-6Px"/>
-                                                                <constraint firstItem="Usl-2v-jWb" firstAttribute="leading" secondItem="juW-Tf-Uai" secondAttribute="leading" constant="3" id="fwx-jZ-q0a"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <outlet property="Text" destination="Usl-2v-jWb" id="Tbu-M0-yyy"/>
-                                                            </connections>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
-                                                </tableColumn>
-                                            </tableColumns>
-                                            <connections>
-                                                <outlet property="dataSource" destination="WXz-Io-9JK" id="Udq-Nk-qI4"/>
-                                                <outlet property="delegate" destination="WXz-Io-9JK" id="ZaB-W8-76s"/>
-                                            </connections>
-                                        </tableView>
-                                    </subviews>
-                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="57" bottom="54"/>
-                                </clipView>
-                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="57" bottom="42"/>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="oEW-hF-5c8">
-                                    <rect key="frame" x="-100" y="-100" width="514" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Sj4-a2-0Zh">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                             <customView identifier="TopVibrancyArea" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-GU-jfi" customClass="VibrancyArea" customModule="Seaglass" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="414" width="580" height="56"/>
                                 <subviews>
@@ -2009,24 +1413,31 @@ DQ
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="YrB-MB-1om">
                                 <rect key="frame" x="0.0" y="40" width="580" height="5"/>
                             </box>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blG-1Y-iWb">
+                                <rect key="frame" x="0.0" y="44" width="580" height="369"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="uRT-BH-5Ak" secondAttribute="trailing" id="11x-AS-yyO"/>
                             <constraint firstAttribute="trailing" secondItem="YrB-MB-1om" secondAttribute="trailing" id="1hF-eA-Fs0"/>
-                            <constraint firstAttribute="bottom" secondItem="GvZ-sd-DTW" secondAttribute="bottom" id="4pS-UA-c5p"/>
-                            <constraint firstAttribute="trailing" secondItem="GvZ-sd-DTW" secondAttribute="trailing" id="CzR-00-TaK"/>
+                            <constraint firstItem="blG-1Y-iWb" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" constant="57" id="LyK-id-jau"/>
                             <constraint firstItem="Awn-GU-jfi" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" id="OBh-ok-ZJS"/>
-                            <constraint firstItem="GvZ-sd-DTW" firstAttribute="top" secondItem="chW-xk-j9x" secondAttribute="top" id="OF0-pn-wzX"/>
+                            <constraint firstItem="blG-1Y-iWb" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="P3a-Bt-hq4"/>
                             <constraint firstAttribute="trailing" secondItem="qCl-hr-gTJ" secondAttribute="trailing" id="ReS-82-Zfo"/>
                             <constraint firstItem="uRT-BH-5Ak" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="Tcb-AO-xEg"/>
                             <constraint firstAttribute="trailing" secondItem="Awn-GU-jfi" secondAttribute="trailing" id="UaS-0H-D37"/>
                             <constraint firstItem="qCl-hr-gTJ" firstAttribute="top" secondItem="Awn-GU-jfi" secondAttribute="bottom" id="Ula-ta-51Y"/>
                             <constraint firstItem="Awn-GU-jfi" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="W2N-cf-Clp"/>
                             <constraint firstItem="uRT-BH-5Ak" firstAttribute="top" secondItem="YrB-MB-1om" secondAttribute="bottom" id="We3-T0-b7k"/>
-                            <constraint firstItem="GvZ-sd-DTW" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="XEc-Y3-lSI"/>
                             <constraint firstItem="YrB-MB-1om" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="XWN-i2-XCp"/>
+                            <constraint firstAttribute="bottom" secondItem="blG-1Y-iWb" secondAttribute="bottom" constant="44" id="dPE-2e-AlD"/>
                             <constraint firstAttribute="bottom" secondItem="uRT-BH-5Ak" secondAttribute="bottom" id="hjB-Ki-uHv"/>
                             <constraint firstItem="qCl-hr-gTJ" firstAttribute="leading" secondItem="chW-xk-j9x" secondAttribute="leading" id="jZd-Ku-ayY"/>
+                            <constraint firstAttribute="trailing" secondItem="blG-1Y-iWb" secondAttribute="trailing" id="kL0-to-EGa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2037,11 +1448,8 @@ DQ
                         <outlet property="RoomInviteAcceptButton" destination="MLd-dR-ivF" id="LLt-bE-EnW"/>
                         <outlet property="RoomInviteDeclineButton" destination="9lw-iO-KBm" id="SCf-BZ-6ru"/>
                         <outlet property="RoomInviteLabel" destination="SNq-sO-aV7" id="wgh-lC-0Zi"/>
-                        <outlet property="RoomMessageClipView" destination="yGf-GP-99e" id="ikp-6Q-WdD"/>
                         <outlet property="RoomMessageInput" destination="4Ed-eJ-aDl" id="JkG-Xd-2D7"/>
-                        <outlet property="RoomMessageScrollView" destination="GvZ-sd-DTW" id="jv0-WJ-9bh"/>
-                        <outlet property="RoomMessageTableColumn" destination="HHh-xz-b6k" id="gjm-dO-095"/>
-                        <outlet property="RoomMessageTableView" destination="qXT-6y-pht" id="3MU-Zz-XWf"/>
+                        <outlet property="RoomMessageView" destination="blG-1Y-iWb" id="2Bt-UP-3nZ"/>
                         <outlet property="RoomName" destination="GO9-mJ-qzs" id="AJv-5P-bcy"/>
                         <outlet property="RoomPartButton" destination="nBR-QP-fLS" id="glA-c2-BR4"/>
                         <outlet property="RoomTopic" destination="vGs-sY-dgv" id="pxH-h5-4F8"/>
@@ -3873,7 +3281,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
-                                <rect key="frame" x="90" y="66" width="256" height="18"/>
+                                <rect key="frame" x="88" y="66" width="256" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -4103,7 +3511,6 @@ Gw
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
-        <image name="NSLockLockedTemplate" width="10" height="14"/>
         <image name="NSLockUnlockedTemplate" width="10" height="14"/>
         <image name="NSTouchBarAddTemplate" width="14" height="30"/>
         <image name="NSTouchBarAudioOutputMuteTemplate" width="26" height="30"/>
@@ -4117,7 +3524,6 @@ Gw
         <image name="NSTouchBarShareTemplate" width="15" height="30"/>
         <image name="NSTouchBarTagIconTemplate" width="23" height="30"/>
         <image name="NSTouchBarUserAddTemplate" width="21" height="30"/>
-        <image name="NSTouchBarUserTemplate" width="17" height="30"/>
         <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>

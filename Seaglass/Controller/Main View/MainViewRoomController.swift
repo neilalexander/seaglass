@@ -19,16 +19,14 @@
 import Cocoa
 import SwiftMatrixSDK
 import Down
+import WebKit
 
-class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewDelegate, NSTableViewDataSource {
+class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     
     @IBOutlet var RoomName: NSTokenField!
     @IBOutlet var RoomTopic: NSTextField!
+    @IBOutlet var RoomMessageView: WKWebView!
     @IBOutlet var RoomMessageInput: MessageInputField!
-    @IBOutlet var RoomMessageScrollView: NSScrollView!
-    @IBOutlet var RoomMessageClipView: NSClipView!
-    @IBOutlet var RoomMessageTableView: MainViewTableView!
-    @IBOutlet var RoomMessageTableColumn: NSTableColumn!
     @IBOutlet var RoomInfoButton: NSButton!
     @IBOutlet var RoomPartButton: NSButton!
     @IBOutlet var RoomInsertButton: NSButton!
@@ -69,8 +67,54 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         super.init(coder: coder)
     }
     
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "callbackSwift" {
+            print("JavaScript is sending a message \(message.body)")
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard roomId != "" else { return }
+        for event in MatrixServices.inst.roomCaches[roomId]!.filteredContent {
+            do {
+                let str = NSString(data: try JSONSerialization.data(
+                    withJSONObject: event.isEncrypted ? event.clear.jsonDictionary() : event.jsonDictionary() ?? [:],
+                    options: JSONSerialization.WritingOptions.prettyPrinted),
+                                   encoding: String.Encoding.utf8.rawValue
+                    )! as String
+                RoomMessageView.evaluateJavaScript("drawEvents([\(str)], true);") { (result, error) in
+                    if error != nil {
+                        print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
+                    }
+                }
+            } catch {
+                print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        print("An error from web view: \(message)")
+        
+        completionHandler()
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
+
+        let userContentController = WKUserContentController()
+        userContentController.add(self, name: "callbackSwift")
+        
+        let htmlPath = Bundle.main.path(forResource: "RoomMessageView", ofType: "html")
+        let htmlUrl = URL(fileURLWithPath: htmlPath!, isDirectory: false)
+        
+        RoomMessageView.loadFileURL(htmlUrl, allowingReadAccessTo: htmlUrl)
+        RoomMessageView.navigationDelegate = self
+        RoomMessageView.configuration.userContentController = userContentController
+        RoomMessageView.allowsBackForwardNavigationGestures = false
+        RoomMessageView.allowsLinkPreview = false
+        RoomMessageView.allowsMagnification = false
+        RoomMessageView.uiDelegate = self
         
         RoomMessageInput.textField.action = #selector(messageEntryFieldSubmit)
         RoomMessageInput.textField.target = self
@@ -86,11 +130,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         RoomMessageInput.emojiButton.isEnabled = isRoomSelected
         RoomName.isHidden = !isRoomSelected
         RoomTopic.isHidden = !isRoomSelected
-        
-        RoomMessageScrollView.postsBoundsChangedNotifications = true
-        RoomMessageScrollView.postsFrameChangedNotifications = true
-        NotificationCenter.default.addObserver(self, selector: #selector(scrollViewDidScroll), name: NSScrollView.didLiveScrollNotification, object: RoomMessageScrollView)
-        
+
         ConnectivityBar.alphaValue = 0
         
         matrixNetworkConnectivityChanged(wifi: MatrixServices.inst.reachableViaWifi, wwan: MatrixServices.inst.reachableViaWwan)
@@ -194,33 +234,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             roomTyping = !RoomMessageInput.textField.stringValue.isEmpty
         }
     }
-    
-    @objc func scrollViewDidScroll(_ notification: NSNotification) {
-       // let overscrollHeight = RoomMessageTableView.frame.height + RoomMessageClipView.contentInsets.top + RoomMessageClipView.contentInsets.bottom
-        if RoomMessageClipView.bounds.minY >= 0 /* &&
-           RoomMessageClipView.bounds.maxY <= overscrollHeight */ {
-            roomIsOverscrolling = false
-            return
-        }
-        if roomIsPaginating || roomIsOverscrolling {
-            return
-        }
-        roomIsOverscrolling = RoomMessageClipView.bounds.minY < 0
-        if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
-            let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
-            guard direction == .backwards else { return }
-            if room.liveTimeline.canPaginate(direction) {
-                roomIsPaginating = true
-                room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
-                    if response.isFailure {
-                        print("Failed to paginate: \(response.error!.localizedDescription)")
-                        return
-                    }
-                    self.roomIsPaginating = false
-                }
-            }
-        }
-    }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {
@@ -255,98 +268,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         }
     }
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return MatrixServices.inst.roomCaches[roomId]?.filteredContent.count ?? 0
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard roomId != "" && MatrixServices.inst.roomCaches.keys.contains(roomId) else {
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-            cell.Text.stringValue = "(Room ID not known - this shouldn't happen)"
-            return cell
-        }
-        
-        guard MatrixServices.inst.roomCaches[roomId]!.filteredContent.count > row else {
-            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-            cell.Text.stringValue = "(Invalid row \(row) - this shouldn't happen)"
-            return cell
-        }
-        
-        let event = MatrixServices.inst.roomCaches[roomId]!.filteredContent[row]
-        var cell: RoomMessage
-        
-        switch event.type {
-        case "m.sticker":
-            fallthrough
-        case "m.room.encrypted":
-            fallthrough
-        case "m.room.message":
-            var isCoalesced = false
-            if row >= 1 {
-                let previousEvent = MatrixServices.inst.roomCaches[roomId]!.filteredContent[row-1]
-                isCoalesced = (
-                    event.sender == previousEvent.sender &&
-                    event.type == previousEvent.type &&
-                    previousEvent.originServerTs.distance(to: event.originServerTs) <= 300000
-                )
-            }
-            
-            let messageIconHandler = { (sender, room, event, userId) in
-                guard room != nil && event != nil else { return }
-                if event!.sentState == MXEventSentStateFailed {
-                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
-                    sheet.roomId = room!.roomId
-                    sheet.eventId = event!.eventId
-                    self.presentViewControllerAsSheet(sheet)
-                } else if event!.isEncrypted {
-                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("EncryptionDeviceInfo")) as! PopoverEncryptionDevice
-                    sheet.event = event
-                    self.presentViewController(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
-                }
-            } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
-            
-            if event.sender == MatrixServices.inst.client?.credentials.userId {
-                if isCoalesced {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutboundCoalesced"), owner: self) as! RoomMessageOutgoingCoalesced
-                    (cell as! RoomMessageOutgoingCoalesced).Icon.handler = messageIconHandler
-                } else {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryOutbound"), owner: self) as! RoomMessageOutgoing
-                    (cell as! RoomMessageOutgoing).Icon.handler = messageIconHandler
-                }
-            } else {
-                if isCoalesced {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInboundCoalesced"), owner: self) as! RoomMessageIncomingCoalesced
-                    (cell as! RoomMessageIncomingCoalesced).Icon.handler = messageIconHandler
-                } else {
-                    cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInbound"), owner: self) as! RoomMessageIncoming
-                    (cell as! RoomMessageIncoming).Icon.handler = messageIconHandler
-                }
-            }
-            break
-        default:
-            cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomMessageEntryInline"), owner: self) as! RoomMessageInline
-        }
 
-        cell.event = event
-        return cell
-    }
-    
-    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
-        guard let scrollview = tableView.enclosingScrollView else { return }
-        let y1 = scrollview.documentView!.intrinsicContentSize.height - RoomMessageTableView.enclosingScrollView!.contentSize.height
-        let y2 = scrollview.documentVisibleRect.origin.y
-        if abs(y1 - y2) < 64 {
-            OperationQueue.main.addOperation({ self.RoomMessageTableView.scrollRowToVisible(row: MatrixServices.inst.roomCaches[self.roomId]!.filteredContent.count-1, animated: false) })
-        }
-    }
-    
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 1
-    }
-    
     func uiRoomNeedsCryptoReload() {
-        for view in RoomMessageTableView.subviews {
+       /* for view in RoomMessageTableView.subviews {
             for cell in view.subviews {
                 if let message = cell as? RoomMessage {
                     message.drawnEventHash = 0
@@ -354,7 +278,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     message.needsLayout = true
                 }
             }
-        }
+        } */
     }
     
     func uiRoomStartInvite() {
@@ -377,13 +301,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         roomIsPaginating = false
         roomIsOverscrolling = false
         
-        if let cache = MatrixServices.inst.roomCaches[roomId] {
-            cache.managedTable = nil
-        }
         roomId = cacheEntry.roomId
         if let cache = MatrixServices.inst.roomCaches[roomId] {
-            cache.managedTable = RoomMessageTableView
-            cache.managedTable!.roomId = roomId
+           // cache.managedTable = RoomMessageTableView
+           // cache.managedTable!.roomId = roomId
  
             if cacheEntry.encrypted() {
                 RoomMessageInput.textField.placeholderString = "Encrypted message"
@@ -394,10 +315,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
             
             let roomDidPaginate = {
-                OperationQueue.main.addOperation({
+               /* OperationQueue.main.addOperation({
                     self.RoomMessageTableView.scrollRowToVisible(row: cache.filteredContent.count-1, animated: false)
                     self.RoomMessageInput.window?.makeFirstResponder(self.RoomMessageInput.textField)
-                })
+                }) */
             }
             
             if cache.filteredContent.count >= 50 {
@@ -416,6 +337,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             }
         }
         
+        RoomMessageView.reload()
         updateRoomControls(withCacheEntry: entry)
     }
     
@@ -502,6 +424,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         case "m.receipt":
             return
         case "m.room.message":
+            do {
+                let str = NSString(data: try JSONSerialization.data(
+                    withJSONObject: event.clear.jsonDictionary() ?? [:],
+                    options: JSONSerialization.WritingOptions.prettyPrinted),
+                    encoding: String.Encoding.utf8.rawValue
+                )! as String
+                let append = direction == .forwards ? "true" : "false"
+                RoomMessageView.evaluateJavaScript("drawEvents([\(str)], \(append));") { (result, error) in
+                    if error != nil {
+                        print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
+                    }
+                }
+            } catch {
+                print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
+            }
+            
             break
         case "m.room.member":
             break
@@ -544,51 +482,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         guard event.stateKey == MatrixServices.inst.session.myUser.userId else { return }
 
         updateRoomControls(withEvent: event)
-    }
-    
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return [] }
-        if MatrixServices.inst.session.invitedRooms().contains(where: { $0.roomId == room.roomId }) {
-            return []
-        }
-        var actions: [NSTableViewRowAction] = []
-        if edge == .trailing {
-            if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
-                actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
-                    let event = MatrixServices.inst.roomCaches[self.roomId]!.filteredContent[row]
-                    if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == event.eventId }) {
-                        MatrixServices.inst.roomCaches[self.roomId]!.replace(event.prune(), at: index)
-                        room.redactEvent(event.eventId, reason: nil, completion: { (response) in
-                            if response.isFailure, let error = response.error {
-                                MatrixServices.inst.roomCaches[self.roomId]!.replace(event, at: index)
-                                let alert = NSAlert()
-                                alert.messageText = "Failed to redact message"
-                                alert.informativeText = error.localizedDescription
-                                alert.alertStyle = .warning
-                                alert.addButton(withTitle: "OK")
-                                alert.runModal()
-                            }
-                        })
-                    }
-                }))
-            }
-        } else {
-            if NSEvent.modifierFlags.contains(NSEvent.ModifierFlags.option) {
-                actions.append(NSTableViewRowAction(style: .regular, title: "Info", handler: { (action, row) in
-                    if let event = MatrixServices.inst.roomCaches[self.roomId]?.filteredContent[row] {
-                        if let view = self.RoomMessageTableView {
-                            if let board = self.storyboard {
-                                let identifier = NSStoryboard.SceneIdentifier("MessageInfo")
-                                let infoController = board.instantiateController(withIdentifier: identifier) as! MainViewMessageInfoController
-                                infoController.event = event
-                                self.presentViewController(infoController, asPopoverRelativeTo: view.visibleRect, of: view, preferredEdge: .minX, behavior: .transient)
-                            }
-                        }
-                    }
-                }))
-            }
-        }
-        return actions
     }
     
     @IBAction func acceptInviteButtonClicked(_ sender: NSButton) {

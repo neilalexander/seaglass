@@ -1,0 +1,76 @@
+<html>
+<head>
+    <script type="text/javascript" src="RoomMessageView.js"></script>
+    <style type="text/css">
+    #timeline {
+        list-style: none;
+        display: table;
+        width: 100%;
+        
+        vertical-align: top;
+    }
+    
+    #timeline tr {
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+    }
+    
+    #timeline tr td.avatar {
+        width: 48px;
+        max-height: 48px;
+        
+        vertical-align: top;
+    }
+    
+    #timeline tr td.content div.sender {
+        font-family: -apple-system;
+        font-size: 8pt;
+        color: gray;
+        
+        padding-bottom: 0.2em;
+    }
+    
+    #timeline tr td.content div.body {
+        font-family: -apple-system;
+        font-size: 9pt;
+    }
+    
+    #timeline tr td.content div.inline {
+        font-family: -apple-system;
+        font-size: 8pt;
+        font-weight: bold;
+        
+        text-align: center;
+        
+        color: #AAAAAA;
+    }
+    
+    #timeline tr td.timestamp {
+        width: 48px;
+        max-height: 48px;
+        
+        font-family: -apple-system;
+        font-size: 8pt;
+        
+        vertical-align: top;
+    }
+    </style>
+</head>
+<body>
+    
+    <!-- unintuitively lists seem to be better than tables for chat timelines,
+     at least for accessibility purposes (but dunno how macOS handles that) -->
+    
+    <table id="timeline">
+        <!-- <tr>
+            <td class='avatar'>avatar</td>
+            <td class='content'>
+                <div class='sender'>Neil Alexander</div>
+                <div class='body'>This is a message</div>
+            </td>
+            <td class='timestamp'>17:04</td>
+        </tr> -->
+    </table>
+    
+</body>
+</html>

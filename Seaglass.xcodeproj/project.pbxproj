@@ -43,6 +43,8 @@
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
 		3943E0EB20CD57B30061D51D /* MainViewTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0EA20CD57B30061D51D /* MainViewTableView.swift */; };
 		394679E721304B0500FF67C1 /* InlineImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394679E621304B0500FF67C1 /* InlineImageView.swift */; };
+		3956DAA02158E26C0014F893 /* RoomMessageView.html in Resources */ = {isa = PBXBuildFile; fileRef = 3956DA9F2158E26C0014F893 /* RoomMessageView.html */; };
+		3956DAAA215936880014F893 /* RoomMessageView.js in Resources */ = {isa = PBXBuildFile; fileRef = 3956DAA9215936880014F893 /* RoomMessageView.js */; };
 		395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */; };
 		39640E38212E09130060F170 /* MainViewSendErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39640E37212E09130060F170 /* MainViewSendErrorController.swift */; };
 		3982A6B92157B74D00303E84 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3982A6B82157B74D00303E84 /* dsa_pub.pem */; };
@@ -134,6 +136,8 @@
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3943E0EA20CD57B30061D51D /* MainViewTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableView.swift; sourceTree = "<group>"; };
 		394679E621304B0500FF67C1 /* InlineImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageView.swift; sourceTree = "<group>"; };
+		3956DA9F2158E26C0014F893 /* RoomMessageView.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = RoomMessageView.html; sourceTree = "<group>"; };
+		3956DAA9215936880014F893 /* RoomMessageView.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = RoomMessageView.js; sourceTree = "<group>"; };
 		395C008C20D6AAC200C67609 /* RoomsCacheEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCacheEntry.swift; sourceTree = "<group>"; };
 		39640E37212E09130060F170 /* MainViewSendErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSendErrorController.swift; sourceTree = "<group>"; };
 		3982A6B82157B74D00303E84 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = SOURCE_ROOT; };
@@ -227,6 +231,7 @@
 		391BFE1D20C68AD100B4EFEC /* Seaglass */ = {
 			isa = PBXGroup;
 			children = (
+				3956DA9C2158E2230014F893 /* Web */,
 				39432C932118726800FF3E5A /* Extension */,
 				395C008920D6AA7400C67609 /* Model */,
 				3943E0EE20CD9EF70061D51D /* Subclass */,
@@ -352,6 +357,15 @@
 				3943AC5E21300A6600760967 /* Room Message Types */,
 			);
 			path = Subclass;
+			sourceTree = "<group>";
+		};
+		3956DA9C2158E2230014F893 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				3956DA9F2158E26C0014F893 /* RoomMessageView.html */,
+				3956DAA9215936880014F893 /* RoomMessageView.js */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 		395C008920D6AA7400C67609 /* Model */ = {
@@ -585,6 +599,8 @@
 				3982A6B92157B74D00303E84 /* dsa_pub.pem in Resources */,
 				391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */,
 				391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */,
+				3956DAAA215936880014F893 /* RoomMessageView.js in Resources */,
+				3956DAA02158E26C0014F893 /* RoomMessageView.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
