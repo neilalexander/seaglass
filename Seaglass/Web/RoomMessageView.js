@@ -37,7 +37,7 @@ class UnknownEvent extends preact.Component {
 class Timeline extends preact.Component {
     render() {
         return (
-            h('table', null,
+            h('table', { id: "timeline" },
                 this.props.timeline.map((event)=>{
                     switch (event.type) {
                         case "m.room.message":
