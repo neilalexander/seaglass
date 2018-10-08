@@ -3875,7 +3875,7 @@ DQ
                             <button identifier="RememberCheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p2r-aG-1rM">
                                 <rect key="frame" x="90" y="66" width="256" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonCell key="cell" type="check" title="Log in automatically when next started" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
+                                <buttonCell key="cell" type="check" title="Login automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GJM-V3-9A2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
