@@ -9,7 +9,7 @@ uses the Cocoa user interface framework.
 
 ## Pre-built binaries
 
-CircleCI is used to build binaries from the GitHub repository. You can [find the latest build here](https://circleci.com/api/v1.1/project/github/neilalexander/seaglass/latest/artifacts?branch=master&filter=successful).
+You can [find the latest release here](https://github.com/neilalexander/seaglass/releases).
 
 ## Building from source
 
