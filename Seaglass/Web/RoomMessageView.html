@@ -1,6 +1,8 @@
 <html>
 <head>
+    <script type="text/javascript" src="preact.min.js"></script>
     <script type="text/javascript" src="RoomMessageView.js"></script>
+
     <style type="text/css">
     #timeline {
         list-style: none;
@@ -56,21 +58,4 @@
     }
     </style>
 </head>
-<body>
-    
-    <!-- unintuitively lists seem to be better than tables for chat timelines,
-     at least for accessibility purposes (but dunno how macOS handles that) -->
-    
-    <table id="timeline">
-        <!-- <tr>
-            <td class='avatar'>avatar</td>
-            <td class='content'>
-                <div class='sender'>Neil Alexander</div>
-                <div class='body'>This is a message</div>
-            </td>
-            <td class='timestamp'>17:04</td>
-        </tr> -->
-    </table>
-    
-</body>
 </html>
