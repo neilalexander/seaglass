@@ -284,7 +284,7 @@ class RoomSettingsController: NSViewController {
         
         room!.getDirectoryVisibility(completion: { (visibility) in
             if visibility.isSuccess {
-              //  self.RoomPublishInDirectory.isEnabled = true
+                self.RoomPublishInDirectory.isEnabled = true
                 self.RoomPublishInDirectory.state = visibility.value == .public ? .on : .off
             } else {
                 self.RoomPublishInDirectory.state = .off
