@@ -120,8 +120,6 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         cell?.roomsCacheEntry = state
         cell?.RoomListEntryName.stringValue = state.roomDisplayName
     
-        let count = state.members.count
-        
         if state.roomAvatar == "" {
             if state.members.count == 2 {
                 if state.members[0].userId == MatrixServices.inst.session.myUser.userId {
@@ -137,28 +135,16 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         } else {
             cell?.RoomListEntryIcon.setAvatar(forRoomId: state.roomId)
         }
-        
+
         var unreadColor = NSColor(calibratedRed: 0.51, green: 0.61, blue: 0.95, alpha: 1.00)
         if state.isInvite() {
             unreadColor = NSColor(calibratedRed: 0.90, green: 0.35, blue: 0.29, alpha: 1.00)
             cell?.RoomListEntryTopic.stringValue = "Room invite"
             cell?.RoomListEntryUnread.isHidden = false
         } else {
-            var memberString: String = ""
-            var topicString: String = "No topic set"
-            
-            if state.roomTopic != "" {
-                topicString = state.roomTopic
-            }
-            
-            switch count {
-            case 0: fallthrough
-            case 1: memberString = "Empty room"; break
-            case 2: memberString = "Direct chat"; break
-            default: memberString = "\(count) members"
-            }
-            
-            cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
+            var lastMessagePreview: String = "" // TODO: populate with preview of most recent message
+            cell?.RoomListEntryTopic.stringValue = "\(lastMessagePreview)" // TODO: render text as pale gray
+
             cell?.RoomListEntryUnread.image? = (cell?.RoomListEntryUnread.image?.tint(with: NSColor.blue))!
             if tableView.selectedRow != row {
                 cell?.RoomListEntryUnread.isHidden = !state.unread()
