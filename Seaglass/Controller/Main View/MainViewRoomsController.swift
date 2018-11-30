@@ -167,7 +167,15 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                 default: // lastMessagePreview
                     let lastMessagePreview: String = state.room.summary.lastMessageEvent?.content["body"] as? String ?? ""
                     if lastMessagePreview != "" {
-                        cell?.RoomListEntryTopic.textColor = NSColor(calibratedRed: 0.3, green: 0.3, blue: 0.3, alpha: 1.00)
+                        var inDarkMode: Bool {
+                            let mode = UserDefaults.standard.string(forKey: "AppleInterfaceStyle")
+                            return mode == "Dark"
+                        }
+                        if inDarkMode {
+                            cell?.RoomListEntryTopic.textColor = NSColor(calibratedRed: 0.8, green: 0.8, blue: 0.8, alpha: 1.00)
+                        } else {
+                            cell?.RoomListEntryTopic.textColor = NSColor(calibratedRed: 0.3, green: 0.3, blue: 0.3, alpha: 1.00)
+                        }
                     }
                     cell?.RoomListEntryTopic.cell?.truncatesLastVisibleLine = true
                     cell?.RoomListEntryTopic.stringValue = lastMessagePreview
