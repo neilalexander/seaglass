@@ -1135,8 +1135,8 @@ Copyright 2017 © Avery Pierce</string>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" placeholderString="No preview text" id="OdP-8T-cbu">
                                                                         <font key="font" metaFont="cellTitle"/>
-                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField identifier="RoomListEntryName" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uoj-MY-a1T">
@@ -3572,15 +3572,15 @@ DQ
                                 <rect key="frame" x="20" y="20" width="360" height="210"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="vmj-Bx-Dz5">
-                                    <rect key="frame" x="1" y="1" width="358" height="208"/>
+                                    <rect key="frame" x="1" y="1" width="343" height="208"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" allowsNonContiguousLayout="YES" textCompletion="NO" id="GB0-78-leA">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="208"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="358" height="208"/>
+                                            <size key="minSize" width="343" height="208"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -3591,7 +3591,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="eBa-9H-egB">
-                                    <rect key="frame" x="343" y="1" width="16" height="208"/>
+                                    <rect key="frame" x="344" y="1" width="15" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -4104,7 +4104,7 @@ Gw
     </scenes>
     <resources>
         <image name="AppIcon" width="128" height="128"/>
-        <image name="MadeForMatrix" width="630" height="270"/>
+        <image name="MadeForMatrix" width="184" height="78"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSBookmarksTemplate" width="17" height="18"/>
         <image name="NSGoForwardTemplate" width="9" height="12"/>
