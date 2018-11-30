@@ -144,7 +144,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryTopic.stringValue = "Room invite"
             cell?.RoomListEntryUnread.isHidden = false
         } else {
-            var topicMode = "lastMessagePreview" // TODO: set this via user preferences
+            let topicMode = "lastMessagePreview" // TODO: set this via user preferences
             
             switch topicMode {
                 case "metadata":
