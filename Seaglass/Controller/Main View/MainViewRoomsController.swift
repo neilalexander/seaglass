@@ -165,7 +165,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                     cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
                     break
                 default: // lastMessagePreview
-                    var lastMessagePreview: String = state.room.summary.lastMessageEvent?.content["body"] as? String ?? ""
+                    let lastMessagePreview: String = state.room.summary.lastMessageEvent?.content["body"] as? String ?? ""
                     if lastMessagePreview != "" {
                         cell?.RoomListEntryTopic.textColor = NSColor(calibratedRed: 0.3, green: 0.3, blue: 0.3, alpha: 1.00)
                     }
