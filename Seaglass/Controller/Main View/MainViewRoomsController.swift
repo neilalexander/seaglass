@@ -144,10 +144,8 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             cell?.RoomListEntryTopic.stringValue = "Room invite"
             cell?.RoomListEntryUnread.isHidden = false
         } else {
-            let topicMode = "lastMessagePreview" // TODO: set this via user preferences
-            
-            switch topicMode {
-                case "metadata":
+            switch AppDefaults.shared.showMostRecentMessageInSidebar {
+                case false:
                     var memberString: String = ""
                     var topicString: String = "No topic set"
                     
@@ -164,7 +162,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
                     
                     cell?.RoomListEntryTopic.stringValue = "\(memberString)\n\(topicString)"
                     break
-                default: // lastMessagePreview
+                case true:
                     let lastMessagePreview: String = state.room.summary.lastMessageEvent?.content["body"] as? String ?? ""
                     cell?.RoomListEntryTopic.cell?.truncatesLastVisibleLine = true
                     cell?.RoomListEntryTopic.stringValue = lastMessagePreview

@@ -915,11 +915,11 @@ Copyright 2017 © Avery Pierce</string>
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="TzK-sC-UVB">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="TzK-sC-UVB">
                                     <rect key="frame" x="-100" y="-100" width="192" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="e9r-bE-GCB">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="e9r-bE-GCB">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1186,11 +1186,11 @@ Copyright 2017 © Avery Pierce</string>
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="7I3-iD-rRt">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="7I3-iD-rRt">
                                     <rect key="frame" x="-100" y="-100" width="237.74135208129883" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Bb4-cm-G0e">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Bb4-cm-G0e">
                                     <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1806,11 +1806,11 @@ MgA3AEEARwBQAFcAXABkAHkAewB9AH8AgQCJAJAAlQCgAKMApQCnAKkArgC5AMIAygDNANYA2wDoAOwA
                                     <edgeInsets key="contentInsets" left="0.0" right="0.0" top="57" bottom="54"/>
                                 </clipView>
                                 <edgeInsets key="contentInsets" left="0.0" right="0.0" top="57" bottom="42"/>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="oEW-hF-5c8">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="oEW-hF-5c8">
                                     <rect key="frame" x="-100" y="-100" width="514" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Sj4-a2-0Zh">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Sj4-a2-0Zh">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2759,11 +2759,11 @@ DQ
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Pfq-00-ngx">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Pfq-00-ngx">
                                     <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eeg-zi-Lby">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="eeg-zi-Lby">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -3305,24 +3305,57 @@ DQ
             <objects>
                 <viewController title="Profile Settings" id="NNd-me-UhZ" customClass="UserSettingsProfileController" customModule="Seaglass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="68S-9K-vsn">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="57"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="78"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kQI-hC-MuU">
-                                <rect key="frame" x="18" y="20" width="414" height="17"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Profile settings are not here yet..." id="4v5-7d-uUo">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMb-lg-XUO">
+                                <rect key="frame" x="70" y="41" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Sidebar:" id="Qwr-CN-3aP">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPD-XX-fxj">
+                                <rect key="frame" x="128" y="19" width="187" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Show room topic in sidebar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="RtC-7B-Aei">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sidebarPreferenceChanged:" target="NNd-me-UhZ" id="4rM-yd-oce"/>
+                                    <binding destination="AhH-Yv-vXB" name="value" keyPath="values.showMostRecentMessageInSidebar" id="dmI-Ks-jW4">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPP-PR-EfE">
+                                <rect key="frame" x="128" y="41" width="252" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Show most recent message in sidebar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="0Zy-Ph-zdu">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sidebarPreferenceChanged:" target="NNd-me-UhZ" id="JM6-aO-hnn"/>
+                                    <binding destination="AhH-Yv-vXB" name="value" keyPath="values.showMostRecentMessageInSidebar" id="Moa-4a-nDT"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="showMostRecentMessageButton" destination="gPP-PR-EfE" id="1PK-Uh-7nk"/>
+                        <outlet property="showRoomTopicButton" destination="vPD-XX-fxj" id="HtX-wP-aLZ"/>
+                    </connections>
                 </viewController>
                 <customObject id="aUP-A2-iJd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="AhH-Yv-vXB"/>
             </objects>
-            <point key="canvasLocation" x="211" y="2094.5"/>
+            <point key="canvasLocation" x="211" y="2105"/>
         </scene>
         <!--Encryption Settings-->
         <scene sceneID="zdV-vn-Ha5">
@@ -3572,26 +3605,26 @@ DQ
                                 <rect key="frame" x="20" y="20" width="360" height="210"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="vmj-Bx-Dz5">
-                                    <rect key="frame" x="1" y="1" width="343" height="208"/>
+                                    <rect key="frame" x="1" y="1" width="358" height="208"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" allowsNonContiguousLayout="YES" textCompletion="NO" id="GB0-78-leA">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="208"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="358" height="208"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="343" height="208"/>
+                                            <size key="minSize" width="358" height="208"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="9Nb-Zt-rZm">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="9Nb-Zt-rZm">
                                     <rect key="frame" x="-100" y="-100" width="358" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="eBa-9H-egB">
-                                    <rect key="frame" x="344" y="1" width="15" height="208"/>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="eBa-9H-egB">
+                                    <rect key="frame" x="343" y="1" width="16" height="208"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -4123,7 +4156,7 @@ Gw
         <image name="NSTouchBarTagIconTemplate" width="23" height="30"/>
         <image name="NSTouchBarUserAddTemplate" width="21" height="30"/>
         <image name="NSTouchBarUserTemplate" width="17" height="30"/>
-        <image name="NSUserGuest" width="128" height="128"/>
+        <image name="NSUserGuest" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Tfp-e2-cpe"/>

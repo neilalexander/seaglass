@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        AppDefaults.init()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -123,4 +123,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
 }
-
