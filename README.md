@@ -7,9 +7,15 @@ uses the Cocoa user interface framework.
 
 ![Screenshot of Seaglass](image.png)
 
-## Pre-built binaries
+## Install Seaglass
 
-You can [find the latest release here](https://github.com/neilalexander/seaglass/releases).
+You can [find the latest release on GitHub](https://github.com/neilalexander/seaglass/releases)
+or you can install Seaglass from Homebrew Cask. Either way, you'll be able to use the built
+in auto updating feature to ensure you have the latest version.
+
+```
+brew cask install seaglass
+```
 
 ## Building from source
 
@@ -36,7 +42,7 @@ Open up `Seaglass.xcworkspace` in Xcode and build!
 - Creating and leaving rooms and direct chats
 - Joining and parting rooms
 - Inviting users to rooms (through `/invite`)
-- Emotes (using `/me`) 
+- Emotes (using `/me`)
 - Message redaction
 - Posting text to rooms with Markdown formatting
 - Changing some room settings (history visibility, join rules, name, topic, aliases)
