@@ -83,10 +83,12 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
         
         MatrixServices.inst.session.crypto.deviceList.downloadKeys([request.userId], forceDownload: false, success: { (devicemap) in
             if MatrixServices.inst.session.crypto.deviceList.storedDevice(request.userId, deviceId: request.deviceId) != nil {
-                let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
-                sheet.request = request
-                self.presentViewControllerAsSheet(sheet)
-                self.keyRequests.append(sheet)
+                DispatchQueue.main.async {
+                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
+                    sheet.request = request
+                    self.presentViewControllerAsSheet(sheet)
+                    self.keyRequests.append(sheet)
+                }
             }
         }) { (error) in
         }
