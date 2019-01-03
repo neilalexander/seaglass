@@ -1,4 +1,6 @@
 # Seaglass
+
+[![#seaglass:matrix.org](https://img.shields.io/matrix/seaglass:matrix.org.svg?label=%23seaglass:matrix.org)](https://matrix.to/#/#seaglass:matrix.org)
 [![CircleCI Build Status](https://circleci.com/gh/neilalexander/seaglass.svg?style=shield)](https://circleci.com/gh/neilalexander/seaglass)
 [![Stable Version](https://img.shields.io/badge/download-stable-green.svg)](https://github.com/neilalexander/seaglass/releases/latest)
 
