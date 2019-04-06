@@ -19,6 +19,7 @@
 import Cocoa
 
 class MenuController: NSMenu {
+    
 	@IBAction func focusOnRoomSearchField(_ sender: NSMenuItem) {
 		sender.target = self
 
@@ -33,4 +34,9 @@ class MenuController: NSMenu {
 			searchField.currentEditor()?.selectedRange = NSMakeRange(lengthOfInput, 0)
 		}
 	}
+    
+    @IBAction func inviteButtonClicked(_ sender: NSMenuItem) {
+        MatrixServices.inst.mainController?.channelDelegate?.uiRoomStartInvite()
+    }
+    
 }

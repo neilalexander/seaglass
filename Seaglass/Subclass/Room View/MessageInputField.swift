@@ -20,7 +20,7 @@ import Cocoa
 
 @IBDesignable class MessageInputField: NSControl, NSTextFieldDelegate {
     @IBOutlet var contentView: NSView?
-    @IBOutlet var textField: NSTextField!
+    @IBOutlet var textField: AutoGrowingTextField!
     @IBOutlet var delegate: NSObject?
     @IBOutlet var emojiButton: NSButton!
     
@@ -37,12 +37,7 @@ import Cocoa
             textField.delegate = self
         }
     }
-    
-    override var intrinsicContentSize: CGSize {
-        textField.preferredMaxLayoutWidth = self.frame.width - 34
-        return CGSize(width: textField.intrinsicContentSize.width + 34, height: 8 + textField.intrinsicContentSize.height)
-    }
-    
+
     @IBAction func emojiButtonClicked(_ sender: NSButton) {
         textField.selectText(self)
         
@@ -50,20 +45,5 @@ import Cocoa
         textField.currentEditor()?.selectedRange = NSMakeRange(lengthOfInput, 0)
         
         NSApplication.shared.orderFrontCharacterPalette(nil)
-    }
-    
-    public override func controlTextDidChange(_ obj: Notification) {
-        if obj.object as? NSTextField == textField {
-            textField.invalidateIntrinsicContentSize()
-            self.invalidateIntrinsicContentSize()
-            self.superview?.invalidateIntrinsicContentSize()
-            if delegate != nil {
-                delegate?.controlTextDidChange(obj)
-            }
-        }
-    }
-    
-    public override func controlTextDidEndEditing(_ obj: Notification) {
-        self.controlTextDidChange(obj)
     }
 }

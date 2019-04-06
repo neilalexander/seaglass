@@ -8,11 +8,8 @@
     Seaglass" window in the Seaglass menu of the app, or you can find the Seaglass
     application in Finder and open "Get Info" in the File menu.
 
-    If possible, please make sure to also test against the latest version of Seaglass
-    from Bintray. New builds are generated automatically and uploaded to Bintray from
-    GitHub commits, therefore developmental Seaglass builds can become out of date very
-    quickly. It is extremely useful to us to know whether an issue affects the latest
-    build!
+    If possible, please make sure to also test against the latest version of Seaglass. 
+    It is extremely useful to us to know whether an issue affects the latest build!
 
     If you are posting about a crash, i.e. "Seaglass quit unexpectedly", then please
     click "Report" and copy and paste the entire crash trace from the "Problem Details
