@@ -28,3 +28,5 @@ xcuserdata/
 build/
 
 fastlane/report.xml
+
+.DS_Store

@@ -68,9 +68,9 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if message.name == "callbackSwift" {
+        //if message.name == "callbackSwift" {
             print("JavaScript is sending a message \(message.body)")
-        }
+        //}
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -82,13 +82,16 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
                     options: JSONSerialization.WritingOptions.prettyPrinted),
                                    encoding: String.Encoding.utf8.rawValue
                     )! as String
-                RoomMessageView.evaluateJavaScript("drawEvents([\(str)], true);") { (result, error) in
+                let script = "drawEvents([\(str)], true);"
+                RoomMessageView.evaluateJavaScript(script) { (result, error) in
                     if error != nil {
                         print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
+                        print("Script: \(script)")
                     }
                 }
             } catch {
                 print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
+                print("Script not available")
             }
         }
     }
@@ -101,16 +104,22 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
     
     override func viewWillAppear() {
         super.viewWillAppear()
-
+        
+        let source = "document.addEventListener('message', function(e) { window.webkit.messageHandlers.callbackSwift.postMessage(e.data); })"
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
         let userContentController = WKUserContentController()
+        userContentController.addUserScript(script)
         userContentController.add(self, name: "callbackSwift")
         
         let htmlPath = Bundle.main.path(forResource: "RoomMessageView", ofType: "html")
         let htmlUrl = URL(fileURLWithPath: htmlPath!, isDirectory: false)
+        let htmlFolder = URL(fileURLWithPath: Bundle.main.resourcePath!, isDirectory: true)
         
-        RoomMessageView.loadFileURL(htmlUrl, allowingReadAccessTo: htmlUrl)
+        RoomMessageView.loadFileURL(htmlUrl, allowingReadAccessTo: htmlFolder)
         RoomMessageView.navigationDelegate = self
         RoomMessageView.configuration.userContentController = userContentController
+        //RoomMessageView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
         RoomMessageView.allowsBackForwardNavigationGestures = false
         RoomMessageView.allowsLinkPreview = false
         RoomMessageView.allowsMagnification = false
@@ -430,14 +439,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
                     options: JSONSerialization.WritingOptions.prettyPrinted),
                     encoding: String.Encoding.utf8.rawValue
                 )! as String
+                print(str)
                 let append = direction == .forwards ? "true" : "false"
-                RoomMessageView.evaluateJavaScript("drawEvents([\(str)], \(append));") { (result, error) in
+                let script = "drawEvents([\(str)], \(append));"
+                RoomMessageView.evaluateJavaScript(script) { (result, error) in
                     if error != nil {
                         print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
+                        print("Script: \(script)")
                     }
                 }
             } catch {
                 print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
+                print("Script not available")
             }
             
             break
