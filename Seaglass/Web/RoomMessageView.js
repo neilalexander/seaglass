@@ -3,9 +3,71 @@ const h = preact.h;
 // the array of events we want to show in the timeline, as a naughty global
 const timeline = [];
 
-// lifted directly from
+// all the sanitsation stuff is stolen from
 // https://github.com/matrix-org/matrix-react-sdk/blob/develop/src/HtmlUtils.js
 const PERMITTED_URL_SCHEMES = ['http', 'https', 'ftp', 'mailto', 'magnet'];
+const COLOR_REGEX = /^#[0-9a-fA-F]{6}$/;
+
+const transformTags = { // custom to matrix
+    // add blank targets to all hyperlinks
+    'a': function(tagName, attribs) {
+        if (attribs.href) {
+            attribs.target = '_blank'; // by default
+
+            // TODO: handle matrix.to URLs specially here
+        }
+        attribs.rel = 'noopener'; // https://mathiasbynens.github.io/rel-noopener/
+        return { tagName, attribs };
+    },
+    'img': function(tagName, attribs) {
+        // Strip out imgs that aren't `mxc` here instead of using allowedSchemesByTag
+        // because transformTags is used _before_ we filter by allowedSchemesByTag and
+        // we don't want to allow images with `https?` `src`s.
+        if (!attribs.src || !attribs.src.startsWith('mxc://')) {
+            return { tagName, attribs: {}};
+        }
+        // todo: handle inline images here
+        /*
+        attribs.src = MatrixClientPeg.get().mxcUrlToHttp(
+                                                         attribs.src,
+                                                         attribs.width || 800,
+                                                         attribs.height || 600,
+                                                         );
+         */
+        return { tagName, attribs };
+    },
+    '*': function(tagName, attribs) {
+        // Delete any style previously assigned, style is an allowedTag for font and span
+        // because attributes are stripped after transforming
+        delete attribs.style;
+        
+        // Sanitise and transform data-mx-color and data-mx-bg-color to their CSS
+        // equivalents
+        const customCSSMapper = {
+            'data-mx-color': 'color',
+            'data-mx-bg-color': 'background-color',
+        };
+        
+        let style = "";
+        Object.keys(customCSSMapper).forEach((customAttributeKey) => {
+             const cssAttributeKey = customCSSMapper[customAttributeKey];
+             const customAttributeValue = attribs[customAttributeKey];
+             if (customAttributeValue &&
+                 typeof customAttributeValue === 'string' &&
+                 COLOR_REGEX.test(customAttributeValue))
+             {
+                 style += cssAttributeKey + ":" + customAttributeValue + ";";
+                 delete attribs[customAttributeKey];
+             }
+        });
+        
+        if (style) {
+            attribs.style = style;
+        }
+        
+        return { tagName, attribs };
+    },
+};
 
 const sanitizeHtmlParams = {
     allowedTags: [
@@ -32,8 +94,7 @@ const sanitizeHtmlParams = {
     allowedSchemes: PERMITTED_URL_SCHEMES,
     
     allowProtocolRelative: false,
-    
-    // XXX: need to port over transformTags
+    transformTags,
 };
 
 class Message extends preact.Component {
