@@ -24,6 +24,7 @@
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
 		391BFE3520C68AD200B4EFEC /* SeaglassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */; };
 		391BFE4020C68AD200B4EFEC /* SeaglassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */; };
+		391CB04E225AA1F100EA725C /* sanitize-html.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 391CB04D225AA1F100EA725C /* sanitize-html.min.js */; };
 		3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* RoomSettingsController.swift */; };
 		3931F29A21398189001F91DC /* MessageInputField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3931F29921398189001F91DC /* MessageInputField.xib */; };
 		3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3931F29B213981A4001F91DC /* MessageInputField.swift */; };
@@ -116,6 +117,7 @@
 		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassUITests.swift; sourceTree = "<group>"; };
 		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		391CB04D225AA1F100EA725C /* sanitize-html.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "sanitize-html.min.js"; sourceTree = "<group>"; };
 		3924444521184ED2001BAEE5 /* RoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsController.swift; sourceTree = "<group>"; };
 		3931F29921398189001F91DC /* MessageInputField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageInputField.xib; sourceTree = "<group>"; };
 		3931F29B213981A4001F91DC /* MessageInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputField.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				3932D8022259370A0001FB90 /* preact.min.js */,
 				3932D8042259378D0001FB90 /* preact.min.js.map */,
 				3956DA9F2158E26C0014F893 /* RoomMessageView.html */,
+				391CB04D225AA1F100EA725C /* sanitize-html.min.js */,
 				3956DAA9215936880014F893 /* RoomMessageView.js */,
 			);
 			path = Web;
@@ -586,6 +589,7 @@
 			files = (
 				3932D805225937D10001FB90 /* preact.min.js.map in Resources */,
 				3931F29A21398189001F91DC /* MessageInputField.xib in Resources */,
+				391CB04E225AA1F100EA725C /* sanitize-html.min.js in Resources */,
 				3932D8032259370A0001FB90 /* preact.min.js in Resources */,
 				3982A6B92157B74D00303E84 /* dsa_pub.pem in Resources */,
 				391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */,

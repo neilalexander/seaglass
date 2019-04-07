@@ -142,6 +142,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
         matrixNetworkConnectivityChanged(wifi: MatrixServices.inst.reachableViaWifi, wwan: MatrixServices.inst.reachableViaWwan)
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url {
+            if url.isFileURL && url.path.starts(with: Bundle.main.resourcePath!) {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.cancel)
+                NSWorkspace.shared.open(url)
+            }
+        } else {
+            decisionHandler(.cancel)
+        }
+    }
+    
     func matrixNetworkConnectivityChanged(wifi: Bool, wwan: Bool) {
         NSAnimationContext.runAnimationGroup({ (context) in
             context.duration = 0.5
