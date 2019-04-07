@@ -78,20 +78,19 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
         for event in MatrixServices.inst.roomCaches[roomId]!.filteredContent {
             do {
                 let str = NSString(data: try JSONSerialization.data(
-                    withJSONObject: event.isEncrypted ? event.clear.jsonDictionary() : event.jsonDictionary() ?? [:],
-                    options: JSONSerialization.WritingOptions.prettyPrinted),
-                                   encoding: String.Encoding.utf8.rawValue
+                        withJSONObject: event.isEncrypted ? event.clear.jsonDictionary() : event.jsonDictionary() ?? [:],
+                        options: JSONSerialization.WritingOptions.prettyPrinted),
+                        encoding: String.Encoding.utf8.rawValue
                     )! as String
                 let script = "drawEvents([\(str)], true);"
+                print("Script: \(script)")
                 RoomMessageView.evaluateJavaScript(script) { (result, error) in
                     if error != nil {
                         print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
-                        print("Script: \(script)")
                     }
                 }
             } catch {
                 print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
-                print("Script not available")
             }
         }
     }
@@ -432,30 +431,8 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
             return
         case "m.receipt":
             return
-        case "m.room.message":
-            do {
-                let str = NSString(data: try JSONSerialization.data(
-                    withJSONObject: event.clear.jsonDictionary() ?? [:],
-                    options: JSONSerialization.WritingOptions.prettyPrinted),
-                    encoding: String.Encoding.utf8.rawValue
-                )! as String
-                print(str)
-                let append = direction == .forwards ? "true" : "false"
-                let script = "drawEvents([\(str)], \(append));"
-                RoomMessageView.evaluateJavaScript(script) { (result, error) in
-                    if error != nil {
-                        print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
-                        print("Script: \(script)")
-                    }
-                }
-            } catch {
-                print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
-                print("Script not available")
-            }
-            
-            break
         case "m.room.member":
-            break
+            fallthrough
         case "m.room.encryption":
             if event.roomId == roomId {
                 if roomState.isEncrypted {
@@ -467,15 +444,35 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
                 }
                 self.uiRoomNeedsCryptoReload()
             }
-            break
+            fallthrough
         case "m.room.name":
             if event.roomId == roomId, let roomName = event.content["name"] as? String {
                 RoomName.stringValue = roomName
             }
-            break
+            fallthrough
         case "m.room.topic":
             if event.roomId == roomId, let roomTopic = event.content["topic"] as? String {
                 RoomTopic.stringValue = roomTopic
+            }
+            fallthrough
+        case "m.room.message":
+            do {
+                let str = NSString(data: try JSONSerialization.data(
+                    withJSONObject: event.isEncrypted ? event.clear.jsonDictionary() : event.jsonDictionary() ?? [:],
+                    options: JSONSerialization.WritingOptions.prettyPrinted),
+                    encoding: String.Encoding.utf8.rawValue
+                )! as String
+                print(str)
+                let append = direction == .forwards ? "true" : "false"
+                let script = "drawEvents([\(str)], \(append));"
+                print("Script: \(script)")
+                RoomMessageView.evaluateJavaScript(script) { (result, error) in
+                    if error != nil {
+                        print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
+                    }
+                }
+            } catch {
+                print("Javascript exception occured in webView:didFinish: \(error.localizedDescription)")
             }
             break
         default:

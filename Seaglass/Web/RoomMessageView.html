@@ -4,6 +4,27 @@
     <script type="text/javascript" src="RoomMessageView.js"></script>
 
     <style type="text/css">
+    :root {
+        --text-mesg-color: #000000;
+        --text-time-color: #888888;
+        --text-name-color: #888888;
+        --back-color: #FFFFFF;
+    }
+    
+    @media screen and (prefers-color-scheme: dark) {
+        :root {
+            --text-mesg-color: #FFFFFF;
+            --text-time-color: #AAAAAA;
+            --text-name-color: #AAAAAA;
+            --back-color: #292929;
+        }
+    }
+    
+    body {
+        color: var(--text-mesg-color);
+        background-color: var(--back-color, white);
+    }
+        
     #timeline {
         list-style: none;
         display: table;
@@ -18,7 +39,7 @@
     }
     
     #timeline tr td.avatar {
-        width: 48px;
+        width: 48px !important;
         max-height: 48px;
         
         vertical-align: top;
@@ -27,14 +48,20 @@
     #timeline tr td.content div.sender {
         font-family: -apple-system;
         font-size: 8pt;
-        color: gray;
         
         padding-bottom: 0.2em;
+        
+        color: var(--text-name-color);
     }
     
     #timeline tr td.content div.body {
         font-family: -apple-system;
         font-size: 9pt;
+        
+        padding-bottom: 0.6em;
+        
+        word-break: break-word;
+        hyphens: auto;
     }
     
     #timeline tr td.content div.inline {
@@ -44,17 +71,19 @@
         
         text-align: center;
         
-        color: #AAAAAA;
+        color: var(--text-name-color);
     }
     
     #timeline tr td.timestamp {
-        width: 48px;
+        width: 48px !important;
         max-height: 48px;
         
         font-family: -apple-system;
         font-size: 8pt;
         
         vertical-align: top;
+        
+        color: var(--text-time-color);
     }
     </style>
 </head>

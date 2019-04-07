@@ -19,6 +19,22 @@ class Message extends preact.Component {
     }
 }
 
+class EncryptedMessage extends preact.Component {
+    render() {
+        const ev = this.props.event;
+        return (
+            h('tr', { key: ev.eventId }, [
+                h('td', { className: "avatar" }, "[ :-) ]" ),
+                h('td', { className: "content" }, [
+                    h('div', { className: "sender" }, ev.sender ),
+                    h('div', { className: "body" },   ev.content.formatted_body || ev.content.body ),
+                ]),
+                h('td', { className: "timestamp" }, "00:00" ),
+            ])
+        );
+    }
+}
+
 class UnknownEvent extends preact.Component {
     render() {
         const ev = this.props.event;
