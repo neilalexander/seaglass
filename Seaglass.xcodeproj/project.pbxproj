@@ -35,12 +35,6 @@
 		39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C912118716700FF3E5A /* MemberListTableView.swift */; };
 		39432C952118727800FF3E5A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C942118727800FF3E5A /* String.swift */; };
 		39432C97211872F600FF3E5A /* RoomMessageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39432C96211872F600FF3E5A /* RoomMessageEntry.swift */; };
-		3943AC6021300A9900760967 /* RoomMessageIncoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC5F21300A9900760967 /* RoomMessageIncoming.swift */; };
-		3943AC6221300AA400760967 /* RoomMessageIncomingCoalesced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC6121300AA400760967 /* RoomMessageIncomingCoalesced.swift */; };
-		3943AC6421300C5800760967 /* RoomMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC6321300C5800760967 /* RoomMessage.swift */; };
-		3943AC662130152300760967 /* RoomMessageOutgoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC652130152300760967 /* RoomMessageOutgoing.swift */; };
-		3943AC682130161C00760967 /* RoomMessageInline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC672130161C00760967 /* RoomMessageInline.swift */; };
-		3943AC6A21301B9300760967 /* RoomMessageOutgoingCoalesced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943AC6921301B9300760967 /* RoomMessageOutgoingCoalesced.swift */; };
 		3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */; };
 		3943E0E720CB43A60061D51D /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E620CB43A60061D51D /* LogoutViewController.swift */; };
 		3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943E0E820CC21590061D51D /* AboutViewController.swift */; };
@@ -133,12 +127,6 @@
 		39432C912118716700FF3E5A /* MemberListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListTableView.swift; sourceTree = "<group>"; };
 		39432C942118727800FF3E5A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		39432C96211872F600FF3E5A /* RoomMessageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageEntry.swift; sourceTree = "<group>"; };
-		3943AC5F21300A9900760967 /* RoomMessageIncoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageIncoming.swift; sourceTree = "<group>"; };
-		3943AC6121300AA400760967 /* RoomMessageIncomingCoalesced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageIncomingCoalesced.swift; sourceTree = "<group>"; };
-		3943AC6321300C5800760967 /* RoomMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessage.swift; sourceTree = "<group>"; };
-		3943AC652130152300760967 /* RoomMessageOutgoing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomMessageOutgoing.swift; sourceTree = "<group>"; };
-		3943AC672130161C00760967 /* RoomMessageInline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageInline.swift; sourceTree = "<group>"; };
-		3943AC6921301B9300760967 /* RoomMessageOutgoingCoalesced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMessageOutgoingCoalesced.swift; sourceTree = "<group>"; };
 		3943E0E420CAE55D0061D51D /* LoginViewSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewSettingsController.swift; sourceTree = "<group>"; };
 		3943E0E620CB43A60061D51D /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		3943E0E820CC21590061D51D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -286,19 +274,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		3943AC5E21300A6600760967 /* Room Message Types */ = {
-			isa = PBXGroup;
-			children = (
-				3943AC6321300C5800760967 /* RoomMessage.swift */,
-				3943AC5F21300A9900760967 /* RoomMessageIncoming.swift */,
-				3943AC652130152300760967 /* RoomMessageOutgoing.swift */,
-				3943AC6121300AA400760967 /* RoomMessageIncomingCoalesced.swift */,
-				3943AC6921301B9300760967 /* RoomMessageOutgoingCoalesced.swift */,
-				3943AC672130161C00760967 /* RoomMessageInline.swift */,
-			);
-			path = "Room Message Types";
-			sourceTree = "<group>";
-		};
 		3943AC6B21302EEA00760967 /* Image Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +342,6 @@
 				3943AC6D21302F1300760967 /* Room Lists */,
 				3943AC6C21302F0000760967 /* Member Lists */,
 				3943AC6B21302EEA00760967 /* Image Views */,
-				3943AC5E21300A6600760967 /* Room Message Types */,
 			);
 			path = Subclass;
 			sourceTree = "<group>";
@@ -677,7 +651,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
 				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
@@ -702,7 +676,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -714,10 +688,8 @@
 			files = (
 				3903779C21431BD800873E97 /* MainViewInviteController.swift in Sources */,
 				391BFE2120C68AD100B4EFEC /* LoginViewController.swift in Sources */,
-				3943AC6021300A9900760967 /* RoomMessageIncoming.swift in Sources */,
 				395C008D20D6AAC200C67609 /* RoomsCacheEntry.swift in Sources */,
 				3D2E02EE2152CB330053D053 /* MenuController.swift in Sources */,
-				3943AC682130161C00760967 /* RoomMessageInline.swift in Sources */,
 				39BF9592214B162B0054611A /* MainViewMessageInfoController.swift in Sources */,
 				399E6FC620C806E700A2644A /* MainViewRoomController.swift in Sources */,
 				39F3125B2118745100A75E16 /* MemberListEntry.swift in Sources */,
@@ -751,7 +723,6 @@
 				39E06C5D21486A6D00C24A59 /* MatrixRoomCache.swift in Sources */,
 				390E46F721518FD70017AA2C /* UserSettingsEncryptionController.swift in Sources */,
 				3D502D80212E012F00C8D06E /* ContextImageView.swift in Sources */,
-				3943AC6A21301B9300760967 /* RoomMessageOutgoingCoalesced.swift in Sources */,
 				3D7CE5A021C868A600733562 /* AppDefaults.swift in Sources */,
 				3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */,
 				39F312632118F21C00A75E16 /* RoomAliasesController.swift in Sources */,
@@ -762,14 +733,11 @@
 				39373482211C91D7008AAB7D /* RoomPowerLevelsController.swift in Sources */,
 				39432C922118716700FF3E5A /* MemberListTableView.swift in Sources */,
 				39432C952118727800FF3E5A /* String.swift in Sources */,
-				3943AC662130152300760967 /* RoomMessageOutgoing.swift in Sources */,
 				3943E0E920CC21590061D51D /* AboutViewController.swift in Sources */,
 				39E5AA802124C86D00BDA001 /* MainViewPartController.swift in Sources */,
 				39E5AA85212603F700BDA001 /* PopoverUserList.swift in Sources */,
 				3943E0E520CAE55D0061D51D /* LoginViewSettingsController.swift in Sources */,
-				3943AC6221300AA400760967 /* RoomMessageIncomingCoalesced.swift in Sources */,
 				39EED1BA214FDEDB00E8603B /* UserSettingsWindowController.swift in Sources */,
-				3943AC6421300C5800760967 /* RoomMessage.swift in Sources */,
 				A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

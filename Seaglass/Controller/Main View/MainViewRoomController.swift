@@ -83,7 +83,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
                         encoding: String.Encoding.utf8.rawValue
                     )! as String
                 let script = "drawEvents([\(str)], true);"
-                print("Script: \(script)")
                 RoomMessageView.evaluateJavaScript(script) { (result, error) in
                     if error != nil {
                         print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
@@ -118,7 +117,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
         RoomMessageView.loadFileURL(htmlUrl, allowingReadAccessTo: htmlFolder)
         RoomMessageView.navigationDelegate = self
         RoomMessageView.configuration.userContentController = userContentController
-        //RoomMessageView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
         RoomMessageView.allowsBackForwardNavigationGestures = false
         RoomMessageView.allowsLinkPreview = false
         RoomMessageView.allowsMagnification = false
@@ -465,7 +463,6 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
                 print(str)
                 let append = direction == .forwards ? "true" : "false"
                 let script = "drawEvents([\(str)], \(append));"
-                print("Script: \(script)")
                 RoomMessageView.evaluateJavaScript(script) { (result, error) in
                     if error != nil {
                         print("Javascript error occured in webView:didFinish: \(error!.localizedDescription)")
