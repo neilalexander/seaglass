@@ -217,7 +217,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
             if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
                 room.sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                     if case .success( _) = response {
-                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == localReturnedEvent }) {
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
@@ -232,7 +232,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
             if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
                 room.sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                     if case .success( _) = response {
-                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == localReturnedEvent }) {
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
@@ -248,7 +248,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
         sender.becomeFirstResponder()
     }
     
-    public override func controlTextDidChange(_ obj: Notification) {
+    public func controlTextDidChange(_ obj: Notification) {
         if obj.object as? NSTextField == RoomMessageInput.textField {
             roomTyping = !RoomMessageInput.textField.stringValue.isEmpty
         }
@@ -256,7 +256,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {
-            switch segue.identifier!.rawValue {
+            switch segue.identifier! {
             case "SegueToRoomSettings":
                 if let dest = segue.destinationController as? RoomSettingsController {
                     dest.roomId = roomId
@@ -302,10 +302,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
     
     func uiRoomStartInvite() {
         if let board = self.storyboard {
-            let identifier = NSStoryboard.SceneIdentifier("RoomInviteController")
+            let identifier = "RoomInviteController"
             let inviteController = board.instantiateController(withIdentifier: identifier) as! MainViewInviteController
             inviteController.roomId = roomId
-            self.presentViewControllerAsSheet(inviteController)
+            self.presentAsSheet(inviteController)
         }
     }
     
@@ -327,10 +327,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
  
             if cacheEntry.encrypted() {
                 RoomMessageInput.textField.placeholderString = "Encrypted message"
-                RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+                RoomEncryptionButton.image = NSImage(named: NSImage.lockLockedTemplateName)
             } else {
                 RoomMessageInput.textField.placeholderString = "Message"
-                RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+                RoomEncryptionButton.image = NSImage(named: NSImage.lockUnlockedTemplateName)
             }
             
             let roomDidPaginate = {
@@ -448,10 +448,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, WKNavigation
             if event.roomId == roomId {
                 if roomState.isEncrypted {
                     RoomMessageInput.textField.placeholderString = "Encrypted message"
-                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+                    RoomEncryptionButton.image = NSImage(named: NSImage.lockLockedTemplateName)
                 } else {
                     RoomMessageInput.textField.placeholderString = "Message"
-                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+                    RoomEncryptionButton.image = NSImage(named: NSImage.lockUnlockedTemplateName)
                 }
                 self.uiRoomNeedsCryptoReload()
             }

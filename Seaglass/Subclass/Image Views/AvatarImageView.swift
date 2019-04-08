@@ -35,7 +35,7 @@ class AvatarImageView: ContextImageView {
         canDrawSubviewsIntoLayer = true
         
         layer?.masksToBounds = true
-        layer?.contentsGravity = kCAGravityResizeAspectFill
+        layer?.contentsGravity = CALayerContentsGravity.resizeAspectFill
         layer?.cornerRadius = (frame.width)/2
     }
     
