@@ -51,6 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         if let window = controller.window {
             window.makeKeyAndOrderFront(self)
+            window.setFrameAutosaveName(NSWindow.FrameAutosaveName("seaglass-main"))
             return true
         }
         
