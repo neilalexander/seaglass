@@ -42,7 +42,7 @@ class LoginViewSettingsController: NSViewController {
     }
     
     @IBAction func homeserverURLFieldEdited(sender: NSTextField) {
-        if HomeserverURLField.stringValue == "" {
+        if URL(string: HomeserverURLField.stringValue) == nil {
             defaults.setValue("https://matrix.org", forKey: "Homeserver")
         } else {
             defaults.setValue(HomeserverURLField.stringValue, forKey: "Homeserver")
