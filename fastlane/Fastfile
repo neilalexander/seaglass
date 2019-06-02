@@ -12,7 +12,8 @@ platform :mac do
 	desc "Build and release Seaglass, this is the lane you probably want to use"
 	lane :build_and_release do
 		build
-                release
+		test
+		release
 	end
 
 	desc "Build Seaglass"
@@ -64,5 +65,10 @@ platform :mac do
 			release_notes_link: "https://s3.eu-west-2.amazonaws.com/seaglass-ci/releasenotes.html",
 			eddsa_signature: sh("../Pods/Sparkle/bin/sign_update", ZIP_PATH, "/tmp/dsa_priv.pem")
 		)
+	end
+
+	desc "Test Seaglass"
+	lane :test do
+		run_tests(scheme: "Seaglass")
 	end
 end

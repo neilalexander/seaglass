@@ -36,7 +36,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        resetStateIfUITesting()
+
         AppDefaults.init()
+    }
+
+    private func resetStateIfUITesting() {
+        if ProcessInfo.processInfo.arguments.contains("--ui-test") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
