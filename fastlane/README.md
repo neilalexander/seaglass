@@ -36,6 +36,11 @@ Release Seaglass on GitHub
 fastlane mac sparkle_add_version
 ```
 Updates Sparkle RSS file
+### mac test
+```
+fastlane mac test
+```
+Test Seaglass
 
 ----
 
