@@ -488,7 +488,7 @@
 				391BFE1820C68AD100B4EFEC /* Frameworks */,
 				391BFE1920C68AD100B4EFEC /* Resources */,
 				396F71E520CAB8C500F4F5E0 /* Headers */,
-				3D1A710522A381B000CD0A3D /* Set build number */,
+				3D51AF9B212264DB005B9ED5 /* Set build number */,
 				EC5C2F878741B0668D390541 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -613,18 +613,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D1A710522A381B000CD0A3D /* Set build number */ = {
+		3D51AF9B212264DB005B9ED5 /* Set build number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = "Set build number";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
