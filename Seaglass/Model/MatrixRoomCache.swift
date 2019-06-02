@@ -109,7 +109,7 @@ import SwiftMatrixSDK
                 if table.roomId == newElement.roomId {
                     table.beginUpdates()
                     if self.filter(self.unfilteredContent[at]) {
-                        if let index = self.filteredContent.index(of: self.unfilteredContent[at]) {
+                        if let index = self.filteredContent.firstIndex(of: self.unfilteredContent[at]) {
                             table.removeRows(at: IndexSet([index]), withAnimation: [])
                         }
                     }
@@ -119,7 +119,7 @@ import SwiftMatrixSDK
             if let table = self._managedTable {
                 if table.roomId == newElement.roomId {
                     if self.filter(newElement) {
-                        if let index = self.filteredContent.index(of: newElement) {
+                        if let index = self.filteredContent.firstIndex(of: newElement) {
                             table.insertRows(at: IndexSet([index]), withAnimation: [])
                         }
                     }
@@ -131,13 +131,13 @@ import SwiftMatrixSDK
     
     func update(_ newElement: MXEvent) {
         guard self.unfilteredContent.contains(where: { $0.eventId == newElement.eventId }) else { return }
-        if let at = self.unfilteredContent.index(where: { $0.eventId == newElement.eventId }) {
+        if let at = self.unfilteredContent.firstIndex(where: { $0.eventId == newElement.eventId }) {
             self.replace(newElement, at: at)
         }
     }
     
     func remove(at: Int) {
-        let rowindex = filteredContent.index(of: unfilteredContent[at])
+        let rowindex = filteredContent.firstIndex(of: unfilteredContent[at])
         DispatchQueue.main.async {
             self.unfilteredContent.remove(at: at)
             if let table = self._managedTable {

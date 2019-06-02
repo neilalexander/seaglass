@@ -348,7 +348,7 @@ class MatrixServices: NSObject {
             case "m.room.redaction":
                 for e in self.roomCaches[roomId]!.unfilteredContent.filter({ $0.eventId == event.redacts }) {
                     guard !e.isRedactedEvent() else { continue }
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(where: { $0.eventId == event.redacts }) {
+                    if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.redacts }) {
                         let pruned = e.prune()!
                         self.roomCaches[roomId]!.replace(pruned, at: index)
                         self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState)
@@ -378,7 +378,7 @@ class MatrixServices: NSObject {
                         self.roomCaches[roomId]!.insert(event, at: 0)
                     }
                 } else {
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.index(where: { $0.eventId == event.eventId }) {
+                    if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.eventId }) {
                         self.roomCaches[roomId]!.replace(event, at: index)
                     }
                 }

@@ -119,7 +119,7 @@ class RoomMessageIncoming: RoomMessage {
                             if let mxcUrl = event!.content["url"] as? String {
                                 let httpUrl = MatrixServices.inst.client.url(ofContent: mxcUrl)
                                 let link: NSMutableAttributedString = NSMutableAttributedString(string: filename)
-                                link.addAttribute(NSAttributedStringKey.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
+                                link.addAttribute(NSAttributedString.Key.link, value: httpUrl as Any, range: NSMakeRange(0, filename.count))
                                 link.setAlignment(NSTextAlignment.left, range: NSMakeRange(0, filename.count))
                                 Text.attributedStringValue = link
                             } else {
@@ -176,7 +176,7 @@ class RoomMessageIncoming: RoomMessage {
                 Icon.isHidden = false
                 Icon.setFrameSize(NSMakeSize(icon.width, icon.height))
             }
-            Icon.image = NSImage(named: NSImage.Name.refreshTemplate)!.tint(with: NSColor.red)
+            Icon.image = NSImage(named: NSImage.refreshTemplateName)!.tint(with: NSColor.red)
             break
         default:
             break

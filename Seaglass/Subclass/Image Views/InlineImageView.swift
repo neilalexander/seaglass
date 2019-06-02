@@ -139,7 +139,7 @@ class InlineImageView: ContextImageView, QLPreviewItem, QLPreviewPanelDelegate, 
                             }
                         }) { [weak self] (error) in
                             guard previousPath == path else { return }
-                            self?.image = NSImage(named: NSImage.Name.invalidDataFreestandingTemplate)
+                            self?.image = NSImage(named: NSImage.invalidDataFreestandingTemplateName)
                             self?.sizeToFit()
                         }
                     }
