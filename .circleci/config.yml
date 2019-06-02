@@ -4,6 +4,9 @@ jobs:
     macos:
       xcode: "10.2.1"
       # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
+    dependecies:
+      pre:
+        - gem update fastlane
     working_directory: ~/seaglass
     shell: /bin/bash --login -o pipefail
     environment:
