@@ -39,7 +39,7 @@ class MainViewMessageInfoController: NSViewController {
         
         EventTimestamp.stringValue = eventTimeFormatter.string(from: eventTime)
         do {
-            let str = NSString(data: try JSONSerialization.data(withJSONObject: event!.jsonDictionary(), options: JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8.rawValue)! as String
+            let str = NSString(data: try JSONSerialization.data(withJSONObject: event!.jsonDictionary() as Any, options: JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8.rawValue)! as String
             EventSourceView.string = str.replacingOccurrences(of: "\\/", with: "/")
         } catch {
             EventSourceView.string = "Exception caught"

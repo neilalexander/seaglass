@@ -201,7 +201,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     
     func updateAttentionRooms() {
         let roomsCache = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
-        var count = roomsCache.filter({ $0.isInvite() }).count
+        let count = roomsCache.filter({ $0.isInvite() }).count
        /* for room in roomsCache {
             count += room.highlights()
         } */
