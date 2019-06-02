@@ -39,4 +39,20 @@ class MenuController: NSMenu {
         MatrixServices.inst.mainController?.channelDelegate?.uiRoomStartInvite()
     }
     
+    @IBAction func gotoOldestLoaded(_ sender: NSMenuItem) {
+        let mainWindow = NSApplication.shared.mainWindow
+        let splitViewController = mainWindow?.contentViewController as? NSSplitViewController
+        let mainRoomViewController = splitViewController?.splitViewItems.last?.viewController as? MainViewRoomController
+        
+        mainRoomViewController?.RoomMessageTableView.scrollToBeginningOfDocument(self)
+    }
+    
+    @IBAction func gotoNewest(_ sender: NSMenuItem) {
+        let mainWindow = NSApplication.shared.mainWindow
+        let splitViewController = mainWindow?.contentViewController as? NSSplitViewController
+        let mainRoomViewController = splitViewController?.splitViewItems.last?.viewController as? MainViewRoomController
+        
+        mainRoomViewController?.RoomMessageTableView.scrollToEndOfDocument(self)
+    }	
+    
 }
