@@ -14,7 +14,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EA929FCF1AEBE2C31226E6937B53C4E"
+               BlueprintIdentifier = "0130B3724283586C0E9D2A112D4F2AA1"
                BuildableName = "AFNetworking.framework"
                BlueprintName = "AFNetworking"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83F33F8E0F94005401193F879682FB70"
+               BlueprintIdentifier = "B4575FF01775E963E58050542C9A4E7A"
                BuildableName = "Down.framework"
                BlueprintName = "Down"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "472372A240F914E5B1F1ABD20C7FBC52"
+               BlueprintIdentifier = "8B74CDB737C067B57BDC5065CE0E2CDC"
                BuildableName = "GZIP.framework"
                BlueprintName = "GZIP"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6454923DBE14D9ED50D3CAC0D7377E5"
+               BlueprintIdentifier = "98111E6E185137E6FA53F88A71819FD1"
                BuildableName = "OLMKit.framework"
                BlueprintName = "OLMKit"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44FCB0A3CA4A437748DC9C2FBF66F951"
+               BlueprintIdentifier = "0F215150FFA9D9C6EA2E5B9C1C664C3D"
                BuildableName = "Pods_Seaglass.framework"
                BlueprintName = "Pods-Seaglass"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -84,7 +84,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9D6E767D6ED327278171495E995210A"
+               BlueprintIdentifier = "68494F30B4A13F8E5E88BCCAEC25B0A4"
                BuildableName = "Realm.framework"
                BlueprintName = "Realm"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -98,7 +98,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA91DAE759D8FAC359C55E02AADADCC7"
+               BlueprintIdentifier = "74CED425E395F817E42D059CE9F151FF"
                BuildableName = "SwiftMatrixSDK.framework"
                BlueprintName = "SwiftMatrixSDK"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -112,7 +112,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "806CFF46C2E9D3DC12E6095E3D5EE950"
+               BlueprintIdentifier = "D1C094BA35C353D10711014DCB44491D"
                BuildableName = "TSMarkdownParser.framework"
                BlueprintName = "TSMarkdownParser"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -140,6 +140,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3DAEAE5722A370DD008EF61A"
+               BuildableName = "SeaglassUITests.xctest"
+               BlueprintName = "SeaglassUITests"
+               ReferencedContainer = "container:Seaglass.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

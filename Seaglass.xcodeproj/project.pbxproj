@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,7 +23,6 @@
 		391BFE2620C68AD200B4EFEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2520C68AD200B4EFEC /* Assets.xcassets */; };
 		391BFE2920C68AD200B4EFEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 391BFE2720C68AD200B4EFEC /* Main.storyboard */; };
 		391BFE3520C68AD200B4EFEC /* SeaglassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */; };
-		391BFE4020C68AD200B4EFEC /* SeaglassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */; };
 		3924444621184ED2001BAEE5 /* RoomSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3924444521184ED2001BAEE5 /* RoomSettingsController.swift */; };
 		3931F29A21398189001F91DC /* MessageInputField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3931F29921398189001F91DC /* MessageInputField.xib */; };
 		3931F29C213981A4001F91DC /* MessageInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3931F29B213981A4001F91DC /* MessageInputField.swift */; };
@@ -71,6 +70,7 @@
 		3D2E02EE2152CB330053D053 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2E02ED2152CB330053D053 /* MenuController.swift */; };
 		3D502D80212E012F00C8D06E /* ContextImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D502D7F212E012F00C8D06E /* ContextImageView.swift */; };
 		3D7CE5A021C868A600733562 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7CE59F21C868A600733562 /* AppDefaults.swift */; };
+		3DAEAE5B22A370DD008EF61A /* SeaglassUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAEAE5A22A370DD008EF61A /* SeaglassUITests.swift */; };
 		3DD33CA621534C7B00888A32 /* AutoGrowingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD33CA521534C7B00888A32 /* AutoGrowingTextField.swift */; };
 		A5EC29062126BAE800F37E0E /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EC29052126BAE800F37E0E /* AvatarImageView.swift */; };
 /* End PBXBuildFile section */
@@ -83,12 +83,12 @@
 			remoteGlobalIDString = 391BFE1A20C68AD100B4EFEC;
 			remoteInfo = Matrix;
 		};
-		391BFE3C20C68AD200B4EFEC /* PBXContainerItemProxy */ = {
+		3DAEAE5D22A370DD008EF61A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 391BFE1320C68AD100B4EFEC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 391BFE1A20C68AD100B4EFEC;
-			remoteInfo = Matrix;
+			remoteInfo = Seaglass;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -114,9 +114,6 @@
 		391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		391BFE3420C68AD200B4EFEC /* SeaglassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassTests.swift; sourceTree = "<group>"; };
 		391BFE3620C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassUITests.swift; sourceTree = "<group>"; };
-		391BFE4120C68AD200B4EFEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3924444521184ED2001BAEE5 /* RoomSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSettingsController.swift; sourceTree = "<group>"; };
 		3931F29921398189001F91DC /* MessageInputField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageInputField.xib; sourceTree = "<group>"; };
 		3931F29B213981A4001F91DC /* MessageInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputField.swift; sourceTree = "<group>"; };
@@ -165,6 +162,9 @@
 		3D2E02ED2152CB330053D053 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		3D502D7F212E012F00C8D06E /* ContextImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextImageView.swift; sourceTree = "<group>"; };
 		3D7CE59F21C868A600733562 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		3DAEAE5822A370DD008EF61A /* SeaglassUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaglassUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DAEAE5A22A370DD008EF61A /* SeaglassUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaglassUITests.swift; sourceTree = "<group>"; };
+		3DAEAE5C22A370DD008EF61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DD33CA521534C7B00888A32 /* AutoGrowingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoGrowingTextField.swift; sourceTree = "<group>"; };
 		4980E7DED434EEC15109CB2E /* Pods_Seaglass.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seaglass.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8D5FAB3C7EC4611494233F /* Pods-Seaglass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seaglass.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		391BFE3820C68AD200B4EFEC /* Frameworks */ = {
+		3DAEAE5522A370DD008EF61A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,7 +211,7 @@
 			children = (
 				391BFE1D20C68AD100B4EFEC /* Seaglass */,
 				391BFE3320C68AD200B4EFEC /* SeaglassTests */,
-				391BFE3E20C68AD200B4EFEC /* SeaglassUITests */,
+				3DAEAE5922A370DD008EF61A /* SeaglassUITests */,
 				391BFE1C20C68AD100B4EFEC /* Products */,
 				13D35602C731819EC4270DA8 /* Pods */,
 				600042570E1B4E8E38C9BC0D /* Frameworks */,
@@ -225,7 +225,7 @@
 			children = (
 				391BFE1B20C68AD100B4EFEC /* Seaglass.app */,
 				391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */,
-				391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */,
+				3DAEAE5822A370DD008EF61A /* SeaglassUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,15 +255,6 @@
 				391BFE3620C68AD200B4EFEC /* Info.plist */,
 			);
 			path = SeaglassTests;
-			sourceTree = "<group>";
-		};
-		391BFE3E20C68AD200B4EFEC /* SeaglassUITests */ = {
-			isa = PBXGroup;
-			children = (
-				391BFE3F20C68AD200B4EFEC /* SeaglassUITests.swift */,
-				391BFE4120C68AD200B4EFEC /* Info.plist */,
-			);
-			path = SeaglassUITests;
 			sourceTree = "<group>";
 		};
 		39432C932118726800FF3E5A /* Extension */ = {
@@ -457,6 +448,15 @@
 			path = "User Settings Views";
 			sourceTree = "<group>";
 		};
+		3DAEAE5922A370DD008EF61A /* SeaglassUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3DAEAE5A22A370DD008EF61A /* SeaglassUITests.swift */,
+				3DAEAE5C22A370DD008EF61A /* Info.plist */,
+			);
+			path = SeaglassUITests;
+			sourceTree = "<group>";
+		};
 		600042570E1B4E8E38C9BC0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,22 +518,22 @@
 			productReference = 391BFE3020C68AD200B4EFEC /* SeaglassTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		391BFE3A20C68AD200B4EFEC /* SeaglassUITests */ = {
+		3DAEAE5722A370DD008EF61A /* SeaglassUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassUITests" */;
+			buildConfigurationList = 3DAEAE5F22A370DD008EF61A /* Build configuration list for PBXNativeTarget "SeaglassUITests" */;
 			buildPhases = (
-				391BFE3720C68AD200B4EFEC /* Sources */,
-				391BFE3820C68AD200B4EFEC /* Frameworks */,
-				391BFE3920C68AD200B4EFEC /* Resources */,
+				3DAEAE5422A370DD008EF61A /* Sources */,
+				3DAEAE5522A370DD008EF61A /* Frameworks */,
+				3DAEAE5622A370DD008EF61A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				391BFE3D20C68AD200B4EFEC /* PBXTargetDependency */,
+				3DAEAE5E22A370DD008EF61A /* PBXTargetDependency */,
 			);
 			name = SeaglassUITests;
-			productName = MatrixUITests;
-			productReference = 391BFE3B20C68AD200B4EFEC /* SeaglassUITests.xctest */;
+			productName = SeaglassUITests;
+			productReference = 3DAEAE5822A370DD008EF61A /* SeaglassUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -542,7 +542,7 @@
 		391BFE1320C68AD100B4EFEC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Neil Alexander";
 				TargetAttributes = {
@@ -558,8 +558,8 @@
 						CreatedOnToolsVersion = 9.4;
 						TestTargetID = 391BFE1A20C68AD100B4EFEC;
 					};
-					391BFE3A20C68AD200B4EFEC = {
-						CreatedOnToolsVersion = 9.4;
+					3DAEAE5722A370DD008EF61A = {
+						CreatedOnToolsVersion = 10.2.1;
 						TestTargetID = 391BFE1A20C68AD100B4EFEC;
 					};
 				};
@@ -579,7 +579,7 @@
 			targets = (
 				391BFE1A20C68AD100B4EFEC /* Seaglass */,
 				391BFE2F20C68AD200B4EFEC /* SeaglassTests */,
-				391BFE3A20C68AD200B4EFEC /* SeaglassUITests */,
+				3DAEAE5722A370DD008EF61A /* SeaglassUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -603,7 +603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		391BFE3920C68AD200B4EFEC /* Resources */ = {
+		3DAEAE5622A370DD008EF61A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -650,33 +650,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
-				"${BUILT_PRODUCTS_DIR}/LetsMove/LetsMove.framework",
-				"${BUILT_PRODUCTS_DIR}/OLMKit/OLMKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${PODS_ROOT}/Sparkle/Sparkle.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftMatrixSDK/SwiftMatrixSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/TSMarkdownParser/TSMarkdownParser.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LetsMove.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OLMKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMatrixSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TSMarkdownParser.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Seaglass/Pods-Seaglass-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -756,11 +739,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		391BFE3720C68AD200B4EFEC /* Sources */ = {
+		3DAEAE5422A370DD008EF61A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391BFE4020C68AD200B4EFEC /* SeaglassUITests.swift in Sources */,
+				3DAEAE5B22A370DD008EF61A /* SeaglassUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -772,10 +755,10 @@
 			target = 391BFE1A20C68AD100B4EFEC /* Seaglass */;
 			targetProxy = 391BFE3120C68AD200B4EFEC /* PBXContainerItemProxy */;
 		};
-		391BFE3D20C68AD200B4EFEC /* PBXTargetDependency */ = {
+		3DAEAE5E22A370DD008EF61A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 391BFE1A20C68AD100B4EFEC /* Seaglass */;
-			targetProxy = 391BFE3C20C68AD200B4EFEC /* PBXContainerItemProxy */;
+			targetProxy = 3DAEAE5D22A370DD008EF61A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -998,12 +981,10 @@
 			};
 			name = Release;
 		};
-		391BFE4B20C68AD200B4EFEC /* Debug */ = {
+		3DAEAE6022A370DD008EF61A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -1013,22 +994,24 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = Matrix;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Seaglass;
 			};
 			name = Debug;
 		};
-		391BFE4C20C68AD200B4EFEC /* Release */ = {
+		3DAEAE6122A370DD008EF61A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SeaglassUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1036,11 +1019,15 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.neilalexander.SeaglassUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = Matrix;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Seaglass;
 			};
 			name = Release;
 		};
@@ -1074,11 +1061,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		391BFE4A20C68AD200B4EFEC /* Build configuration list for PBXNativeTarget "SeaglassUITests" */ = {
+		3DAEAE5F22A370DD008EF61A /* Build configuration list for PBXNativeTarget "SeaglassUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				391BFE4B20C68AD200B4EFEC /* Debug */,
-				391BFE4C20C68AD200B4EFEC /* Release */,
+				3DAEAE6022A370DD008EF61A /* Debug */,
+				3DAEAE6122A370DD008EF61A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
