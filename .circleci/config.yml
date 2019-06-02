@@ -16,7 +16,7 @@ jobs:
           command: mkdir -p /tmp/seaglass/upload
       - run:
           name: Update Fastlane
-          command: "yes | sudo gem update fastlane"
+          command: "sudo gem update fastlane"
       - run:
           name: Decrypt signing key
           command: |
