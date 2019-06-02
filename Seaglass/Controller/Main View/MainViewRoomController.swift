@@ -158,7 +158,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
                 room.sendEmote(String(unformattedText[startIndex...]), localEcho: &returnedEvent) { (response) in
                     if case .success( _) = response {
-                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == localReturnedEvent }) {
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
@@ -173,7 +173,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
                 room.sendTextMessage(unformattedText, formattedText: formattedText, localEcho: &returnedEvent) { (response) in
                     if case .success( _) = response {
-                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == localReturnedEvent }) {
+                        if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == localReturnedEvent }) {
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
@@ -189,7 +189,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         sender.becomeFirstResponder()
     }
     
-    public override func controlTextDidChange(_ obj: Notification) {
+    public func controlTextDidChange(_ obj: Notification) {
         if obj.object as? NSTextField == RoomMessageInput.textField {
             roomTyping = !RoomMessageInput.textField.stringValue.isEmpty
         }
@@ -224,7 +224,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {
-            switch segue.identifier!.rawValue {
+            switch segue.identifier! {
             case "SegueToRoomSettings":
                 if let dest = segue.destinationController as? RoomSettingsController {
                     dest.roomId = roomId
@@ -295,14 +295,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             let messageIconHandler = { (sender, room, event, userId) in
                 guard room != nil && event != nil else { return }
                 if event!.sentState == MXEventSentStateFailed {
-                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("MessageSendFailedSheet")) as! MainViewSendErrorController
+                    let sheet = self.storyboard?.instantiateController(withIdentifier: "MessageSendFailedSheet") as! MainViewSendErrorController
                     sheet.roomId = room!.roomId
                     sheet.eventId = event!.eventId
-                    self.presentViewControllerAsSheet(sheet)
+                    self.presentAsSheet(sheet)
                 } else if event!.isEncrypted {
-                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("EncryptionDeviceInfo")) as! PopoverEncryptionDevice
+                    let sheet = self.storyboard?.instantiateController(withIdentifier: "EncryptionDeviceInfo") as! PopoverEncryptionDevice
                     sheet.event = event
-                    self.presentViewController(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
+                    self.present(sheet, asPopoverRelativeTo: sheet.view.frame, of: sender, preferredEdge: .maxX, behavior: .transient)
                 }
             } as (_: NSView, _: MXRoom?, _: MXEvent?, _: String?) -> ()
             
@@ -359,10 +359,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     func uiRoomStartInvite() {
         if let board = self.storyboard {
-            let identifier = NSStoryboard.SceneIdentifier("RoomInviteController")
+            let identifier = "RoomInviteController"
             let inviteController = board.instantiateController(withIdentifier: identifier) as! MainViewInviteController
             inviteController.roomId = roomId
-            self.presentViewControllerAsSheet(inviteController)
+            self.presentAsSheet(inviteController)
         }
     }
     
@@ -387,10 +387,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
  
             if cacheEntry.encrypted() {
                 RoomMessageInput.textField.placeholderString = "Encrypted message"
-                RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+                RoomEncryptionButton.image = NSImage(named: NSImage.lockLockedTemplateName)
             } else {
                 RoomMessageInput.textField.placeholderString = "Message"
-                RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+                RoomEncryptionButton.image = NSImage(named: NSImage.lockUnlockedTemplateName)
             }
             
             let roomDidPaginate = {
@@ -509,10 +509,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if event.roomId == roomId {
                 if roomState.isEncrypted {
                     RoomMessageInput.textField.placeholderString = "Encrypted message"
-                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockLockedTemplate)
+                    RoomEncryptionButton.image = NSImage(named: NSImage.lockLockedTemplateName)
                 } else {
                     RoomMessageInput.textField.placeholderString = "Message"
-                    RoomEncryptionButton.image = NSImage(named: NSImage.Name.lockUnlockedTemplate)
+                    RoomEncryptionButton.image = NSImage(named: NSImage.lockUnlockedTemplateName)
                 }
                 self.uiRoomNeedsCryptoReload()
             }
@@ -556,7 +556,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
                 actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
                     let event = MatrixServices.inst.roomCaches[self.roomId]!.filteredContent[row]
-                    if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.index(where: { $0.eventId == event.eventId }) {
+                    if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.eventId }) {
                         MatrixServices.inst.roomCaches[self.roomId]!.replace(event.prune(), at: index)
                         room.redactEvent(event.eventId, reason: nil, completion: { (response) in
                             if response.isFailure, let error = response.error {
@@ -578,10 +578,10 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                     if let event = MatrixServices.inst.roomCaches[self.roomId]?.filteredContent[row] {
                         if let view = self.RoomMessageTableView {
                             if let board = self.storyboard {
-                                let identifier = NSStoryboard.SceneIdentifier("MessageInfo")
+                                let identifier = "MessageInfo"
                                 let infoController = board.instantiateController(withIdentifier: identifier) as! MainViewMessageInfoController
                                 infoController.event = event
-                                self.presentViewController(infoController, asPopoverRelativeTo: view.visibleRect, of: view, preferredEdge: .minX, behavior: .transient)
+                                self.present(infoController, asPopoverRelativeTo: view.visibleRect, of: view, preferredEdge: .minX, behavior: .transient)
                             }
                         }
                     }

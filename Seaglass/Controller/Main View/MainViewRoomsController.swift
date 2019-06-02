@@ -73,7 +73,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
     func matrixIsRoomKnown(_ room: MXRoom) -> Bool {
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         if rooms.count > 0 {
-            return rooms.index(where: { $0.roomId == room.roomId }) != nil
+            return rooms.firstIndex(where: { $0.roomId == room.roomId }) != nil
         }
         return false
     }
@@ -83,7 +83,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
             MatrixServices.inst.eventListeners[room.roomId] = nil
         }
         roomsCacheController.rearrangeObjects()
-        let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).index(where: { $0.roomId == room.roomId} )
+        let index = (roomsCacheController.arrangedObjects as! [RoomsCacheEntry]).firstIndex(where: { $0.roomId == room.roomId} )
         if index != nil {
             RoomList.beginUpdates()
             roomsCacheController.remove(atArrangedObjectIndex: index!)
@@ -192,7 +192,7 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         if entry.roomsCacheEntry == nil {
             return
         }
-        if roomsCache.index(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
+        if roomsCache.firstIndex(where: { $0.roomId == entry.roomsCacheEntry!.roomId }) == nil {
             return
         }
         entry.RoomListEntryUnread.isHidden = !entry.roomsCacheEntry!.isInvite()

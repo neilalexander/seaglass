@@ -80,8 +80,8 @@ class RoomMessage: NSTableCellView {
                     NSColor(deviceRed: 0.89, green: 0.75, blue: 0.33, alpha: 0.75)
                 ) : NSColor(deviceRed: 0.79, green: 0.31, blue: 0.27, alpha: 0.75))
         let padlockImage: NSImage = self.encryptionIsEncrypted() ?
-            NSImage(named: NSImage.Name.lockLockedTemplate)!.tint(with: padlockColor) :
-            NSImage(named: NSImage.Name.lockUnlockedTemplate)!.tint(with: padlockColor)
+            NSImage(named: NSImage.lockLockedTemplateName)!.tint(with: padlockColor) :
+            NSImage(named: NSImage.lockUnlockedTemplateName)!.tint(with: padlockColor)
         return (padlockImage, padlockWidth, padlockHeight)
     }
     
