@@ -4,9 +4,6 @@ jobs:
     macos:
       xcode: "10.2.1"
       # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
-    dependecies:
-      pre:
-        - gem update fastlane
     working_directory: ~/seaglass
     shell: /bin/bash --login -o pipefail
     environment:
@@ -17,6 +14,9 @@ jobs:
       - run:
           name: Create Upload Directory
           command: mkdir -p /tmp/seaglass/upload
+      - run:
+          name: Update Fastlane
+          command: "yes | sudo gem update fastlane"
       - run:
           name: Decrypt signing key
           command: |
