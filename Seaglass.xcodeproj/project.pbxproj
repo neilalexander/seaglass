@@ -217,6 +217,8 @@
 				0AB09BE220AB17483A0BB7B3 /* Pods */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		391BFE1C20C68AD100B4EFEC /* Products */ = {
 			isa = PBXGroup;
