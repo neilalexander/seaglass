@@ -88,7 +88,7 @@ class LoginViewController: NSViewController {
     }
     
     @objc func refreshUsernamePlaceholder() {
-        let homeserver = URL(string: defaults.string(forKey: "Homeserver") ?? "https://matrix.org")!.host ?? "matrix.org"
+        let homeserver = URL(string: defaults.string(forKey: "Homeserver") ?? "https://matrix.org")?.host ?? "matrix.org"
         UsernameField.placeholderString = "\(homeserver) username"
         PasswordField.placeholderString = "\(homeserver) password"
         AdvancedSettingsButton.title = " \(homeserver)"
