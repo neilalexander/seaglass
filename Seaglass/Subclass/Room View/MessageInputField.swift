@@ -28,7 +28,7 @@ import Cocoa
         super.init(coder: coder)
         
         var topLevelObjects : NSArray?
-        if Bundle.main.loadNibNamed(NSNib.Name("MessageInputField"), owner: self, topLevelObjects: &topLevelObjects) {
+        if Bundle.main.loadNibNamed("MessageInputField", owner: self, topLevelObjects: &topLevelObjects) {
             contentView = topLevelObjects!.first(where: { $0 is NSView }) as? NSView
             self.addSubview(contentView!)
             contentView?.frame = self.bounds

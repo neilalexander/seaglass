@@ -42,7 +42,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
                 alert.alertStyle = .warning
                 alert.addButton(withTitle: "OK")
                 alert.runModal()
-                self.dismissViewController(self)
+                self.dismiss(self)
                 return
             }
             
@@ -72,7 +72,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
             alert.alertStyle = .warning
             alert.addButton(withTitle: "OK")
             alert.runModal()
-            self.dismissViewController(self)
+            self.dismiss(self)
             return
         }
     }
@@ -94,7 +94,7 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
     }
     
     func deleteButtonClicked(sender: RoomAliasEntry) {
-        let index = roomAliases.index(of: sender)
+        let index = roomAliases.firstIndex(of: sender)
         roomAliases.remove(at: index!)
         AliasTable.removeRows(at: IndexSet(integer: index!), withAnimation: [ .slideUp, .effectFade ])
         AliasTable.noteNumberOfRowsChanged()

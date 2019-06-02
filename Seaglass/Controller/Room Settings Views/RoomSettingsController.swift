@@ -59,7 +59,7 @@ class RoomSettingsController: NSViewController {
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier != nil {
-            switch segue.identifier!.rawValue {
+            switch segue.identifier! {
             case "SegueToMemberList":
                 if let dest = segue.destinationController as? MemberListController {
                     dest.roomId = roomId
@@ -253,7 +253,7 @@ class RoomSettingsController: NSViewController {
             alert.alertStyle = .warning
             alert.addButton(withTitle: "OK")
             alert.runModal()
-            self.dismissViewController(self)
+            self.dismiss(self)
             return
         }
         
@@ -265,7 +265,7 @@ class RoomSettingsController: NSViewController {
             alert.alertStyle = .warning
             alert.addButton(withTitle: "OK")
             alert.runModal()
-            self.dismissViewController(self)
+            self.dismiss(self)
             return
         }
         

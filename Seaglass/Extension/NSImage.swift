@@ -43,7 +43,7 @@ extension NSImage {
         let textPara = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         textPara.alignment = .center
         
-        let textFontAttributes: [NSAttributedStringKey: Any] = [
+        let textFontAttributes: [NSAttributedString.Key: Any] = [
             .font: NSFont(name: "Arial Rounded MT Bold", size: letterSize)!,
             .paragraphStyle: textPara,
             .foregroundColor: NSColor.white

@@ -80,7 +80,7 @@ class LoginViewController: NSViewController {
             print("Starting Matrix")
             MatrixServices.inst.start(credentials!, disableCache: defaults.bool(forKey: "DisableCache"), success: {
                 print("Started successfully - handing over to main view")
-                self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
+                self.performSegue(withIdentifier: "OpenMainView", sender: nil)
             }) {
                 print("Failed to start")
             }
@@ -166,7 +166,7 @@ class LoginViewController: NSViewController {
                 print("Starting Matrix")
                 MatrixServices.inst.start(credentials, disableCache: self.defaults.bool(forKey: "DisableCache"), success: {
                     print("Started successfully - handing over to main view")
-                    self.performSegue(withIdentifier: NSStoryboardSegue.Identifier("OpenMainView"), sender: nil)
+                    self.performSegue(withIdentifier: "OpenMainView", sender: nil)
                 }) {
                     print("Failed to start")
                 }

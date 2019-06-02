@@ -39,8 +39,8 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
     override func viewDidLoad() {
         MatrixServices.inst.mainController = self
         
-        roomsController = childViewControllers.compactMap({ return $0 as? MainViewRoomsController }).first
-        channelController = childViewControllers.compactMap({ return $0 as? MainViewRoomController }).first
+        roomsController = children.compactMap({ return $0 as? MainViewRoomsController }).first
+        channelController = children.compactMap({ return $0 as? MainViewRoomController }).first
         
         roomsController?.mainController = self
         channelController?.mainController = self
@@ -84,9 +84,9 @@ class MainViewController: NSSplitViewController, MatrixServicesDelegate {
         MatrixServices.inst.session.crypto.deviceList.downloadKeys([request.userId], forceDownload: false, success: { (devicemap) in
             if MatrixServices.inst.session.crypto.deviceList.storedDevice(request.userId, deviceId: request.deviceId) != nil {
                 DispatchQueue.main.async {
-                    let sheet = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("KeyRequest")) as! MainViewKeyRequestController
+                    let sheet = self.storyboard?.instantiateController(withIdentifier: "KeyRequest") as! MainViewKeyRequestController
                     sheet.request = request
-                    self.presentViewControllerAsSheet(sheet)
+                    self.presentAsSheet(sheet)
                     self.keyRequests.append(sheet)
                 }
             }

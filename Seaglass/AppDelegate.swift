@@ -46,12 +46,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         guard !flag else { return false }
         
-        let identifier = NSStoryboard.SceneIdentifier("MainWindowController")
+        let identifier = "MainWindowController"
         let controller = NSStoryboard.main?.instantiateController(withIdentifier: identifier) as! MainWindowController
         
         if let window = controller.window {
             window.makeKeyAndOrderFront(self)
-            window.setFrameAutosaveName(NSWindow.FrameAutosaveName("seaglass-main"))
+            window.setFrameAutosaveName("seaglass-main")
             return true
         }
         
