@@ -91,6 +91,8 @@ class UserSettingsEncryptionController: UserSettingsTabController {
         
         let password = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
         password.placeholderString = "Password"
+		password.cell?.wraps = false
+		password.cell?.isScrollable = true
         
         alert.accessoryView = password
         var response: NSApplication.ModalResponse = .cancel
@@ -126,6 +128,8 @@ class UserSettingsEncryptionController: UserSettingsTabController {
         
         let password = NSSecureTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
         password.placeholderString = "Password"
+		password.cell?.wraps = false
+		password.cell?.isScrollable = true
         
         alert.accessoryView = password
         var response: NSApplication.ModalResponse = .cancel
