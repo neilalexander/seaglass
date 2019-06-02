@@ -45,23 +45,23 @@ class PopoverRoomActions: NSViewController {
         panel.canCreateDirectories = false
         panel.runModal()
 
-        if let path = panel.url {
+        /*if let path = panel.url {
             if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, path.pathExtension as NSString, nil)?.takeRetainedValue() {
                 if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
                     var event: MXEvent?
                     if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
                         if UTTypeConformsTo(uti, kUTTypeImage) {
-                          //  room.sendImage(data: <#T##Data#>, size: <#T##CGSize#>, mimeType: <#T##String#>, thumbnail: <#T##MXImage?#>, localEcho: &<#T##MXEvent?#>) { (<#MXResponse<String?>#>) in
-                          //      print(response)
-                          //  }
+                            room.sendImage(data: <#T##Data#>, size: <#T##CGSize#>, mimeType: <#T##String#>, thumbnail: <#T##MXImage?#>, localEcho: &<#T##MXEvent?#>) { (<#MXResponse<String?>#>) in
+                                print(response)
+                            }
                         } else {
-                          //  room.sendFile(localURL: path, mimeType: mimetype as String, localEcho: &event) { (response) in
-                          //      print(response)
-                          //  }
+                            room.sendFile(localURL: path, mimeType: mimetype as String, localEcho: &event) { (response) in
+                                print(response)
+                            }
                         }
                     }
                 }
             }
-        }
+        }*/
     }
 }

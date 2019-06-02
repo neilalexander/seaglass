@@ -785,7 +785,6 @@ Copyright 2017 © Avery Pierce</string>
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="0.0" y="0.0" width="450" height="96"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1152"/>
-                        <value key="minSize" type="size" width="450" height="200"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="3ly-y1-65v"/>
                         </connections>
