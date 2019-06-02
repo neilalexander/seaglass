@@ -217,6 +217,8 @@
 				600042570E1B4E8E38C9BC0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
 		};
 		391BFE1C20C68AD100B4EFEC /* Products */ = {
 			isa = PBXGroup;
