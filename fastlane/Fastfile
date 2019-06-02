@@ -16,6 +16,12 @@ platform :mac do
 		release
 	end
 
+	desc "Build and test Seaglass"
+	lane :build_and_test do
+		build
+		test
+	end
+
 	desc "Build Seaglass"
 	lane :build do
 		# builds Seaglass and creates a .xcarchive

@@ -51,7 +51,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "release" ]; then
               fastlane build_and_release;
             else
-              fastlane build;
+              fastlane build_and_test;
             fi
       - run:
           name: Upload appcast.xml to S3
