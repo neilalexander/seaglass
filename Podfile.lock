@@ -13,54 +13,64 @@ PODS:
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
   - Down (0.5.2)
-  - GZIP (1.2.2)
+  - GZIP (1.2.3)
   - LetsMove (1.24)
-  - OLMKit (2.2.2):
-    - OLMKit/olmc (= 2.2.2)
-    - OLMKit/olmcpp (= 2.2.2)
-  - OLMKit/olmc (2.2.2)
-  - OLMKit/olmcpp (2.2.2)
-  - Realm (3.6.0):
-    - Realm/Headers (= 3.6.0)
-  - Realm/Headers (3.6.0)
+  - OLMKit (3.0.0):
+    - OLMKit/olmc (= 3.0.0)
+    - OLMKit/olmcpp (= 3.0.0)
+  - OLMKit/olmc (3.0.0)
+  - OLMKit/olmcpp (3.0.0)
+  - Realm (3.11.2):
+    - Realm/Headers (= 3.11.2)
+  - Realm/Headers (3.11.2)
   - Sparkle (1.20.0)
-  - SwiftMatrixSDK (0.10.12):
+  - SwiftMatrixSDK (0.11.6):
     - AFNetworking (~> 3.2.0)
-    - GZIP (~> 1.2.1)
-    - OLMKit (~> 2.2.2)
-    - Realm (~> 3.6.0)
+    - GZIP (~> 1.2.2)
+    - OLMKit (~> 3.0.0)
+    - Realm (~> 3.11.1)
   - TSMarkdownParser (2.1.5)
 
 DEPENDENCIES:
   - Down
   - LetsMove
   - Sparkle
-  - SwiftMatrixSDK (= 0.10.12)
+  - SwiftMatrixSDK (from `https://github.com/MattHardcastle/matrix-ios-sdk.git`, commit `0a373c1cfbe10246218b72dc843d1d0d33807ab6`)
   - TSMarkdownParser
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - AFNetworking
+  https://github.com/CocoaPods/Specs.git:
     - Down
-    - GZIP
     - LetsMove
+    - Sparkle
+    - TSMarkdownParser
+  trunk:
+    - AFNetworking
+    - GZIP
     - OLMKit
     - Realm
-    - Sparkle
-    - SwiftMatrixSDK
-    - TSMarkdownParser
+
+EXTERNAL SOURCES:
+  SwiftMatrixSDK:
+    :commit: 0a373c1cfbe10246218b72dc843d1d0d33807ab6
+    :git: https://github.com/MattHardcastle/matrix-ios-sdk.git
+
+CHECKOUT OPTIONS:
+  SwiftMatrixSDK:
+    :commit: 0a373c1cfbe10246218b72dc843d1d0d33807ab6
+    :git: https://github.com/MattHardcastle/matrix-ios-sdk.git
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Down: 587371ad58002b06023d9c602519216862c3acbc
-  GZIP: 12374d285e3b5d46cfcd480700fcfc7e16caf4f1
+  GZIP: af5c90ef903776a7e9afe6ebebd794a84a2929d4
   LetsMove: fefe56bc7bc7fb7d37049e28a14f297961229fc5
-  OLMKit: b9d8c0ffee9ea8c45bc0aaa9afb47f93fba7efbd
-  Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
+  OLMKit: 88eda69110489f817d59bcb4353b7c247570aa4f
+  Realm: 864477d028db77f7c5a0cba64a4892ad53db128a
   Sparkle: 48999e7ee032f05ca05e28451eadf4af8ede6b44
-  SwiftMatrixSDK: 793d7505afe6cb8aa563c2c4c94613ef279bca87
+  SwiftMatrixSDK: 3b8454c837785cb66e4325051f194d79dec889d2
   TSMarkdownParser: 3224ea196ecc7148fa7e03bc438f9390d4edfb6d
 
-PODFILE CHECKSUM: 3d7addb7b20fc302245d8951a9721bc1542434b1
+PODFILE CHECKSUM: 6223d3a3a5a2c1c9cc5e217d7c0e5f881a773d6b
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.9.1

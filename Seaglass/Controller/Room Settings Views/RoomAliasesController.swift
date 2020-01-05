@@ -47,24 +47,25 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
             }
             
             let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
-            let aliases = room!.state.aliases
-            if aliases == nil {
-                return
+
+            room!.state { state in
+                guard let state = state else { fatalError() }
+                guard let aliases = state.aliases else { return }
+                guard aliases.count > 0 else { return }
+
+                for alias in aliases {
+                    let cell = self.AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
+                    cell?.parent = self
+                    cell?.RoomAliasName.stringValue = alias
+                    cell?.RoomAliasName.placeholderString = "#youralias\(suffix)"
+                    cell?.RoomAliasPrimary.isEnabled = MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.canonical_alias", withRoomState: state)
+                    cell?.RoomAliasPrimary.state = state.canonicalAlias == alias ? .on : .off
+                    cell?.RoomAliasName.isEnabled = alias.hasSuffix(suffix)
+                    cell?.RoomAliasDelete.isEnabled = alias.hasSuffix(suffix)
+                    self.roomAliases.append(cell!)
+                }
             }
-            if aliases!.count == 0 {
-                return
-            }
-            for alias in aliases! {
-                let cell = AliasTable.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RoomAliasEntry"), owner: self) as? RoomAliasEntry
-                cell?.parent = self
-                cell?.RoomAliasName.stringValue = alias
-                cell?.RoomAliasName.placeholderString = "#youralias\(suffix)"
-                cell?.RoomAliasPrimary.isEnabled = MatrixServices.inst.userHasPower(inRoomId: room!.roomId, forEvent: "m.room.canonical_alias")
-                cell?.RoomAliasPrimary.state = room!.state.canonicalAlias == alias ? .on : .off
-                cell?.RoomAliasName.isEnabled = alias.hasSuffix(suffix)
-                cell?.RoomAliasDelete.isEnabled = alias.hasSuffix(suffix)
-                roomAliases.append(cell!)
-            }
+
         } else {
             let alert = NSAlert()
             alert.messageText = "Failed to open room settings"
@@ -127,81 +128,87 @@ class RoomAliasesController: NSViewController, NSTableViewDelegate, NSTableViewD
         let group = DispatchGroup()
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let suffix = MatrixServices.inst.client.homeserverSuffix ?? ":matrix.org"
-        let aliases = room!.state.aliases != nil ? room!.state.aliases : []
-        
-        var uiCanonicalAlias: String = ""
-        var uiAliases: [String] = []
-        
-        for uiAlias in roomAliases {
-            uiAliases.append(uiAlias.RoomAliasName.stringValue)
-            if uiAlias.RoomAliasPrimary.state == .on {
-                uiCanonicalAlias = uiAlias.RoomAliasName.stringValue
-            }
-        }
-        
-        for uiAlias in uiAliases {
-            if !uiAlias.hasSuffix(suffix) {
-                continue
-            }
-            if !aliases!.contains(uiAlias) {
-                group.enter()
-                room?.addAlias(uiAlias, completion: { (response) in
-                    if response.isFailure {
-                        let alert = NSAlert()
-                        alert.messageText = "Failed to add alias \(uiAlias)"
-                        alert.informativeText = response.error!.localizedDescription
-                        alert.alertStyle = .warning
-                        alert.addButton(withTitle: "OK")
-                        alert.runModal()
-                    }
-                    group.leave()
-                })
-            }
-        }
-        
-        for alias in aliases! {
-            if !alias.hasSuffix(suffix) {
-                continue
-            }
-            if !uiAliases.contains(alias) {
-                group.enter()
-                room?.removeAlias(alias, completion: { (response) in
-                    if response.isFailure {
-                        let alert = NSAlert()
-                        alert.messageText = "Failed to remove alias \(alias)"
-                        alert.informativeText = response.error!.localizedDescription
-                        alert.alertStyle = .warning
-                        alert.addButton(withTitle: "OK")
-                        alert.runModal()
-                    }
-                    group.leave()
-                })
-            }
-        }
-        
-        if uiCanonicalAlias != room?.state.canonicalAlias {
-            group.enter()
-            room?.setCanonicalAlias(uiCanonicalAlias, completion: { (response) in
-                if response.isFailure {
-                    let alert = NSAlert()
-                    alert.messageText = "Failed to set primary alias to \(uiCanonicalAlias)"
-                    alert.informativeText = response.error!.localizedDescription
-                    alert.alertStyle = .warning
-                    alert.addButton(withTitle: "OK")
-                    alert.runModal()
+
+        room!.state { state in
+            guard let state = state else { fatalError() }
+
+            let aliases = state.aliases != nil ? state.aliases : []
+
+            var uiCanonicalAlias: String = ""
+            var uiAliases: [String] = []
+
+            for uiAlias in self.roomAliases {
+                uiAliases.append(uiAlias.RoomAliasName.stringValue)
+                if uiAlias.RoomAliasPrimary.state == .on {
+                    uiCanonicalAlias = uiAlias.RoomAliasName.stringValue
                 }
-                group.leave()
+            }
+
+            for uiAlias in uiAliases {
+                if !uiAlias.hasSuffix(suffix) {
+                    continue
+                }
+                if !aliases!.contains(uiAlias) {
+                    group.enter()
+                    room?.addAlias(uiAlias, completion: { (response) in
+                        if response.isFailure {
+                            let alert = NSAlert()
+                            alert.messageText = "Failed to add alias \(uiAlias)"
+                            alert.informativeText = response.error!.localizedDescription
+                            alert.alertStyle = .warning
+                            alert.addButton(withTitle: "OK")
+                            alert.runModal()
+                        }
+                        group.leave()
+                    })
+                }
+            }
+
+            for alias in aliases! {
+                if !alias.hasSuffix(suffix) {
+                    continue
+                }
+                if !uiAliases.contains(alias) {
+                    group.enter()
+                    room?.removeAlias(alias, completion: { (response) in
+                        if response.isFailure {
+                            let alert = NSAlert()
+                            alert.messageText = "Failed to remove alias \(alias)"
+                            alert.informativeText = response.error!.localizedDescription
+                            alert.alertStyle = .warning
+                            alert.addButton(withTitle: "OK")
+                            alert.runModal()
+                        }
+                        group.leave()
+                    })
+                }
+            }
+
+            if uiCanonicalAlias != state.canonicalAlias {
+                group.enter()
+                room?.setCanonicalAlias(uiCanonicalAlias, completion: { (response) in
+                    if response.isFailure {
+                        let alert = NSAlert()
+                        alert.messageText = "Failed to set primary alias to \(uiCanonicalAlias)"
+                        alert.informativeText = response.error!.localizedDescription
+                        alert.alertStyle = .warning
+                        alert.addButton(withTitle: "OK")
+                        alert.runModal()
+                    }
+                    group.leave()
+                })
+            }
+
+            group.notify(queue: .main, execute: {
+                self.StatusSpinner.isHidden = true
+                self.StatusSpinner.stopAnimation(self)
+                for button in [ self.AliasSave, self.AliasCancel, self.AliasAdd ] {
+                    button!.isEnabled = true
+                }
+                sender.window?.contentViewController?.dismiss(sender)
             })
         }
-        
-        group.notify(queue: .main, execute: {
-            self.StatusSpinner.isHidden = true
-            self.StatusSpinner.stopAnimation(self)
-            for button in [ self.AliasSave, self.AliasCancel, self.AliasAdd ] {
-                button!.isEnabled = true
-            }
-            sender.window?.contentViewController?.dismiss(sender)
-        })
+
     }
     
 }

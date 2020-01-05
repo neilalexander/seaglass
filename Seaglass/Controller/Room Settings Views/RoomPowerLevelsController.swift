@@ -72,79 +72,84 @@ class RoomPowerLevelsController: NSViewController {
         
         if roomId != "" {
             guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { return }
-            guard let powerLevels = room.state.powerLevels else { return }
-            
-            initialPowerLevelDefault = powerLevels.usersDefault
-            initialPowerLevelSendMessage = powerLevels.eventsDefault
-            initialPowerLevelInvite = powerLevels.invite
-            initialPowerLevelKick = powerLevels.kick
-            initialPowerLevelBan = powerLevels.ban
-            initialPowerLevelRedactOther = powerLevels.redact
-            // initialPowerLevelNotifyAll = powerLevels. ?? 50
-            // initialPowerLevelChangeJoinRule = powerLevels. ?? 100
 
-            initialPowerLevelChangeName = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.name"] as! Int? {
-                    return powerLevel
+            room.state { state in
+                guard let state = state else { fatalError() }
+
+                guard let powerLevels = state.powerLevels else { return }
+
+                self.initialPowerLevelDefault = powerLevels.usersDefault
+                self.initialPowerLevelSendMessage = powerLevels.eventsDefault
+                self.initialPowerLevelInvite = powerLevels.invite
+                self.initialPowerLevelKick = powerLevels.kick
+                self.initialPowerLevelBan = powerLevels.ban
+                self.initialPowerLevelRedactOther = powerLevels.redact
+                // initialPowerLevelNotifyAll = powerLevels. ?? 50
+                // initialPowerLevelChangeJoinRule = powerLevels. ?? 100
+
+                self.initialPowerLevelChangeName = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.name"] as! Int? {
+                        return powerLevel
+                    }
+                    return powerLevels.stateDefault
+                }()
+                self.initialPowerLevelChangeAvatar = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.avatar"] as! Int? {
+                        return powerLevel
+                    }
+                    return powerLevels.stateDefault
+                }()
+                self.initialPowerLevelChangeCanonicalAlias = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.canonical_alias"] as! Int? {
+                        return powerLevel
+                    }
+                    return powerLevels.stateDefault
+                }()
+                self.initialPowerLevelChangeHistory = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.history_visibility"] as! Int? {
+                        return powerLevel
+                    }
+                    return 100
+                }()
+                self.initialPowerLevelChangeTopic = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.topic"] as! Int? {
+                        return powerLevel
+                    }
+                    return powerLevels.stateDefault
+                }()
+                self.initialPowerLevelChangeWidgets = { () -> Int in
+                    if let powerLevel = powerLevels.events["im.vector.modular.widgets"] as! Int? {
+                        return powerLevel
+                    }
+                    return powerLevels.stateDefault
+                }()
+                self.initialPowerLevelChangePowerLevels = { () -> Int in
+                    if let powerLevel = powerLevels.events["m.room.power_levels"] as! Int? {
+                        return powerLevel
+                    }
+                    return 100
+                }()
+
+                self.PowerLevelDefault.integerValue = self.initialPowerLevelDefault!
+                self.PowerLevelSendMessage.integerValue = self.initialPowerLevelSendMessage!
+                self.PowerLevelInvite.integerValue = self.initialPowerLevelInvite!
+                self.PowerLevelKick.integerValue = self.initialPowerLevelKick!
+                self.PowerLevelBan.integerValue = self.initialPowerLevelBan!
+                self.PowerLevelRedactOther.integerValue = self.initialPowerLevelRedactOther!
+                self.PowerLevelChangeName.integerValue = self.initialPowerLevelChangeName!
+                self.PowerLevelChangeAvatar.integerValue = self.initialPowerLevelChangeAvatar!
+                self.PowerLevelChangeCanonicalAlias.integerValue = self.initialPowerLevelChangeCanonicalAlias!
+                self.PowerLevelChangeHistory.integerValue = self.initialPowerLevelChangeHistory!
+                self.PowerLevelChangeTopic.integerValue = self.initialPowerLevelChangeTopic!
+                self.PowerLevelChangeWidgets.integerValue = self.initialPowerLevelChangeWidgets!
+                self.PowerLevelChangePowerLevels.integerValue = self.initialPowerLevelChangePowerLevels!
+                // PowerLevelNotifyAll.integerValue = initialPowerLevelNotifyAll
+                // PowerLevelChangeJoinRule.integerValue = initialPowerLevelChangeJoinRule
+
+                for control in controls {
+                   // control.isEnabled = initialPowerLevelChangePowerLevels! <= powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
+                    control.isEnabled = false
                 }
-                return room.state.powerLevels.stateDefault
-            }()
-            initialPowerLevelChangeAvatar = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.avatar"] as! Int? {
-                    return powerLevel
-                }
-                return room.state.powerLevels.stateDefault
-            }()
-            initialPowerLevelChangeCanonicalAlias = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.canonical_alias"] as! Int? {
-                    return powerLevel
-                }
-                return room.state.powerLevels.stateDefault
-            }()
-            initialPowerLevelChangeHistory = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.history_visibility"] as! Int? {
-                    return powerLevel
-                }
-                return 100
-            }()
-            initialPowerLevelChangeTopic = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.topic"] as! Int? {
-                    return powerLevel
-                }
-                return room.state.powerLevels.stateDefault
-            }()
-            initialPowerLevelChangeWidgets = { () -> Int in
-                if let powerLevel = powerLevels.events["im.vector.modular.widgets"] as! Int? {
-                    return powerLevel
-                }
-                return room.state.powerLevels.stateDefault
-            }()
-            initialPowerLevelChangePowerLevels = { () -> Int in
-                if let powerLevel = powerLevels.events["m.room.power_levels"] as! Int? {
-                    return powerLevel
-                }
-                return 100
-            }()
-            
-            PowerLevelDefault.integerValue = initialPowerLevelDefault!
-            PowerLevelSendMessage.integerValue = initialPowerLevelSendMessage!
-            PowerLevelInvite.integerValue = initialPowerLevelInvite!
-            PowerLevelKick.integerValue = initialPowerLevelKick!
-            PowerLevelBan.integerValue = initialPowerLevelBan!
-            PowerLevelRedactOther.integerValue = initialPowerLevelRedactOther!
-            PowerLevelChangeName.integerValue = initialPowerLevelChangeName!
-            PowerLevelChangeAvatar.integerValue = initialPowerLevelChangeAvatar!
-            PowerLevelChangeCanonicalAlias.integerValue = initialPowerLevelChangeCanonicalAlias!
-            PowerLevelChangeHistory.integerValue = initialPowerLevelChangeHistory!
-            PowerLevelChangeTopic.integerValue = initialPowerLevelChangeTopic!
-            PowerLevelChangeWidgets.integerValue = initialPowerLevelChangeWidgets!
-            PowerLevelChangePowerLevels.integerValue = initialPowerLevelChangePowerLevels!
-            // PowerLevelNotifyAll.integerValue = initialPowerLevelNotifyAll
-            // PowerLevelChangeJoinRule.integerValue = initialPowerLevelChangeJoinRule
-            
-            for control in controls {
-               // control.isEnabled = initialPowerLevelChangePowerLevels! <= powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId)
-                control.isEnabled = false
             }
         }
     }

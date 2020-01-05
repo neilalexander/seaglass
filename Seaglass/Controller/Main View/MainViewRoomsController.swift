@@ -57,7 +57,9 @@ class MainViewRoomsController: NSViewController, MatrixRoomsDelegate, NSTableVie
         let rooms = roomsCacheController.arrangedObjects as! [RoomsCacheEntry]
         let isFirst = rooms.count == 0
         if !matrixIsRoomKnown(room) {
-            roomsCacheController.insert((RoomsCacheEntry(room)), atArrangedObjectIndex: 0)
+            room.state {
+                self.roomsCacheController.insert((RoomsCacheEntry(room: room, state: $0!)), atArrangedObjectIndex: 0)
+            }
         }
         roomsCacheController.rearrangeObjects()
         MatrixServices.inst.subscribeToRoom(roomId: room.roomId)

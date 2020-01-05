@@ -21,21 +21,22 @@ import SwiftMatrixSDK
 
 class RoomsCacheEntry: NSObject {
     var room: MXRoom
+    var state: MXRoomState
     
     @objc dynamic var roomId: String {
         return room.roomId
     }
     @objc dynamic var roomName: String {
-        return room.state.name ?? ""
+        return state.name ?? ""
     }
     @objc dynamic var roomAlias: String {
-        return room.state.canonicalAlias ?? ""
+        return state.canonicalAlias ?? ""
     }
     @objc dynamic var roomTopic: String  {
-        return room.state.topic ?? ""
+        return state.topic ?? ""
     }
     @objc dynamic var roomAvatar: String {
-        return room.state.avatar ?? ""
+        return state.avatar ?? ""
     }
     @objc dynamic var roomSortWeight: Int {
         if isInvite() {
@@ -44,11 +45,11 @@ class RoomsCacheEntry: NSObject {
         if room.isDirect {
             return 70
         }
-        if room.summary.isEncrypted || room.state.isEncrypted {
+        if room.summary.isEncrypted || state.isEncrypted {
             return 60
         }
-        if room.state.name == "" {
-            if room.state.topic == "" {
+        if state.name == "" {
+            if state.topic == "" {
                 return 52
             }
             return 51
@@ -77,16 +78,17 @@ class RoomsCacheEntry: NSObject {
         return ""
     }
     var members: [MXRoomMember] {
-        return room.state.members
+        return state.members.members ?? []
     }
     
-    init(_ room: MXRoom) {
+    init(room: MXRoom, state: MXRoomState) {
         self.room = room
+        self.state = state
         super.init()
     }
     
     func topic() -> String {
-        return room.state.topic
+        return state.topic
     }
     
     func unread() -> Bool {
@@ -109,7 +111,7 @@ class RoomsCacheEntry: NSObject {
     }
     
     func encrypted() -> Bool {
-        return room.summary.isEncrypted || room.state.isEncrypted
+        return room.summary.isEncrypted || state.isEncrypted
     }
     
     func isInvite() -> Bool {
