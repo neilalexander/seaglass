@@ -19,6 +19,15 @@ in auto updating feature to ensure you have the latest version.
 brew cask install seaglass
 ```
 
+There is a known issue where you may have to clear attributes after installing.
+https://github.com/neilalexander/seaglass/issues/128
+
+If you get a "Seaglass.app is damaged and can't be opened." window when launching the app clear attributes with the below command and then launch the app again.
+
+```
+xattr -cr /Applications/Seaglass.app
+```
+
 ## Building from source
 
 Use Xcode 9.4 or Xcode 10.0 on macOS 10.13. Seaglass may require macOS 10.13 as a
