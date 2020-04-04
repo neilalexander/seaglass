@@ -44,11 +44,15 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         
         Time.stringValue = super.timestamp()
         Time.toolTip = super.timestamp(.medium, andDate: .medium)
-        
-        let icon = super.icon()
-        Icon.isHidden = !room.state.isEncrypted
-        Icon.image = icon.image
-        Icon.setFrameSize(room.state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
+
+        room.state { state in
+            guard let state = state else { fatalError() }
+
+            let icon = super.icon()
+            self.Icon.isHidden = !state.isEncrypted
+            self.Icon.image = icon.image
+            self.Icon.setFrameSize(state.isEncrypted ? NSMakeSize(icon.width, icon.height) : NSMakeSize(0, icon.height))
+        }
         
         var finalTextColor = NSColor.textColor
         
@@ -159,11 +163,13 @@ class RoomMessageOutgoingCoalesced: RoomMessage {
         Icon.event = event!
         switch event!.sentState {
         case MXEventSentStateFailed:
-            if !room!.state.isEncrypted {
-                Icon.isHidden = false
-                Icon.setFrameSize(NSMakeSize(icon.width, icon.height))
+            room?.state { state in
+                if !state!.isEncrypted {
+                    self.Icon.isHidden = false
+                    self.Icon.setFrameSize(NSMakeSize(icon.width, icon.height))
+                }
+                self.Icon.image = NSImage(named: NSImage.refreshTemplateName)!.tint(with: NSColor.red)
             }
-            Icon.image = NSImage(named: NSImage.refreshTemplateName)!.tint(with: NSColor.red)
             break
         default:
             break

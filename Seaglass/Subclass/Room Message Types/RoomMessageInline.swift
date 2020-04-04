@@ -63,53 +63,58 @@ class RoomMessageInline: RoomMessage {
             if changes.contains("membership") {
                 changes = ["membership"]
             }
-            
-            let senderDisplayName = room.state.memberName(event.sender) ?? event.sender as String
-            let prevDisplayName =
-                event.prevContent != nil && event.prevContent.keys.contains("displayname") ?
-                    event.prevContent["displayname"] as! String? :
-                    event.stateKey as String
-            let newDisplayName =
-                event.content != nil && event.content.keys.contains("displayname") ?
-                    event.content["displayname"] as! String? :
-                    event.stateKey as String
-            
-            Text.stringValue = ""
-            for change in changes {
-                if Text.stringValue != "" {
-                    Text.stringValue.append("\n")
-                }
-                switch change {
-                case "membership":
-                    switch current["membership"] as! String {
-                    case "join":
-                        Text.stringValue.append(contentsOf: "\(newDisplayName!) joined the room")
+
+            room.state { state in
+                guard let state = state else { fatalError() }
+
+                let senderDisplayName = state.members.memberName(event.sender) ?? event.sender as String
+                let prevDisplayName =
+                    event.prevContent != nil && event.prevContent.keys.contains("displayname") ?
+                        event.prevContent["displayname"] as! String? :
+                        event.stateKey as String
+                let newDisplayName =
+                    event.content != nil && event.content.keys.contains("displayname") ?
+                        event.content["displayname"] as! String? :
+                        event.stateKey as String
+
+                self.Text.stringValue = ""
+                for change in changes {
+                    if self.Text.stringValue != "" {
+                        self.Text.stringValue.append("\n")
+                    }
+                    switch change {
+                    case "membership":
+                        switch current["membership"] as! String {
+                        case "join":
+                            self.Text.stringValue.append(contentsOf: "\(newDisplayName!) joined the room")
+                            break
+                        case "invite":
+                            self.Text.stringValue.append(contentsOf: "\(senderDisplayName) invited \(newDisplayName!)")
+                            break
+                        case "leave":
+                            self.Text.stringValue.append(contentsOf: "\(prevDisplayName!) left the room")
+                            break
+                        case "ban":
+                            self.Text.stringValue.append(contentsOf: "\(senderDisplayName) banned \(newDisplayName!)")
+                            break
+                        default:
+                            self.Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown membership state: \(current["membership"] as! String)")
+                            break
+                        }
                         break
-                    case "invite":
-                        Text.stringValue.append(contentsOf: "\(senderDisplayName) invited \(newDisplayName!)")
+                    case "displayname":
+                        self.Text.stringValue.append(contentsOf: "\(prevDisplayName!) is now \(newDisplayName!)")
                         break
-                    case "leave":
-                        Text.stringValue.append(contentsOf: "\(prevDisplayName!) left the room")
-                        break
-                    case "ban":
-                        Text.stringValue.append(contentsOf: "\(senderDisplayName) banned \(newDisplayName!)")
+                    case "avatar_url":
+                        self.Text.stringValue.append(contentsOf: "\(newDisplayName!) changed their avatar")
                         break
                     default:
-                        Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown membership state: \(current["membership"] as! String)")
+                        self.Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown change: \(change)")
                         break
                     }
-                    break
-                case "displayname":
-                    Text.stringValue.append(contentsOf: "\(prevDisplayName!) is now \(newDisplayName!)")
-                    break
-                case "avatar_url":
-                    Text.stringValue.append(contentsOf: "\(newDisplayName!) changed their avatar")
-                    break
-                default:
-                    Text.stringValue.append(contentsOf: "\(newDisplayName!) unknown change: \(change)")
-                    break
                 }
             }
+
             break
         case "m.room.name":
             guard let name = event.content["name"] as? String else { break }
@@ -145,12 +150,20 @@ class RoomMessageInline: RoomMessage {
             break
         case "m.room.create":
             guard let roomCreator = event.content["creator"] as? String else { break }
-            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(roomCreator) ?? roomCreator
-            Text.stringValue = "Room created by \(displayName)"
+            guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { break }
+            room.state { state in
+                guard let state = state else { fatalError() }
+                let displayName = state.members.memberName(roomCreator) ?? roomCreator
+                self.Text.stringValue = "Room created by \(displayName)"
+            }
             break
         case "m.room.encryption":
-            let displayName = MatrixServices.inst.session.room(withRoomId: roomId).state.memberName(event.sender) ?? event.sender ?? "Room participant"
-            Text.stringValue = "\(displayName) enabled room encryption (\(event.content["algorithm"] ?? "unknown") algorithm)"
+            guard let room = MatrixServices.inst.session.room(withRoomId: roomId) else { break }
+            room.state { state in
+                guard let state = state else { fatalError() }
+                let displayName = state.members.memberName(event.sender) ?? event.sender ?? "Room participant"
+                self.Text.stringValue = "\(displayName) enabled room encryption (\(event.content["algorithm"] ?? "unknown") algorithm)"
+            }
             break
         default:
             guard let eventType = event.type else { break }

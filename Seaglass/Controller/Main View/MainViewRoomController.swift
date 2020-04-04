@@ -40,7 +40,20 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
     
     weak public var mainController: MainViewController?
     
-    var roomId: String = ""
+    var roomId: String = "" {
+        didSet {
+            room = MatrixServices.inst.session.room(withRoomId: roomId)
+        }
+    }
+    var room: MXRoom? {
+        didSet {
+            room?.state { state in
+                self.roomState = state
+            }
+
+        }
+    }
+    var roomState: MXRoomState?
     
     var roomIsTyping: Bool = false
     var roomIsPaginating: Bool = false
@@ -162,11 +175,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                    room.state {
+                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: $0!)
+                    }
                 }
                 MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
                 localReturnedEvent = returnedEvent?.eventId ?? nil
-                matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
+                room.state {
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: $0!)
+                }
             }
         } else {
             var localReturnedEvent: String? = nil
@@ -177,11 +194,15 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
                             MatrixServices.inst.roomCaches[self.roomId]!.replace(returnedEvent!, at: index)
                         }
                     }
-                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: self.roomId).state)
+                    room.state {
+                        self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: $0!)
+                    }
                 }
                 MatrixServices.inst.roomCaches[roomId]!.append(returnedEvent!)
                 localReturnedEvent = returnedEvent?.eventId ?? nil
-                matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: MatrixServices.inst.session.room(withRoomId: roomId).state)
+                room.state {
+                    self.matrixDidRoomMessage(event: returnedEvent!, direction: .forwards, roomState: $0!)
+                }
             }
         }
         sender.stringValue = ""
@@ -209,14 +230,18 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
             let direction: MXTimelineDirection = RoomMessageClipView.bounds.minY < 0 ? .backwards : .forwards
             guard direction == .backwards else { return }
-            if room.liveTimeline.canPaginate(direction) {
-                roomIsPaginating = true
-                room.liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
-                    if response.isFailure {
-                        print("Failed to paginate: \(response.error!.localizedDescription)")
-                        return
+            room.liveTimeline { liveTimeline in
+                guard let liveTimeline = liveTimeline else { fatalError() }
+
+                if liveTimeline.canPaginate(direction) {
+                    self.roomIsPaginating = true
+                    liveTimeline.paginate(10, direction: direction, onlyFromStore: false) { (response) in
+                        if response.isFailure {
+                            print("Failed to paginate: \(response.error!.localizedDescription)")
+                            return
+                        }
+                        self.roomIsPaginating = false
                     }
-                    self.roomIsPaginating = false
                 }
             }
         }
@@ -405,10 +430,14 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
             } else {
                 if cache.filteredContent.count == 0 {
                     if let room = MatrixServices.inst.session.room(withRoomId: cacheEntry.roomId) {
-                        room.liveTimeline.resetPagination()
-                        if room.liveTimeline.canPaginate(.backwards) {
-                            room.liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
-                                roomDidPaginate()
+                        room.liveTimeline { liveTimeline in
+                            guard let liveTimeline = liveTimeline else { fatalError() }
+
+                            liveTimeline.resetPagination()
+                            if liveTimeline.canPaginate(.backwards) {
+                                liveTimeline.paginate(50, direction: .backwards, onlyFromStore: false) { _ in
+                                    roomDidPaginate()
+                                }
                             }
                         }
                     }
@@ -553,7 +582,7 @@ class MainViewRoomController: NSViewController, MatrixRoomDelegate, NSTableViewD
         }
         var actions: [NSTableViewRowAction] = []
         if edge == .trailing {
-            if room.state.powerLevels.redact <= room.state.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
+            if roomState!.powerLevels.redact <= roomState!.powerLevels.powerLevelOfUser(withUserID: MatrixServices.inst.session.myUser.userId) {
                 actions.append(NSTableViewRowAction(style: .destructive, title: "Redact", handler: { (action, row) in
                     let event = MatrixServices.inst.roomCaches[self.roomId]!.filteredContent[row]
                     if let index = MatrixServices.inst.roomCaches[self.roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.eventId }) {

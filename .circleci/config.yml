@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     macos:
-      xcode: "10.2.1"
+      xcode: "11.3.1"
       # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
     working_directory: ~/seaglass
     shell: /bin/bash --login -o pipefail

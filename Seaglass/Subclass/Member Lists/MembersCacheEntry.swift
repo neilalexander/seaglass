@@ -21,12 +21,14 @@ import SwiftMatrixSDK
 
 class MembersCacheEntry: NSObject {
     var member: MXRoomMember
+    var state: MXRoomState
     
     @objc dynamic var displayName: String
     @objc dynamic var userId: String
     
-    init(_ member: MXRoomMember) {
+    init(_ member: MXRoomMember, state: MXRoomState) {
         self.member = member
+        self.state = state
         
         userId = member.userId
         displayName = member.displayname ?? ""

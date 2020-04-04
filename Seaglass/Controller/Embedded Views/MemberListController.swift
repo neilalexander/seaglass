@@ -32,16 +32,20 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
         if roomId == "" {
             return
         }
-        
-        for member in MatrixServices.inst.session.room(withRoomId: roomId).state.members {
-            membersCacheController.insert(MembersCacheEntry(member), atArrangedObjectIndex: 0)
-        }
-        
-        let membercount = (membersCacheController.arrangedObjects as! [MXRoomMember]).count
-        
-        MemberSearch.placeholderString = "Search \(membercount) member"
-        if membercount != 1 {
-            MemberSearch.placeholderString?.append(contentsOf: "s")
+
+        if let room = MatrixServices.inst.session.room(withRoomId: roomId) {
+            room.state { state in
+                for member in state!.members.members {
+                    self.membersCacheController.insert(MembersCacheEntry(member, state: state!), atArrangedObjectIndex: 0)
+                }
+
+                let membercount = (self.membersCacheController.arrangedObjects as! [MXRoomMember]).count
+
+                self.MemberSearch.placeholderString = "Search \(membercount) member"
+                if membercount != 1 {
+                    self.MemberSearch.placeholderString?.append(contentsOf: "s")
+                }
+            }
         }
     }
     
@@ -56,8 +60,8 @@ class MemberListController: NSViewController, NSTableViewDelegate, NSTableViewDa
         let room = MatrixServices.inst.session.room(withRoomId: roomId)
         let member: MembersCacheEntry = (membersCacheController.arrangedObjects as! [MembersCacheEntry])[row]
         var powerlevel = 0
-        if room?.state.powerLevels != nil {
-            powerlevel = room?.state.powerLevels.powerLevelOfUser(withUserID: member.userId) ?? 0
+        if member.state.powerLevels != nil {
+            powerlevel = member.state.powerLevels.powerLevelOfUser(withUserID: member.userId) ?? 0
         }
         
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MemberListEntry"), owner: self) as? MemberListEntry

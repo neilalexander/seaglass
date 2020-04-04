@@ -89,8 +89,13 @@ class RoomMessage: NSTableCellView {
         if event == nil {
             return ""
         }
+        var name: String?
         if let room = MatrixServices.inst.session.room(withRoomId: event!.roomId) {
-            return room.state.memberName(event!.sender) ?? event!.sender as String
+            room.state { state in
+                let sender = self.event!.sender
+                name = state?.members.memberName(sender) ?? sender
+            }
+            return name ?? ""
         }
         return ""
     }

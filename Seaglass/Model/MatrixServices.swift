@@ -210,10 +210,13 @@ class MatrixServices: NSObject {
                             
                             MatrixServices.inst.session.peek(inRoom: event.roomId, completion: { (response) in
                                 guard !response.isFailure else { return }
-                                
-                                room.liveTimeline.resetPagination()
-                                room.liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
-                                    // complete?
+
+                                room.liveTimeline { liveTimeline in
+                                    guard let liveTimeline = liveTimeline else { fatalError() }
+                                    liveTimeline.resetPagination()
+                                    liveTimeline.paginate(100, direction: .backwards, onlyFromStore: false) { _ in
+                                        // complete?
+                                    }
                                 }
                             })
                         }
@@ -328,87 +331,90 @@ class MatrixServices: NSObject {
             roomCaches[roomId] = MatrixRoomCache()
         }
 
-        if room.state.isEncrypted {
-            session.crypto.downloadKeys(room.state.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
-                self.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
-            }) { (error) in
-                print("Failed to download keys for \(roomId): \(error!.localizedDescription)")
+        room.state { state in
+            if state?.isEncrypted ?? false {
+                self.session.crypto.downloadKeys(state!.members.members.compactMap { return $0.userId }, forceDownload: false, success: { (devicemap) in
+                    self.mainController?.channelDelegate?.uiRoomNeedsCryptoReload()
+                }) { (error) in
+                    print("Failed to download keys for \(roomId): \(error!.localizedDescription)")
+                }
             }
         }
- 
-        eventListeners[roomId] = room.liveTimeline.listenToEvents() { (event, direction, roomState) in
-            guard event.roomId != nil && event.roomId != "" else { return }
-            guard self.mainController?.channelDelegate?.roomId == event.roomId else { return }
-            
-            if event.decryptionError != nil {
-                NotificationCenter.default.addObserver(MatrixServices.inst, selector: #selector(self.eventDidDecrypt), name: NSNotification.Name.mxEventDidDecrypt, object: event)
-            }
 
-            switch event.type {
-            case "m.room.redaction":
-                for e in self.roomCaches[roomId]!.unfilteredContent.filter({ $0.eventId == event.redacts }) {
-                    guard !e.isRedactedEvent() else { continue }
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.redacts }) {
-                        let pruned = e.prune()!
-                        self.roomCaches[roomId]!.replace(pruned, at: index)
-                        self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState)
-                    }
+        room.liveTimeline { liveTimeline in
+            guard let liveTimeline = liveTimeline else { fatalError() }
+
+            self.eventListeners[roomId] = liveTimeline.listenToEvents() { (event, direction, roomState) in
+                guard event.roomId != nil && event.roomId != "" else { return }
+                guard self.mainController?.channelDelegate?.roomId == event.roomId else { return }
+
+                if event.decryptionError != nil {
+                    NotificationCenter.default.addObserver(MatrixServices.inst, selector: #selector(self.eventDidDecrypt), name: NSNotification.Name.mxEventDidDecrypt, object: event)
                 }
-                break
-            case "m.room.member":
-                if direction == .forwards {
-                    let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
-                    var old = new == "join" ? "leave" : "join"
-                    if event.prevContent != nil {
-                        old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : new == "join" ? "leave" : "join"
+
+                switch event.type {
+                case "m.room.redaction":
+                    for e in self.roomCaches[roomId]!.unfilteredContent.filter({ $0.eventId == event.redacts }) {
+                        guard !e.isRedactedEvent() else { continue }
+                        if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.redacts }) {
+                            let pruned = e.prune()!
+                            self.roomCaches[roomId]!.replace(pruned, at: index)
+                            self.mainController?.channelDelegate?.matrixDidRoomMessage(event: pruned, direction: direction, roomState: roomState)
+                        }
                     }
-                    
-                    if new == "leave" && old != "leave" {
-                        self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
-                    } else if new == "join" && old != "join" {
-                        self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
-                    }
-                }
-                fallthrough
-            default:
-                if !self.roomCaches[roomId]!.unfilteredContent.contains(where: { $0.eventId == event.eventId }) {
+                    break
+                case "m.room.member":
                     if direction == .forwards {
-                        self.roomCaches[roomId]!.append(event)
+                        let new = event.content.keys.contains("membership") ? event.content["membership"] as! String : "join"
+                        var old = new == "join" ? "leave" : "join"
+                        if event.prevContent != nil {
+                            old = event.prevContent.keys.contains("membership") ? event.prevContent["membership"] as! String : new == "join" ? "leave" : "join"
+                        }
+
+                        if new == "leave" && old != "leave" {
+                            self.mainController?.channelDelegate?.matrixDidRoomUserPart(event: event)
+                        } else if new == "join" && old != "join" {
+                            self.mainController?.channelDelegate?.matrixDidRoomUserJoin(event: event)
+                        }
+                    }
+                    fallthrough
+                default:
+                    if !self.roomCaches[roomId]!.unfilteredContent.contains(where: { $0.eventId == event.eventId }) {
+                        if direction == .forwards {
+                            self.roomCaches[roomId]!.append(event)
+                        } else {
+                            self.roomCaches[roomId]!.insert(event, at: 0)
+                        }
                     } else {
-                        self.roomCaches[roomId]!.insert(event, at: 0)
+                        if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.eventId }) {
+                            self.roomCaches[roomId]!.replace(event, at: index)
+                        }
                     }
-                } else {
-                    if let index = self.roomCaches[roomId]!.unfilteredContent.firstIndex(where: { $0.eventId == event.eventId }) {
-                        self.roomCaches[roomId]!.replace(event, at: index)
-                    }
+                    self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
+                    self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
+                    break
                 }
-                self.mainController?.channelDelegate?.matrixDidRoomMessage(event: event, direction: direction, roomState: roomState);
-                self.mainController?.roomsDelegate?.matrixDidUpdateRoom(room)
-                break
-            }
-        } as? MXEventListener
+            } as? MXEventListener
+        }
+
     }
     
-    func userHasPower(inRoomId: String, forEvent: String) -> Bool {
-        let room = session.room(withRoomId: inRoomId)
-        if room == nil {
-            return false
-        }
-        if room!.state.powerLevels == nil {
+    func userHasPower(inRoomId: String, forEvent: String, withRoomState state: MXRoomState) -> Bool {
+        guard let powerLevels = state.powerLevels else {
             return false
         }
         if session.invitedRooms().contains(where: { $0.roomId == inRoomId }) {
             return false
         }
         let powerLevel = { () -> Int in
-            if room!.state.powerLevels.events.count == 0 {
-                return room!.state.powerLevels.stateDefault
+            if powerLevels.events.count == 0 {
+                return powerLevels.stateDefault
             }
-            if room!.state.powerLevels.events.contains(where: { (arg) -> Bool in arg.key as? String == forEvent }) {
-                return room!.state.powerLevels.events[forEvent] as! Int
+            if powerLevels.events.contains(where: { (arg) -> Bool in arg.key as? String == forEvent }) {
+                return powerLevels.events[forEvent] as! Int
             }
-            return room!.state.powerLevels.stateDefault
+            return powerLevels.stateDefault
         }()
-        return room!.state.powerLevels.powerLevelOfUser(withUserID: session.myUser.userId) >= powerLevel
+        return powerLevels.powerLevelOfUser(withUserID: session.myUser.userId) >= powerLevel
     }
 }
