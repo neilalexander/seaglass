@@ -16,7 +16,7 @@ or you can install Seaglass from Homebrew Cask. Either way, you'll be able to us
 in auto updating feature to ensure you have the latest version.
 
 ```
-brew cask install seaglass
+brew install --cask seaglass
 ```
 
 ## Building from source
